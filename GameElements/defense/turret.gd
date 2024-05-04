@@ -4,17 +4,18 @@ extends Defense
 @export var speed_rate = 1.5
 var target : Enemy = null
 
-func abstract_on_body_exited_defense_zone(body: Enemy):
-	target = null
-
 func _ready():
 	%TimerShoot.wait_time = speed_rate
-	
+
+func abstract_on_body_exited_defense_zone():
+	print("abstract turret on body exited defense zone")
+
 func abstract_on_process():
 	if target == null:
 		for body in %ShootZone.get_overlapping_bodies():
 			if body is Enemy:
 				target = body
+				break
 
 func shoot():
 	if target != null:
@@ -28,3 +29,7 @@ func shoot():
 
 func _on_timer_shoot_timeout():
 	shoot()
+
+
+func _on_shoot_zone_body_exited(body):
+	target = null

@@ -11,7 +11,7 @@ signal defense_destroyed()
 func abstract_final_action():
 	assert("This class is not derived from Defense !")
 	
-func abstract_on_body_exited_defense_zone(body: Enemy):
+func abstract_on_body_exited_defense_zone():
 	assert("This class is not derived from Defense !")
 	
 func abstract_on_process():
@@ -55,7 +55,7 @@ func _on_area_2d_body_entered(body: Enemy):
 	
 func _on_area_2d_body_exited(body: Enemy):
 	cumulated_damage -= 1
-	abstract_on_body_exited_defense_zone(body)
+	abstract_on_body_exited_defense_zone()
 
 func _on_timer_timeout():
 	take_damage()

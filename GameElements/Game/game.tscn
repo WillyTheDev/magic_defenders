@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=9 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="PackedScene" uid="uid://bcw643o4voapk" path="res://GameElements/Player/player.tscn" id="2_ok500"]
 [ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/Core.tscn" id="4_lfcpx"]
 [ext_resource type="Script" path="res://GameElements/Core/core.gd" id="5_p4qxv"]
+[ext_resource type="PackedScene" uid="uid://f0nvmdfvluh4" path="res://GameElements/defense/turret.tscn" id="5_p8rvs"]
 
 [sub_resource type="Curve2D" id="Curve2D_xskne"]
 _data = {
@@ -61,6 +62,7 @@ curve = SubResource("Curve2D_fmilx")
 [node name="Core" parent="." instance=ExtResource("4_lfcpx")]
 position = Vector2(570, 417)
 script = ExtResource("5_p4qxv")
+health = 10
 has_been_build = true
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -90,11 +92,14 @@ size_flags_horizontal = 6
 text = "Add Defense
 "
 
-[node name="TurrentButton" type="Button" parent="UI/HBoxContainer"]
+[node name="TurretButton" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
-text = "Add Turrent"
+text = "Add Turret"
+
+[node name="Turret" parent="." instance=ExtResource("5_p8rvs")]
+position = Vector2(902, 244)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="UI/HBoxContainer/DefenseButton" to="Player" method="_on_defense_button_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer/TurrentButton" to="Player" method="_on_turrent_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/TurretButton" to="Player" method="_on_turrent_button_pressed"]
