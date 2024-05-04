@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=9 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="PackedScene" uid="uid://bcw643o4voapk" path="res://GameElements/Player/player.tscn" id="2_ok500"]
 [ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/Core.tscn" id="4_lfcpx"]
+[ext_resource type="PackedScene" uid="uid://b25d008cch7qm" path="res://GameElements/defense/defense.tscn" id="5_657xa"]
 [ext_resource type="Script" path="res://GameElements/Core/core.gd" id="5_p4qxv"]
 
 [sub_resource type="Curve2D" id="Curve2D_xskne"]
@@ -26,14 +27,14 @@ point_count = 6
 [node name="Game" type="Node2D" node_paths=PackedStringArray("paths")]
 y_sort_enabled = true
 script = ExtResource("1_m44sk")
-paths = [NodePath("Paths/Path_1"), NodePath("Paths/Path_2"), NodePath("Paths/Path_3")]
+paths = [NodePath("Paths/Path_1"), NodePath("Paths/Path_2"), null]
 
-[node name="Background" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
 
-[node name="ColorRect" type="ColorRect" parent="Background"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 offset_right = 1156.0
 offset_bottom = 659.0
 color = Color(0.125121, 0.675465, 0.375291, 1)
@@ -58,43 +59,10 @@ curve = SubResource("Curve2D_af5uw")
 [node name="Path_3" type="Path2D" parent="Paths"]
 curve = SubResource("Curve2D_fmilx")
 
+[node name="Defense2" parent="." instance=ExtResource("5_657xa")]
+
 [node name="Core" parent="." instance=ExtResource("4_lfcpx")]
 position = Vector2(570, 417)
 script = ExtResource("5_p4qxv")
-has_been_build = true
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -50.0
-offset_bottom = -27.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 0
-
-[node name="ManaLabel" type="Label" parent="UI/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Mana
-"
-uppercase = true
-
-[node name="DefenseButton" type="Button" parent="UI/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Add Defense
-"
-
-[node name="TurrentButton" type="Button" parent="UI/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Add Turrent"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="UI/HBoxContainer/DefenseButton" to="Player" method="_on_defense_button_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer/TurrentButton" to="Player" method="_on_turrent_button_pressed"]

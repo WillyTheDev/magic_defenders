@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://bkg3sywh2nxxl"]
 
-[ext_resource type="PackedScene" uid="uid://d0h5viffh6xrj" path="res://GameElements/Ennemies/slime.tscn" id="1_d47ex"]
+[ext_resource type="PackedScene" uid="uid://d0h5viffh6xrj" path="res://GameElements/Enemies/Slime/slime.tscn" id="1_lxnbj"]
 
 [node name="Follower" type="PathFollow2D"]
 position = Vector2(94, 47)
 rotation = 0.377593
 rotates = false
 
-[node name="Slime" parent="." instance=ExtResource("1_d47ex")]
+[node name="Slime" parent="." instance=ExtResource("1_lxnbj")]
 rotation = -0.352108
 scale = Vector2(0.25, 0.25)
 

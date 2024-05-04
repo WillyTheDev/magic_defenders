@@ -7,8 +7,6 @@ extends CharacterBody2D
 
 signal reward_player()
 
-@onready var core = get_node("/root/Game/Core")
-
 func play_animation_hit():
 	%AnimationPlayer.play("hit")
 	%AnimationPlayer.queue("idle")
