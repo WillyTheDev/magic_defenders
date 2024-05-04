@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bcw643o4voapk" path="res://GameElements/Player/player.tscn" id="2_ok500"]
 [ext_resource type="PackedScene" uid="uid://bhistwke3da2p" path="res://GameElements/Core/core.tscn" id="3_ofjos"]
 [ext_resource type="Script" path="res://GameElements/Game/Follower.gd" id="4_d5ih4"]
-[ext_resource type="Script" path="res://GameElements/Game/Defense.gd" id="5_xafjk"]
+[ext_resource type="Script" path="res://GameElements/defense/Defense.gd" id="5_xafjk"]
 
 [sub_resource type="Curve2D" id="Curve2D_o8eub"]
 _data = {
