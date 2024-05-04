@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=6 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="PackedScene" uid="uid://bcw643o4voapk" path="res://GameElements/Player/player.tscn" id="2_ok500"]
-[ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/Core.tscn" id="4_lfcpx"]
+[ext_resource type="PackedScene" uid="uid://bhistwke3da2p" path="res://GameElements/Core/core.tscn" id="3_ofjos"]
 [ext_resource type="PackedScene" uid="uid://b25d008cch7qm" path="res://GameElements/defense/defense.tscn" id="5_657xa"]
-[ext_resource type="Script" path="res://GameElements/Core/core.gd" id="5_p4qxv"]
 
 [sub_resource type="Curve2D" id="Curve2D_xskne"]
 _data = {
@@ -36,15 +35,15 @@ platform_floor_layers = 4294967040
 wait_time = 2.0
 autostart = true
 
+[node name="Core" parent="." instance=ExtResource("3_ofjos")]
+z_index = 1
+position = Vector2(570, 419)
+
 [node name="Paths" type="Node2D" parent="."]
 
 [node name="Path_1" type="Path2D" parent="Paths"]
 curve = SubResource("Curve2D_xskne")
 
 [node name="Defense2" parent="." instance=ExtResource("5_657xa")]
-
-[node name="Core" parent="." instance=ExtResource("4_lfcpx")]
-position = Vector2(570, 417)
-script = ExtResource("5_p4qxv")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

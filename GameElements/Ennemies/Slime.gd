@@ -1,10 +1,11 @@
+class_name Enemy
 extends CharacterBody2D
 
-const MANA_AMOUNT = 1
+@export var speed = 0.1
+@export var MANA_AMOUNT = 1
+@export var health = 3
 
 signal reward_player()
-
-var health = 3
 
 @onready var core = get_node("/root/Game/Core")
 
@@ -18,13 +19,9 @@ func play_animation_idle():
 
 func _ready():
 	play_animation_idle()
-	
-	
-func _physics_process(delta):
-	var direction = global_position.direction_to(core.global_position)
-	velocity = direction * 150.0
-	move_and_slide()
 
+func _process(delta):
+	get_parent().progress_ratio += delta * speed
 
 func take_damage():
 	play_animation_hit()
@@ -33,7 +30,8 @@ func take_damage():
 		reward_player.emit(MANA_AMOUNT)
 		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
 		var new_smoke = SMOKE.instantiate()
-		new_smoke.global_position = global_position
 		get_parent().add_child(new_smoke)
 		queue_free()
 	
+func no_longer_attacking_defense():
+	speed = 0.1

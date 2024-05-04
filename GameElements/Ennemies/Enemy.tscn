@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkg3sywh2nxxl"]
+
+[ext_resource type="PackedScene" uid="uid://d0h5viffh6xrj" path="res://GameElements/Ennemies/slime.tscn" id="1_d47ex"]
+
+[node name="Follower" type="PathFollow2D"]
+position = Vector2(94, 47)
+rotation = 0.377593
+rotates = false
+
+[node name="Slime" parent="." instance=ExtResource("1_d47ex")]
+rotation = -0.352108
+scale = Vector2(0.25, 0.25)
+
+[node name="_Timer_152834" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
