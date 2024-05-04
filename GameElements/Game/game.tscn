@@ -1,0 +1,115 @@
+[gd_scene load_steps=11 format=3 uid="uid://c24n7qcisy1dc"]
+
+[ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
+[ext_resource type="PackedScene" uid="uid://bcw643o4voapk" path="res://GameElements/Player/player.tscn" id="2_ok500"]
+[ext_resource type="PackedScene" uid="uid://bhistwke3da2p" path="res://GameElements/Core/core.tscn" id="3_ofjos"]
+[ext_resource type="Script" path="res://GameElements/Game/Follower.gd" id="4_d5ih4"]
+[ext_resource type="Script" path="res://GameElements/Game/Defense.gd" id="5_xafjk"]
+
+[sub_resource type="Curve2D" id="Curve2D_o8eub"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -57, -65, 0, 0, 0, 0, 1179, -61, 0, 0, 0, 0, 1201, 684, 0, 0, 0, 0, -51, 705, 0, 0, 0, 0, -57, -61)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_xskne"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 94, 47, 28.0616, -83.0622, -28.0616, 83.0622, 331, 141, -38.1637, -71.8376, 38.1637, 71.8376, 484, 238, -21.3268, -87.552, 21.3268, 87.552, 411, 383, 0, 0, 0, 0, 554, 422)
+}
+point_count = 5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8jbo5"]
+radius = 30.8869
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyh6e"]
+size = Vector2(21, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ejl3"]
+size = Vector2(34, 66)
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_m44sk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1156.0
+offset_bottom = 659.0
+color = Color(0.125121, 0.675465, 0.375291, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_ok500")]
+z_index = 1
+position = Vector2(575, 320)
+platform_floor_layers = 4294967040
+
+[node name="PathSpawn" type="Path2D" parent="."]
+curve = SubResource("Curve2D_o8eub")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PathSpawn"]
+unique_name_in_owner = true
+position = Vector2(-57, -65)
+rotation = 0.00323623
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Core" parent="." instance=ExtResource("3_ofjos")]
+z_index = 1
+position = Vector2(570, 419)
+
+[node name="Path_1" type="Path2D" parent="."]
+curve = SubResource("Curve2D_xskne")
+
+[node name="Follower" type="PathFollow2D" parent="Path_1"]
+position = Vector2(94, 47)
+rotation = 0.377593
+rotates = false
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Path_1/Follower"]
+script = ExtResource("4_d5ih4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path_1/Follower/CharacterBody2D"]
+shape = SubResource("CircleShape2D_8jbo5")
+
+[node name="ColorRect" type="ColorRect" parent="Path_1/Follower"]
+offset_left = -17.5831
+offset_top = -19.9207
+offset_right = 22.4169
+offset_bottom = 20.0793
+
+[node name="Defense" type="Node2D" parent="."]
+position = Vector2(386, 196)
+script = ExtResource("5_xafjk")
+
+[node name="ColorRect" type="ColorRect" parent="Defense"]
+offset_left = -11.0
+offset_top = -30.0
+offset_right = 10.0
+offset_bottom = 29.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Defense"]
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Defense/StaticBody2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_eyh6e")
+
+[node name="Area2D" type="Area2D" parent="Defense/StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Defense/StaticBody2D/Area2D"]
+position = Vector2(-4, -1)
+shape = SubResource("RectangleShape2D_1ejl3")
+debug_color = Color(0.755894, 0.189016, 1, 0.42)
+
+[node name="Timer" type="Timer" parent="Defense"]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Defense/StaticBody2D/Area2D" to="Defense" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Defense/StaticBody2D/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Defense/Timer" to="Defense" method="_on_timer_timeout"]

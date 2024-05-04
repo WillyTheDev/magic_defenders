@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6ybx7ppmgubp"]
+
+[ext_resource type="PackedScene" uid="uid://kbm12vsaf3ev" path="res://GameElements/Player/player_animation.tscn" id="2_x272i"]
+
+[sub_resource type="GDScript" id="GDScript_d6vbs"]
+script/source = "extends CharacterBody2D
+
+func _physics_process(delta):
+	var direction = Input.get_vector(\"move_left\", \"move_right\", \"move_up\", \"move_down\")
+	velocity = direction * 600
+	move_and_slide()
+	if velocity.length() > 0.0:
+		%AnimationPlayer.play(\"walk\");
+	else:
+		%AnimationPlayer.play(\"idle\");
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wtuox"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = SubResource("GDScript_d6vbs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wtuox")
+
+[node name="PlayerAnimation" parent="." instance=ExtResource("2_x272i")]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://c24n7qcisy1dc"]
+
+[ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
+[ext_resource type="PackedScene" uid="uid://bcw643o4voapk" path="res://GameElements/Player/player.tscn" id="2_ok500"]
+[ext_resource type="PackedScene" uid="uid://bhistwke3da2p" path="res://GameElements/Core/core.tscn" id="3_ofjos"]
+
+[sub_resource type="Curve2D" id="Curve2D_o8eub"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -57, -65, 0, 0, 0, 0, 1179, -61, 0, 0, 0, 0, 1201, 684, 0, 0, 0, 0, -51, 705, 0, 0, 0, 0, -57, -61)
+}
+point_count = 5
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_m44sk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1156.0
+offset_bottom = 659.0
+color = Color(0.125121, 0.675465, 0.375291, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_ok500")]
+z_index = 1
+position = Vector2(575, 320)
+platform_floor_layers = 4294967040
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_o8eub")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(-57, -65)
+rotation = 0.00323623
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Core" parent="." instance=ExtResource("3_ofjos")]
+position = Vector2(570, 419)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

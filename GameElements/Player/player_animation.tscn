@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=3 uid="uid://kbm12vsaf3ev"]
+
+[ext_resource type="Script" path="res://GameElements/Player/player_animation.gd" id="1_uy0ks"]
+[ext_resource type="Texture2D" uid="uid://ucyhjb7bnndq" path="res://Assets/Player/full.png" id="1_x1osm"]
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_dsmio"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/45e1265ab27393903ca3faea493f5a54.jpg" id="3_objk4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ak51"]
+shader = ExtResource("2_dsmio")
+shader_parameter/strength = 0.015
+shader_parameter/speed = 10.0
+shader_parameter/frames = 7
+shader_parameter/flowMap = ExtResource("3_objk4")
+
+[sub_resource type="Animation" id="Animation_rouii"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Full:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.05, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Full:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Full:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hf7y2"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Full:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Full:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_cascm"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Full:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(0.574351, 0.574351, 0.574351),
+"update": 0,
+"values": [0.261799, -0.207694, 0.261799]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Full:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(0.307786, 0.307786, 0.307786, 0.307786, 0.307786),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -23), Vector2(0, 0), Vector2(0, -25), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rc2xe"]
+_data = {
+"RESET": SubResource("Animation_rouii"),
+"idle": SubResource("Animation_hf7y2"),
+"walk": SubResource("Animation_cascm")
+}
+
+[node name="PlayerAnimation" type="Node2D"]
+script = ExtResource("1_uy0ks")
+
+[node name="Full" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2ak51")
+scale = Vector2(1.05, 1)
+texture = ExtResource("1_x1osm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_rc2xe")
+}
