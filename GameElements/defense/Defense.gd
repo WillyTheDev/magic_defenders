@@ -3,6 +3,7 @@ extends Node2D
 
 @export var health = 4
 @export var has_been_build = false
+@export var can_be_placed = true
 
 var cumulated_damage = 0
 
@@ -22,10 +23,20 @@ func _process(float):
 	if has_been_build == false:
 		global_position = get_global_mouse_position()
 		rotation = get_node("/root/Game/Player").get_angle_to(get_global_mouse_position())
+		if %Area2D.get_overlapping_bodies().size() > 0 :
+			can_be_placed = false
+			#Set the modulate color to red
+			modulate = "eb002b8b"
+		else :
+			can_be_placed = true
+			#Set the modulate color to green
+			modulate = "2398008b"
+		
 	
 func _input(event):
 	if event.is_action_pressed("left_click"):
-		if has_been_build == false:
+		if has_been_build == false && can_be_placed == true:
+			#Place and fix the defense at the determined position and reset the modulate and collision_layer
 			modulate = "ffffff"
 			%StaticBody2D.collision_layer = 1
 			%StaticBody2D.collision_mask = 1

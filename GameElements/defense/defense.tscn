@@ -9,7 +9,7 @@ size = Vector2(21, 26)
 size = Vector2(26, 31)
 
 [node name="Defense" type="Node2D"]
-modulate = Color(0.223529, 0.745098, 1, 0.545098)
+modulate = Color(0.137625, 0.595463, 5.77569e-07, 0.545098)
 position = Vector2(386, 196)
 script = ExtResource("1_4mahn")
 health = 20
@@ -30,19 +30,18 @@ collision_mask = 2
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_eyh6e")
 
-[node name="Area2D" type="Area2D" parent="StaticBody2D"]
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 2
-collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-4, -1)
 shape = SubResource("RectangleShape2D_1ejl3")
 debug_color = Color(0.755894, 0.189016, 1, 0.42)
 
-[node name="Timer" type="Timer" parent="."]
-unique_name_in_owner = true
-
-[connection signal="body_entered" from="StaticBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="StaticBody2D/Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,6 +1,13 @@
+class_name Player
 extends CharacterBody2D
 
+@export var mana_amount = 40
 var is_building = false
+signal player_update_mana_amount
+
+func update_mana_amount(mana: int):
+	mana_amount += mana
+	player_update_mana_amount.emit(mana_amount)
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -31,18 +38,24 @@ func place_defense():
 	is_building = false
 
 func _on_defense_button_pressed():
-	is_building = true
-	const DEFENSE = preload("res://GameElements/defense/defense.tscn")
-	var new_defense = DEFENSE.instantiate()
-	new_defense.global_position = get_global_mouse_position()
-	new_defense.rotation = get_angle_to(get_global_mouse_position())
-	get_parent().add_child(new_defense)
+	var defense_price = get_parent().defense_price
+	if mana_amount >= defense_price:
+		update_mana_amount(-defense_price)
+		is_building = true
+		const DEFENSE = preload("res://GameElements/defense/defense.tscn")
+		var new_defense = DEFENSE.instantiate()
+		new_defense.global_position = get_global_mouse_position()
+		new_defense.rotation = get_angle_to(get_global_mouse_position())
+		get_parent().add_child(new_defense)
 
 
 func _on_turrent_button_pressed():
-	is_building = true
-	const TURRET = preload("res://GameElements/defense/turret.tscn")
-	var new_turret = TURRET.instantiate()
-	new_turret.global_position = get_global_mouse_position()
-	new_turret.rotation = get_angle_to(get_global_mouse_position())
-	get_parent().add_child(new_turret)
+	var turret_price = get_parent().turret_price
+	if mana_amount >= turret_price:
+		update_mana_amount(-turret_price)
+		is_building = true
+		const TURRET = preload("res://GameElements/defense/turret.tscn")
+		var new_turret = TURRET.instantiate()
+		new_turret.global_position = get_global_mouse_position()
+		new_turret.rotation = get_angle_to(get_global_mouse_position())
+		get_parent().add_child(new_turret)

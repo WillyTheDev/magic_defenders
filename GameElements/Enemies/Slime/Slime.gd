@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var MANA_AMOUNT = 1
 @export var health = 3
 
-signal reward_player()
+signal slime_has_been_killed
 
 func play_animation_hit():
 	%AnimationPlayer.play("hit")
@@ -25,10 +25,14 @@ func take_damage():
 	play_animation_hit()
 	health -= 1
 	if health <= 0:
-		reward_player.emit(MANA_AMOUNT)
+		slime_has_been_killed.emit()
 		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
 		var new_smoke = SMOKE.instantiate()
 		get_parent().add_child(new_smoke)
+		const MANA = preload("res://GameElements/misc/mana.tscn")
+		var new_mana = MANA.instantiate()
+		new_mana.rotation = rotation
+		get_parent().add_child(new_mana)
 		queue_free()
 	
 func no_longer_attacking_defense():
