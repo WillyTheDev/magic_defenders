@@ -10,6 +10,10 @@ func _ready():
 func abstract_on_body_exited_defense_zone():
 	print("abstract turret on body exited defense zone")
 
+func abstract_build_defense():
+		%ShootingZoneSprite.visible = false
+		%ShootZone.collision_mask = 1
+
 func abstract_on_process():
 	if target == null:
 		for body in %ShootZone.get_overlapping_bodies():

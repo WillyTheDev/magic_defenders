@@ -2,14 +2,20 @@ class_name Player
 extends CharacterBody2D
 
 @export var mana_amount = 40
+@export var screen_size = Vector2i(0,0)
 var is_building = false
 signal player_update_mana_amount
+
+func _ready():
+	screen_size = get_parent().get_node("MapLimit").global_position
 
 func update_mana_amount(mana: int):
 	mana_amount += mana
 	player_update_mana_amount.emit(mana_amount)
 
 func _physics_process(delta):
+	position.x = clamp(position.x, 0, screen_size.x)
+	position.y = clamp(position.y, 0, screen_size.y)
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * 300
 	move_and_slide()

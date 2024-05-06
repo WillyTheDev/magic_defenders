@@ -1,13 +1,17 @@
 class_name Defense
 extends Node2D
 
-@export var health = 4
+@export var total_health : float = 4.0
 @export var has_been_build = false
 @export var can_be_placed = true
 
+var current_health = 4.0
 var cumulated_damage = 0
 
 signal defense_destroyed()
+
+func _ready():
+	current_health = total_health
 
 func abstract_final_action():
 	assert("This class is not derived from Defense !")
@@ -17,6 +21,19 @@ func abstract_on_body_exited_defense_zone():
 	
 func abstract_on_process():
 	assert("This class is not derived from Defense !")
+	
+func abstract_build_defense():
+	assert("This class is not derived from Defense !")
+	
+func build_defense():
+	#Place and fix the defense at the determined position and reset the modulate and collision_layer
+			modulate = "ffffff"
+			%StaticBody2D.collision_layer = 1
+			%StaticBody2D.collision_mask = 1
+			%Area2D.collision_layer = 1
+			%Area2D.collision_mask = 1
+			abstract_build_defense()
+			has_been_build = true
 
 func _process(float):
 	abstract_on_process()
@@ -36,19 +53,13 @@ func _process(float):
 func _input(event):
 	if event.is_action_pressed("left_click"):
 		if has_been_build == false && can_be_placed == true:
-			#Place and fix the defense at the determined position and reset the modulate and collision_layer
-			modulate = "ffffff"
-			%StaticBody2D.collision_layer = 1
-			%StaticBody2D.collision_mask = 1
-			%Area2D.collision_layer = 1
-			%Area2D.collision_mask = 1
-			has_been_build = true
+			build_defense()
 
 
 
 func take_damage():
-	health -= cumulated_damage
-	if health <= 0:
+	current_health -= cumulated_damage
+	if current_health <= 0:
 		abstract_final_action()
 		defense_destroyed.emit()
 		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
@@ -56,8 +67,15 @@ func take_damage():
 		new_smoke.global_position = global_position
 		get_parent().add_child(new_smoke)
 		queue_free()
+	else:
+		print(current_health)
+		print(total_health)
+		var values = (255 * (current_health/total_health))
+		print("value = %s" % values)
+		modulate = "ff%x%xff" % [values, values]
 
 func _on_area_2d_body_entered(body: Enemy):
+	print("Body entered!")
 	defense_destroyed.connect(body.no_longer_attacking_defense)
 	body.speed = 0
 	cumulated_damage += 1

@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody2D
 
-@export var speed = 0.1
+@export var speed = 100
 @export var MANA_AMOUNT = 1
 @export var health = 3
 
@@ -19,7 +19,7 @@ func _ready():
 	play_animation_idle()
 
 func _process(delta):
-	get_parent().progress_ratio += delta * speed
+	get_parent().progress += delta * speed
 
 func take_damage():
 	play_animation_hit()
@@ -36,4 +36,4 @@ func take_damage():
 		queue_free()
 	
 func no_longer_attacking_defense():
-	speed = 0.1
+	speed = 100
