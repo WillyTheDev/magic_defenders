@@ -115,13 +115,13 @@ uppercase = true
 [node name="DefenseButton" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
-text = "Add Defense
+text = "Add Defense ( 10 mana )
 "
 
 [node name="TurretButton" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
-text = "Add Turret"
+text = "Add Turret ( 20 mana )"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI"]
 anchors_preset = 10
@@ -183,7 +183,45 @@ offset_right = 1928.0
 offset_bottom = 1080.0
 color = Color(0.345098, 0.462745, 0.32549, 1)
 
+[node name="GameOverScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.188235, 0.188235, 0.188235, 0.929412)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("5_vhx2p")
+theme_override_font_sizes/font_size = 128
+text = "Game Over"
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+
+[node name="RestartButton" type="Button" parent="GameOverScreen/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 32
+text = "Play again"
+
 [connection signal="player_update_mana_amount" from="Player" to="." method="_on_player_player_update_mana_amount"]
 [connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
+[connection signal="core_destroyed" from="Core" to="." method="_on_core_core_destroyed"]
 [connection signal="pressed" from="UI/HBoxContainer/DefenseButton" to="Player" method="_on_defense_button_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/TurretButton" to="Player" method="_on_turrent_button_pressed"]
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]

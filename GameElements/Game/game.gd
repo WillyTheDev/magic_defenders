@@ -41,6 +41,9 @@ func spawn_mob():
 	var indexSpawnPoints = floor(randf() * paths.size())
 	paths[indexSpawnPoints].add_child(mob)
 	
+func game_over():
+	%GameOverScreen.visible = true
+	
 func on_enemy_has_been_killed():
 	enemies_left -= 1
 	%EnemiesProgressBar.value = enemies_left
@@ -61,3 +64,11 @@ func _input(event):
 	if event.is_action_pressed("action_button"):
 		if is_idle:
 			start_new_wave()
+
+
+func _on_restart_button_pressed():
+	get_tree().reload_current_scene()
+
+
+func _on_core_core_destroyed():
+	game_over()

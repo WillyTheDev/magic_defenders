@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://GameElements/defense/Defense.gd" id="1_v2awi"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vshdb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uvl6u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eyh6e"]
 size = Vector2(58.5, 59)
@@ -16,7 +16,7 @@ scale = Vector2(1.5, 1.5)
 script = ExtResource("1_v2awi")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_vshdb")
+material = SubResource("ShaderMaterial_uvl6u")
 offset_left = -40.0
 offset_top = -1.0
 offset_right = -19.0

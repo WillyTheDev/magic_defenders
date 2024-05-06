@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://f0nvmdfvluh4"]
+[gd_scene load_steps=7 format=3 uid="uid://f0nvmdfvluh4"]
 
 [ext_resource type="Script" path="res://GameElements/defense/turret.gd" id="1_c4q16"]
 [ext_resource type="Texture2D" uid="uid://b5v7ycymulj75" path="res://Assets/Zone/bande1.png" id="2_26sh2"]
 [ext_resource type="Texture2D" uid="uid://cqd7ep7gabify" path="res://Assets/Defense/turret.png" id="2_c3r0p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crnf5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eyh6e"]
 size = Vector2(21, 26)
@@ -16,6 +18,7 @@ position = Vector2(386, 196)
 script = ExtResource("1_c4q16")
 
 [node name="Turret" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_crnf5")
 position = Vector2(-4, -2)
 rotation = 1.57079
 scale = Vector2(0.1, 0.1)
