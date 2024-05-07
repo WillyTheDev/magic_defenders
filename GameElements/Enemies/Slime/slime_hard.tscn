@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmo608hicdlq5"]
+[gd_scene load_steps=12 format=3 uid="uid://cmo608hicdlq5"]
 
 [ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_1dq6v"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_oowi8"]
 [ext_resource type="Texture2D" uid="uid://b5w58d8v50f7h" path="res://Assets/Ennemies/Slime_v2_hard.png" id="3_snabp"]
 [ext_resource type="Texture2D" uid="uid://baacy614v8gmy" path="res://Assets/Ennemies/Slime_v2_hit.png" id="4_uujxv"]
+[ext_resource type="PackedScene" uid="uid://cgvdas2mv2rnx" path="res://GameElements/misc/damage_indicator.tscn" id="5_m8wr0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyd47"]
 
@@ -108,3 +109,6 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_w3qrp")
 }
+
+[node name="DamageIndicator" parent="." instance=ExtResource("5_m8wr0")]
+unique_name_in_owner = true

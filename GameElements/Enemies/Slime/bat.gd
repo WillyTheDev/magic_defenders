@@ -12,7 +12,6 @@ func _physics_process(delta):
 	position += delta * speed * direction
 
 func take_damage():
-	print("BAT IS TAKING DAMAGE")
 	play_animation_hit()
 	health -= 1
 	if health <= 0:

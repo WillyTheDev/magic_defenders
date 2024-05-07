@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://d10vlpwv31l6o"]
 
-[ext_resource type="Script" path="res://bat.gd" id="1_aqc6d"]
+[ext_resource type="Script" path="res://GameElements/Enemies/Slime/bat.gd" id="1_e6ky4"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_4koqq"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="3_1dufk"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_4qlte"]
@@ -112,7 +112,7 @@ _data = {
 z_index = 1
 scale = Vector2(0.2, 0.2)
 platform_floor_layers = 4294967040
-script = ExtResource("1_aqc6d")
+script = ExtResource("1_e6ky4")
 MANA_AMOUNT = 5
 follow_path = false
 

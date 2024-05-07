@@ -26,7 +26,7 @@ func _process(delta):
 
 func take_damage():
 	play_animation_hit()
-	health -= 1
+	health -= damage
 	if health <= 0:
 		slime_has_been_killed.emit()
 		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
