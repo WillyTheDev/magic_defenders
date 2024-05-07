@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=25 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Texture2D" uid="uid://bb65vqteo10xf" path="res://Assets/Zone/arrière-plan.png" id="2_7h1cc"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cp2jr7wt7sntm" path="res://Assets/mana.png" id="13_3cv1f"]
 [ext_resource type="Shader" path="res://Shaders/weedShader.gdshader" id="14_gb0en"]
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="15_dwjti"]
+[ext_resource type="Script" path="res://GameElements/Game/TurretControler.gd" id="16_46jf5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dfh6k"]
 shader = ExtResource("2_jnllo")
@@ -542,6 +543,10 @@ material = SubResource("ShaderMaterial_4adnp")
 position = Vector2(2033.84, 411.454)
 scale = Vector2(0.106595, 0.106595)
 texture = ExtResource("15_dwjti")
+
+[node name="TurretDefenseManager" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("16_46jf5")
 
 [connection signal="player_update_mana_amount" from="Player" to="." method="_on_player_player_update_mana_amount"]
 [connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]

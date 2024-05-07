@@ -54,6 +54,7 @@ func spawn_mob():
 	var enemy_spawn_chance : float = randf()
 	var medium_enemy_spawn_chance: float = (current_wave)/max_wave
 	var hard_enemy_spawn_chance :float =  current_wave/(max_wave * 3)
+	var mana_enemy_spawn_chance : float = 0.02
 	print(enemy_spawn_chance)
 	print(medium_enemy_spawn_chance)
 	print(hard_enemy_spawn_chance)
@@ -61,6 +62,8 @@ func spawn_mob():
 		slime = preload("res://GameElements/Enemies/Slime/slime_hard.tscn").instantiate()
 	elif enemy_spawn_chance < medium_enemy_spawn_chance:
 		slime = preload("res://GameElements/Enemies/Slime/slime_medium.tscn").instantiate()
+	elif enemy_spawn_chance > 1 - mana_enemy_spawn_chance:
+		slime = preload("res://GameElements/Enemies/Slime/slime_mana.tscn").instantiate()
 	else:
 		slime = preload("res://GameElements/Enemies/Slime/slime.tscn").instantiate()
 	slime.slime_has_been_killed.connect(on_enemy_has_been_killed)
