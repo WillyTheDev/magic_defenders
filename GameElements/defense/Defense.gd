@@ -72,15 +72,11 @@ func take_damage():
 		get_parent().add_child(new_smoke)
 		queue_free()
 	else:
-		print(current_health)
-		print(total_health)
 		var values = (255 * (current_health/total_health))
-		print("value = %s" % values)
 		modulate = "ff%x%xff" % [values, values]
 
 func _on_area_2d_body_entered(body):
 	if body is Enemy:
-		print("Body entered!")
 		defense_destroyed.connect(body.no_longer_attacking_defense)
 		body.speed = 0
 		cumulated_damage += body.damage

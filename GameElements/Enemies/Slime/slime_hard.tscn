@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cmo608hicdlq5"]
 
-[ext_resource type="Script" path="res://GameElements/Enemies/Slime/Slime.gd" id="1_4co5u"]
+[ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_1dq6v"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_oowi8"]
 [ext_resource type="Texture2D" uid="uid://b5w58d8v50f7h" path="res://Assets/Ennemies/Slime_v2_hard.png" id="3_snabp"]
 [ext_resource type="Texture2D" uid="uid://baacy614v8gmy" path="res://Assets/Ennemies/Slime_v2_hit.png" id="4_uujxv"]
@@ -82,7 +82,7 @@ z_index = 1
 material = SubResource("ShaderMaterial_jyd47")
 scale = Vector2(0.7, 0.7)
 platform_floor_layers = 4294967040
-script = ExtResource("1_4co5u")
+script = ExtResource("1_1dq6v")
 MANA_AMOUNT = 60
 health = 50
 damage = 20

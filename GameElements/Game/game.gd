@@ -9,14 +9,14 @@ extends Node2D
 @export var enemies_spawn = 0
 @export var enemies_left = 10
 @export var spawn_rates = 2.5
-@export var spawn_flying_enemy_rates = 15
+@export var spawn_flying_enemy_rates = 20
 @export var is_idle = true
 	
 
 func start_new_wave():
 	is_idle = false
 	spawn_rates -= 0.2
-	spawn_flying_enemy_rates -= 0.3
+	spawn_flying_enemy_rates -= 0.2
 	current_wave += 1
 	total_enemies = current_wave * 10
 	enemies_left = total_enemies
@@ -43,6 +43,7 @@ func spawn_flying_mob():
 	%FlyingSpawnPoint.progress_ratio = randf()
 	flying_enemy.global_position = %FlyingSpawnPoint.global_position
 	add_child(flying_enemy)
+	spawn_visual_indicator(flying_enemy)
 
 func spawn_mob():
 	enemies_spawn += 1
@@ -62,10 +63,13 @@ func spawn_mob():
 	# Add the Enemy on a random path
 	var indexSpawnPoints = floor(randf() * paths.size())
 	paths[indexSpawnPoints].add_child(enemy)
+	spawn_visual_indicator(enemy.get_node("Slime"))
 	
+	
+func spawn_visual_indicator(target):
 	# Add a visual indicator for each Enemy spawned
 	var indicator = preload("res://GameElements/misc/enemy_indicator.tscn").instantiate()
-	indicator.target = enemy.get_node("Slime")
+	indicator.target = target
 	%Player.add_child(indicator)
 	
 func game_over():

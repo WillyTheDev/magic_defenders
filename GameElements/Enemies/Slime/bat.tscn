@@ -111,10 +111,9 @@ _data = {
 [node name="Bat" type="CharacterBody2D"]
 z_index = 1
 scale = Vector2(0.2, 0.2)
-collision_layer = 2
-collision_mask = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_aqc6d")
+MANA_AMOUNT = 5
 follow_path = false
 
 [node name="Bat" type="Sprite2D" parent="."]
