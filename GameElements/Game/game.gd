@@ -52,8 +52,8 @@ func spawn_mob():
 	var enemy = preload("res://GameElements/Enemies/Enemy.tscn").instantiate()
 	var slime = null
 	var enemy_spawn_chance : float = randf()
-	var medium_enemy_spawn_chance: float = (current_wave * 2)/max_wave
-	var hard_enemy_spawn_chance :float =  current_wave/(max_wave * 2)
+	var medium_enemy_spawn_chance: float = (current_wave * 1.5)/max_wave
+	var hard_enemy_spawn_chance :float =  current_wave/(max_wave * 3)
 	print(enemy_spawn_chance)
 	print(medium_enemy_spawn_chance)
 	print(hard_enemy_spawn_chance)
@@ -79,7 +79,6 @@ func spawn_visual_indicator(target):
 	%Player.add_child(indicator)
 	
 func game_over():
-	get_tree().paused = true
 	%GameOverScreen.visible = true
 	
 func on_enemy_has_been_killed():
@@ -103,7 +102,7 @@ func _on_spawn_enemy_timer_timeout():
 		spawn_mob()
 
 func _on_restart_button_pressed():
-	get_tree().paused = false
+	print("replay !")
 	get_tree().reload_current_scene()
 
 

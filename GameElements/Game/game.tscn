@@ -70,6 +70,7 @@ shader = ExtResource("14_gb0en")
 y_sort_enabled = true
 script = ExtResource("1_m44sk")
 paths = [NodePath("Paths/Path_1"), NodePath("Paths/path_2"), NodePath("Paths/Path_3")]
+max_wave = 20.0
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
