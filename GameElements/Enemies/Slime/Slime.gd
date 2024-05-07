@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var MANA_AMOUNT = 2
 @export var health = 2
 @export var damage = 1
+@export var follow_path = true
 
 signal slime_has_been_killed
 
@@ -20,7 +21,8 @@ func _ready():
 	play_animation_idle()
 
 func _process(delta):
-	get_parent().progress += delta * speed
+	if follow_path:
+		get_parent().progress += delta * speed
 
 func take_damage():
 	play_animation_hit()
@@ -35,7 +37,7 @@ func take_damage():
 			const MANA = preload("res://GameElements/misc/mana.tscn")
 			var new_mana = MANA.instantiate()
 			new_mana.rotation = rotation
-			get_parent().add_child(new_mana)
+			get_parent().call_deferred("add_child", new_mana)
 		queue_free()
 	
 func no_longer_attacking_defense():

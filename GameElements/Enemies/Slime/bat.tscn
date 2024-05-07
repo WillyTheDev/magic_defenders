@@ -1,0 +1,141 @@
+[gd_scene load_steps=13 format=3 uid="uid://d10vlpwv31l6o"]
+
+[ext_resource type="Script" path="res://bat.gd" id="1_aqc6d"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_4koqq"]
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="3_1dufk"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_4qlte"]
+[ext_resource type="Texture2D" uid="uid://c60d3lddk6bb0" path="res://Assets/Ennemies/bat.png" id="4_4sou7"]
+[ext_resource type="Texture2D" uid="uid://c1oaqo3i2xdbb" path="res://Assets/Ennemies/bat_hit.png" id="6_770tq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12fso"]
+shader = ExtResource("3_1dufk")
+shader_parameter/strength = 0.025
+shader_parameter/speed = 6.0
+shader_parameter/frames = 6
+shader_parameter/flowMap = ExtResource("4_4qlte")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r5an"]
+radius = 122.959
+height = 245.917
+
+[sub_resource type="Animation" id="Animation_53ke7"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.706, 0.665)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bat:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_4sou7")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bat:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_av0o2"]
+resource_name = "hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bat:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_4sou7"), ExtResource("6_770tq"), ExtResource("4_4sou7")]
+}
+
+[sub_resource type="Animation" id="Animation_vlpra"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.706, 0.665), Vector2(0.875, 0.665)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bat:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.287175, 0.287175),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.656504, 0.488095)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w3qrp"]
+_data = {
+"RESET": SubResource("Animation_53ke7"),
+"hit": SubResource("Animation_av0o2"),
+"idle": SubResource("Animation_vlpra")
+}
+
+[node name="Bat" type="CharacterBody2D"]
+z_index = 1
+scale = Vector2(0.2, 0.2)
+collision_layer = 2
+collision_mask = 2
+platform_floor_layers = 4294967040
+script = ExtResource("1_aqc6d")
+follow_path = false
+
+[node name="Bat" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_12fso")
+position = Vector2(3.05079, 2.99802)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_4sou7")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(3.05079, 522.998)
+scale = Vector2(0.706, 0.665)
+texture = ExtResource("2_4koqq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.05079, 2.99802)
+rotation = -1.56018
+shape = SubResource("CapsuleShape2D_8r5an")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_w3qrp")
+}

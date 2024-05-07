@@ -9,12 +9,14 @@ extends Node2D
 @export var enemies_spawn = 0
 @export var enemies_left = 10
 @export var spawn_rates = 2.5
+@export var spawn_flying_enemy_rates = 15
 @export var is_idle = true
 	
 
 func start_new_wave():
 	is_idle = false
 	spawn_rates -= 0.2
+	spawn_flying_enemy_rates -= 0.3
 	current_wave += 1
 	total_enemies = current_wave * 10
 	enemies_left = total_enemies
@@ -26,22 +28,31 @@ func start_new_wave():
 	%WaveActionLabel.visible = false
 	%SpawnEnemyTimer.wait_time = spawn_rates
 	%SpawnEnemyTimer.start()
+	%SpawnFlyingEnemyTimer.wait_time = spawn_flying_enemy_rates
+	%SpawnFlyingEnemyTimer.start()
 
 func end_of_wave():
 	%SpawnEnemyTimer.stop()
+	%SpawnFlyingEnemyTimer.stop()
 	%EnemiesLabel.text = ""
 	%WaveActionLabel.visible = true
 	is_idle = true
 
+func spawn_flying_mob():
+	var flying_enemy = preload("res://GameElements/Enemies/Slime/bat.tscn").instantiate()
+	%FlyingSpawnPoint.progress_ratio = randf()
+	flying_enemy.global_position = %FlyingSpawnPoint.global_position
+	add_child(flying_enemy)
+
 func spawn_mob():
 	enemies_spawn += 1
-	
-		
-	#Load a new Enemy and attach-it the relevent monster ( e.g slime, slimeMedium, archer...)
+	#Load a new Enemy ( Path2DFollower ) and attach the relevent monster ( e.g slime, slimeMedium, archer...)
 	var enemy = preload("res://GameElements/Enemies/Enemy.tscn").instantiate()
-	var spawn_enemy_medium : bool = randf() < current_wave/max_wave
 	var slime = null
-	if spawn_enemy_medium:
+	var enemy_spawn_chance : float = randf()
+	if enemy_spawn_chance < current_wave/(max_wave * 3):
+		slime = preload("res://GameElements/Enemies/Slime/slime_hard.tscn").instantiate()
+	elif enemy_spawn_chance < current_wave/max_wave:
 		slime = preload("res://GameElements/Enemies/Slime/slime_medium.tscn").instantiate()
 	else:
 		slime = preload("res://GameElements/Enemies/Slime/slime.tscn").instantiate()
@@ -87,3 +98,7 @@ func _on_restart_button_pressed():
 
 func _on_core_core_destroyed():
 	game_over()
+
+
+func _on_spawn_flying_enemy_timer_timeout():
+	spawn_flying_mob()

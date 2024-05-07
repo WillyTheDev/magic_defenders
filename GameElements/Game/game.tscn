@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=16 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Texture2D" uid="uid://bb65vqteo10xf" path="res://Assets/Zone/arrière-plan.png" id="2_7h1cc"]
@@ -33,6 +33,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1491, 1704, -119.407, -8.40896, 119.407, 8.40896, 1525, 1310, -48.772, -48.772, 48.772, 48.772, 1652, 1495, -35.3176, 36.9994, 35.3176, -36.9994, 1814, 1522, 77.3625, 18.4997, -77.3625, -18.4997, 1763, 1240, -42.0448, 82.4079, 42.0448, -82.4079, 1367, 1172, 43.7266, 164.816, -43.7266, -164.816, 1777, 940, 0, 0, 0, 0, 1447, 826)
 }
 point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_wb7bk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 890, -285, 0, 0, 0, 0, 2936, -264, 0, 0, 0, 0, 2943, 1525, 0, 0, 0, 0, 427, 1568, 0, 0, 0, 0, -364, 1518, 0, 0, 0, 0, -329, -236, 0, 0, 0, 0, 1275, -321)
+}
+point_count = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cce1o"]
 bg_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
@@ -85,6 +91,14 @@ curve = SubResource("Curve2D_1hyfy")
 [node name="Path_3" type="Path2D" parent="Paths"]
 position = Vector2(-222, -155)
 curve = SubResource("Curve2D_6jrae")
+
+[node name="Path_flying" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_wb7bk")
+
+[node name="FlyingSpawnPoint" type="PathFollow2D" parent="Paths/Path_flying"]
+unique_name_in_owner = true
+position = Vector2(890, -285)
+rotation = 0.0102636
 
 [node name="Core" parent="." instance=ExtResource("4_lfcpx")]
 position = Vector2(1225, 658)
@@ -223,9 +237,14 @@ theme_override_constants/h_separation = 0
 theme_override_font_sizes/font_size = 32
 text = "Play again"
 
+[node name="SpawnFlyingEnemyTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.186
+
 [connection signal="player_update_mana_amount" from="Player" to="." method="_on_player_player_update_mana_amount"]
 [connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
 [connection signal="core_destroyed" from="Core" to="." method="_on_core_core_destroyed"]
 [connection signal="pressed" from="UI/HBoxContainer/DefenseButton" to="Player" method="_on_defense_button_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/TurretButton" to="Player" method="_on_turret_button_pressed"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="timeout" from="SpawnFlyingEnemyTimer" to="." method="_on_spawn_flying_enemy_timer_timeout"]
