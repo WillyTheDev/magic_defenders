@@ -37,7 +37,7 @@ func shoot():
 	var new_fire_bolt = FIRE_BOLT.instantiate()
 	new_fire_bolt.global_position = %ShootingPoint.global_position
 	new_fire_bolt.global_rotation = %ShootingPoint.global_rotation
-	new_fire_bolt.direction = (global_position - get_global_mouse_position()).normalized() * -1
+	new_fire_bolt.direction = (%ShootingPoint.global_position - get_global_mouse_position()).normalized() * -1
 	get_parent().add_child(new_fire_bolt)
 
 func place_defense():

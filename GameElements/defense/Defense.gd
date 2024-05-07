@@ -27,13 +27,13 @@ func abstract_build_defense():
 	
 func build_defense():
 	#Place and fix the defense at the determined position and reset the modulate and collision_layer
-			modulate = "ffffff"
-			%StaticBody2D.collision_layer = 1
-			%StaticBody2D.collision_mask = 1
-			%Area2D.collision_layer = 1
-			%Area2D.collision_mask = 1
-			abstract_build_defense()
-			has_been_build = true
+	modulate = "ffffff"
+	%StaticBody2D.collision_layer = 1
+	%StaticBody2D.collision_mask = 1
+	%Area2D.collision_layer = 1
+	%Area2D.collision_mask = 1
+	abstract_build_defense()
+	has_been_build = true
 
 func _process(float):
 	abstract_on_process()

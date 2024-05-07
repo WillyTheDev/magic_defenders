@@ -41,4 +41,4 @@ position = Vector2(-40.3265, -37.7325)
 unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(2, 2)
