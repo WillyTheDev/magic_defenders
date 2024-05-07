@@ -52,7 +52,7 @@ func spawn_mob():
 	var enemy = preload("res://GameElements/Enemies/Enemy.tscn").instantiate()
 	var slime = null
 	var enemy_spawn_chance : float = randf()
-	var medium_enemy_spawn_chance: float = (current_wave * 1.5)/max_wave
+	var medium_enemy_spawn_chance: float = (current_wave)/max_wave
 	var hard_enemy_spawn_chance :float =  current_wave/(max_wave * 3)
 	print(enemy_spawn_chance)
 	print(medium_enemy_spawn_chance)

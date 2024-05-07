@@ -140,7 +140,7 @@ offset_top = -85.0
 offset_right = 1343.0
 offset_bottom = 155.0
 grow_vertical = 0
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 theme_override_constants/margin_left = 32
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/SkillContainer"]
