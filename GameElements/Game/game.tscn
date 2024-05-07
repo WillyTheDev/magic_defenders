@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bb65vqteo10xf" path="res://Assets/Zone/arrière-plan.png" id="2_7h1cc"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_jnllo"]
 [ext_resource type="PackedScene" uid="uid://bcw643o4voapk" path="res://GameElements/Player/player.tscn" id="2_ok500"]
-[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/45e1265ab27393903ca3faea493f5a54.jpg" id="3_ovcoq"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_ovcoq"]
 [ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/Core.tscn" id="4_lfcpx"]
 [ext_resource type="Script" path="res://GameElements/Core/core.gd" id="5_p4qxv"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/Zone/SuperMilk-nRq9Y.ttf" id="5_vhx2p"]
@@ -36,6 +36,11 @@ point_count = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cce1o"]
 bg_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oeowq"]
 bg_color = Color(0.867672, 0, 0.2397, 1)
@@ -53,7 +58,7 @@ follow_viewport_enabled = true
 
 [node name="Arrière-plan" type="Sprite2D" parent="Background"]
 material = SubResource("ShaderMaterial_dfh6k")
-position = Vector2(630, 336)
+position = Vector2(628.5, 333)
 scale = Vector2(0.764352, 0.764352)
 texture = ExtResource("2_7h1cc")
 
@@ -81,11 +86,6 @@ curve = SubResource("Curve2D_1hyfy")
 position = Vector2(-222, -155)
 curve = SubResource("Curve2D_6jrae")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Paths/Path_3"]
-position = Vector2(1483.84, 1666.57)
-rotation = -1.74717
-progress = 38.11
-
 [node name="Core" parent="." instance=ExtResource("4_lfcpx")]
 position = Vector2(1225, 658)
 script = ExtResource("5_p4qxv")
@@ -104,14 +104,6 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 0
 
-[node name="ManaLabel" type="Label" parent="UI/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Mana : 40
-"
-uppercase = true
-
 [node name="DefenseButton" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
@@ -123,12 +115,27 @@ layout_mode = 2
 size_flags_horizontal = 6
 text = "Add Turret ( 20 mana )"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI"]
+[node name="ManaLabel" type="Label" parent="UI/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Mana : 40
+"
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 50.0
 grow_horizontal = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 26
+theme_override_constants/margin_right = 26
 
-[node name="EnemiesProgressBar" type="ProgressBar" parent="UI/HBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="EnemiesProgressBar" type="ProgressBar" parent="UI/MarginContainer/HBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -139,7 +146,7 @@ step = 1.0
 rounded = true
 show_percentage = false
 
-[node name="EnemiesLabel" type="Label" parent="UI/HBoxContainer2/EnemiesProgressBar"]
+[node name="EnemiesLabel" type="Label" parent="UI/MarginContainer/HBoxContainer2/EnemiesProgressBar"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -156,19 +163,16 @@ grow_vertical = 2
 text = "
 "
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="UI"]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 51.0
-grow_horizontal = 2
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
 
-[node name="WaveActionLabel" type="Label" parent="UI/HBoxContainer3"]
+[node name="WaveActionLabel" type="Label" parent="UI/MarginContainer/HBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_fonts/font = ExtResource("5_vhx2p")
 theme_override_font_sizes/font_size = 32
-text = "Press \"e\" to start the next wave !"
+text = "Press \"space\" to start the next wave !"
 
 [node name="MapLimit" type="Marker2D" parent="."]
 unique_name_in_owner = true
@@ -223,5 +227,5 @@ text = "Play again"
 [connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
 [connection signal="core_destroyed" from="Core" to="." method="_on_core_core_destroyed"]
 [connection signal="pressed" from="UI/HBoxContainer/DefenseButton" to="Player" method="_on_defense_button_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer/TurretButton" to="Player" method="_on_turrent_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/TurretButton" to="Player" method="_on_turret_button_pressed"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]

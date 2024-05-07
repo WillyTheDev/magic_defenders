@@ -32,14 +32,16 @@ func end_of_wave():
 	%EnemiesLabel.text = ""
 	%WaveActionLabel.visible = true
 	is_idle = true
-	assert("End of wave !")
 
 func spawn_mob():
 	enemies_spawn += 1
 	var mob = preload("res://GameElements/Enemies/Enemy.tscn").instantiate()
+	var indicator = preload("res://GameElements/misc/enemy_indicator.tscn").instantiate()
 	mob.get_node("Slime").slime_has_been_killed.connect(on_enemy_has_been_killed)
 	var indexSpawnPoints = floor(randf() * paths.size())
 	paths[indexSpawnPoints].add_child(mob)
+	indicator.target = mob.get_node("Slime")
+	%Player.add_child(indicator)
 	
 func game_over():
 	%GameOverScreen.visible = true
@@ -55,15 +57,14 @@ func on_enemy_has_been_killed():
 func _on_player_player_update_mana_amount(mana):
 	%ManaLabel.text = "Mana : %s" % mana
 
-
-func _on_spawn_enemy_timer_timeout():
-	if enemies_spawn < total_enemies:
-		spawn_mob()
-
 func _input(event):
 	if event.is_action_pressed("action_button"):
 		if is_idle:
 			start_new_wave()
+
+func _on_spawn_enemy_timer_timeout():
+	if enemies_spawn < total_enemies:
+		spawn_mob()
 
 
 func _on_restart_button_pressed():

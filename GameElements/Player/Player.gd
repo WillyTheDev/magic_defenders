@@ -4,12 +4,14 @@ extends CharacterBody2D
 @export var mana_amount = 40
 @export var screen_size = Vector2i(0,0)
 var is_building = false
+
 signal player_update_mana_amount
 
 func _ready():
 	screen_size = get_parent().get_node("MapLimit").global_position
 
 func update_mana_amount(mana: int):
+	print("Player mana amount has been updated")
 	mana_amount += mana
 	player_update_mana_amount.emit(mana_amount)
 
@@ -27,12 +29,18 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed("left_click"):
 		if is_building:
-			place_defense()
+			_place_defense()
 		else:
-			shoot()
+			_shoot()
+	if event.is_action_pressed("turret_key_pressed"):
+		if is_building == false:
+			_on_turret_button_pressed()
+	if event.is_action_pressed("defense_key_pressed"):
+		if is_building == false:
+			_on_defense_button_pressed()
 		
 
-func shoot():
+func _shoot():
 	const FIRE_BOLT = preload("res://GameElements/Player/fire_bolt.tscn")
 	var new_fire_bolt = FIRE_BOLT.instantiate()
 	new_fire_bolt.global_position = %ShootingPoint.global_position
@@ -40,8 +48,8 @@ func shoot():
 	new_fire_bolt.direction = (%ShootingPoint.global_position - get_global_mouse_position()).normalized() * -1
 	get_parent().add_child(new_fire_bolt)
 
-func place_defense():
-	is_building = false
+func _place_defense():
+	is_building = false	
 
 func _on_defense_button_pressed():
 	var defense_price = get_parent().defense_price
@@ -55,7 +63,7 @@ func _on_defense_button_pressed():
 		get_parent().add_child(new_defense)
 
 
-func _on_turrent_button_pressed():
+func _on_turret_button_pressed():
 	var turret_price = get_parent().turret_price
 	if mana_amount >= turret_price:
 		update_mana_amount(-turret_price)
