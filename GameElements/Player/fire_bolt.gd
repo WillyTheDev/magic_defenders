@@ -17,8 +17,7 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	if body.has_method("take_damage"):
 		var dmg_indicator = preload("res://GameElements/misc/damage_indicator.tscn").instantiate()
-		dmg_indicator.set_value(damage)
-		dmg_indicator.global_position = global_position
+		dmg_indicator.set_value(damage * 10)
 		body.add_child(dmg_indicator)
-		body.take_damage()
+		body.take_damage(damage)
 		queue_free()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cgvdas2mv2rnx"]
 
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/Zone/SuperMilk-nRq9Y.ttf" id="1_m3r51"]
-[ext_resource type="Script" path="res://GameElements/Enemies/Slime/DamageIndicator.gd" id="2_odcdn"]
+[ext_resource type="Script" path="res://GameElements/misc/DamageIndicator.gd" id="2_58u1s"]
 
 [sub_resource type="Animation" id="Animation_g05t4"]
 length = 0.001
@@ -67,14 +67,16 @@ _data = {
 modulate = Color(1, 1, 1, 0)
 z_index = 20
 offset_top = -1.52588e-05
-offset_right = 59.0
-offset_bottom = 58.0
+offset_right = 60.0
+offset_bottom = 60.0
+rotation = -0.523599
+pivot_offset = Vector2(30, 30)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 17
 theme_override_fonts/font = ExtResource("1_m3r51")
 theme_override_font_sizes/font_size = 48
 text = "10"
-script = ExtResource("2_odcdn")
+script = ExtResource("2_58u1s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

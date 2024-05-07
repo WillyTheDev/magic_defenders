@@ -3,9 +3,10 @@ extends Node2D
 @export var defense_price = 10
 @export var turret_price = 20
 @export var paths: Array[Path2D] = []
-@export var max_wave = 30
-@export var current_wave = 0
+@export var max_wave : float = 30.0
+@export var current_wave : float = 0.0
 @export var total_enemies = 10
+@export var increments_nb_enemies_per_wave = 8
 @export var enemies_spawn = 0
 @export var enemies_left = 10
 @export var spawn_rates = 2.5
@@ -18,7 +19,7 @@ func start_new_wave():
 	spawn_rates -= 0.2
 	spawn_flying_enemy_rates -= 0.2
 	current_wave += 1
-	total_enemies = current_wave * 10
+	total_enemies = current_wave * increments_nb_enemies_per_wave
 	enemies_left = total_enemies
 	enemies_spawn = 0
 	#Update the UI accordingly
@@ -51,9 +52,14 @@ func spawn_mob():
 	var enemy = preload("res://GameElements/Enemies/Enemy.tscn").instantiate()
 	var slime = null
 	var enemy_spawn_chance : float = randf()
-	if enemy_spawn_chance < current_wave/(max_wave * 3):
+	var medium_enemy_spawn_chance: float = (current_wave * 2)/max_wave
+	var hard_enemy_spawn_chance :float =  current_wave/(max_wave * 2)
+	print(enemy_spawn_chance)
+	print(medium_enemy_spawn_chance)
+	print(hard_enemy_spawn_chance)
+	if enemy_spawn_chance < hard_enemy_spawn_chance:
 		slime = preload("res://GameElements/Enemies/Slime/slime_hard.tscn").instantiate()
-	elif enemy_spawn_chance < current_wave/max_wave:
+	elif enemy_spawn_chance < medium_enemy_spawn_chance:
 		slime = preload("res://GameElements/Enemies/Slime/slime_medium.tscn").instantiate()
 	else:
 		slime = preload("res://GameElements/Enemies/Slime/slime.tscn").instantiate()
@@ -73,6 +79,7 @@ func spawn_visual_indicator(target):
 	%Player.add_child(indicator)
 	
 func game_over():
+	get_tree().paused = true
 	%GameOverScreen.visible = true
 	
 func on_enemy_has_been_killed():
@@ -82,21 +89,21 @@ func on_enemy_has_been_killed():
 	if enemies_left <= 0:
 		end_of_wave()
 
-	
-func _on_player_player_update_mana_amount(mana):
-	%ManaLabel.text = "Mana : %s" % mana
-
 func _input(event):
 	if event.is_action_pressed("action_button"):
 		if is_idle:
 			start_new_wave()
 
+func _on_player_player_update_mana_amount(mana):
+	%ManaLabel.text = "Mana : %s" % mana
+
+
 func _on_spawn_enemy_timer_timeout():
 	if enemies_spawn < total_enemies:
 		spawn_mob()
 
-
 func _on_restart_button_pressed():
+	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 

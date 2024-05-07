@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var speed = 100
 @export var MANA_AMOUNT = 2
 @export var health = 2
-@export var damage = 1
+@export var enemy_damage = 1
 @export var follow_path = true
 
 signal slime_has_been_killed
@@ -24,7 +24,7 @@ func _process(delta):
 	if follow_path:
 		get_parent().progress += delta * speed
 
-func take_damage():
+func take_damage(damage):
 	play_animation_hit()
 	health -= damage
 	if health <= 0:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://yuors4jcwmwr"]
 
-[ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_vllg3"]
+[ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_anbsf"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_8muj1"]
 [ext_resource type="Texture2D" uid="uid://b5vyv208jniqd" path="res://Assets/Ennemies/Slime_v2_medium.png" id="3_vf5au"]
 [ext_resource type="Texture2D" uid="uid://baacy614v8gmy" path="res://Assets/Ennemies/Slime_v2_hit.png" id="4_drw48"]
@@ -82,10 +82,9 @@ z_index = 1
 material = SubResource("ShaderMaterial_jyd47")
 scale = Vector2(0.5, 0.5)
 platform_floor_layers = 4294967040
-script = ExtResource("1_vllg3")
+script = ExtResource("1_anbsf")
 MANA_AMOUNT = 8
 health = 15
-damage = 3
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)

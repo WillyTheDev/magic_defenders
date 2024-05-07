@@ -6,6 +6,7 @@ func set_value(value):
 	text = "%s" % value
 
 func _ready():
+	rotation_degrees += randi() % 60
 	%AnimationPlayer.play("appears")
 	%Timer.start()
 

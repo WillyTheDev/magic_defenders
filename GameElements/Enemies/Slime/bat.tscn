@@ -113,6 +113,7 @@ z_index = 1
 scale = Vector2(0.2, 0.2)
 platform_floor_layers = 4294967040
 script = ExtResource("1_e6ky4")
+speed = 150
 MANA_AMOUNT = 5
 follow_path = false
 

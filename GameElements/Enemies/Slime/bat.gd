@@ -8,14 +8,14 @@ func _ready():
 	target = get_parent().get_node("Core")
 
 func _physics_process(delta):
-	var direction = (global_position - target.global_position).normalized() * -1
-	position += delta * speed * direction
+	if target != null:
+		var direction = (global_position - target.global_position).normalized() * -1
+		position += delta * speed * direction
 
-func take_damage():
+func take_damage(damage):
 	play_animation_hit()
-	health -= 1
+	health -= damage
 	if health <= 0:
-		print("BAT IS dead")
 		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
 		var new_smoke = SMOKE.instantiate()
 		new_smoke.global_position = global_position

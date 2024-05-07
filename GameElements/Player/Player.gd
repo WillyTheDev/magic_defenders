@@ -11,7 +11,6 @@ func _ready():
 	screen_size = get_parent().get_node("MapLimit").global_position
 
 func update_mana_amount(mana: int):
-	print("Player mana amount has been updated")
 	mana_amount += mana
 	player_update_mana_amount.emit(mana_amount)
 
