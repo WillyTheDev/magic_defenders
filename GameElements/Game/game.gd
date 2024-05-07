@@ -8,13 +8,13 @@ extends Node2D
 @export var total_enemies = 10
 @export var enemies_spawn = 0
 @export var enemies_left = 10
-@export var spawn_rates = 1.8
+@export var spawn_rates = 2.5
 @export var is_idle = true
 	
 
 func start_new_wave():
 	is_idle = false
-	spawn_rates -= 0.5
+	spawn_rates -= 0.2
 	current_wave += 1
 	total_enemies = current_wave * 10
 	enemies_left = total_enemies
@@ -35,12 +35,26 @@ func end_of_wave():
 
 func spawn_mob():
 	enemies_spawn += 1
-	var mob = preload("res://GameElements/Enemies/Enemy.tscn").instantiate()
-	var indicator = preload("res://GameElements/misc/enemy_indicator.tscn").instantiate()
-	mob.get_node("Slime").slime_has_been_killed.connect(on_enemy_has_been_killed)
+	
+		
+	#Load a new Enemy and attach-it the relevent monster ( e.g slime, slimeMedium, archer...)
+	var enemy = preload("res://GameElements/Enemies/Enemy.tscn").instantiate()
+	var spawn_enemy_medium : bool = randf() < current_wave/max_wave
+	var slime = null
+	if spawn_enemy_medium:
+		slime = preload("res://GameElements/Enemies/Slime/slime_medium.tscn").instantiate()
+	else:
+		slime = preload("res://GameElements/Enemies/Slime/slime.tscn").instantiate()
+	slime.slime_has_been_killed.connect(on_enemy_has_been_killed)
+	enemy.add_child(slime)
+	
+	# Add the Enemy on a random path
 	var indexSpawnPoints = floor(randf() * paths.size())
-	paths[indexSpawnPoints].add_child(mob)
-	indicator.target = mob.get_node("Slime")
+	paths[indexSpawnPoints].add_child(enemy)
+	
+	# Add a visual indicator for each Enemy spawned
+	var indicator = preload("res://GameElements/misc/enemy_indicator.tscn").instantiate()
+	indicator.target = enemy.get_node("Slime")
 	%Player.add_child(indicator)
 	
 func game_over():

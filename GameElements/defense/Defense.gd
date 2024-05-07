@@ -83,13 +83,13 @@ func _on_area_2d_body_entered(body):
 		print("Body entered!")
 		defense_destroyed.connect(body.no_longer_attacking_defense)
 		body.speed = 0
-		cumulated_damage += 1
+		cumulated_damage += body.damage
 		if %Timer.is_stopped():
 			%Timer.start()
 	
 func _on_area_2d_body_exited(body):
 	if body is Enemy:
-		cumulated_damage -= 1
+		cumulated_damage -= body.damage
 		abstract_on_body_exited_defense_zone()
 
 func _on_timer_timeout():

@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://GameElements/misc/enemy_indicator.gd" id="1_8oqrs"]
 
 [node name="EnemyIndicator" type="Node2D"]
+visible = false
 script = ExtResource("1_8oqrs")
 
 [node name="ColorRect" type="ColorRect" parent="."]

@@ -18,5 +18,6 @@ func _on_mana_body_body_entered(body):
 	
 
 
-func _on_attract_zone_body_entered(body:Player):
-	player = body
+func _on_attract_zone_body_entered(body):
+	if body is Player:
+		player = body

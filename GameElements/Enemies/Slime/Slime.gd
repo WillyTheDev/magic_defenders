@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var speed = 100
 @export var MANA_AMOUNT = 2
 @export var health = 2
+@export var damage = 1
 
 signal slime_has_been_killed
 
@@ -30,13 +31,12 @@ func take_damage():
 		var new_smoke = SMOKE.instantiate()
 		get_parent().add_child(new_smoke)
 		var mana_to_spawn = floor(randf() * MANA_AMOUNT + 1)
-		print(mana_to_spawn)
 		for mana in mana_to_spawn:
 			const MANA = preload("res://GameElements/misc/mana.tscn")
 			var new_mana = MANA.instantiate()
 			new_mana.rotation = rotation
 			get_parent().add_child(new_mana)
-			queue_free()
+		queue_free()
 	
 func no_longer_attacking_defense():
 	speed = 100
