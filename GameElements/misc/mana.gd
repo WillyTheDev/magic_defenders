@@ -11,11 +11,13 @@ func _physics_process(delta):
 		position += direction * SPEED * delta
 
 
-func _on_mana_body_body_entered(body:Player):
-	body.update_mana_amount(mana_value)
-	queue_free()
+func _on_mana_body_body_entered(body):
+	if body is Player:
+		body.update_mana_amount(mana_value)
+		queue_free()
 	
 
 
-func _on_attract_zone_body_entered(body:Player):
-	player = body
+func _on_attract_zone_body_entered(body):
+	if body is Player:
+		player = body

@@ -1,65 +1,64 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0h5viffh6xrj"]
+[gd_scene load_steps=13 format=3 uid="uid://d0h5viffh6xrj"]
 
-[ext_resource type="Script" path="res://GameElements/Enemies/Slime/Slime.gd" id="1_ca0fr"]
+[ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_pg2k5"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_dhwrf"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="3_gojkd"]
-[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/45e1265ab27393903ca3faea493f5a54.jpg" id="4_b78fk"]
-[ext_resource type="Texture2D" uid="uid://i8k6yniw74q5" path="res://Assets/Ennemies/Slime.png" id="5_hs182"]
-[ext_resource type="Texture2D" uid="uid://bqg1kv2imqbul" path="res://Assets/Ennemies/hurt.png" id="6_10l0m"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_0qrut"]
+[ext_resource type="Texture2D" uid="uid://cpdlu2y0t1ie7" path="res://Assets/Ennemies/Slime_v2.png" id="5_q6xfj"]
+[ext_resource type="Texture2D" uid="uid://baacy614v8gmy" path="res://Assets/Ennemies/Slime_v2_hit.png" id="6_4rqn5"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyd47"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xa3rb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pg4ob"]
 shader = ExtResource("3_gojkd")
 shader_parameter/strength = 0.015
-shader_parameter/speed = 10.0
-shader_parameter/frames = 7
-shader_parameter/flowMap = ExtResource("4_b78fk")
+shader_parameter/speed = 6.0
+shader_parameter/frames = 6
+shader_parameter/flowMap = ExtResource("4_0qrut")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r5an"]
-radius = 53.9999
-height = 184.038
+radius = 54.9969
+height = 160.256
 
 [sub_resource type="Animation" id="Animation_53ke7"]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Slime:scale")
+tracks/0/path = NodePath("Shadow:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.25, 0.25)]
+"values": [Vector2(0.706, 0.665)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Shadow:scale")
+tracks/1/path = NodePath("Slime:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.706, 0.665)]
+"update": 1,
+"values": [ExtResource("5_q6xfj")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Slime:texture")
+tracks/2/path = NodePath("Slime:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_hs182")]
+"update": 0,
+"values": [Vector2(0.34, 0.34)]
 }
 
 [sub_resource type="Animation" id="Animation_av0o2"]
 resource_name = "hit"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -67,38 +66,39 @@ tracks/0/path = NodePath("Slime:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("5_hs182"), ExtResource("6_10l0m"), ExtResource("5_hs182"), ExtResource("6_10l0m"), ExtResource("5_hs182")]
+"values": [ExtResource("5_q6xfj"), ExtResource("6_4rqn5"), ExtResource("5_q6xfj")]
 }
 
 [sub_resource type="Animation" id="Animation_vlpra"]
 resource_name = "idle"
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Slime:scale")
+tracks/0/path = NodePath("Shadow:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0.25, 0.25), Vector2(0.3, 0.22)]
+"values": [Vector2(0.706, 0.665), Vector2(0.875, 0.665)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Shadow:scale")
+tracks/1/path = NodePath("Slime:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.287175, 0.287175),
 "update": 0,
-"values": [Vector2(0.706, 0.665), Vector2(0.875, 0.665)]
+"values": [Vector2(0.34, 0.34), Vector2(0.4, 0.3)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w3qrp"]
@@ -110,10 +110,10 @@ _data = {
 
 [node name="Slime" type="CharacterBody2D"]
 z_index = 1
-material = SubResource("ShaderMaterial_jyd47")
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.4, 0.4)
 platform_floor_layers = 4294967040
-script = ExtResource("1_ca0fr")
+script = ExtResource("1_pg2k5")
+health = 4
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -122,13 +122,12 @@ scale = Vector2(0.706, 0.665)
 texture = ExtResource("2_dhwrf")
 
 [node name="Slime" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_xa3rb")
-position = Vector2(2.94806, -4.16684)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("5_hs182")
+material = SubResource("ShaderMaterial_pg4ob")
+position = Vector2(-0.702384, 0.500003)
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("5_q6xfj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
 rotation = -1.56018
 shape = SubResource("CapsuleShape2D_8r5an")
 

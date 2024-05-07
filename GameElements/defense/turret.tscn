@@ -1,10 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://f0nvmdfvluh4"]
+[gd_scene load_steps=9 format=3 uid="uid://f0nvmdfvluh4"]
 
 [ext_resource type="Script" path="res://GameElements/defense/turret.gd" id="1_c4q16"]
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_3qxle"]
 [ext_resource type="Texture2D" uid="uid://b5v7ycymulj75" path="res://Assets/Zone/bande1.png" id="2_26sh2"]
 [ext_resource type="Texture2D" uid="uid://cqd7ep7gabify" path="res://Assets/Defense/turret.png" id="2_c3r0p"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_vsh7u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_crnf5"]
+shader = ExtResource("2_3qxle")
+shader_parameter/strength = 0.015
+shader_parameter/speed = 6.0
+shader_parameter/frames = 6
+shader_parameter/flowMap = ExtResource("3_vsh7u")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eyh6e"]
 size = Vector2(21, 26)

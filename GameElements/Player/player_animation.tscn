@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://GameElements/Player/player_animation.gd" id="1_uy0ks"]
 [ext_resource type="Texture2D" uid="uid://ucyhjb7bnndq" path="res://Assets/Player/full.png" id="1_x1osm"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_dsmio"]
-[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/45e1265ab27393903ca3faea493f5a54.jpg" id="3_objk4"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_objk4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ak51"]
 shader = ExtResource("2_dsmio")

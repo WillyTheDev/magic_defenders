@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk71ni5c2bvqx"]
+
+[ext_resource type="Script" path="res://GameElements/misc/enemy_indicator.gd" id="1_8oqrs"]
+
+[node name="EnemyIndicator" type="Node2D"]
+visible = false
+script = ExtResource("1_8oqrs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = -28.0
+offset_right = 40.0
+offset_bottom = 12.0
+rotation = 0.785397
+color = Color(0.925329, 0, 0.311675, 1)

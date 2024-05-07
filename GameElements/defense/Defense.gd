@@ -5,6 +5,10 @@ extends Node2D
 @export var has_been_build = false
 @export var can_be_placed = true
 
+@onready var shader = preload("res://Shaders/sokpop.gdshader")
+@onready var texture = preload("res://Shaders/normal.jpg")
+
+
 var current_health = 4.0
 var cumulated_damage = 0
 
@@ -27,13 +31,13 @@ func abstract_build_defense():
 	
 func build_defense():
 	#Place and fix the defense at the determined position and reset the modulate and collision_layer
-			modulate = "ffffff"
-			%StaticBody2D.collision_layer = 1
-			%StaticBody2D.collision_mask = 1
-			%Area2D.collision_layer = 1
-			%Area2D.collision_mask = 1
-			abstract_build_defense()
-			has_been_build = true
+	modulate = "ffffff"
+	%StaticBody2D.collision_layer = 1
+	%StaticBody2D.collision_mask = 1
+	%Area2D.collision_layer = 1
+	%Area2D.collision_mask = 1
+	abstract_build_defense()
+	has_been_build = true
 
 func _process(float):
 	abstract_on_process()
@@ -68,23 +72,21 @@ func take_damage():
 		get_parent().add_child(new_smoke)
 		queue_free()
 	else:
-		print(current_health)
-		print(total_health)
 		var values = (255 * (current_health/total_health))
-		print("value = %s" % values)
 		modulate = "ff%x%xff" % [values, values]
 
-func _on_area_2d_body_entered(body: Enemy):
-	print("Body entered!")
-	defense_destroyed.connect(body.no_longer_attacking_defense)
-	body.speed = 0
-	cumulated_damage += 1
-	if %Timer.is_stopped():
-		%Timer.start()
+func _on_area_2d_body_entered(body):
+	if body is Enemy:
+		defense_destroyed.connect(body.no_longer_attacking_defense)
+		body.speed = 0
+		cumulated_damage += body.enemy_damage
+		if %Timer.is_stopped():
+			%Timer.start()
 	
-func _on_area_2d_body_exited(body: Enemy):
-	cumulated_damage -= 1
-	abstract_on_body_exited_defense_zone()
+func _on_area_2d_body_exited(body):
+	if body is Enemy:
+		cumulated_damage -= body.enemy_damage
+		abstract_on_body_exited_defense_zone()
 
 func _on_timer_timeout():
 	take_damage()
