@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqih4gw1kjb6"]
+[gd_scene load_steps=16 format=3 uid="uid://cqih4gw1kjb6"]
 
 [ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_4j7lf"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_jb265"]
@@ -17,6 +17,18 @@ shader_parameter/flowMap = ExtResource("4_3b0vt")
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r5an"]
 radius = 54.9969
 height = 160.256
+
+[sub_resource type="Gradient" id="Gradient_wvata"]
+offsets = PackedFloat32Array(0, 0.536364)
+colors = PackedColorArray(0, 0.375905, 0.647707, 0.941176, 0.435294, 0.796078, 0.894118, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x7a8c"]
+gradient = SubResource("Gradient_wvata")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.529915, 0.491453)
+fill_to = Vector2(0.25, 0)
 
 [sub_resource type="Animation" id="Animation_53ke7"]
 tracks/0/type = "value"
@@ -108,6 +120,25 @@ _data = {
 "idle": SubResource("Animation_vlpra")
 }
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nh6pk"]
+lifetime_randomness = 0.15
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 69.4
+angle_min = -720.0
+angle_max = 0.6
+inherit_velocity_ratio = -0.145
+direction = Vector3(0, 0, 0)
+spread = 49.068
+initial_velocity_min = -180.0
+initial_velocity_max = 90.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 3.0
+color = Color(0.76395, 0.930932, 1, 0.717647)
+anim_speed_max = 5.75
+
 [node name="Slime" type="CharacterBody2D"]
 z_index = 1
 scale = Vector2(0.4, 0.4)
@@ -133,8 +164,18 @@ texture = ExtResource("6_73mid")
 rotation = -1.56018
 shape = SubResource("CapsuleShape2D_8r5an")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(2.27374e-13, -4.76837e-07)
+scale = Vector2(26.3271, 22.6543)
+texture = SubResource("GradientTexture2D_x7a8c")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_w3qrp")
 }
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -7.62939e-06)
+rotation = -1.61133
+process_material = SubResource("ParticleProcessMaterial_nh6pk")
