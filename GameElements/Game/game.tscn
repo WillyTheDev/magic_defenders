@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=29 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Texture2D" uid="uid://bb65vqteo10xf" path="res://Assets/Zone/arrière-plan.png" id="2_7h1cc"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_ovcoq"]
 [ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/Core.tscn" id="4_lfcpx"]
 [ext_resource type="Script" path="res://GameElements/Core/core.gd" id="5_p4qxv"]
-[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/Zone/SuperMilk-nRq9Y.ttf" id="5_vhx2p"]
+[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="5_vhx2p"]
 [ext_resource type="Texture2D" uid="uid://bnoteo8epe2ck" path="res://Assets/UI/Button/defense_btn.png" id="8_n7k4h"]
 [ext_resource type="Texture2D" uid="uid://dk12a6xgp2cp" path="res://Assets/UI/Button/defense_btn-1.png" id="9_bnrim"]
 [ext_resource type="Texture2D" uid="uid://ckhmpy7a0sacy" path="res://Assets/UI/Button/turret_btn.png" id="10_a41jm"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="15_dwjti"]
 [ext_resource type="Script" path="res://GameElements/Game/TurretDefenseManager.gd" id="16_46jf5"]
 [ext_resource type="Script" path="res://GameElements/Game/CardsManager.gd" id="16_fmmx8"]
+[ext_resource type="Texture2D" uid="uid://bdgxpsmcj1sfs" path="res://Assets/Cards/card_1.png" id="17_1tkce"]
 [ext_resource type="Script" path="res://GameElements/Game/EnemyManager.gd" id="17_ivvrk"]
 [ext_resource type="Script" path="res://GameElements/Game/PlayerManager.gd" id="19_3t6nr"]
 
@@ -553,31 +554,62 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.164706, 0.164706, 0.164706, 0.784314)
+color = Color(0.164706, 0.164706, 0.164706, 0.945098)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CardsManager"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CardsManager"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="choice_1" type="TextureButton" parent="CardsManager/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CardsManager/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="Label" type="Label" parent="CardsManager/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("5_vhx2p")
+theme_override_font_sizes/font_size = 64
+text = "Select an upgrade !"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CardsManager/VBoxContainer"]
 layout_mode = 2
 
-[node name="choice_2" type="TextureButton" parent="CardsManager/HBoxContainer"]
+[node name="choice_1" type="TextureButton" parent="CardsManager/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture_normal = ExtResource("17_1tkce")
 
-[node name="choice_3" type="TextureButton" parent="CardsManager/HBoxContainer"]
+[node name="choice_2" type="TextureButton" parent="CardsManager/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture_normal = ExtResource("17_1tkce")
+
+[node name="choice_3" type="TextureButton" parent="CardsManager/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture_normal = ExtResource("17_1tkce")
 
 [node name="TurretDefenseManager" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("16_46jf5")
 
 [node name="EnemyManager" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("17_ivvrk")
 
 [node name="PlayerManager" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("19_3t6nr")
 
 [connection signal="should_show_cards" from="." to="CardsManager" method="_on_game_should_show_cards"]
@@ -586,3 +618,6 @@ script = ExtResource("19_3t6nr")
 [connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
 [connection signal="timeout" from="SpawnFlyingEnemyTimer" to="." method="_on_spawn_flying_enemy_timer_timeout"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CardsManager/VBoxContainer/HBoxContainer/choice_1" to="CardsManager" method="_on_choice_1_pressed"]
+[connection signal="pressed" from="CardsManager/VBoxContainer/HBoxContainer/choice_2" to="CardsManager" method="_on_choice_2_pressed"]
+[connection signal="pressed" from="CardsManager/VBoxContainer/HBoxContainer/choice_3" to="CardsManager" method="_on_choice_3_pressed"]

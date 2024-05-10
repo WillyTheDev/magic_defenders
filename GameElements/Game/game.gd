@@ -41,11 +41,14 @@ func end_of_wave():
 	should_show_cards.emit()
 
 func spawn_flying_mob():
-	var flying_enemy = preload("res://GameElements/Enemies/Slime/bat.tscn").instantiate()
-	%FlyingSpawnPoint.progress_ratio = randf()
-	flying_enemy.global_position = %FlyingSpawnPoint.global_position
-	add_child(flying_enemy)
-	spawn_visual_indicator(flying_enemy)
+	if current_wave > 2 && enemies_left > 4:
+		enemies_spawn += 1
+		var flying_enemy = preload("res://GameElements/Enemies/Slime/bat.tscn").instantiate()
+		%FlyingSpawnPoint.progress_ratio = randf()
+		flying_enemy.global_position = %FlyingSpawnPoint.global_position
+		flying_enemy.slime_has_been_killed.connect(on_enemy_has_been_killed)
+		add_child(flying_enemy)
+		spawn_visual_indicator(flying_enemy)
 
 func spawn_mob():
 	enemies_spawn += 1
@@ -55,13 +58,11 @@ func spawn_mob():
 	var enemy_spawn_chance : float = randf()
 	var medium_enemy_spawn_chance: float = (current_wave)/(max_wave * 2)
 	var hard_enemy_spawn_chance :float =  current_wave/(max_wave * 5)
-	var mana_enemy_spawn_chance : float = 0.02
+	var mana_enemy_spawn_chance : float = 0.005
 	print(enemy_spawn_chance)
-	print(medium_enemy_spawn_chance)
-	print(hard_enemy_spawn_chance)
-	if enemy_spawn_chance < hard_enemy_spawn_chance:
+	if (enemy_spawn_chance < hard_enemy_spawn_chance) && current_wave > 10:
 		slime = preload("res://GameElements/Enemies/Slime/slime_hard.tscn").instantiate()
-	elif enemy_spawn_chance < medium_enemy_spawn_chance:
+	elif (enemy_spawn_chance < medium_enemy_spawn_chance) && current_wave > 4:
 		slime = preload("res://GameElements/Enemies/Slime/slime_medium.tscn").instantiate()
 	elif enemy_spawn_chance > 1 - mana_enemy_spawn_chance:
 		slime = preload("res://GameElements/Enemies/Slime/slime_mana.tscn").instantiate()

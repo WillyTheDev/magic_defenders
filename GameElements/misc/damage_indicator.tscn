@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cgvdas2mv2rnx"]
 
-[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/Zone/SuperMilk-nRq9Y.ttf" id="1_m3r51"]
+[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="1_m3r51"]
 [ext_resource type="Script" path="res://GameElements/misc/DamageIndicator.gd" id="2_58u1s"]
 
 [sub_resource type="Animation" id="Animation_g05t4"]

@@ -3,12 +3,20 @@ extends CharacterBody2D
 
 @export var mana_amount = 40
 @export var screen_size = Vector2i(0,0)
+var player_damage = 1
+var player_speed = 300
 var is_building = false
 
 signal player_update_mana_amount
 
 func _ready():
 	screen_size = get_parent().get_node("MapLimit").global_position
+	get_node("/root/Game/PlayerManager").player_modified.connect(_on_player_modified)
+
+func _on_player_modified():
+	player_damage *= PlayerManager.player_damage_factor
+	player_speed *= PlayerManager.player_movement_speed_factor
+	assert("Apply modification")
 
 func update_mana_amount(mana: int):
 	mana_amount += mana
@@ -18,7 +26,7 @@ func _physics_process(delta):
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * 300
+	velocity = direction * player_speed
 	move_and_slide()
 	if velocity.length() > 0.0:
 		%PlayerAnimation.play_animation_walk();
@@ -44,6 +52,7 @@ func _shoot():
 	var new_fire_bolt = FIRE_BOLT.instantiate()
 	new_fire_bolt.global_position = %ShootingPoint.global_position
 	new_fire_bolt.global_rotation = %ShootingPoint.global_rotation
+	new_fire_bolt.damage = player_damage
 	new_fire_bolt.direction = (%ShootingPoint.global_position - get_global_mouse_position()).normalized() * -1
 	get_parent().add_child(new_fire_bolt)
 

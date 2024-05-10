@@ -1,8 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cak6x4mhllisu"]
+[gd_scene load_steps=9 format=3 uid="uid://cak6x4mhllisu"]
 
 [ext_resource type="Script" path="res://GameElements/defense/Defense.gd" id="1_v2awi"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_4pd6a"]
+[ext_resource type="Texture2D" uid="uid://bdnatjwiy327k" path="res://Assets/Core/Core.png" id="2_41oe6"]
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="3_d6ki2"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_1n7re"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uvl6u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8bcnf"]
+shader = ExtResource("3_d6ki2")
+shader_parameter/strength = 0.02
+shader_parameter/speed = 5.0
+shader_parameter/frames = 5
+shader_parameter/flowMap = ExtResource("4_1n7re")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eyh6e"]
 size = Vector2(58.5, 59)
@@ -15,16 +24,17 @@ position = Vector2(386, 196)
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_v2awi")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_uvl6u")
-offset_left = -40.0
-offset_top = -1.0
-offset_right = -19.0
-offset_bottom = 58.0
-rotation = -0.785397
-scale = Vector2(2.68, 0.960002)
-color = Color(0.517143, 0.572356, 1, 1)
-metadata/_edit_use_anchors_ = true
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.111197, 0.111197, 0.111197, 1)
+position = Vector2(-0.666656, 28)
+scale = Vector2(0.450249, 0.450249)
+texture = ExtResource("2_4pd6a")
+
+[node name="Core" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8bcnf")
+position = Vector2(2.86102e-06, -0.666662)
+scale = Vector2(0.220628, 0.220628)
+texture = ExtResource("2_41oe6")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 z_index = 1
@@ -37,7 +47,7 @@ shape = SubResource("RectangleShape2D_eyh6e")
 [node name="Area2D" type="Area2D" parent="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
-position = Vector2(-0.5, -0.5)
+position = Vector2(-0.942803, 0.942814)
 shape = SubResource("RectangleShape2D_1ejl3")
 debug_color = Color(0.755894, 0.189016, 1, 0.42)
 
