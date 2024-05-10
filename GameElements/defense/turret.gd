@@ -25,6 +25,7 @@ func shoot():
 	if target != null:
 		const FIRE_BOLT = preload("res://GameElements/Player/fire_bolt.tscn")
 		var new_fire_bolt = FIRE_BOLT.instantiate()
+		new_fire_bolt.damage = TurretDefenseManager.turret_damage
 		new_fire_bolt.global_position = %ShootingPoint.global_position
 		new_fire_bolt.global_rotation = %ShootingPoint.global_rotation
 		new_fire_bolt.direction = (global_position - target.global_position).normalized() * -1

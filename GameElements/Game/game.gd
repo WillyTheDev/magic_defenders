@@ -1,7 +1,6 @@
 extends Node2D
 
-@export var defense_price = 10
-@export var turret_price = 20
+
 @export var paths: Array[Path2D] = []
 @export var max_wave : float = 30.0
 @export var current_wave : float = 0.0
@@ -13,6 +12,7 @@ extends Node2D
 @export var spawn_flying_enemy_rates = 20
 @export var is_idle = true
 	
+signal should_show_cards
 
 func start_new_wave():
 	is_idle = false
@@ -38,6 +38,7 @@ func end_of_wave():
 	%EnemiesLabel.text = ""
 	%WaveActionLabel.visible = true
 	is_idle = true
+	should_show_cards.emit()
 
 func spawn_flying_mob():
 	var flying_enemy = preload("res://GameElements/Enemies/Slime/bat.tscn").instantiate()
@@ -52,8 +53,8 @@ func spawn_mob():
 	var enemy = preload("res://GameElements/Enemies/Enemy.tscn").instantiate()
 	var slime = null
 	var enemy_spawn_chance : float = randf()
-	var medium_enemy_spawn_chance: float = (current_wave)/max_wave
-	var hard_enemy_spawn_chance :float =  current_wave/(max_wave * 3)
+	var medium_enemy_spawn_chance: float = (current_wave)/(max_wave * 2)
+	var hard_enemy_spawn_chance :float =  current_wave/(max_wave * 5)
 	var mana_enemy_spawn_chance : float = 0.02
 	print(enemy_spawn_chance)
 	print(medium_enemy_spawn_chance)
@@ -73,7 +74,6 @@ func spawn_mob():
 	var indexSpawnPoints = floor(randf() * paths.size())
 	paths[indexSpawnPoints].add_child(enemy)
 	spawn_visual_indicator(enemy.get_node("Slime"))
-	
 	
 func spawn_visual_indicator(target):
 	# Add a visual indicator for each Enemy spawned
@@ -99,7 +99,6 @@ func _input(event):
 func _on_player_player_update_mana_amount(mana):
 	%ManaLabel.text = "Mana : %s" % mana
 
-
 func _on_spawn_enemy_timer_timeout():
 	if enemies_spawn < total_enemies:
 		spawn_mob()
@@ -108,10 +107,8 @@ func _on_restart_button_pressed():
 	print("replay !")
 	get_tree().reload_current_scene()
 
-
 func _on_core_core_destroyed():
 	game_over()
-
 
 func _on_spawn_flying_enemy_timer_timeout():
 	spawn_flying_mob()

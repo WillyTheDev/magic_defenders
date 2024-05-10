@@ -544,7 +544,6 @@ theme_override_font_sizes/font_size = 32
 text = "Play again"
 
 [node name="CardsManager" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("16_fmmx8")
 
 [node name="ColorRect" type="ColorRect" parent="CardsManager"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://kbm12vsaf3ev"]
 
 [ext_resource type="Script" path="res://GameElements/Player/player_animation.gd" id="1_uy0ks"]
-[ext_resource type="Texture2D" uid="uid://ucyhjb7bnndq" path="res://Assets/Player/full.png" id="1_x1osm"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_dsmio"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_objk4"]
+[ext_resource type="Texture2D" uid="uid://c5g6j6n72174o" path="res://Assets/Player/full_v2.png" id="4_u4lju"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ak51"]
 shader = ExtResource("2_dsmio")
@@ -117,12 +117,13 @@ _data = {
 }
 
 [node name="PlayerAnimation" type="Node2D"]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_uy0ks")
 
 [node name="Full" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2ak51")
 scale = Vector2(1.05, 1)
-texture = ExtResource("1_x1osm")
+texture = ExtResource("4_u4lju")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

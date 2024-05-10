@@ -51,7 +51,7 @@ func _place_defense():
 	is_building = false	
 
 func _on_defense_button_pressed():
-	var defense_price = get_parent().defense_price
+	var defense_price = TurretDefenseManager.defense_price
 	if mana_amount >= defense_price:
 		update_mana_amount(-defense_price)
 		is_building = true
@@ -63,7 +63,7 @@ func _on_defense_button_pressed():
 
 
 func _on_turret_button_pressed():
-	var turret_price = get_parent().turret_price
+	var turret_price = TurretDefenseManager.turret_price
 	if mana_amount >= turret_price:
 		update_mana_amount(-turret_price)
 		is_building = true
