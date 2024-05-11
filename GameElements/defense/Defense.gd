@@ -1,7 +1,7 @@
 class_name Defense
 extends Node2D
 
-@export var total_health : = 10
+@export var total_health : = 10.0
 @export var has_been_build = false
 @export var can_be_placed = true
 
@@ -83,6 +83,9 @@ func take_damage():
 		get_parent().add_child(new_smoke)
 		queue_free()
 	else:
+		print(current_health)
+		print(total_health)
+		print(255 * (current_health/total_health))
 		var values = (255 * (current_health/total_health))
 		modulate = "ff%x%xff" % [values, values]
 

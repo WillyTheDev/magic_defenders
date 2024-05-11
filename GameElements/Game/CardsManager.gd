@@ -19,7 +19,7 @@ var cards : Array[Card] = [
 			apply_turret_modification(
 				func(turret : Turret):
 					turret.fire_rate -= 0.15
-					%TimerShoot.wait_time = turret.fire_rate,
+					turret.get_node("TimerShoot").wait_time = turret.fire_rate,
 			),
 		),
 	Card.new(
