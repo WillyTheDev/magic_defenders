@@ -1,0 +1,587 @@
+[gd_scene load_steps=28 format=3 uid="uid://c24n7qcisy1dc"]
+
+[ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
+[ext_resource type="Texture2D" uid="uid://bb65vqteo10xf" path="res://Assets/Zone/arrière-plan.png" id="2_7h1cc"]
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_jnllo"]
+[ext_resource type="PackedScene" uid="uid://bcw643o4voapk" path="res://GameElements/Player/player.tscn" id="2_ok500"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_ovcoq"]
+[ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/Core.tscn" id="4_lfcpx"]
+[ext_resource type="Script" path="res://GameElements/Core/core.gd" id="5_p4qxv"]
+[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/Zone/SuperMilk-nRq9Y.ttf" id="5_vhx2p"]
+[ext_resource type="Texture2D" uid="uid://bnoteo8epe2ck" path="res://Assets/UI/Button/defense_btn.png" id="8_n7k4h"]
+[ext_resource type="Texture2D" uid="uid://dk12a6xgp2cp" path="res://Assets/UI/Button/defense_btn-1.png" id="9_bnrim"]
+[ext_resource type="Texture2D" uid="uid://ckhmpy7a0sacy" path="res://Assets/UI/Button/turret_btn.png" id="10_a41jm"]
+[ext_resource type="Texture2D" uid="uid://c7buce4ehpwkn" path="res://Assets/UI/Button/turret_btn-1.png" id="11_4n668"]
+[ext_resource type="Texture2D" uid="uid://cp2jr7wt7sntm" path="res://Assets/mana.png" id="13_3cv1f"]
+[ext_resource type="Shader" path="res://Shaders/weedShader.gdshader" id="14_gb0en"]
+[ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="15_dwjti"]
+[ext_resource type="Script" path="res://GameElements/Game/TurretDefenseManager.gd" id="16_46jf5"]
+[ext_resource type="Script" path="res://GameElements/Game/CardsManager.gd" id="16_fmmx8"]
+[ext_resource type="Script" path="res://GameElements/Game/EnemyManager.gd" id="17_ivvrk"]
+[ext_resource type="Script" path="res://GameElements/Game/PlayerManager.gd" id="19_3t6nr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dfh6k"]
+shader = ExtResource("2_jnllo")
+shader_parameter/strength = 0.003
+shader_parameter/speed = 5.0
+shader_parameter/frames = 5
+shader_parameter/flowMap = ExtResource("3_ovcoq")
+
+[sub_resource type="Curve2D" id="Curve2D_eayfj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 521, -27, 18.4997, -47.0902, -18.4997, 47.0902, 615, 136, -45.4084, -84.0896, 45.4084, 84.0896, 462, 419, 0, 0, 0, 0, 678, 497, -42.0448, 0, 42.0448, 0, 964, 379, -36.9994, -26.9087, 36.9994, 26.9087, 1167, 470, -13.4543, -79.0443, 13.4543, 79.0443, 1065, 785, 0, 0, 0, 0, 1428, 838)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_1hyfy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2181, -24, 15.1361, -15.1361, -15.1361, 15.1361, 2160, 32, -31.9541, -97.544, 31.9541, 97.544, 2029, 195, 58.8628, -47.0902, -58.8628, 47.0902, 2018, 366, 55.4992, 1.68179, -55.4992, -1.68179, 1789, 280, 21.8633, -68.9535, -21.8633, 68.9535, 1508, 414, 35.3176, -31.9541, -35.3176, 31.9541, 1471, 561, -48.772, -6.72717, 48.772, 6.72717, 1372, 644, 16.8179, -58.8628, -16.8179, 58.8628, 1447, 804, 0, 0, 0, 0, 1447, 830)
+}
+point_count = 10
+
+[sub_resource type="Curve2D" id="Curve2D_6jrae"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1491, 1704, -119.407, -8.40896, 119.407, 8.40896, 1525, 1310, -48.772, -48.772, 48.772, 48.772, 1652, 1495, -35.3176, 36.9994, 35.3176, -36.9994, 1814, 1522, 77.3625, 18.4997, -77.3625, -18.4997, 1763, 1240, -42.0448, 82.4079, 42.0448, -82.4079, 1367, 1172, 43.7266, 164.816, -43.7266, -164.816, 1777, 940, 0, 0, 0, 0, 1447, 826)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_wb7bk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 890, -285, 0, 0, 0, 0, 2936, -264, 0, 0, 0, 0, 2943, 1525, 0, 0, 0, 0, 427, 1568, 0, 0, 0, 0, -364, 1518, 0, 0, 0, 0, -329, -236, 0, 0, 0, 0, 1275, -321)
+}
+point_count = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4adnp"]
+shader = ExtResource("14_gb0en")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cce1o"]
+bg_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oeowq"]
+bg_color = Color(0.867672, 0, 0.2397, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("paths")]
+y_sort_enabled = true
+script = ExtResource("1_m44sk")
+paths = [NodePath("Paths/Path_1"), NodePath("Paths/path_2"), NodePath("Paths/Path_3")]
+max_wave = 20.0
+
+[node name="Arrière-plan" type="Sprite2D" parent="."]
+z_index = -2
+material = SubResource("ShaderMaterial_dfh6k")
+position = Vector2(1247, 670)
+scale = Vector2(1.58751, 1.53689)
+texture = ExtResource("2_7h1cc")
+
+[node name="Player" parent="." instance=ExtResource("2_ok500")]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(1381, 753)
+platform_floor_layers = 4294967040
+
+[node name="Core" parent="." instance=ExtResource("4_lfcpx")]
+position = Vector2(1225, 658)
+script = ExtResource("5_p4qxv")
+total_health = 5.0
+has_been_build = true
+
+[node name="SpawnEnemyTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 1.5
+
+[node name="SpawnFlyingEnemyTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.186
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path_1" type="Path2D" parent="Paths"]
+position = Vector2(-212, -151)
+curve = SubResource("Curve2D_eayfj")
+
+[node name="path_2" type="Path2D" parent="Paths"]
+position = Vector2(-218, -164)
+curve = SubResource("Curve2D_1hyfy")
+
+[node name="Path_3" type="Path2D" parent="Paths"]
+position = Vector2(-222, -155)
+curve = SubResource("Curve2D_6jrae")
+
+[node name="Path_flying" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_wb7bk")
+
+[node name="FlyingSpawnPoint" type="PathFollow2D" parent="Paths/Path_flying"]
+unique_name_in_owner = true
+position = Vector2(890, -285)
+rotation = 0.0102636
+
+[node name="MapLimit" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2516, 1346)
+
+[node name="env" type="Node2D" parent="."]
+
+[node name="weed" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(960, 583)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed2" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1300, 546)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed3" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1042.84, 458.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed4" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1388, 432)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed5" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(697.837, 385)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed6" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1037.84, 348)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed7" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(780.673, 260.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed8" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1120.67, 223.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed9" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(346, 761)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed10" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(686, 724)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed11" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(428.837, 636.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed12" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(768.837, 599.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed13" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(83.8365, 563)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed14" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(423.837, 526)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed15" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(166.673, 438.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed16" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(506.673, 401.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed17" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1333, 925)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed18" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1673, 888)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed19" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1415.84, 800.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed20" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1755.84, 763.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed21" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1070.84, 727)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed22" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1410.84, 690)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed23" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1153.67, 602.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed24" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1493.67, 565.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed25" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(719, 1103)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed26" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1059, 1066)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed27" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(801.837, 978.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed28" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1141.84, 941.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed29" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(456.837, 905)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed30" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(796.837, 868)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed31" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(539.673, 780.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed32" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(879.673, 743.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed33" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(2485, 451.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed34" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(2227.84, 363.907)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed35" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(2567.84, 326.907)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed36" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1882.84, 290.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed37" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(2222.84, 253.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed38" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(2296, 609.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed39" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(2038.84, 521.907)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed40" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(2378.84, 484.907)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed41" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(1693.84, 448.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="weed42" type="Sprite2D" parent="env"]
+material = SubResource("ShaderMaterial_4adnp")
+position = Vector2(2033.84, 411.454)
+scale = Vector2(0.106595, 0.106595)
+texture = ExtResource("15_dwjti")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="SkillContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -85.0
+offset_right = 1343.0
+offset_bottom = 155.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/margin_left = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/SkillContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="DefenseButton" type="TextureButton" parent="UI/SkillContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("8_n7k4h")
+texture_pressed = ExtResource("9_bnrim")
+
+[node name="TurretButton" type="TextureButton" parent="UI/SkillContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("10_a41jm")
+texture_pressed = ExtResource("11_4n668")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 128
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="EnemiesProgressBar" type="ProgressBar" parent="UI/MarginContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_cce1o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_oeowq")
+step = 1.0
+rounded = true
+show_percentage = false
+
+[node name="EnemiesLabel" type="Label" parent="UI/MarginContainer/HBoxContainer2/EnemiesProgressBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="WaveActionLabel" type="Label" parent="UI/MarginContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_fonts/font = ExtResource("5_vhx2p")
+theme_override_font_sizes/font_size = 32
+text = "Press \"space\" to start the next wave !"
+
+[node name="ManaContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = -190.0
+offset_right = 192.0
+offset_bottom = -90.0001
+grow_vertical = 0
+scale = Vector2(0.85, 0.85)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/ManaContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="TextureRect" type="TextureRect" parent="UI/ManaContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("13_3cv1f")
+
+[node name="ManaLabel" type="Label" parent="UI/ManaContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0.447059, 0.52549, 0.827451, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("5_vhx2p")
+theme_override_font_sizes/font_size = 40
+text = "40
+"
+uppercase = true
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
+offset_left = 20.0
+offset_top = 47.0
+offset_right = 1940.0
+offset_bottom = 1127.0
+color = Color(0.345098, 0.462745, 0.32549, 1)
+
+[node name="GameOverScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.188235, 0.188235, 0.188235, 0.929412)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("5_vhx2p")
+theme_override_font_sizes/font_size = 128
+text = "Game Over"
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+
+[node name="RestartButton" type="Button" parent="GameOverScreen/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 32
+text = "Play again"
+
+[node name="CardsManager" type="CanvasLayer" parent="."]
+script = ExtResource("16_fmmx8")
+
+[node name="ColorRect" type="ColorRect" parent="CardsManager"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.164706, 0.164706, 0.784314)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CardsManager"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="choice_1" type="TextureButton" parent="CardsManager/HBoxContainer"]
+layout_mode = 2
+
+[node name="choice_2" type="TextureButton" parent="CardsManager/HBoxContainer"]
+layout_mode = 2
+
+[node name="choice_3" type="TextureButton" parent="CardsManager/HBoxContainer"]
+layout_mode = 2
+
+[node name="TurretDefenseManager" type="Node2D" parent="."]
+script = ExtResource("16_46jf5")
+
+[node name="EnemyManager" type="Node2D" parent="."]
+script = ExtResource("17_ivvrk")
+
+[node name="PlayerManager" type="Node2D" parent="."]
+script = ExtResource("19_3t6nr")
+
+[connection signal="should_show_cards" from="." to="CardsManager" method="_on_game_should_show_cards"]
+[connection signal="player_update_mana_amount" from="Player" to="." method="_on_player_player_update_mana_amount"]
+[connection signal="core_destroyed" from="Core" to="." method="_on_core_core_destroyed"]
+[connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
+[connection signal="timeout" from="SpawnFlyingEnemyTimer" to="." method="_on_spawn_flying_enemy_timer_timeout"]
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]

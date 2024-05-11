@@ -19,6 +19,10 @@ func play_animation_idle():
 
 func _ready():
 	play_animation_idle()
+	get_node("/root/Game/CardsManager").enemy_modified.connect(_on_enemy_modification)
+	
+func _on_enemy_modification(args: Callable):
+	args.call(self)
 
 func _process(delta):
 	if follow_path:
@@ -32,11 +36,12 @@ func take_damage(damage):
 		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
 		var new_smoke = SMOKE.instantiate()
 		get_parent().add_child(new_smoke)
-		var mana_to_spawn = floor(randf() * MANA_AMOUNT + 1)
+		var mana_to_spawn = floor(randi() % MANA_AMOUNT + 1)
 		for mana in mana_to_spawn:
 			const MANA = preload("res://GameElements/misc/mana.tscn")
 			var new_mana = MANA.instantiate()
 			new_mana.rotation = rotation
+			new_mana.global_position += Vector2(randi() % 30, randi() % 30)
 			get_parent().call_deferred("add_child", new_mana)
 		queue_free()
 	

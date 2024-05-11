@@ -39,6 +39,7 @@ position = Vector2(-40.3265, -37.7325)
 
 [node name="PlayerAnimation" parent="." instance=ExtResource("2_m3wv4")]
 unique_name_in_owner = true
+position = Vector2(24, 28)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

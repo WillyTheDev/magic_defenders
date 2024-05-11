@@ -1,12 +1,14 @@
 class_name Defense
 extends Node2D
 
-@export var total_health : float = 4.0
+@export var total_health : = 10
 @export var has_been_build = false
 @export var can_be_placed = true
 
 @onready var shader = preload("res://Shaders/sokpop.gdshader")
 @onready var texture = preload("res://Shaders/normal.jpg")
+
+static var defense_price = 10
 
 
 var current_health = 4.0
@@ -16,6 +18,11 @@ signal defense_destroyed()
 
 func _ready():
 	current_health = total_health
+	get_node("/root/Game/CardsManager").defense_modified.connect(_apply_modification)
+	
+func _apply_modification(args: Callable):
+	args.call(self)
+		
 
 func abstract_final_action():
 	assert("This class is not derived from Defense !")
@@ -27,6 +34,9 @@ func abstract_on_process():
 	assert("This class is not derived from Defense !")
 	
 func abstract_build_defense():
+	assert("This class is not derived from Defense !")
+
+func abstract_defense_take_damage():
 	assert("This class is not derived from Defense !")
 	
 func build_defense():
@@ -62,6 +72,7 @@ func _input(event):
 
 
 func take_damage():
+	abstract_defense_take_damage()
 	current_health -= cumulated_damage
 	if current_health <= 0:
 		abstract_final_action()
@@ -87,6 +98,8 @@ func _on_area_2d_body_exited(body):
 	if body is Enemy:
 		cumulated_damage -= body.enemy_damage
 		abstract_on_body_exited_defense_zone()
+		if current_health > 0:
+			%Timer.stop()
 
 func _on_timer_timeout():
 	take_damage()
