@@ -41,7 +41,7 @@ func end_of_wave():
 	should_show_cards.emit()
 
 func spawn_flying_mob():
-	if current_wave > 2 && enemies_left > 4:
+	if current_wave > 2:
 		enemies_spawn += 1
 		var flying_enemy = preload("res://GameElements/Enemies/Slime/bat.tscn").instantiate()
 		%FlyingSpawnPoint.progress_ratio = randf()
@@ -60,7 +60,7 @@ func spawn_mob():
 	var hard_enemy_spawn_chance :float =  current_wave/(max_wave * 5)
 	var mana_enemy_spawn_chance : float = 0.005
 	print(enemy_spawn_chance)
-	if (enemy_spawn_chance < hard_enemy_spawn_chance) && current_wave > 10:
+	if (enemy_spawn_chance < hard_enemy_spawn_chance) && current_wave > 8:
 		slime = preload("res://GameElements/Enemies/Slime/slime_hard.tscn").instantiate()
 	elif (enemy_spawn_chance < medium_enemy_spawn_chance) && current_wave > 4:
 		slime = preload("res://GameElements/Enemies/Slime/slime_medium.tscn").instantiate()
@@ -104,6 +104,10 @@ func _on_spawn_enemy_timer_timeout():
 	if enemies_spawn < total_enemies:
 		spawn_mob()
 
+func _on_spawn_flying_enemy_timer_timeout():
+	if enemies_spawn < total_enemies:
+		spawn_flying_mob()
+
 func _on_restart_button_pressed():
 	print("replay !")
 	get_tree().reload_current_scene()
@@ -111,5 +115,4 @@ func _on_restart_button_pressed():
 func _on_core_core_destroyed():
 	game_over()
 
-func _on_spawn_flying_enemy_timer_timeout():
-	spawn_flying_mob()
+

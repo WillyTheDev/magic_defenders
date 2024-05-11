@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=31 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Texture2D" uid="uid://bb65vqteo10xf" path="res://Assets/Zone/arrière-plan.png" id="2_7h1cc"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="15_dwjti"]
 [ext_resource type="Script" path="res://GameElements/Game/TurretDefenseManager.gd" id="16_46jf5"]
 [ext_resource type="Script" path="res://GameElements/Game/CardsManager.gd" id="16_fmmx8"]
+[ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="16_yatl6"]
 [ext_resource type="Texture2D" uid="uid://bdgxpsmcj1sfs" path="res://Assets/Cards/card_1.png" id="17_1tkce"]
 [ext_resource type="Script" path="res://GameElements/Game/EnemyManager.gd" id="17_ivvrk"]
 [ext_resource type="Script" path="res://GameElements/Game/PlayerManager.gd" id="19_3t6nr"]
@@ -70,6 +71,12 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qo0i"]
+shader = ExtResource("16_yatl6")
+shader_parameter/alpha = 0.5
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 1.0
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("paths")]
 y_sort_enabled = true
@@ -498,6 +505,16 @@ text = "40
 "
 uppercase = true
 
+[node name="CoreAttackedRect" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_4qo0i")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -2
 
@@ -600,6 +617,10 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 texture_normal = ExtResource("17_1tkce")
 
+[node name="CardTimer" type="Timer" parent="CardsManager"]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="TurretDefenseManager" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("16_46jf5")
@@ -621,3 +642,4 @@ script = ExtResource("19_3t6nr")
 [connection signal="pressed" from="CardsManager/VBoxContainer/HBoxContainer/choice_1" to="CardsManager" method="_on_choice_1_pressed"]
 [connection signal="pressed" from="CardsManager/VBoxContainer/HBoxContainer/choice_2" to="CardsManager" method="_on_choice_2_pressed"]
 [connection signal="pressed" from="CardsManager/VBoxContainer/HBoxContainer/choice_3" to="CardsManager" method="_on_choice_3_pressed"]
+[connection signal="timeout" from="CardsManager/CardTimer" to="CardsManager" method="_on_card_timer_timeout"]

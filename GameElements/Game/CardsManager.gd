@@ -2,6 +2,7 @@ class_name CardsManager
 extends CanvasLayer
 
 @export var nb_of_cards = 7
+var playerCanSelectCards : bool = false
 
 var cards : Array[Card] = [
 	Card.new(
@@ -71,9 +72,11 @@ func choose_cards_to_show():
 	show_cards()
 	
 func show_cards():
+	%CardTimer.start()
 	visible = true
 	
 func hide_cards():
+	playerCanSelectCards = false
 	visible = false
 
 func _on_game_should_show_cards():
@@ -81,16 +84,21 @@ func _on_game_should_show_cards():
 	
 
 func _on_choice_1_pressed():
-	card_1.apply_effect()
-	hide_cards()
+	if playerCanSelectCards:
+		card_1.apply_effect()
+		hide_cards()
 
 
 func _on_choice_2_pressed():
-	card_2.apply_effect()
-	hide_cards()
+	if playerCanSelectCards:
+		card_2.apply_effect()
+		hide_cards()
 
 
 func _on_choice_3_pressed():
-	card_3.apply_effect()
-	hide_cards()
+	if playerCanSelectCards:
+		card_3.apply_effect()
+		hide_cards()
 
+func _on_card_timer_timeout():
+	playerCanSelectCards = true

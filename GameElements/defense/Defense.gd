@@ -32,6 +32,9 @@ func abstract_on_process():
 	
 func abstract_build_defense():
 	assert("This class is not derived from Defense !")
+
+func abstract_defense_take_damage():
+	assert("This class is not derived from Defense !")
 	
 func build_defense():
 	#Place and fix the defense at the determined position and reset the modulate and collision_layer
@@ -66,6 +69,7 @@ func _input(event):
 
 
 func take_damage():
+	abstract_defense_take_damage()
 	current_health -= cumulated_damage
 	if current_health <= 0:
 		abstract_final_action()
@@ -91,6 +95,8 @@ func _on_area_2d_body_exited(body):
 	if body is Enemy:
 		cumulated_damage -= body.enemy_damage
 		abstract_on_body_exited_defense_zone()
+		if current_health > 0:
+			%Timer.stop()
 
 func _on_timer_timeout():
 	take_damage()
