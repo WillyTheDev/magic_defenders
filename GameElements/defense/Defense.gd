@@ -1,12 +1,14 @@
 class_name Defense
 extends Node2D
 
-@export var total_health : float = TurretDefenseManager.defense_health
+@export var total_health : = 10
 @export var has_been_build = false
 @export var can_be_placed = true
 
 @onready var shader = preload("res://Shaders/sokpop.gdshader")
 @onready var texture = preload("res://Shaders/normal.jpg")
+
+static var defense_price = 10
 
 
 var current_health = 4.0
@@ -16,10 +18,11 @@ signal defense_destroyed()
 
 func _ready():
 	current_health = total_health
-	get_node("/root/Game/TurretDefenseManager").turret_modified.connect(_apply_modification)
+	get_node("/root/Game/CardsManager").defense_modified.connect(_apply_modification)
 	
-func _apply_modification():
-	total_health = TurretDefenseManager.defense_health
+func _apply_modification(args: Callable):
+	args.call(self)
+		
 
 func abstract_final_action():
 	assert("This class is not derived from Defense !")

@@ -8,44 +8,68 @@ var cards : Array[Card] = [
 	Card.new(
 		"res://Assets/Cards/card_1%s.png",
 		func():
-			TurretDefenseManager.defense_health += 5
-			get_node("/root/Game/TurretDefenseManager").apply_defense_modification(),
+			apply_defense_modification(
+				func(defense : Defense):
+					defense.total_health += 5
+			),
 		),
 	Card.new(
 		"res://Assets/Cards/card_2%s.png",
 		func():
-			TurretDefenseManager.turret_fire_rate -= 0.1
-			get_node("/root/Game/TurretDefenseManager").apply_turret_modification(),
+			apply_turret_modification(
+				func(turret : Turret):
+					turret.fire_rate -= 0.15
+					%TimerShoot.wait_time = turret.fire_rate,
+			),
 		),
 	Card.new(
 		"res://Assets/Cards/card_3%s.png",
 		func():
-			TurretDefenseManager.turret_damage += 1
-			get_node("/root/Game/TurretDefenseManager").apply_turret_modification(),
+			apply_turret_modification(
+				func(turret : Turret):
+					turret.damage += 1,
+			),
 		),
 	Card.new(
 		"res://Assets/Cards/card_4%s.png",
 		func():
-			PlayerManager.player_damage_factor += 0.3
-			get_node("/root/Game/PlayerManager").apply_player_modification(),
+			apply_player_modification(
+				func(player : Player):
+					player.player_damage *= 1.2,
+				),
 		),
 	Card.new(
 		"res://Assets/Cards/card_5%s.png",
 		func():
-			PlayerManager.player_movement_speed_factor += 0.2
-			get_node("/root/Game/PlayerManager").apply_player_modification(),
+			apply_player_modification(
+				func(player : Player):
+					player.player_speed *= 1.2,
+				),
 		),
 	Card.new(
 		"res://Assets/Cards/card_6%s.png",
 		func():
-			EnemyManager.speed_factor -= 0.2
-			get_node("/root/Game/EnemyManager").apply_enemy_modification(),
+			apply_enemy_modification(
+				func(enemy: Enemy):
+					enemy.speed *= 0.8,
+				),
 		),
 	Card.new(
 		"res://Assets/Cards/card_7%s.png",
 		func():
-			EnemyManager.health_factor -= 0.2
-			get_node("/root/Game/EnemyManager").apply_enemy_modification(),
+			apply_enemy_modification(
+				func(enemy : Enemy):
+					enemy.health *= 0.8,
+				),
+		),
+	Card.new(
+		"res://Assets/Cards/card_8%s.png",
+		func():
+			apply_defense_modification(
+				func(defense : Defense):
+					defense.modulate = "ffffff"
+					defense.current_health = defense.total_health,
+				),
 		),
 ]
 
@@ -102,3 +126,23 @@ func _on_choice_3_pressed():
 
 func _on_card_timer_timeout():
 	playerCanSelectCards = true
+
+signal turret_modified
+
+signal defense_modified
+
+signal enemy_modified
+
+signal player_modified
+
+func apply_player_modification(args : Callable):
+	player_modified.emit(args)
+
+func apply_enemy_modification(args : Callable):
+	enemy_modified.emit(args)
+
+func apply_turret_modification(args: Callable):
+	turret_modified.emit(args)
+
+func apply_defense_modification(args: Callable):
+	defense_modified.emit(args)

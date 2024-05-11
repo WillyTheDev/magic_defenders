@@ -19,13 +19,10 @@ func play_animation_idle():
 
 func _ready():
 	play_animation_idle()
-	get_node("/root/Game/EnemyManager").enemy_modified.connect(_on_enemy_modification)
+	get_node("/root/Game/CardsManager").enemy_modified.connect(_on_enemy_modification)
 	
-func _on_enemy_modification(status):
-	if status == "health":
-		health *= EnemyManager.health_factor
-	else:
-		speed *= EnemyManager.speed_factor
+func _on_enemy_modification(args: Callable):
+	args.call(self)
 
 func _process(delta):
 	if follow_path:

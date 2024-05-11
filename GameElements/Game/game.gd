@@ -59,7 +59,6 @@ func spawn_mob():
 	var medium_enemy_spawn_chance: float = (current_wave)/(max_wave * 2)
 	var hard_enemy_spawn_chance :float =  current_wave/(max_wave * 5)
 	var mana_enemy_spawn_chance : float = 0.005
-	print(enemy_spawn_chance)
 	if (enemy_spawn_chance < hard_enemy_spawn_chance) && current_wave > 8:
 		slime = preload("res://GameElements/Enemies/Slime/slime_hard.tscn").instantiate()
 	elif (enemy_spawn_chance < medium_enemy_spawn_chance) && current_wave > 4:

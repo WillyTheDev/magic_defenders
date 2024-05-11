@@ -1,17 +1,18 @@
 class_name Turret
 extends Defense
 
-var fire_rate = TurretDefenseManager.turret_fire_rate
-var damage = TurretDefenseManager.turret_damage
+var fire_rate = 1.5
+var damage = 1
 var target : Enemy = null
+
+static var turret_price = 20
 
 func _ready():
 	%TimerShoot.wait_time = fire_rate
-	get_node("/root/Game/TurretDefenseManager").turret_modified.connect(_apply_modification)
+	get_node("/root/Game/CardsManager").turret_modified.connect(_apply_modification)
 	
-func _apply_modification():
-	%TimerShoot.wait_time = TurretDefenseManager.turret_fire_rate
-	damage = TurretDefenseManager.turret_damage
+func _apply_modification(args : Callable):
+	args.call(self)
 
 func abstract_on_body_exited_defense_zone():
 	print("abstract turret on body exited defense zone")

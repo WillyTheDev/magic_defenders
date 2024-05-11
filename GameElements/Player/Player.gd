@@ -11,12 +11,10 @@ signal player_update_mana_amount
 
 func _ready():
 	screen_size = get_parent().get_node("MapLimit").global_position
-	get_node("/root/Game/PlayerManager").player_modified.connect(_on_player_modified)
+	get_node("/root/Game/CardsManager").player_modified.connect(_on_player_modified)
 
-func _on_player_modified():
-	player_damage *= PlayerManager.player_damage_factor
-	player_speed *= PlayerManager.player_movement_speed_factor
-	assert("Apply modification")
+func _on_player_modified(args):
+	args.call(self)
 
 func update_mana_amount(mana: int):
 	mana_amount += mana
@@ -60,7 +58,7 @@ func _place_defense():
 	is_building = false	
 
 func _on_defense_button_pressed():
-	var defense_price = TurretDefenseManager.defense_price
+	var defense_price = Defense.defense_price
 	if mana_amount >= defense_price:
 		update_mana_amount(-defense_price)
 		is_building = true
@@ -72,7 +70,7 @@ func _on_defense_button_pressed():
 
 
 func _on_turret_button_pressed():
-	var turret_price = TurretDefenseManager.turret_price
+	var turret_price = Turret.turret_price
 	if mana_amount >= turret_price:
 		update_mana_amount(-turret_price)
 		is_building = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=28 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Texture2D" uid="uid://bb65vqteo10xf" path="res://Assets/Zone/arrière-plan.png" id="2_7h1cc"]
@@ -15,12 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://cp2jr7wt7sntm" path="res://Assets/mana.png" id="13_3cv1f"]
 [ext_resource type="Shader" path="res://Shaders/weedShader.gdshader" id="14_gb0en"]
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="15_dwjti"]
-[ext_resource type="Script" path="res://GameElements/Game/TurretDefenseManager.gd" id="16_46jf5"]
 [ext_resource type="Script" path="res://GameElements/Game/CardsManager.gd" id="16_fmmx8"]
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="16_yatl6"]
 [ext_resource type="Texture2D" uid="uid://bdgxpsmcj1sfs" path="res://Assets/Cards/card_1.png" id="17_1tkce"]
-[ext_resource type="Script" path="res://GameElements/Game/EnemyManager.gd" id="17_ivvrk"]
-[ext_resource type="Script" path="res://GameElements/Game/PlayerManager.gd" id="19_3t6nr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dfh6k"]
 shader = ExtResource("2_jnllo")
@@ -100,7 +97,6 @@ platform_floor_layers = 4294967040
 [node name="Core" parent="." instance=ExtResource("4_lfcpx")]
 position = Vector2(1225, 658)
 script = ExtResource("5_p4qxv")
-total_health = 5.0
 has_been_build = true
 
 [node name="SpawnEnemyTimer" type="Timer" parent="."]
@@ -620,18 +616,6 @@ texture_normal = ExtResource("17_1tkce")
 [node name="CardTimer" type="Timer" parent="CardsManager"]
 unique_name_in_owner = true
 one_shot = true
-
-[node name="TurretDefenseManager" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("16_46jf5")
-
-[node name="EnemyManager" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("17_ivvrk")
-
-[node name="PlayerManager" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("19_3t6nr")
 
 [connection signal="should_show_cards" from="." to="CardsManager" method="_on_game_should_show_cards"]
 [connection signal="player_update_mana_amount" from="Player" to="." method="_on_player_player_update_mana_amount"]
