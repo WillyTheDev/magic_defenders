@@ -401,6 +401,7 @@ scale = Vector2(0.106595, 0.106595)
 texture = ExtResource("15_dwjti")
 
 [node name="UI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Progress Bar" type="MarginContainer" parent="UI"]
 anchors_preset = 10
@@ -629,6 +630,16 @@ text = "Play again"
 
 [node name="CardsManager" parent="." instance=ExtResource("15_ykkkp")]
 visible = false
+
+[node name="OptionMenu" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="OptionMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.152941, 0.152941, 0.152941, 0.862745)
 
 [connection signal="player_update_mana_amount" from="Player" to="." method="_on_player_player_update_mana_amount"]
 [connection signal="show_cards" from="Player" to="CardsManager" method="_on_player_show_cards"]
