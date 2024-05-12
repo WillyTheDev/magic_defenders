@@ -1,15 +1,18 @@
 class_name Turret
 extends Defense
 
-var fire_rate = 1.5
-var damage = 1
+static var fire_rate = 1.5
+static var damage = 1
+static var turret_price = 20
+static var turret_shoot_area = 1
 var target : Enemy = null
 
-static var turret_price = 20
 
 func _ready():
 	%TimerShoot.wait_time = fire_rate
 	get_node("/root/Game/CardsManager").turret_modified.connect(_apply_modification)
+	%ShootZone.scale.x = turret_shoot_area
+	%ShootZone.scale.y = turret_shoot_area
 	
 func _apply_modification(args : Callable):
 	args.call(self)
@@ -38,10 +41,15 @@ func shoot():
 		new_fire_bolt.direction = (global_position - target.global_position).normalized() * -1
 		get_parent().add_child(new_fire_bolt)
 
+func abstract_input(event):
+	if event.is_action_pressed("show_shoot_zone"):
+		%ShootingZoneSprite.visible = true
+	elif event.is_action_released("show_shoot_zone"):
+		%ShootingZoneSprite.visible = false
+
 
 func _on_timer_shoot_timeout():
 	shoot()
-
 
 func _on_shoot_zone_body_exited(body):
 	target = null

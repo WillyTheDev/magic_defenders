@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=29 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Texture2D" uid="uid://bb65vqteo10xf" path="res://Assets/Zone/arrière-plan.png" id="2_7h1cc"]
@@ -9,10 +9,8 @@
 [ext_resource type="Script" path="res://GameElements/Core/core.gd" id="5_p4qxv"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="5_vhx2p"]
 [ext_resource type="Texture2D" uid="uid://bnoteo8epe2ck" path="res://Assets/UI/Button/defense_btn.png" id="8_n7k4h"]
-[ext_resource type="Texture2D" uid="uid://dk12a6xgp2cp" path="res://Assets/UI/Button/defense_btn-1.png" id="9_bnrim"]
 [ext_resource type="Texture2D" uid="uid://ckhmpy7a0sacy" path="res://Assets/UI/Button/turret_btn.png" id="10_a41jm"]
 [ext_resource type="Texture2D" uid="uid://c7buce4ehpwkn" path="res://Assets/UI/Button/turret_btn-1.png" id="11_4n668"]
-[ext_resource type="Texture2D" uid="uid://cp2jr7wt7sntm" path="res://Assets/mana.png" id="13_3cv1f"]
 [ext_resource type="Shader" path="res://Shaders/weedShader.gdshader" id="14_gb0en"]
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="15_dwjti"]
 [ext_resource type="Script" path="res://GameElements/Game/CardsManager.gd" id="16_fmmx8"]
@@ -61,8 +59,15 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6ubk"]
+bg_color = Color(0.415425, 0.609676, 0.864728, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oeowq"]
-bg_color = Color(0.867672, 0, 0.2397, 1)
+bg_color = Color(1, 0.324317, 0.404642, 1)
 border_blend = true
 corner_radius_top_left = 16
 corner_radius_top_right = 16
@@ -75,11 +80,19 @@ shader_parameter/alpha = 0.5
 shader_parameter/inner_radius = 0.0
 shader_parameter/outer_radius = 1.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_buab2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov5d5"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 0.882353)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="Game" type="Node2D" node_paths=PackedStringArray("paths")]
 y_sort_enabled = true
 script = ExtResource("1_m44sk")
 paths = [NodePath("Paths/Path_1"), NodePath("Paths/path_2"), NodePath("Paths/Path_3")]
-max_wave = 20.0
 
 [node name="Arrière-plan" type="Sprite2D" parent="."]
 z_index = -2
@@ -93,6 +106,7 @@ unique_name_in_owner = true
 z_index = 1
 position = Vector2(1381, 753)
 platform_floor_layers = 4294967040
+starting_mana_amount = 60
 
 [node name="Core" parent="." instance=ExtResource("4_lfcpx")]
 position = Vector2(1225, 658)
@@ -389,49 +403,49 @@ texture = ExtResource("15_dwjti")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="SkillContainer" type="MarginContainer" parent="UI"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 31.0
-offset_top = -85.0
-offset_right = 1343.0
-offset_bottom = 155.0
-grow_vertical = 0
-scale = Vector2(0.5, 0.5)
-theme_override_constants/margin_left = 32
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/SkillContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="DefenseButton" type="TextureButton" parent="UI/SkillContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-texture_normal = ExtResource("8_n7k4h")
-texture_pressed = ExtResource("9_bnrim")
-
-[node name="TurretButton" type="TextureButton" parent="UI/SkillContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-texture_normal = ExtResource("10_a41jm")
-texture_pressed = ExtResource("11_4n668")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
+[node name="Progress Bar" type="MarginContainer" parent="UI"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 50.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 128
-theme_override_constants/margin_top = 32
+theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 128
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Progress Bar"]
 layout_mode = 2
 
-[node name="EnemiesProgressBar" type="ProgressBar" parent="UI/MarginContainer/HBoxContainer2"]
+[node name="AccumulatedMana" type="ProgressBar" parent="UI/Progress Bar/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_cce1o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v6ubk")
+step = 1.0
+rounded = true
+show_percentage = false
+
+[node name="AccumulatedManaLabel" type="Label" parent="UI/Progress Bar/VBoxContainer/AccumulatedMana"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = " mana / mana required
+"
+
+[node name="EnemiesProgressBar" type="ProgressBar" parent="UI/Progress Bar/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/background = SubResource("StyleBoxFlat_cce1o")
@@ -440,7 +454,7 @@ step = 1.0
 rounded = true
 show_percentage = false
 
-[node name="EnemiesLabel" type="Label" parent="UI/MarginContainer/HBoxContainer2/EnemiesProgressBar"]
+[node name="EnemiesLabel" type="Label" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -457,49 +471,26 @@ grow_vertical = 2
 text = "
 "
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="UI/MarginContainer"]
-layout_mode = 2
-
-[node name="WaveActionLabel" type="Label" parent="UI/MarginContainer/HBoxContainer3"]
+[node name="WaveActionLabel" type="Label" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -356.5
+offset_top = -19.5
+offset_right = 356.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 6
 theme_override_fonts/font = ExtResource("5_vhx2p")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 26
 text = "Press \"space\" to start the next wave !"
-
-[node name="ManaContainer" type="MarginContainer" parent="UI"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 33.0
-offset_top = -190.0
-offset_right = 192.0
-offset_bottom = -90.0001
-grow_vertical = 0
-scale = Vector2(0.85, 0.85)
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/ManaContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-
-[node name="TextureRect" type="TextureRect" parent="UI/ManaContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 2
-texture = ExtResource("13_3cv1f")
-
-[node name="ManaLabel" type="Label" parent="UI/ManaContainer/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_colors/font_color = Color(0.447059, 0.52549, 0.827451, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_fonts/font = ExtResource("5_vhx2p")
-theme_override_font_sizes/font_size = 40
-text = "40
-"
-uppercase = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CoreAttackedRect" type="ColorRect" parent="UI"]
 unique_name_in_owner = true
@@ -511,14 +502,82 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="SkillsContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/SkillsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="ManaLabel" type="Label" parent="UI/SkillsContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.513273, 0.583995, 0.744774, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("5_vhx2p")
+theme_override_font_sizes/font_size = 24
+text = "mana"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/SkillsContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="DefenseButton" type="TextureButton" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("8_n7k4h")
+
+[node name="ProgressBarBackground" type="ProgressBar" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer/DefenseButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_buab2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ov5d5")
+max_value = 10.0
+step = 1.0
+fill_mode = 2
+show_percentage = false
+
+[node name="TurretButton" type="TextureButton" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("10_a41jm")
+texture_pressed = ExtResource("11_4n668")
+
+[node name="ProgressBarBackground" type="ProgressBar" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer/TurretButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_buab2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ov5d5")
+max_value = 20.0
+step = 1.0
+fill_mode = 2
+show_percentage = false
+
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -2
 
 [node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
-offset_left = 20.0
-offset_top = 47.0
-offset_right = 1940.0
-offset_bottom = 1127.0
+offset_left = -4.0
+offset_top = 6.0
+offset_right = 1916.0
+offset_bottom = 1086.0
 color = Color(0.345098, 0.462745, 0.32549, 1)
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
@@ -558,6 +617,7 @@ theme_override_font_sizes/font_size = 32
 text = "Play again"
 
 [node name="CardsManager" type="CanvasLayer" parent="."]
+process_mode = 2
 visible = false
 script = ExtResource("16_fmmx8")
 
@@ -617,8 +677,8 @@ texture_normal = ExtResource("17_1tkce")
 unique_name_in_owner = true
 one_shot = true
 
-[connection signal="should_show_cards" from="." to="CardsManager" method="_on_game_should_show_cards"]
 [connection signal="player_update_mana_amount" from="Player" to="." method="_on_player_player_update_mana_amount"]
+[connection signal="show_cards" from="Player" to="CardsManager" method="_on_player_show_cards"]
 [connection signal="core_destroyed" from="Core" to="." method="_on_core_core_destroyed"]
 [connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
 [connection signal="timeout" from="SpawnFlyingEnemyTimer" to="." method="_on_spawn_flying_enemy_timer_timeout"]

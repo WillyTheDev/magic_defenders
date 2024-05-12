@@ -8,26 +8,31 @@ var cards : Array[Card] = [
 	Card.new(
 		"res://Assets/Cards/card_1%s.png",
 		func():
+			Defense.total_health += 10
+			#This part will be applied for each already in game Defense
 			apply_defense_modification(
 				func(defense : Defense):
-					defense.total_health += 5
+					defense.total_health += Defense.total_health,
 			),
 		),
 	Card.new(
 		"res://Assets/Cards/card_2%s.png",
 		func():
+			Turret.fire_rate -= 0.15
+			#This part will be applied for each already in game Turret
 			apply_turret_modification(
 				func(turret : Turret):
-					turret.fire_rate -= 0.15
-					turret.get_node("TimerShoot").wait_time = turret.fire_rate,
+					turret.get_node("TimerShoot").wait_time = Turret.fire_rate,
 			),
 		),
 	Card.new(
 		"res://Assets/Cards/card_3%s.png",
 		func():
+			Turret.damage += 1
+			#This part will be applied for each already in game Turret
 			apply_turret_modification(
 				func(turret : Turret):
-					turret.damage += 1,
+					turret.damage = Turret.damage
 			),
 		),
 	Card.new(
@@ -35,7 +40,7 @@ var cards : Array[Card] = [
 		func():
 			apply_player_modification(
 				func(player : Player):
-					player.player_damage *= 1.2,
+					player.player_damage += 1,
 				),
 		),
 	Card.new(
@@ -43,32 +48,29 @@ var cards : Array[Card] = [
 		func():
 			apply_player_modification(
 				func(player : Player):
-					player.player_speed *= 1.2,
+					player.player_speed *= 1.3,
 				),
 		),
 	Card.new(
 		"res://Assets/Cards/card_6%s.png",
 		func():
-			apply_enemy_modification(
-				func(enemy: Enemy):
-					enemy.speed *= 0.8,
+			#This part will be applied for each already in game Defense
+			apply_defense_modification(
+				func(defense : Defense):
+					defense.modulate = "ffffff"
+					defense.current_health = defense.total_health,
 				),
 		),
 	Card.new(
 		"res://Assets/Cards/card_7%s.png",
 		func():
-			apply_enemy_modification(
-				func(enemy : Enemy):
-					enemy.health *= 0.8,
-				),
-		),
-	Card.new(
-		"res://Assets/Cards/card_8%s.png",
-		func():
-			apply_defense_modification(
-				func(defense : Defense):
-					defense.modulate = "ffffff"
-					defense.current_health = defense.total_health,
+			Turret.turret_shoot_area += 0.25
+			#This part will be applied for each already in game Turret
+			apply_turret_modification(
+				func(turret : Turret):
+					var shootZone : Area2D = turret.get_node("ShootZone")
+					shootZone.scale.x = Turret.turret_shoot_area
+					shootZone.scale.y = Turret.turret_shoot_area,
 				),
 		),
 ]
@@ -96,16 +98,15 @@ func choose_cards_to_show():
 	show_cards()
 	
 func show_cards():
+	get_tree().paused = true
 	%CardTimer.start()
 	visible = true
 	
 func hide_cards():
+	get_tree().paused = false
 	playerCanSelectCards = false
 	visible = false
 
-func _on_game_should_show_cards():
-	choose_cards_to_show()
-	
 
 func _on_choice_1_pressed():
 	if playerCanSelectCards:
@@ -146,3 +147,6 @@ func apply_turret_modification(args: Callable):
 
 func apply_defense_modification(args: Callable):
 	defense_modified.emit(args)
+
+func _on_player_show_cards():
+	choose_cards_to_show()

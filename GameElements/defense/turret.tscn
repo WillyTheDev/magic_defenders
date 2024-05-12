@@ -49,6 +49,14 @@ position = Vector2(3, 0)
 collision_mask = 2
 monitorable = false
 
+[node name="ShootingZoneSprite" type="Sprite2D" parent="ShootZone"]
+unique_name_in_owner = true
+modulate = Color(0, 0.796078, 0.290196, 0.784314)
+position = Vector2(61, -1)
+rotation = -1.57079
+scale = Vector2(0.26737, 0.448721)
+texture = ExtResource("2_26sh2")
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShootZone"]
 position = Vector2(-66, -7.27177e-06)
 scale = Vector2(18.5771, 2.96205)
@@ -73,14 +81,6 @@ collision_layer = 2
 position = Vector2(-3, -1)
 shape = SubResource("RectangleShape2D_1ejl3")
 debug_color = Color(0.755894, 0.189016, 1, 0.42)
-
-[node name="ShootingZoneSprite" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-modulate = Color(2.74345e-06, 0.797629, 0.290157, 1)
-position = Vector2(64, -1)
-rotation = -1.57079
-scale = Vector2(0.26737, 0.448721)
-texture = ExtResource("2_26sh2")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_exited" from="ShootZone" to="." method="_on_shoot_zone_body_exited"]

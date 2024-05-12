@@ -1,7 +1,7 @@
 class_name Defense
 extends Node2D
 
-@export var total_health : = 10.0
+static var total_health : = 10.0
 @export var has_been_build = false
 @export var can_be_placed = true
 
@@ -38,6 +38,10 @@ func abstract_build_defense():
 
 func abstract_defense_take_damage():
 	assert("This class is not derived from Defense !")
+
+func abstract_input(event):
+	assert("This class is not derived from Defense !")
+
 	
 func build_defense():
 	#Place and fix the defense at the determined position and reset the modulate and collision_layer
@@ -65,6 +69,7 @@ func _process(float):
 		
 	
 func _input(event):
+	abstract_input(event)
 	if event.is_action_pressed("left_click"):
 		if has_been_build == false && can_be_placed == true:
 			build_defense()

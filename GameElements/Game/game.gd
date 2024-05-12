@@ -2,8 +2,8 @@ extends Node2D
 
 
 @export var paths: Array[Path2D] = []
-@export var max_wave : float = 30.0
-@export var current_wave : float = 0.0
+static var max_wave : float = 30.0
+static var current_wave : float = 0.0
 @export var total_enemies = 10
 @export var increments_nb_enemies_per_wave = 8
 @export var enemies_spawn = 0
@@ -11,8 +11,7 @@ extends Node2D
 @export var spawn_rates = 2.5
 @export var spawn_flying_enemy_rates = 20
 @export var is_idle = true
-	
-signal should_show_cards
+
 
 func start_new_wave():
 	is_idle = false
@@ -38,7 +37,6 @@ func end_of_wave():
 	%EnemiesLabel.text = ""
 	%WaveActionLabel.visible = true
 	is_idle = true
-	should_show_cards.emit()
 
 func spawn_flying_mob():
 	if current_wave > 2:
@@ -69,7 +67,6 @@ func spawn_mob():
 		slime = preload("res://GameElements/Enemies/Slime/slime.tscn").instantiate()
 	slime.slime_has_been_killed.connect(on_enemy_has_been_killed)
 	enemy.add_child(slime)
-	
 	# Add the Enemy on a random path
 	var indexSpawnPoints = floor(randf() * paths.size())
 	paths[indexSpawnPoints].add_child(enemy)
@@ -88,7 +85,7 @@ func on_enemy_has_been_killed():
 	enemies_left -= 1
 	%EnemiesProgressBar.value = enemies_left
 	%EnemiesLabel.text = "%s / %s" % [enemies_left, total_enemies]
-	if enemies_left <= 0:
+	if enemies_left <= 0 && enemies_spawn == total_enemies:
 		end_of_wave()
 
 func _input(event):
@@ -98,13 +95,23 @@ func _input(event):
 
 func _on_player_player_update_mana_amount(mana):
 	%ManaLabel.text = "Mana : %s" % mana
+	print(mana)
+	%TurretButton/ProgressBarBackground.value = 20 - mana
+	%DefenseButton/ProgressBarBackground.value = 10 - mana
+	%AccumulatedManaLabel.text = "%s / %s" % [Player.accumulated_mana, (20 + Player.level * 10)]
+	%AccumulatedMana.max_value = 20 + Player.level * 10
+	%AccumulatedMana.value = Player.accumulated_mana
 
 func _on_spawn_enemy_timer_timeout():
+	print("Mormal : %s / %s" % [enemies_spawn, total_enemies])
 	if enemies_spawn < total_enemies:
+		print("Spawning")
 		spawn_mob()
 
 func _on_spawn_flying_enemy_timer_timeout():
+	print("Flying : %s / %s" % [enemies_spawn, total_enemies])
 	if enemies_spawn < total_enemies:
+		print("Spawning")
 		spawn_flying_mob()
 
 func _on_restart_button_pressed():

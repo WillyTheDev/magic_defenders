@@ -13,7 +13,7 @@ func _physics_process(delta):
 
 func _on_mana_body_body_entered(body):
 	if body is Player:
-		body.update_mana_amount(mana_value)
+		body.update_mana_amount(mana_value, true)
 		queue_free()
 	
 
