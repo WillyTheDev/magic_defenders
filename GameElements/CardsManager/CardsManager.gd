@@ -100,6 +100,7 @@ func choose_cards_to_show():
 func show_cards():
 	get_tree().paused = true
 	%CardTimer.start()
+	%CardsManagerAnimationPlayer.play("show_cards")
 	visible = true
 	
 func hide_cards():
@@ -127,6 +128,9 @@ func _on_choice_3_pressed():
 
 func _on_card_timer_timeout():
 	playerCanSelectCards = true
+	
+func _on_player_show_cards():
+	choose_cards_to_show()
 
 signal turret_modified
 
@@ -148,5 +152,4 @@ func apply_turret_modification(args: Callable):
 func apply_defense_modification(args: Callable):
 	defense_modified.emit(args)
 
-func _on_player_show_cards():
-	choose_cards_to_show()
+

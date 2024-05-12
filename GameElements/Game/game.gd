@@ -12,6 +12,15 @@ static var current_wave : float = 0.0
 @export var spawn_flying_enemy_rates = 20
 @export var is_idle = true
 
+# Use the _ready methode to reinitialize static properties from various classes
+func _ready():
+	Player.accumulated_mana = 0
+	Player.level = 1
+	Defense.total_health = 10
+	Turret.fire_rate = 1.5
+	Turret.damage = 1
+	Turret.turret_shoot_area = 1
+	
 
 func start_new_wave():
 	is_idle = false
@@ -80,6 +89,8 @@ func spawn_visual_indicator(target):
 	
 func game_over():
 	%GameOverScreen.visible = true
+	%ScoreLabel.text = "The lotus has been destroyed :\n %s waves" % current_wave
+	get_tree().paused = true
 	
 func on_enemy_has_been_killed():
 	enemies_left -= 1
@@ -98,12 +109,11 @@ func _on_player_player_update_mana_amount(mana):
 	print(mana)
 	%TurretButton/ProgressBarBackground.value = 20 - mana
 	%DefenseButton/ProgressBarBackground.value = 10 - mana
-	%AccumulatedManaLabel.text = "%s / %s" % [Player.accumulated_mana, (20 + Player.level * 10)]
-	%AccumulatedMana.max_value = 20 + Player.level * 10
+	%AccumulatedManaLabel.text = "%s / %s until the next level" % [Player.accumulated_mana, (Player.offset_accumulated_mana_value + Player.level * 10)]
+	%AccumulatedMana.max_value = Player.offset_accumulated_mana_value + Player.level * 10
 	%AccumulatedMana.value = Player.accumulated_mana
 
 func _on_spawn_enemy_timer_timeout():
-	print("Mormal : %s / %s" % [enemies_spawn, total_enemies])
 	if enemies_spawn < total_enemies:
 		print("Spawning")
 		spawn_mob()

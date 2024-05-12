@@ -6,6 +6,7 @@ var mana_amount = 0
 @export var screen_size = Vector2i(0,0)
 static var accumulated_mana = 0
 static var level = 1
+static var offset_accumulated_mana_value = 10
 var player_damage = 1
 var player_speed = 300
 var is_building = false
@@ -27,8 +28,8 @@ func update_mana_amount(mana: int, acquire: bool):
 	player_update_mana_amount.emit(mana_amount)
 	if acquire:
 		accumulated_mana += mana
-		if accumulated_mana >= (20 + ( level * 10 )):
-			accumulated_mana -= (20 + ( level * 10 ))
+		if accumulated_mana >= (offset_accumulated_mana_value + ( level * 10 )):
+			accumulated_mana -= (offset_accumulated_mana_value + ( level * 10 ))
 			level += 1
 			show_cards.emit()
 
