@@ -28,7 +28,7 @@ var cards : Array[Card] = [
 	Card.new(
 		"res://Assets/Cards/card_3%s.png",
 		func():
-			Turret.damage += 1
+			Turret.damage += 0.5
 			#This part will be applied for each already in game Turret
 			apply_turret_modification(
 				func(turret : Turret):

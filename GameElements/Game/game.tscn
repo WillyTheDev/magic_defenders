@@ -58,13 +58,6 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6ubk"]
-bg_color = Color(0.415425, 0.609676, 0.864728, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oeowq"]
 bg_color = Color(1, 0.324317, 0.404642, 1)
 border_blend = true
@@ -83,6 +76,13 @@ shader_parameter/outer_radius = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov5d5"]
 bg_color = Color(0.145098, 0.145098, 0.145098, 0.882353)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6ubk"]
+bg_color = Color(0.415425, 0.609676, 0.864728, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -414,37 +414,9 @@ theme_override_constants/margin_right = 128
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Progress Bar"]
 layout_mode = 2
 
-[node name="AccumulatedMana" type="ProgressBar" parent="UI/Progress Bar/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_cce1o")
-theme_override_styles/fill = SubResource("StyleBoxFlat_v6ubk")
-step = 1.0
-rounded = true
-show_percentage = false
-
-[node name="AccumulatedManaLabel" type="Label" parent="UI/Progress Bar/VBoxContainer/AccumulatedMana"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = " mana / mana required
-"
-
 [node name="EnemiesProgressBar" type="ProgressBar" parent="UI/Progress Bar/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/background = SubResource("StyleBoxFlat_cce1o")
@@ -526,7 +498,7 @@ text = "mana"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/SkillsContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 
 [node name="DefenseButton" type="TextureButton" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -569,14 +541,43 @@ step = 1.0
 fill_mode = 2
 show_percentage = false
 
+[node name="AccumulatedMana" type="ProgressBar" parent="UI/SkillsContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_cce1o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v6ubk")
+step = 1.0
+rounded = true
+show_percentage = false
+
+[node name="AccumulatedManaLabel" type="Label" parent="UI/SkillsContainer/VBoxContainer/AccumulatedMana"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = " mana / mana required
+"
+
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -2
 
 [node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
-offset_left = 62.0
-offset_top = 243.0
-offset_right = 1982.0
-offset_bottom = 1323.0
+offset_left = -1.0
+offset_top = -4.0
+offset_right = 1919.0
+offset_bottom = 1076.0
 color = Color(0.345098, 0.462745, 0.32549, 1)
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]

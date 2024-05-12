@@ -43,3 +43,9 @@ position = Vector2(24, 28)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[node name="AutoShootTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
+
+[connection signal="timeout" from="AutoShootTimer" to="." method="_on_auto_shoot_timer_timeout"]

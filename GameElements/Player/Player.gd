@@ -49,7 +49,10 @@ func _input(event):
 		if is_building:
 			_place_defense()
 		else:
+			%AutoShootTimer.start()
 			_shoot()
+	if event.is_action_released("left_click"):
+			%AutoShootTimer.stop()
 	if event.is_action_pressed("turret_key_pressed"):
 		if is_building == false:
 			_on_turret_button_pressed()
@@ -93,3 +96,7 @@ func _on_turret_button_pressed():
 		new_turret.global_position = get_global_mouse_position()
 		new_turret.rotation = get_angle_to(get_global_mouse_position())
 		get_parent().add_child(new_turret)
+
+
+func _on_auto_shoot_timer_timeout():
+	_shoot()
