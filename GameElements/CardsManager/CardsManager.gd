@@ -7,6 +7,7 @@ var playerCanSelectCards : bool = false
 var cards : Array[Card] = [
 	Card.new(
 		"res://Assets/Cards/card_1%s.png",
+		false,
 		func():
 			Defense.total_health += 10
 			#This part will be applied for each already in game Defense
@@ -17,6 +18,7 @@ var cards : Array[Card] = [
 		),
 	Card.new(
 		"res://Assets/Cards/card_2%s.png",
+		false,
 		func():
 			Turret.fire_rate -= 0.15
 			#This part will be applied for each already in game Turret
@@ -27,6 +29,7 @@ var cards : Array[Card] = [
 		),
 	Card.new(
 		"res://Assets/Cards/card_3%s.png",
+		false,
 		func():
 			Turret.damage += 0.5
 			#This part will be applied for each already in game Turret
@@ -37,6 +40,7 @@ var cards : Array[Card] = [
 		),
 	Card.new(
 		"res://Assets/Cards/card_4%s.png",
+		false,
 		func():
 			apply_player_modification(
 				func(player : Player):
@@ -45,6 +49,7 @@ var cards : Array[Card] = [
 		),
 	Card.new(
 		"res://Assets/Cards/card_5%s.png",
+		false,
 		func():
 			apply_player_modification(
 				func(player : Player):
@@ -53,6 +58,7 @@ var cards : Array[Card] = [
 		),
 	Card.new(
 		"res://Assets/Cards/card_6%s.png",
+		false,
 		func():
 			#This part will be applied for each already in game Defense
 			apply_defense_modification(
@@ -63,6 +69,7 @@ var cards : Array[Card] = [
 		),
 	Card.new(
 		"res://Assets/Cards/card_7%s.png",
+		false,
 		func():
 			Turret.turret_shoot_area += 0.25
 			#This part will be applied for each already in game Turret
@@ -73,6 +80,24 @@ var cards : Array[Card] = [
 					shootZone.scale.y = Turret.turret_shoot_area,
 				),
 		),
+	Card.new(
+		"res://Assets/Cards/card_8%s.png",
+		false,
+		func():
+			MagicBolt.has_auto_target_on = true,
+		),
+	Card.new(
+		"res://Assets/Cards/card_9%s.png",
+		false,
+		func():
+			MagicBolt.is_reducing_speed = true,
+		),
+	Card.new(
+		"res://Assets/Cards/card_10%s.png",
+		false,
+		func():
+			MagicBolt.is_passing_through = true,
+		),
 ]
 
 
@@ -80,12 +105,17 @@ var card_1 = 0
 var card_2 = 0
 var card_3 = 0
 
+var player_has_drawn_unique = false
 
 func choose_cards_to_show():
-	# Draw a random card between 1 and nb_of_cards
+	# Draw a random card between 1 and nb_of_cards randi() % nb_of_cards
 	card_1 = cards[randi() % nb_of_cards]
 	card_2 = cards[randi() % nb_of_cards]
 	card_3 = cards[randi() % nb_of_cards]
+	card_1 = check_if_unique(card_1)
+	card_2 = check_if_unique(card_2)
+	card_3 = check_if_unique(card_3)
+	
 	%choice_1.texture_normal = load(card_1.img_path)
 	%choice_1.texture_hover = load(card_1.img_path_hover)
 	%choice_1.texture_pressed = load(card_1.img_path_clicked)
@@ -108,21 +138,35 @@ func hide_cards():
 	playerCanSelectCards = false
 	visible = false
 
+#This will insure that the drawn cards aren't unique if player already drawn a unique card
+func check_if_unique(card:Card):
+	if card.is_unique && player_has_drawn_unique:
+		return check_if_unique(cards[randi() % nb_of_cards])
+	else:
+		return card
+
+func check_player_choice_is_unique(card : Card):
+	if card.is_unique :
+		player_has_drawn_unique = true
+
 
 func _on_choice_1_pressed():
 	if playerCanSelectCards:
+		check_player_choice_is_unique(card_1)
 		card_1.apply_effect()
 		hide_cards()
 
 
 func _on_choice_2_pressed():
 	if playerCanSelectCards:
+		check_player_choice_is_unique(card_2)
 		card_2.apply_effect()
 		hide_cards()
 
 
 func _on_choice_3_pressed():
 	if playerCanSelectCards:
+		check_player_choice_is_unique(card_3)
 		card_3.apply_effect()
 		hide_cards()
 
@@ -139,6 +183,7 @@ signal defense_modified
 signal enemy_modified
 
 signal player_modified
+
 
 func apply_player_modification(args : Callable):
 	player_modified.emit(args)

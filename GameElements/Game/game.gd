@@ -8,7 +8,7 @@ static var current_wave : float = 0.0
 @export var increments_nb_enemies_per_wave = 8
 @export var enemies_spawn = 0
 @export var enemies_left = 10
-@export var spawn_rates = 2.5
+@export var spawn_rates = 2
 @export var spawn_flying_enemy_rates = 20
 @export var is_idle = true
 
@@ -35,7 +35,7 @@ func start_new_wave():
 	%EnemiesProgressBar.value = total_enemies
 	%EnemiesLabel.text = "Wave %s : %s / %s" % [current_wave, enemies_left, total_enemies]
 	%WaveActionLabel.visible = false
-	%SpawnEnemyTimer.wait_time = spawn_rates
+	%SpawnEnemyTimer.wait_time = clamp(spawn_rates, 1, 2.5)
 	%SpawnEnemyTimer.start()
 	%SpawnFlyingEnemyTimer.wait_time = spawn_flying_enemy_rates
 	%SpawnFlyingEnemyTimer.start()

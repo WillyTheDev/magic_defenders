@@ -401,7 +401,6 @@ scale = Vector2(0.106595, 0.106595)
 texture = ExtResource("15_dwjti")
 
 [node name="UI" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Progress Bar" type="MarginContainer" parent="UI"]
 anchors_preset = 10
@@ -632,6 +631,7 @@ text = "Play again"
 visible = false
 
 [node name="OptionMenu" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="OptionMenu"]
 anchors_preset = 15

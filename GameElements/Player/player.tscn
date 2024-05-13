@@ -46,6 +46,6 @@ zoom = Vector2(2, 2)
 
 [node name="AutoShootTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.2
+wait_time = 0.4
 
 [connection signal="timeout" from="AutoShootTimer" to="." method="_on_auto_shoot_timer_timeout"]
