@@ -12,6 +12,8 @@ static var current_wave : float = 0.0
 @export var spawn_flying_enemy_rates = 20
 @export var is_idle = true
 
+var options_menu_shown = false
+
 # Use the _ready methode to reinitialize static properties from various classes
 func _ready():
 	Player.accumulated_mana = 0
@@ -39,8 +41,14 @@ func start_new_wave():
 	%SpawnEnemyTimer.start()
 	%SpawnFlyingEnemyTimer.wait_time = spawn_flying_enemy_rates
 	%SpawnFlyingEnemyTimer.start()
+	
+	if current_wave >= 5:
+		Enemy.base_health += 1
 
 func end_of_wave():
+	%WaveLAbel.text = "Wave : %s Cleared !" % current_wave
+	%UI.show_next_wave_label()
+	%Confetti.play_confetti()
 	%SpawnEnemyTimer.stop()
 	%SpawnFlyingEnemyTimer.stop()
 	%EnemiesLabel.text = ""
@@ -99,10 +107,21 @@ func on_enemy_has_been_killed():
 	if enemies_left <= 0 && enemies_spawn == total_enemies:
 		end_of_wave()
 
+
+
 func _input(event):
 	if event.is_action_pressed("action_button"):
 		if is_idle:
 			start_new_wave()
+	if event.is_action_pressed("show_options"):
+		if options_menu_shown == false:
+			get_tree().paused = true
+			%OptionsMenu.visible = true
+		else:
+			get_tree().paused = false
+			%OptionsMenu.visible = false
+
+
 
 func _on_player_player_update_mana_amount(mana):
 	%ManaLabel.text = "Mana : %s" % mana
@@ -132,3 +151,5 @@ func _on_core_core_destroyed():
 	game_over()
 
 
+func _on_audio_stream_player_finished():
+	%BackgroundAudioPlayer.play()

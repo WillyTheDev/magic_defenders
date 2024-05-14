@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://yuors4jcwmwr"]
+[gd_scene load_steps=12 format=3 uid="uid://yuors4jcwmwr"]
 
 [ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_anbsf"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_8muj1"]
 [ext_resource type="Texture2D" uid="uid://b5vyv208jniqd" path="res://Assets/Ennemies/Slime_v2_medium.png" id="3_vf5au"]
 [ext_resource type="Texture2D" uid="uid://baacy614v8gmy" path="res://Assets/Ennemies/Slime_v2_hit.png" id="4_drw48"]
+[ext_resource type="PackedScene" uid="uid://4wydwtkokgvo" path="res://GameElements/misc/hit_audio.tscn" id="5_p3npd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyd47"]
 
@@ -84,7 +85,7 @@ scale = Vector2(0.5, 0.5)
 platform_floor_layers = 4294967040
 script = ExtResource("1_anbsf")
 MANA_AMOUNT = 10
-health = 30
+health = 35
 enemy_damage = 2
 
 [node name="Shadow" type="Sprite2D" parent="."]
@@ -108,3 +109,6 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_w3qrp")
 }
+
+[node name="HitAudio" parent="." instance=ExtResource("5_p3npd")]
+unique_name_in_owner = true

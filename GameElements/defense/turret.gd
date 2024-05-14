@@ -33,6 +33,7 @@ func abstract_on_process():
 
 func shoot():
 	if target != null:
+		%FireAudio.play()
 		const FIRE_BOLT = preload("res://GameElements/Player/fire_bolt.tscn")
 		var new_fire_bolt = FIRE_BOLT.instantiate()
 		new_fire_bolt.damage = damage

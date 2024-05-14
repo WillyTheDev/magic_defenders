@@ -1,6 +1,7 @@
 class_name Enemy
 extends CharacterBody2D
 
+static var base_health = 5
 @export var speed = 100
 @export var MANA_AMOUNT = 2
 @export var health = 2
@@ -18,6 +19,7 @@ func play_animation_idle():
 
 
 func _ready():
+	health += base_health
 	play_animation_idle()
 	get_node("/root/Game/CardsManager").enemy_modified.connect(_on_enemy_modification)
 	
@@ -30,6 +32,7 @@ func _process(delta):
 
 func take_damage(damage):
 	play_animation_hit()
+	%HitAudio.play()
 	health -= damage
 	if health <= 0:
 		slime_has_been_killed.emit()

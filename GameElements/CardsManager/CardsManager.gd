@@ -1,7 +1,7 @@
 class_name CardsManager
 extends CanvasLayer
 
-@export var nb_of_cards = 7
+@export var nb_of_cards = 10
 var playerCanSelectCards : bool = false
 
 var cards : Array[Card] = [
@@ -82,21 +82,25 @@ var cards : Array[Card] = [
 		),
 	Card.new(
 		"res://Assets/Cards/card_8%s.png",
-		false,
+		true,
 		func():
-			MagicBolt.has_auto_target_on = true,
+			MagicBolt.has_auto_target_on = true
+			MagicBolt.range = 1000
+			MagicBolt.texture = load("res://Assets/Player/water_bolt.png"),
 		),
 	Card.new(
 		"res://Assets/Cards/card_9%s.png",
-		false,
+		true,
 		func():
-			MagicBolt.is_reducing_speed = true,
+			MagicBolt.is_reducing_speed = true
+			MagicBolt.texture = load("res://Assets/Player/frost_bolt.png"),
 		),
 	Card.new(
 		"res://Assets/Cards/card_10%s.png",
-		false,
+		true,
 		func():
-			MagicBolt.is_passing_through = true,
+			MagicBolt.is_passing_through = true
+			MagicBolt.texture = load("res://Assets/Player/bouncing_bolt.png"),
 		),
 ]
 
@@ -108,6 +112,7 @@ var card_3 = 0
 var player_has_drawn_unique = false
 
 func choose_cards_to_show():
+	print(nb_of_cards)
 	# Draw a random card between 1 and nb_of_cards randi() % nb_of_cards
 	card_1 = cards[randi() % nb_of_cards]
 	card_2 = cards[randi() % nb_of_cards]
@@ -183,7 +188,6 @@ signal defense_modified
 signal enemy_modified
 
 signal player_modified
-
 
 func apply_player_modification(args : Callable):
 	player_modified.emit(args)
