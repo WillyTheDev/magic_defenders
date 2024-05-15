@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2p14mfp2sdol"]
+
+[ext_resource type="Script" path="res://GameElements/misc/confetti.gd" id="1_k3bqs"]
+[ext_resource type="AudioStream" uid="uid://kas3l8of2b6k" path="res://Assets/audio/fanfare_3.wav" id="2_m4div"]
+
+[sub_resource type="Curve" id="Curve_i53rw"]
+_data = [Vector2(0, 0.119493), 0.0, 0.0, 0, 0, Vector2(0.217514, 0.992841), 0.0, 0.0, 0, 0, Vector2(1, 0.749449), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_b2l6u"]
+offsets = PackedFloat32Array(0, 0.315951, 0.613497, 1)
+colors = PackedColorArray(0.741445, 0.810489, 0, 1, 0.110411, 0.18309, 1, 1, 4.13924e-06, 0.633448, 0.246833, 1, 0.953469, 0, 0.528737, 1)
+
+[sub_resource type="Curve" id="Curve_b22e5"]
+min_value = -1.0
+_data = [Vector2(0.00564972, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Confetti" type="Node2D"]
+position = Vector2(9, -8)
+script = ExtResource("1_k3bqs")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ConfettiRight" type="CPUParticles2D" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(1920, 597)
+emitting = false
+amount = 64
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.6
+randomness = 0.2
+local_coords = true
+direction = Vector2(-1, -1)
+gravity = Vector2(0, 200)
+initial_velocity_min = 189.17
+initial_velocity_max = 408.43
+angular_velocity_min = 280.0
+angular_velocity_max = 280.0
+linear_accel_min = 43.85
+linear_accel_max = 81.28
+scale_amount_min = 10.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_i53rw")
+color_ramp = SubResource("Gradient_b2l6u")
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_b22e5")
+
+[node name="ConfettiLeft" type="CPUParticles2D" parent="CanvasLayer"]
+unique_name_in_owner = true
+position = Vector2(4, 566)
+emitting = false
+amount = 64
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.6
+randomness = 0.2
+local_coords = true
+direction = Vector2(1, -1)
+gravity = Vector2(0, 200)
+initial_velocity_min = 189.17
+initial_velocity_max = 408.43
+angular_velocity_min = 280.0
+angular_velocity_max = 280.0
+linear_accel_min = 43.85
+linear_accel_max = 81.28
+scale_amount_min = 10.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_i53rw")
+color_ramp = SubResource("Gradient_b2l6u")
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_b22e5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_m4div")
+volume_db = 1.0

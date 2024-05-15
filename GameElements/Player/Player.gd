@@ -27,6 +27,7 @@ func update_mana_amount(mana: int, acquire: bool):
 	print("Update mana Label")
 	player_update_mana_amount.emit(mana_amount)
 	if acquire:
+		%ManaAudio.play()
 		accumulated_mana += mana
 		if accumulated_mana >= (offset_accumulated_mana_value + ( level * 10 )):
 			accumulated_mana -= (offset_accumulated_mana_value + ( level * 10 ))
@@ -40,16 +41,22 @@ func _physics_process(delta):
 	velocity = direction * player_speed
 	move_and_slide()
 	if velocity.length() > 0.0:
+		if %WalkAudio.playing == false:
+			%WalkAudio.playing = true
 		%PlayerAnimation.play_animation_walk();
 	else:
 		%PlayerAnimation.play_animation_idle();
+		%WalkAudio.playing = false
 
 func _input(event):
 	if event.is_action_pressed("left_click"):
 		if is_building:
 			_place_defense()
 		else:
+			%AutoShootTimer.start()
 			_shoot()
+	if event.is_action_released("left_click"):
+			%AutoShootTimer.stop()
 	if event.is_action_pressed("turret_key_pressed"):
 		if is_building == false:
 			_on_turret_button_pressed()
@@ -59,6 +66,8 @@ func _input(event):
 		
 
 func _shoot():
+	print("shoot")
+	%FireAudio.play()
 	const FIRE_BOLT = preload("res://GameElements/Player/fire_bolt.tscn")
 	var new_fire_bolt = FIRE_BOLT.instantiate()
 	new_fire_bolt.global_position = %ShootingPoint.global_position
@@ -68,6 +77,7 @@ func _shoot():
 	get_parent().add_child(new_fire_bolt)
 
 func _place_defense():
+	%PlaceDefenseAudio.play()
 	print("Place defense !")
 	is_building = false	
 
@@ -93,3 +103,7 @@ func _on_turret_button_pressed():
 		new_turret.global_position = get_global_mouse_position()
 		new_turret.rotation = get_angle_to(get_global_mouse_position())
 		get_parent().add_child(new_turret)
+
+
+func _on_auto_shoot_timer_timeout():
+	_shoot()

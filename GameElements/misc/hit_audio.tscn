@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://4wydwtkokgvo"]
+
+[ext_resource type="AudioStream" uid="uid://dxg0xvfddgc4g" path="res://Assets/audio/slimejump-6913.mp3" id="1_p71ra"]
+
+[node name="HitAudio" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_p71ra")
