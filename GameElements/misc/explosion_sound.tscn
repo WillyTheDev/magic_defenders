@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjhxooovvygef"]
+
+[ext_resource type="AudioStream" uid="uid://sqjc1da3f6t7" path="res://Assets/audio/explosion.mp3" id="1_l3cab"]
+[ext_resource type="Script" path="res://GameElements/misc/explosion_sound.gd" id="2_r20k7"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_l3cab")
+volume_db = 5.0
+pitch_scale = 0.79
+autoplay = true
+attenuation = 0.707106
+script = ExtResource("2_r20k7")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

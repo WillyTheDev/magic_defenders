@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcw643o4voapk"]
+[gd_scene load_steps=12 format=3 uid="uid://bcw643o4voapk"]
 
 [ext_resource type="Script" path="res://GameElements/Player/Player.gd" id="1_h1uax"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_i052n"]
 [ext_resource type="PackedScene" uid="uid://kbm12vsaf3ev" path="res://GameElements/Player/player_animation.tscn" id="2_m3wv4"]
 [ext_resource type="Script" path="res://GameElements/Player/wand.gd" id="2_xip2f"]
 [ext_resource type="Texture2D" uid="uid://di58fe5otqeay" path="res://Assets/Player/baguette.png" id="3_y7bhc"]
+[ext_resource type="Script" path="res://GameElements/Player/Camera.gd" id="6_8a3rv"]
 [ext_resource type="AudioStream" uid="uid://b86q5bm48poyj" path="res://Assets/audio/walk.ogg" id="6_u8c0g"]
 [ext_resource type="AudioStream" uid="uid://dq10lwer6ug24" path="res://Assets/audio/drop.ogg" id="7_3y2qv"]
 [ext_resource type="AudioStream" uid="uid://bdb7radgqx0js" path="res://Assets/audio/fire.wav" id="8_1vlqa"]
@@ -47,6 +48,7 @@ position = Vector2(24, 28)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+script = ExtResource("6_8a3rv")
 
 [node name="AutoShootTimer" type="Timer" parent="."]
 unique_name_in_owner = true

@@ -121,6 +121,7 @@ func _on_player_player_update_mana_amount(mana):
 	print(mana)
 	%TurretButton/ProgressBarBackground.value = 20 - mana
 	%DefenseButton/ProgressBarBackground.value = 10 - mana
+	%MeteorButton/ProgressBarBackground.value = 60 - mana
 	%AccumulatedManaLabel.text = "%s / %s until the next level" % [Player.accumulated_mana, (Player.offset_accumulated_mana_value + Player.level * 10)]
 	%AccumulatedMana.max_value = Player.offset_accumulated_mana_value + Player.level * 10
 	%AccumulatedMana.value = Player.accumulated_mana

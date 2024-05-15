@@ -9,6 +9,8 @@ static var level = 1
 static var offset_accumulated_mana_value = 10
 var player_damage = 1
 var player_speed = 300
+var big_shoot_damage = 50
+var big_shoot_price = 1
 var is_building = false
 
 signal player_update_mana_amount
@@ -63,7 +65,23 @@ func _input(event):
 	if event.is_action_pressed("defense_key_pressed"):
 		if is_building == false:
 			_on_defense_button_pressed()
-		
+	if event.is_action_pressed("right_click"):
+		_bigShoot()
+
+
+
+func _bigShoot():
+	if mana_amount >= big_shoot_price:
+		update_mana_amount(-big_shoot_price, false)
+		const METEOR_BOLT = preload("res://GameElements/Player/meteor_bolt.tscn")
+		var explosion = preload("res://GameElements/misc/explosion_sound.tscn").instantiate()
+		var new_meteor_bolt = METEOR_BOLT.instantiate()
+		explosion.global_position = get_global_mouse_position()
+		new_meteor_bolt.global_position = get_global_mouse_position()
+		new_meteor_bolt.damage = big_shoot_damage
+		get_parent().add_child(new_meteor_bolt)
+		get_parent().add_child(explosion)
+
 
 func _shoot():
 	print("shoot")
