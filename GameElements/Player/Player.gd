@@ -17,7 +17,7 @@ signal show_cards
 func _ready():
 	screen_size = get_parent().get_node("MapLimit").global_position
 	get_node("/root/Game/CardsManager").player_modified.connect(_on_player_modified)
-	update_mana_amount(starting_mana_amount, false)
+	update_mana_amount(starting_mana_amount, true)
 
 func _on_player_modified(args):
 	args.call(self)

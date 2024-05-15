@@ -7,8 +7,14 @@ static var turret_price = 20
 static var turret_shoot_area = 1
 var target : Enemy = null
 
+func _reinitialize_static_properties():
+	var fire_rate = 1.5
+	var damage = 1
+	var turret_price = 20
+	var turret_shoot_area = 1
 
 func _ready():
+	add_to_group("has_static_properties")
 	%TimerShoot.wait_time = fire_rate
 	get_node("/root/Game/CardsManager").turret_modified.connect(_apply_modification)
 	%ShootZone.scale.x = turret_shoot_area

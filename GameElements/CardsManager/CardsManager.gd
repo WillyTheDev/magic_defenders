@@ -116,7 +116,7 @@ func choose_cards_to_show():
 	# Draw a random card between 1 and nb_of_cards randi() % nb_of_cards
 	card_1 = cards[randi() % nb_of_cards]
 	card_2 = cards[randi() % nb_of_cards]
-	card_3 = cards[randi() % nb_of_cards]
+	card_3 = cards[8]
 	card_1 = check_if_unique(card_1)
 	card_2 = check_if_unique(card_2)
 	card_3 = check_if_unique(card_3)
@@ -134,6 +134,7 @@ func choose_cards_to_show():
 	
 func show_cards():
 	get_tree().paused = true
+	playerCanSelectCards = true
 	%CardTimer.start()
 	%CardsManagerAnimationPlayer.play("show_cards")
 	visible = true
@@ -180,6 +181,8 @@ func _on_card_timer_timeout():
 	
 func _on_player_show_cards():
 	choose_cards_to_show()
+
+
 
 signal turret_modified
 

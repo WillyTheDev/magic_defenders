@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=35 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Texture2D" uid="uid://bb65vqteo10xf" path="res://Assets/Zone/arrière-plan.png" id="2_7h1cc"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://b2p14mfp2sdol" path="res://GameElements/misc/confetti.tscn" id="16_8e8up"]
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="16_yatl6"]
 [ext_resource type="AudioStream" uid="uid://baqryg5nks0t1" path="res://Assets/audio/KleptoLindaCredits.wav" id="18_y72fc"]
+[ext_resource type="PackedScene" uid="uid://dfk2ty751jcp5" path="res://GameElements/Screens/options_menu.tscn" id="19_c68rg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dfh6k"]
 shader = ExtResource("2_jnllo")
@@ -670,7 +671,7 @@ libraries = {
 }
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
-layer = -2
+layer = -10
 
 [node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
 offset_left = -38.0
@@ -727,6 +728,7 @@ theme_override_font_sizes/font_size = 32
 text = "Play again"
 
 [node name="CardsManager" parent="." instance=ExtResource("15_ykkkp")]
+layer = 20
 visible = false
 
 [node name="Confetti" parent="." instance=ExtResource("16_8e8up")]
@@ -738,6 +740,10 @@ unique_name_in_owner = true
 stream = ExtResource("18_y72fc")
 volume_db = -5.0
 autoplay = true
+
+[node name="OptionsMenu" parent="." instance=ExtResource("19_c68rg")]
+process_mode = 3
+layer = 75
 
 [connection signal="player_update_mana_amount" from="Player" to="." method="_on_player_player_update_mana_amount"]
 [connection signal="show_cards" from="Player" to="CardsManager" method="_on_player_show_cards"]

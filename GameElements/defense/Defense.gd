@@ -2,21 +2,22 @@ class_name Defense
 extends Node2D
 
 static var total_health : = 10.0
+static var defense_price = 10
 @export var has_been_build = false
 @export var can_be_placed = true
 
-@onready var shader = preload("res://Shaders/sokpop.gdshader")
-@onready var texture = preload("res://Shaders/normal.jpg")
 
-static var defense_price = 10
 
 
 var current_health = 4.0
 var cumulated_damage = 0
 
-signal defense_destroyed()
+func _reinitialize_static_properties():
+	total_health = 10.0
+	defense_price = 10
 
 func _ready():
+	add_to_group("has_static_properties")
 	current_health = total_health
 	get_node("/root/Game/CardsManager").defense_modified.connect(_apply_modification)
 	
@@ -81,7 +82,6 @@ func take_damage():
 	current_health -= cumulated_damage
 	if current_health <= 0:
 		abstract_final_action()
-		defense_destroyed.emit()
 		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
 		var new_smoke = SMOKE.instantiate()
 		new_smoke.global_position = global_position
@@ -93,7 +93,6 @@ func take_damage():
 
 func _on_area_2d_body_entered(body):
 	if body is Enemy:
-		defense_destroyed.connect(body.no_longer_attacking_defense)
 		body.speed = 0
 		cumulated_damage += body.enemy_damage
 		if %Timer.is_stopped():
@@ -102,6 +101,7 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(body):
 	if body is Enemy:
 		cumulated_damage -= body.enemy_damage
+		body.speed = body.base_speed
 		abstract_on_body_exited_defense_zone()
 		if current_health > 0:
 			%Timer.stop()

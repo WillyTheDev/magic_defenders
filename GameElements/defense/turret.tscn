@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://f0nvmdfvluh4"]
+[gd_scene load_steps=11 format=3 uid="uid://f0nvmdfvluh4"]
 
 [ext_resource type="Script" path="res://GameElements/defense/turret.gd" id="1_c4q16"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_3qxle"]
 [ext_resource type="Texture2D" uid="uid://b5v7ycymulj75" path="res://Assets/Zone/bande1.png" id="2_26sh2"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_62kps"]
 [ext_resource type="Texture2D" uid="uid://cqd7ep7gabify" path="res://Assets/Defense/turret.png" id="2_c3r0p"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_vsh7u"]
 [ext_resource type="AudioStream" uid="uid://bdb7radgqx0js" path="res://Assets/audio/fire.wav" id="6_8mp06"]
@@ -24,6 +25,13 @@ size = Vector2(26, 31)
 modulate = Color(0.223529, 0.745098, 1, 0.545098)
 position = Vector2(386, 196)
 script = ExtResource("1_c4q16")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-5, -0.999994)
+rotation = 1.5708
+scale = Vector2(0.282802, 0.367638)
+texture = ExtResource("2_62kps")
 
 [node name="Turret" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_crnf5")

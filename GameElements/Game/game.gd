@@ -2,8 +2,8 @@ extends Node2D
 
 
 @export var paths: Array[Path2D] = []
-static var max_wave : float = 30.0
-static var current_wave : float = 0.0
+@export var max_wave : float = 30.0
+@export var current_wave : float = 0.0
 @export var total_enemies = 10
 @export var increments_nb_enemies_per_wave = 8
 @export var enemies_spawn = 0

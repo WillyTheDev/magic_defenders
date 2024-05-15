@@ -21,10 +21,19 @@ position = Vector2(9, -8)
 script = ExtResource("1_k3bqs")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -2
 
-[node name="ConfettiRight" type="CPUParticles2D" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfettiRight" type="CPUParticles2D" parent="CanvasLayer/Control"]
 unique_name_in_owner = true
-position = Vector2(1920, 597)
+position = Vector2(1927, 408)
 emitting = false
 amount = 64
 lifetime = 3.0
@@ -47,9 +56,9 @@ color_ramp = SubResource("Gradient_b2l6u")
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_b22e5")
 
-[node name="ConfettiLeft" type="CPUParticles2D" parent="CanvasLayer"]
+[node name="ConfettiLeft" type="CPUParticles2D" parent="CanvasLayer/Control"]
 unique_name_in_owner = true
-position = Vector2(4, 566)
+position = Vector2(8, 413)
 emitting = false
 amount = 64
 lifetime = 3.0

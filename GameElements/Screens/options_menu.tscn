@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfk2ty751jcp5"]
 
-[ext_resource type="Script" path="res://GameElements/Game/OptionsMenu.gd" id="1_spmca"]
+[ext_resource type="Script" path="res://GameElements/Screens/OptionsMenu.gd" id="1_spmca"]
 
 [node name="OptionsMenu" type="CanvasLayer"]
 process_mode = 1
@@ -39,3 +39,6 @@ text = "Restart game"
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit "
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]

@@ -2,6 +2,7 @@ class_name Enemy
 extends CharacterBody2D
 
 static var base_health = 5
+var base_speed = 100
 @export var speed = 100
 @export var MANA_AMOUNT = 2
 @export var health = 2
@@ -19,6 +20,7 @@ func play_animation_idle():
 
 
 func _ready():
+	base_speed = speed
 	health += base_health
 	play_animation_idle()
 	get_node("/root/Game/CardsManager").enemy_modified.connect(_on_enemy_modification)
@@ -29,6 +31,7 @@ func _on_enemy_modification(args: Callable):
 func _process(delta):
 	if follow_path:
 		get_parent().progress += delta * speed
+		
 
 func take_damage(damage):
 	play_animation_hit()
