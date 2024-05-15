@@ -729,42 +729,6 @@ text = "Play again"
 [node name="CardsManager" parent="." instance=ExtResource("15_ykkkp")]
 visible = false
 
-[node name="OptionsMenu" type="CanvasLayer" parent="."]
-process_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="OptionsMenu"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.152941, 0.152941, 0.152941, 0.941176)
-
-[node name="MarginContainer" type="MarginContainer" parent="OptionsMenu"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
-grow_vertical = 0
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_bottom = 64
-
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="RestartButton" type="Button" parent="OptionsMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Restart game"
-
-[node name="QuitToMenu" type="Button" parent="OptionsMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Quit "
-
 [node name="Confetti" parent="." instance=ExtResource("16_8e8up")]
 unique_name_in_owner = true
 position = Vector2(-4, 2)

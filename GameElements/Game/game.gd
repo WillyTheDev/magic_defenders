@@ -12,7 +12,7 @@ static var current_wave : float = 0.0
 @export var spawn_flying_enemy_rates = 20
 @export var is_idle = true
 
-var options_menu_shown = false
+var options_menu_open = false
 
 # Use the _ready methode to reinitialize static properties from various classes
 func _ready():
@@ -113,13 +113,6 @@ func _input(event):
 	if event.is_action_pressed("action_button"):
 		if is_idle:
 			start_new_wave()
-	if event.is_action_pressed("show_options"):
-		if options_menu_shown == false:
-			get_tree().paused = true
-			%OptionsMenu.visible = true
-		else:
-			get_tree().paused = false
-			%OptionsMenu.visible = false
 
 
 
