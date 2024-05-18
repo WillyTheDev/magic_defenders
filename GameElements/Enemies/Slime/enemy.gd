@@ -23,7 +23,7 @@ func _ready():
 	base_speed = speed
 	health += base_health
 	play_animation_idle()
-	get_node("/root/Game/CardsManager").enemy_modified.connect(_on_enemy_modification)
+	get_node("/root/Game/PlayerManager").enemy_modified.connect(_on_enemy_modification)
 	
 func _on_enemy_modification(args: Callable):
 	args.call(self)

@@ -1,14 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://cste8v1g53q7o"]
+[gd_scene load_steps=16 format=3 uid="uid://cste8v1g53q7o"]
 
 [ext_resource type="Script" path="res://WelcomeScreen.gd" id="1_oh8bs"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_xqk6b"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_a03qf"]
 [ext_resource type="Texture2D" uid="uid://dmimbk3c0ssmm" path="res://Assets/UI/welcome_screen_background.png" id="4_xe34d"]
-[ext_resource type="Texture2D" uid="uid://cmoeiqsabund" path="res://Assets/UI/Button/continue_click.png" id="5_418dy"]
-[ext_resource type="Texture2D" uid="uid://qu1qtybctun8" path="res://Assets/UI/Button/new_game.png" id="6_hk4pu"]
-[ext_resource type="Texture2D" uid="uid://q2862ob0v1ah" path="res://Assets/UI/Button/new_game_click.png" id="7_47ko5"]
-[ext_resource type="Texture2D" uid="uid://deqkhn8qsxb3q" path="res://Assets/UI/Button/new_game_hover.png" id="8_lwwp2"]
+[ext_resource type="Texture2D" uid="uid://u3ka4lg5ru0i" path="res://Assets/UI/welcome_screen_button/new_game.png" id="5_5kubb"]
+[ext_resource type="Texture2D" uid="uid://d1kt54h5fhfqc" path="res://Assets/UI/welcome_screen_button/new_game_click.png" id="6_kffa3"]
+[ext_resource type="Texture2D" uid="uid://c051xvh1j2f8w" path="res://Assets/UI/welcome_screen_button/new_game_hover.png" id="7_hior2"]
+[ext_resource type="Texture2D" uid="uid://c1jaoxcqqifer" path="res://Assets/UI/welcome_screen_button/continue.png" id="8_x4bar"]
+[ext_resource type="Texture2D" uid="uid://cj0o1mjriuli1" path="res://Assets/UI/welcome_screen_button/continue_click.png" id="9_1gwyl"]
 [ext_resource type="Texture2D" uid="uid://cutyacrxml7ue" path="res://Assets/UI/Button/settings_click.png" id="9_j4klx"]
+[ext_resource type="Texture2D" uid="uid://dtnoufu3om06t" path="res://Assets/UI/welcome_screen_button/quit.png" id="9_qhiyh"]
+[ext_resource type="Texture2D" uid="uid://dllf2l4ll7i7n" path="res://Assets/UI/welcome_screen_button/quit_click.png" id="10_3lq7y"]
+[ext_resource type="Texture2D" uid="uid://dp3fpk8i2mnhg" path="res://Assets/UI/welcome_screen_button/continue_hover.png" id="10_j4a1v"]
+[ext_resource type="Texture2D" uid="uid://cksl7pbpaph84" path="res://Assets/UI/welcome_screen_button/qui_hover.png" id="11_4pw8m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_obnlc"]
 shader = ExtResource("2_xqk6b")
@@ -49,18 +54,20 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 alignment = 1
 
-[node name="ContinueButton" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-texture_normal = ExtResource("5_418dy")
-stretch_mode = 0
-
 [node name="NewGameButton" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture_normal = ExtResource("6_hk4pu")
-texture_pressed = ExtResource("7_47ko5")
-texture_hover = ExtResource("8_lwwp2")
+texture_normal = ExtResource("5_5kubb")
+texture_pressed = ExtResource("6_kffa3")
+texture_hover = ExtResource("7_hior2")
+stretch_mode = 0
+
+[node name="ContinueButton" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("8_x4bar")
+texture_pressed = ExtResource("9_1gwyl")
+texture_hover = ExtResource("10_j4a1v")
 stretch_mode = 0
 
 [node name="SettingsButton" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer"]
@@ -69,4 +76,14 @@ size_flags_horizontal = 0
 texture_normal = ExtResource("9_j4klx")
 stretch_mode = 0
 
+[node name="QuitButton" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("9_qhiyh")
+texture_pressed = ExtResource("10_3lq7y")
+texture_hover = ExtResource("11_4pw8m")
+stretch_mode = 0
+
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

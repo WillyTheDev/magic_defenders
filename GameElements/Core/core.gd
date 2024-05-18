@@ -2,7 +2,6 @@ class_name Core
 extends Defense
 
 signal core_destroyed
-signal core_attacked
 
 func abstract_final_action():
 	destroy_core()
@@ -21,7 +20,9 @@ func abstract_defense_take_damage():
 		timer.queue_free()
 		)
 	
+
 		
 func destroy_core():
-	core_destroyed.emit()
+	var game = get_node("/root/Game")
+	game.game_over()
 	

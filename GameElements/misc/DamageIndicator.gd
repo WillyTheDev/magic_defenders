@@ -1,12 +1,12 @@
-extends Label
+extends Node2D
 
 var value = 10
 
 func set_value(value):
-	text = "%s" % value
+	%Label.text = "%s" % value
 
 func _ready():
-	rotation_degrees += randi() % 60
+	%Label.rotation_degrees += randi() % 60
 	%AnimationPlayer.play("appears")
 	%Timer.start()
 

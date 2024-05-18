@@ -1,0 +1,557 @@
+[gd_scene load_steps=15 format=3 uid="uid://c2o1lsmd80cnp"]
+
+[ext_resource type="Script" path="res://GameElements/Player/PlayerManager/PlayerManager.gd" id="1_ctqjo"]
+[ext_resource type="Texture2D" uid="uid://di58fe5otqeay" path="res://Assets/Player/baguette.png" id="2_2m7ni"]
+[ext_resource type="Texture2D" uid="uid://7ldxtyg31ar8" path="res://Assets/UI/player_profile_background/background.png" id="2_3il38"]
+[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="2_gyvey"]
+[ext_resource type="Texture2D" uid="uid://bbydamgjqu45d" path="res://Assets/UI/player_profile_background/select_up_normal.png" id="3_nsun1"]
+[ext_resource type="Texture2D" uid="uid://c5g6j6n72174o" path="res://Assets/Player/full_v2.png" id="3_xr3bs"]
+[ext_resource type="Texture2D" uid="uid://c6welklvyyunf" path="res://Assets/UI/player_profile_background/select_up_pressed.png" id="4_e3aay"]
+[ext_resource type="Texture2D" uid="uid://cqbelpmljed1s" path="res://Assets/UI/player_profile_background/select_down_normal.png" id="5_yh11t"]
+[ext_resource type="Texture2D" uid="uid://whbmuxb1eahl" path="res://Assets/UI/player_profile_background/select_down_pressed.png" id="6_f3uvs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdv3k"]
+bg_color = Color(0.244776, 0.244776, 0.244776, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00jmx"]
+bg_color = Color(0.962888, 0.3777, 0.392169, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="Animation" id="Animation_qticw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.194349, 0.194349, 0.194349, 0.882353)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/Background:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2902, 543)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerManager/MarginContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2995, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerManager/ColorRect/Baguette:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_15ljp"]
+resource_name = "show_player_profile"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(3.13834, 3.13834),
+"update": 0,
+"values": [Color(0.196078, 0.196078, 0.196078, 0), Color(0.196078, 0.196078, 0.196078, 0.870588)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/Background:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(2902, 543), Vector2(962, 543)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerManager/MarginContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.14355, 2.14355),
+"update": 0,
+"values": [Vector2(2995, 0), Vector2(1051, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerManager/ColorRect/Baguette:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6, 1),
+"transitions": PackedFloat32Array(2.54912, 2.54912),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xrpxs"]
+_data = {
+"RESET": SubResource("Animation_qticw"),
+"show_player_profile": SubResource("Animation_15ljp")
+}
+
+[node name="PlayerManager" type="CanvasLayer"]
+process_mode = 2
+layer = 10
+script = ExtResource("1_ctqjo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.196078, 0.196078, 0.870588)
+
+[node name="Baguette" type="Sprite2D" parent="ColorRect"]
+position = Vector2(-7, 432)
+scale = Vector2(3, 3)
+texture = ExtResource("2_2m7ni")
+
+[node name="FullV2" type="Sprite2D" parent="ColorRect/Baguette"]
+position = Vector2(155.667, 27)
+scale = Vector2(0.666667, 0.666667)
+texture = ExtResource("3_xr3bs")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(962, 543)
+texture = ExtResource("2_3il38")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.542708
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_right = 9.00146
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 72
+theme_override_constants/margin_right = 144
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 40
+text = "Level : 0
+"
+
+[node name="stat_1" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/stat_1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="stat_1_label" type="Label" parent="MarginContainer/VBoxContainer/stat_1/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0475577, 0.0475576, 0.0475576, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 28
+text = "Player Damage"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/stat_1/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_bottom = 32
+
+[node name="Progress_stat_1" type="ProgressBar" parent="MarginContainer/VBoxContainer/stat_1/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_00jmx")
+step = 1.0
+show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/stat_1"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="add_stat_1" type="TextureButton" parent="MarginContainer/VBoxContainer/stat_1/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_nsun1")
+texture_pressed = ExtResource("4_e3aay")
+
+[node name="label_stat_1" type="Label" parent="MarginContainer/VBoxContainer/stat_1/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "0
+"
+
+[node name="remove_stat_1" type="TextureButton" parent="MarginContainer/VBoxContainer/stat_1/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_yh11t")
+texture_pressed = ExtResource("6_f3uvs")
+
+[node name="stat_2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/stat_2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="stat_2_label" type="Label" parent="MarginContainer/VBoxContainer/stat_2/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0475577, 0.0475576, 0.0475576, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 28
+text = "Defense range
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/stat_2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_bottom = 32
+
+[node name="Progress_stat_2" type="ProgressBar" parent="MarginContainer/VBoxContainer/stat_2/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_00jmx")
+step = 1.0
+show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/stat_2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="add_stat_2" type="TextureButton" parent="MarginContainer/VBoxContainer/stat_2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_nsun1")
+texture_pressed = ExtResource("4_e3aay")
+
+[node name="label_stat_2" type="Label" parent="MarginContainer/VBoxContainer/stat_2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "0
+"
+
+[node name="remove_stat_2" type="TextureButton" parent="MarginContainer/VBoxContainer/stat_2/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_yh11t")
+texture_pressed = ExtResource("6_f3uvs")
+
+[node name="stat_3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/stat_3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="stat_3_label" type="Label" parent="MarginContainer/VBoxContainer/stat_3/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0475577, 0.0475576, 0.0475576, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 28
+text = "Defense Damage
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/stat_3/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_bottom = 32
+
+[node name="Progress_stat_3" type="ProgressBar" parent="MarginContainer/VBoxContainer/stat_3/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_00jmx")
+step = 1.0
+show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/stat_3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="add_stat_3" type="TextureButton" parent="MarginContainer/VBoxContainer/stat_3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_nsun1")
+texture_pressed = ExtResource("4_e3aay")
+
+[node name="label_stat_3" type="Label" parent="MarginContainer/VBoxContainer/stat_3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "0
+"
+
+[node name="remove_stat_3" type="TextureButton" parent="MarginContainer/VBoxContainer/stat_3/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_yh11t")
+texture_pressed = ExtResource("6_f3uvs")
+
+[node name="stat_4" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/stat_4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="stat_4_label" type="Label" parent="MarginContainer/VBoxContainer/stat_4/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0475577, 0.0475576, 0.0475576, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 28
+text = "Defense Health
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/stat_4/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_bottom = 32
+
+[node name="Progress_stat_4" type="ProgressBar" parent="MarginContainer/VBoxContainer/stat_4/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_00jmx")
+step = 1.0
+show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/stat_4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="add_stat_4" type="TextureButton" parent="MarginContainer/VBoxContainer/stat_4/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_nsun1")
+texture_pressed = ExtResource("4_e3aay")
+
+[node name="label_stat_4" type="Label" parent="MarginContainer/VBoxContainer/stat_4/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "0
+"
+
+[node name="remove_stat_4" type="TextureButton" parent="MarginContainer/VBoxContainer/stat_4/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_yh11t")
+texture_pressed = ExtResource("6_f3uvs")
+
+[node name="stat_5" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/stat_5"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="stat_5_label" type="Label" parent="MarginContainer/VBoxContainer/stat_5/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0475577, 0.0475576, 0.0475576, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 28
+text = "Defense attack speed
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/stat_5/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_bottom = 32
+
+[node name="Progress_stat_5" type="ProgressBar" parent="MarginContainer/VBoxContainer/stat_5/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_00jmx")
+step = 1.0
+show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/stat_5"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="add_stat_5" type="TextureButton" parent="MarginContainer/VBoxContainer/stat_5/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_nsun1")
+texture_pressed = ExtResource("4_e3aay")
+
+[node name="label_stat_5" type="Label" parent="MarginContainer/VBoxContainer/stat_5/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "0
+"
+
+[node name="remove_stat_5" type="TextureButton" parent="MarginContainer/VBoxContainer/stat_5/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_yh11t")
+texture_pressed = ExtResource("6_f3uvs")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 72
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="AvailPtsLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 40
+text = "Available points
+"
+
+[node name="apply" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = " Apply"
+
+[node name="PlayerProfileTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="PlayerManagerAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_xrpxs")
+}
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/stat_1/VBoxContainer/add_stat_1" to="." method="_on_add_stat_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/stat_1/VBoxContainer/remove_stat_1" to="." method="_on_remove_stat_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/stat_2/VBoxContainer/add_stat_2" to="." method="_on_add_stat_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/stat_2/VBoxContainer/remove_stat_2" to="." method="_on_remove_stat_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/stat_3/VBoxContainer/add_stat_3" to="." method="_on_add_stat_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/stat_3/VBoxContainer/remove_stat_3" to="." method="_on_remove_stat_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/stat_4/VBoxContainer/add_stat_4" to="." method="_on_add_stat_4_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/stat_4/VBoxContainer/remove_stat_4" to="." method="_on_remove_stat_4_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/stat_5/VBoxContainer/add_stat_5" to="." method="_on_add_stat_5_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/stat_5/VBoxContainer/remove_stat_5" to="." method="_on_remove_stat_5_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_apply_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="PlayerProfileTimer" to="." method="_on_card_timer_timeout"]

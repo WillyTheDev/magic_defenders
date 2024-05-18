@@ -1,0 +1,121 @@
+[gd_scene load_steps=12 format=3 uid="uid://dmb5cs8occw40"]
+
+[ext_resource type="Script" path="res://GameElements/Screens/select_map_screen.gd" id="1_7ui5d"]
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_oylf7"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_x2faw"]
+[ext_resource type="Texture2D" uid="uid://ct73cjbbcufdq" path="res://Assets/UI/screen_background.png" id="4_0jndw"]
+[ext_resource type="Texture2D" uid="uid://dx7y8p2sl3p3p" path="res://Assets/UI/map_selection_button/map_0.png" id="4_6joch"]
+[ext_resource type="Texture2D" uid="uid://cia87gsqbc8os" path="res://Assets/UI/map_selection_button/map_0_clicked.png" id="5_iugak"]
+[ext_resource type="Texture2D" uid="uid://db2tw8h0mf2hi" path="res://Assets/UI/map_selection_button/map_1_1.png" id="5_vdb36"]
+[ext_resource type="Texture2D" uid="uid://dnesxwgrcfhdk" path="res://Assets/UI/map_selection_button/map_0_hover.png" id="6_a5rkf"]
+[ext_resource type="Texture2D" uid="uid://b41vvim3sm8fa" path="res://Assets/UI/map_selection_button/map_1_1_cliqued.png" id="6_o6f3v"]
+[ext_resource type="Texture2D" uid="uid://efjdh0lampaa" path="res://Assets/UI/map_selection_button/map_1_1_hover.png" id="7_vnl67"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ygnxb"]
+shader = ExtResource("2_oylf7")
+shader_parameter/strength = 0.002
+shader_parameter/speed = 6.0
+shader_parameter/frames = 6
+shader_parameter/flowMap = ExtResource("3_x2faw")
+
+[node name="SelectMapScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7ui5d")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ygnxb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = -72.0
+offset_right = 215.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0jndw")
+expand_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -10.0
+offset_right = 16.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 36
+theme_override_constants/v_separation = 36
+columns = 3
+
+[node name="map_1" type="TextureButton" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("5_vdb36")
+texture_pressed = ExtResource("6_o6f3v")
+texture_hover = ExtResource("7_vnl67")
+
+[node name="map_2" type="TextureButton" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_6joch")
+texture_pressed = ExtResource("5_iugak")
+texture_hover = ExtResource("6_a5rkf")
+
+[node name="map_3" type="TextureButton" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_6joch")
+texture_pressed = ExtResource("5_iugak")
+texture_hover = ExtResource("6_a5rkf")
+
+[node name="map_4" type="TextureButton" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_6joch")
+texture_pressed = ExtResource("5_iugak")
+texture_hover = ExtResource("6_a5rkf")
+
+[node name="map_5" type="TextureButton" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_6joch")
+texture_pressed = ExtResource("5_iugak")
+texture_hover = ExtResource("6_a5rkf")
+
+[node name="map_6" type="TextureButton" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_6joch")
+texture_pressed = ExtResource("5_iugak")
+texture_hover = ExtResource("6_a5rkf")
+
+[connection signal="pressed" from="GridContainer/map_1" to="." method="_on_map_1_pressed"]
+[connection signal="pressed" from="GridContainer/map_2" to="." method="_on_map_2_pressed"]
+[connection signal="pressed" from="GridContainer/map_3" to="." method="_on_map_3_pressed"]
+[connection signal="pressed" from="GridContainer/map_4" to="." method="_on_map_4_pressed"]
+[connection signal="pressed" from="GridContainer/map_5" to="." method="_on_map_5_pressed"]
+[connection signal="pressed" from="GridContainer/map_6" to="." method="_on_map_6_pressed"]

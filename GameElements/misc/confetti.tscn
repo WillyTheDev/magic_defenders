@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2p14mfp2sdol"]
+[gd_scene load_steps=7 format=3 uid="uid://b2p14mfp2sdol"]
 
 [ext_resource type="Script" path="res://GameElements/misc/confetti.gd" id="1_k3bqs"]
+[ext_resource type="AudioStream" uid="uid://dpq3uihffgodb" path="res://Assets/audio/Fanfare_1.wav" id="2_2kou4"]
 [ext_resource type="AudioStream" uid="uid://kas3l8of2b6k" path="res://Assets/audio/fanfare_3.wav" id="2_m4div"]
 
 [sub_resource type="Curve" id="Curve_i53rw"]
@@ -17,11 +18,12 @@ _data = [Vector2(0.00564972, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Confetti" type="Node2D"]
+process_mode = 3
 position = Vector2(9, -8)
 script = ExtResource("1_k3bqs")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -2
+layer = 7
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -81,7 +83,12 @@ color_ramp = SubResource("Gradient_b2l6u")
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_b22e5")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="LevelupAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_2kou4")
+volume_db = 1.0
+
+[node name="EndOfWaveAudio" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("2_m4div")
 volume_db = 1.0

@@ -1,51 +1,17 @@
-[gd_scene load_steps=38 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=22 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
-[ext_resource type="Texture2D" uid="uid://bb65vqteo10xf" path="res://Assets/Zone/arrière-plan.png" id="2_7h1cc"]
-[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_jnllo"]
-[ext_resource type="PackedScene" uid="uid://bcw643o4voapk" path="res://GameElements/Player/player.tscn" id="2_ok500"]
-[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_ovcoq"]
-[ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/Core.tscn" id="4_lfcpx"]
-[ext_resource type="Script" path="res://GameElements/Core/core.gd" id="5_p4qxv"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="5_vhx2p"]
 [ext_resource type="Texture2D" uid="uid://bnoteo8epe2ck" path="res://Assets/UI/Button/defense_btn.png" id="8_n7k4h"]
 [ext_resource type="Texture2D" uid="uid://ckhmpy7a0sacy" path="res://Assets/UI/Button/turret_btn.png" id="10_a41jm"]
 [ext_resource type="Script" path="res://GameElements/Game/UI.gd" id="10_c0pl3"]
 [ext_resource type="Texture2D" uid="uid://c7buce4ehpwkn" path="res://Assets/UI/Button/turret_btn-1.png" id="11_4n668"]
 [ext_resource type="Texture2D" uid="uid://86qc7467xexx" path="res://Assets/UI/Button/meteor_btn.png" id="12_aiyr0"]
-[ext_resource type="Shader" path="res://Shaders/weedShader.gdshader" id="14_gb0en"]
-[ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="15_dwjti"]
-[ext_resource type="PackedScene" uid="uid://c2o1lsmd80cnp" path="res://GameElements/CardsManager/cards_manager.tscn" id="15_ykkkp"]
+[ext_resource type="PackedScene" uid="uid://c2o1lsmd80cnp" path="res://GameElements/Player/PlayerManager/PlayerManager.tscn" id="15_ykkkp"]
 [ext_resource type="PackedScene" uid="uid://b2p14mfp2sdol" path="res://GameElements/misc/confetti.tscn" id="16_8e8up"]
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="16_yatl6"]
 [ext_resource type="AudioStream" uid="uid://baqryg5nks0t1" path="res://Assets/audio/KleptoLindaCredits.wav" id="18_y72fc"]
 [ext_resource type="PackedScene" uid="uid://dfk2ty751jcp5" path="res://GameElements/Screens/options_menu.tscn" id="19_c68rg"]
-[ext_resource type="Texture2D" uid="uid://dtr0xi8ia5jvw" path="res://Assets/envirronment/arbre.png" id="20_lx7f0"]
-[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="21_8bfbe"]
-
-[sub_resource type="Curve2D" id="Curve2D_eayfj"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 521, -27, 18.4997, -47.0902, -18.4997, 47.0902, 615, 136, -45.4084, -84.0896, 45.4084, 84.0896, 462, 419, 0, 0, 0, 0, 678, 497, -42.0448, 0, 42.0448, 0, 964, 379, -36.9994, -26.9087, 36.9994, 26.9087, 1167, 470, -13.4543, -79.0443, 13.4543, 79.0443, 1065, 785, 0, 0, 0, 0, 1428, 838)
-}
-point_count = 8
-
-[sub_resource type="Curve2D" id="Curve2D_1hyfy"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 2181, -24, 15.1361, -15.1361, -15.1361, 15.1361, 2160, 32, -31.9541, -97.544, 31.9541, 97.544, 2029, 195, 58.8628, -47.0902, -58.8628, 47.0902, 2018, 366, 55.4992, 1.68179, -55.4992, -1.68179, 1789, 280, 21.8633, -68.9535, -21.8633, 68.9535, 1508, 414, 35.3176, -31.9541, -35.3176, 31.9541, 1471, 561, -48.772, -6.72717, 48.772, 6.72717, 1372, 644, 16.8179, -58.8628, -16.8179, 58.8628, 1447, 804, 0, 0, 0, 0, 1447, 830)
-}
-point_count = 10
-
-[sub_resource type="Curve2D" id="Curve2D_6jrae"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1491, 1704, -119.407, -8.40896, 119.407, 8.40896, 1525, 1310, -48.772, -48.772, 48.772, 48.772, 1652, 1495, -35.3176, 36.9994, 35.3176, -36.9994, 1814, 1522, 77.3625, 18.4997, -77.3625, -18.4997, 1763, 1240, -42.0448, 82.4079, 42.0448, -82.4079, 1367, 1172, 43.7266, 164.816, -43.7266, -164.816, 1777, 940, 0, 0, 0, 0, 1447, 826)
-}
-point_count = 8
-
-[sub_resource type="Curve2D" id="Curve2D_wb7bk"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 890, -285, 0, 0, 0, 0, 2936, -264, 0, 0, 0, 0, 2943, 1525, 0, 0, 0, 0, 427, 1568, 0, 0, 0, 0, -364, 1518, 0, 0, 0, 0, -329, -236, 0, 0, 0, 0, 1275, -321)
-}
-point_count = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cce1o"]
 bg_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
@@ -146,38 +112,9 @@ _data = {
 "showWaveLabel": SubResource("Animation_hvb5b")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4adnp"]
-shader = ExtResource("14_gb0en")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hy7rq"]
-shader = ExtResource("2_jnllo")
-shader_parameter/strength = 0.015
-shader_parameter/speed = 6.0
-shader_parameter/frames = 6
-shader_parameter/flowMap = ExtResource("3_ovcoq")
-
-[node name="Game" type="Node2D" node_paths=PackedStringArray("paths")]
+[node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_m44sk")
-paths = [NodePath("Paths/Path_1"), NodePath("Paths/path_2"), NodePath("Paths/Path_3")]
-
-[node name="Arrière-plan" type="Sprite2D" parent="."]
-z_index = -2
-position = Vector2(1247, 670)
-scale = Vector2(1.58751, 1.53689)
-texture = ExtResource("2_7h1cc")
-
-[node name="Player" parent="." instance=ExtResource("2_ok500")]
-unique_name_in_owner = true
-z_index = 1
-position = Vector2(1381, 753)
-platform_floor_layers = 4294967040
-starting_mana_amount = 60
-
-[node name="Core" parent="." instance=ExtResource("4_lfcpx")]
-position = Vector2(1225, 658)
-script = ExtResource("5_p4qxv")
-has_been_build = true
 
 [node name="SpawnEnemyTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -186,32 +123,6 @@ wait_time = 1.5
 [node name="SpawnFlyingEnemyTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.186
-
-[node name="Paths" type="Node2D" parent="."]
-
-[node name="Path_1" type="Path2D" parent="Paths"]
-position = Vector2(-212, -151)
-curve = SubResource("Curve2D_eayfj")
-
-[node name="path_2" type="Path2D" parent="Paths"]
-position = Vector2(-218, -164)
-curve = SubResource("Curve2D_1hyfy")
-
-[node name="Path_3" type="Path2D" parent="Paths"]
-position = Vector2(-222, -155)
-curve = SubResource("Curve2D_6jrae")
-
-[node name="Path_flying" type="Path2D" parent="Paths"]
-curve = SubResource("Curve2D_wb7bk")
-
-[node name="FlyingSpawnPoint" type="PathFollow2D" parent="Paths/Path_flying"]
-unique_name_in_owner = true
-position = Vector2(890, -285)
-rotation = 0.0102636
-
-[node name="MapLimit" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(2516, 1346)
 
 [node name="UI" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -442,15 +353,16 @@ libraries = {
 layer = -10
 
 [node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
-offset_left = -38.0
+offset_left = -9.0
 offset_top = -5.0
-offset_right = 1882.0
+offset_right = 1911.0
 offset_bottom = 1075.0
 color = Color(0.345098, 0.462745, 0.32549, 1)
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 process_mode = 2
+layer = 20
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
@@ -495,14 +407,6 @@ theme_override_constants/h_separation = 0
 theme_override_font_sizes/font_size = 32
 text = "Play again"
 
-[node name="CardsManager" parent="." instance=ExtResource("15_ykkkp")]
-layer = 20
-visible = false
-
-[node name="Confetti" parent="." instance=ExtResource("16_8e8up")]
-unique_name_in_owner = true
-position = Vector2(492, -2)
-
 [node name="BackgroundAudioPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("18_y72fc")
@@ -511,406 +415,16 @@ autoplay = true
 
 [node name="OptionsMenu" parent="." instance=ExtResource("19_c68rg")]
 process_mode = 3
-layer = 75
+layer = 30
 
-[node name="env" type="Node2D" parent="."]
-z_index = 1
+[node name="PlayerManager" parent="." instance=ExtResource("15_ykkkp")]
+process_mode = 3
+visible = false
 
-[node name="weed" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(960, 583)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
+[node name="Confetti" parent="." instance=ExtResource("16_8e8up")]
+unique_name_in_owner = true
+position = Vector2(-7, 9)
 
-[node name="weed2" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1300, 546)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed3" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1042.84, 458.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed4" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1388, 432)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed5" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(697.837, 385)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed6" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1037.84, 348)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed7" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(780.673, 260.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed8" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1120.67, 223.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed9" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(346, 761)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed10" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(686, 724)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed11" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(428.837, 636.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed12" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(768.837, 599.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed13" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(83.8365, 563)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed14" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(423.837, 526)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed15" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(166.673, 438.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed16" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(506.673, 401.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed17" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1333, 925)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed18" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1673, 888)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed19" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1415.84, 800.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed20" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1755.84, 763.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed21" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1070.84, 727)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed22" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1410.84, 690)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed23" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1153.67, 602.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed24" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1493.67, 565.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed25" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(719, 1103)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed26" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1059, 1066)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed27" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(801.837, 978.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed28" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1141.84, 941.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed29" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(456.837, 905)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed30" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(796.837, 868)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed31" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(539.673, 780.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed32" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(879.673, 743.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed33" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(2485, 451.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed34" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(2227.84, 363.907)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed35" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(2567.84, 326.907)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed36" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1882.84, 290.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed37" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(2222.84, 253.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed38" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(2296, 609.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed39" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(2038.84, 521.907)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed40" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(2378.84, 484.907)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed41" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1693.84, 448.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="weed42" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(2033.84, 411.454)
-scale = Vector2(0.106595, 0.106595)
-texture = ExtResource("15_dwjti")
-
-[node name="Arbre" type="Sprite2D" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(1783, 264)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("20_lx7f0")
-
-[node name="Shadow" type="Sprite2D" parent="Arbre"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("21_8bfbe")
-
-[node name="Arbre2" type="Sprite2D" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(1079, 508)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("20_lx7f0")
-
-[node name="Shadow" type="Sprite2D" parent="Arbre2"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("21_8bfbe")
-
-[node name="Arbre3" type="Sprite2D" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(31, 512)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("20_lx7f0")
-
-[node name="Shadow" type="Sprite2D" parent="Arbre3"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("21_8bfbe")
-
-[node name="Arbre4" type="Sprite2D" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(159, -64)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("20_lx7f0")
-
-[node name="Shadow" type="Sprite2D" parent="Arbre4"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("21_8bfbe")
-
-[node name="Arbre5" type="Sprite2D" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(1519, 1220)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("20_lx7f0")
-
-[node name="Shadow" type="Sprite2D" parent="Arbre5"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("21_8bfbe")
-
-[node name="Arbre6" type="Sprite2D" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(687, 1276)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("20_lx7f0")
-
-[node name="Shadow" type="Sprite2D" parent="Arbre6"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("21_8bfbe")
-
-[node name="Arbre7" type="Sprite2D" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(139, 1116)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("20_lx7f0")
-
-[node name="Shadow" type="Sprite2D" parent="Arbre7"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("21_8bfbe")
-
-[node name="Arbre8" type="Sprite2D" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(1091, -40)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("20_lx7f0")
-
-[node name="Shadow" type="Sprite2D" parent="Arbre8"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("21_8bfbe")
-
-[node name="Arbre9" type="Sprite2D" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(2111, 840)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("20_lx7f0")
-
-[node name="Shadow" type="Sprite2D" parent="Arbre9"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("21_8bfbe")
-
-[node name="Arbre10" type="Sprite2D" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(2343, 1220)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("20_lx7f0")
-
-[node name="Shadow" type="Sprite2D" parent="Arbre10"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("21_8bfbe")
-
-[connection signal="player_update_mana_amount" from="Player" to="." method="_on_player_player_update_mana_amount"]
-[connection signal="show_cards" from="Player" to="CardsManager" method="_on_player_show_cards"]
-[connection signal="core_destroyed" from="Core" to="." method="_on_core_core_destroyed"]
 [connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
 [connection signal="timeout" from="SpawnFlyingEnemyTimer" to="." method="_on_spawn_flying_enemy_timer_timeout"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]

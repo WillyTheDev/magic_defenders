@@ -5,7 +5,7 @@ var target = null
 
 func _ready():
 	play_animation_idle()
-	target = get_parent().get_node("Core")
+	target = get_parent().get_node("Map/Core")
 
 func _physics_process(delta):
 	if target != null:

@@ -13,7 +13,8 @@ func _explode():
 		if body is Enemy:
 			var dmg_indicator = preload("res://GameElements/misc/damage_indicator.tscn").instantiate()
 			dmg_indicator.set_value(int(damage * 10))
-			body.add_child(dmg_indicator)
+			dmg_indicator.global_position = body.global_position
+			get_parent().add_child(dmg_indicator)
 			body.take_damage(damage)
 	var camera = get_node("/root/Game/Player/Camera2D")
 	camera.apply_shake()

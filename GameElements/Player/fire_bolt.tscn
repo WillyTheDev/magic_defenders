@@ -34,6 +34,7 @@ texture = ExtResource("2_naei6")
 
 [node name="Light" type="PointLight2D" parent="."]
 unique_name_in_owner = true
+z_index = -1
 position = Vector2(-1.19209e-07, 0)
 rotation = 0.00651343
 scale = Vector2(1.45606, 1.33334)

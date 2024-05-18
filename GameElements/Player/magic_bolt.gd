@@ -3,7 +3,7 @@ extends Area2D
 
 const SPEED = 700
 
-var damage = 1
+var damage = 1.0
 var travelled_distance = 0
 var direction
 
@@ -41,7 +41,9 @@ func _on_body_entered(body):
 	if body is Enemy:
 		var dmg_indicator = preload("res://GameElements/misc/damage_indicator.tscn").instantiate()
 		dmg_indicator.set_value(int(damage * 10))
-		body.add_child(dmg_indicator)
+		dmg_indicator.scale = body.scale
+		dmg_indicator.global_position = global_position
+		get_parent().add_child(dmg_indicator)
 		body.take_damage(damage)
 		nb_of_rebound -= 1
 		if nb_of_rebound <= 0:

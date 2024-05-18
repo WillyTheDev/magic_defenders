@@ -1,7 +1,7 @@
 class_name Defense
 extends Node2D
 
-static var total_health : = 10.0
+
 static var defense_price = 10
 @export var has_been_build = false
 @export var can_be_placed = true
@@ -13,13 +13,12 @@ var current_health = 4.0
 var cumulated_damage = 0
 
 func _reinitialize_static_properties():
-	total_health = 10.0
 	defense_price = 10
 
 func _ready():
 	add_to_group("has_static_properties")
-	current_health = total_health
-	get_node("/root/Game/CardsManager").defense_modified.connect(_apply_modification)
+	current_health = Global.getDefenseHealth()
+	get_node("/root/Game/PlayerManager").defense_modified.connect(_apply_modification)
 	
 func _apply_modification(args: Callable):
 	args.call(self)
@@ -88,7 +87,7 @@ func take_damage():
 		get_parent().add_child(new_smoke)
 		queue_free()
 	else:
-		var values = (255 * (current_health/total_health))
+		var values = (255 * (current_health/Global.getDefenseHealth()))
 		modulate = "ff%x%xff" % [values, values]
 
 func _on_area_2d_body_entered(body):
