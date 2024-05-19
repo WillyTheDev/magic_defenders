@@ -7,8 +7,8 @@ var playerhasLeveledUp : bool = false
 func _ready():
 	for index in range(1,6):
 		print(index)
-		var label = get_node("MarginContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [index,index])
-		var progress = get_node("MarginContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [index,index])
+		var label = get_node("Background/MarginContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [index,index])
+		var progress = get_node("Background/MarginContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [index,index])
 		label.text = "%s" % Global.getStatFromIndex(index)
 		progress.value = Global.getStatFromIndex(index)
 	
@@ -22,9 +22,10 @@ func show_player_profile():
 	visible = true
 	
 func hide_player_profile():
+	%PlayerManagerAnimationPlayer.play("hide_player_profile")
 	get_tree().paused = false
 	playerhasLeveledUp = false
-	visible = false
+	
 
 func _input(event):
 	if event.is_action_pressed("show_player_profile"):
@@ -58,16 +59,16 @@ func update_stat(stat_index : int, increment_value : int):
 	if increment_value < 0:
 		if Global.getStatFromIndex(stat_index) > 0:
 			print(stat_index)
-			var label = get_node("MarginContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [stat_index,stat_index])
-			var progress = get_node("MarginContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [stat_index,stat_index])
+			var label = get_node("Background/MarginContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [stat_index,stat_index])
+			var progress = get_node("Background/MarginContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [stat_index,stat_index])
 			Global.setStatFromIndex(stat_index, increment_value)
 			label.text = "%s" % Global.getStatFromIndex(stat_index)
 			progress.value = Global.getStatFromIndex(stat_index)
 			Global.player_avail_pts += 1
 	elif Global.player_avail_pts > 0:
 		print(stat_index)
-		var label = get_node("MarginContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [stat_index,stat_index])
-		var progress = get_node("MarginContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [stat_index,stat_index])
+		var label = get_node("Background/MarginContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [stat_index,stat_index])
+		var progress = get_node("Background/MarginContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [stat_index,stat_index])
 		Global.setStatFromIndex(stat_index, increment_value)
 		label.text = "%s" % Global.getStatFromIndex(stat_index)
 		progress.value = Global.getStatFromIndex(stat_index)
@@ -125,6 +126,7 @@ func _on_hat_list_item_clicked(index, at_position, mouse_button_index):
 	%PlayerPreview.setHat(index)
 	_reset_hat_effect()
 	_apply_hat_effect()
+	%HatDescription.text = hats[index].information
 	%HatList.visible = false
 	
 var hats : Array[Hat] = [
@@ -159,3 +161,8 @@ func _reset_hat_effect():
 	MagicBolt.texture = load("res://Assets/Player/fire_bolt.png")
 	MagicBolt.range = 1600
 	
+
+
+func _on_player_manager_animation_player_animation_finished(anim_name):
+	if anim_name == "hide_player_profile":
+		visible = false

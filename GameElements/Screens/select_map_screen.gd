@@ -89,5 +89,5 @@ func _on_map_6_pressed():
 		_launch_game()
 
 
-func _on_transition_layer_transition_is_finished(anim_name):
+func _on_transition_layer_transition_is_finished():
 	get_tree().change_scene_to_file("res://GameElements/Game/game.tscn")
