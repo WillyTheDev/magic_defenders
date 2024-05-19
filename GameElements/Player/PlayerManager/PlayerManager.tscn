@@ -1,14 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2o1lsmd80cnp"]
+[gd_scene load_steps=19 format=3 uid="uid://c2o1lsmd80cnp"]
 
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/PlayerManager.gd" id="1_ctqjo"]
-[ext_resource type="Texture2D" uid="uid://di58fe5otqeay" path="res://Assets/Player/baguette.png" id="2_2m7ni"]
 [ext_resource type="Texture2D" uid="uid://7ldxtyg31ar8" path="res://Assets/UI/player_profile_background/background.png" id="2_3il38"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="2_gyvey"]
 [ext_resource type="Texture2D" uid="uid://bbydamgjqu45d" path="res://Assets/UI/player_profile_background/select_up_normal.png" id="3_nsun1"]
-[ext_resource type="Texture2D" uid="uid://c5g6j6n72174o" path="res://Assets/Player/full_v2.png" id="3_xr3bs"]
 [ext_resource type="Texture2D" uid="uid://c6welklvyyunf" path="res://Assets/UI/player_profile_background/select_up_pressed.png" id="4_e3aay"]
+[ext_resource type="Texture2D" uid="uid://dc88kr5yipjix" path="res://Assets/UI/player_profile_background/hat_button.png" id="5_upd7b"]
 [ext_resource type="Texture2D" uid="uid://cqbelpmljed1s" path="res://Assets/UI/player_profile_background/select_down_normal.png" id="5_yh11t"]
 [ext_resource type="Texture2D" uid="uid://whbmuxb1eahl" path="res://Assets/UI/player_profile_background/select_down_pressed.png" id="6_f3uvs"]
+[ext_resource type="Texture2D" uid="uid://ccvj64tx7otbf" path="res://Assets/UI/player_profile_background/hat_button_hover.png" id="6_x1x4c"]
+[ext_resource type="Texture2D" uid="uid://d02y7l7i12gy7" path="res://Assets/hats/hat_0.png" id="12_arevw"]
+[ext_resource type="Texture2D" uid="uid://cyruvm2mtfo1e" path="res://Assets/hats/hat_1.png" id="12_tvfx2"]
+[ext_resource type="PackedScene" uid="uid://kbm12vsaf3ev" path="res://GameElements/Player/player_animation.tscn" id="13_71dtm"]
+[ext_resource type="Texture2D" uid="uid://bb0i4rje2oy5f" path="res://Assets/hats/hat_2.png" id="13_q65v3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdv3k"]
 bg_color = Color(0.244776, 0.244776, 0.244776, 1)
@@ -72,18 +76,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(2995, 0)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerManager/ColorRect/Baguette:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_15ljp"]
 resource_name = "show_player_profile"
@@ -123,18 +115,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(2995, 0), Vector2(1051, 0)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerManager/ColorRect/Baguette:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.6, 1),
-"transitions": PackedFloat32Array(2.54912, 2.54912),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xrpxs"]
 _data = {
@@ -153,26 +133,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.196078, 0.196078, 0.196078, 0.870588)
-
-[node name="Baguette" type="Sprite2D" parent="ColorRect"]
-position = Vector2(-7, 432)
-scale = Vector2(3, 3)
-texture = ExtResource("2_2m7ni")
-
-[node name="FullV2" type="Sprite2D" parent="ColorRect/Baguette"]
-position = Vector2(155.667, 27)
-scale = Vector2(0.666667, 0.666667)
-texture = ExtResource("3_xr3bs")
+color = Color(0.196078, 0.196078, 0.196078, 0.784314)
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(962, 543)
 texture = ExtResource("2_3il38")
 
+[node name="HatButton" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -615.0
+offset_top = 244.0
+offset_right = -415.0
+offset_bottom = 444.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("5_upd7b")
+texture_hover = ExtResource("6_x1x4c")
+metadata/_edit_use_anchors_ = true
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = -1
 anchor_left = 0.542708
-anchor_right = 1.0
+anchor_right = 0.924478
 anchor_bottom = 1.0
 offset_left = 9.0
 offset_right = 9.00146
@@ -184,7 +171,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 15
 alignment = 1
 
 [node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer"]
@@ -542,6 +529,44 @@ libraries = {
 "": SubResource("AnimationLibrary_xrpxs")
 }
 
+[node name="HatList" type="ItemList" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -174.0
+offset_top = -170.0
+offset_right = 158.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+theme_override_constants/icon_margin = 5
+allow_rmb_select = true
+allow_search = false
+auto_height = true
+item_count = 3
+max_columns = 3
+same_column_width = true
+item_0/text = ""
+item_0/icon = ExtResource("12_arevw")
+item_1/text = ""
+item_1/icon = ExtResource("12_tvfx2")
+item_2/text = ""
+item_2/icon = ExtResource("13_q65v3")
+
+[node name="PlayerPreview" parent="." instance=ExtResource("13_71dtm")]
+unique_name_in_owner = true
+position = Vector2(401, 441)
+scale = Vector2(1, 1)
+
+[connection signal="pressed" from="HatButton" to="." method="_on_hat_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/stat_1/VBoxContainer/add_stat_1" to="." method="_on_add_stat_1_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/stat_1/VBoxContainer/remove_stat_1" to="." method="_on_remove_stat_1_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/stat_2/VBoxContainer/add_stat_2" to="." method="_on_add_stat_2_pressed"]
@@ -555,3 +580,4 @@ libraries = {
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_apply_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="PlayerProfileTimer" to="." method="_on_card_timer_timeout"]
+[connection signal="item_clicked" from="HatList" to="." method="_on_hat_list_item_clicked"]

@@ -113,5 +113,13 @@ func _on_add_stat_1_pressed():
 func _on_remove_stat_1_pressed():
 	update_stat(1, -1)
 
+func _on_hat_button_pressed():
+	%HatList.visible = true
 
 
+func _on_hat_list_item_clicked(index, at_position, mouse_button_index):
+	Global.player_equipped_hat = index
+	var playerAnimation = get_node("/root/Game/Player/PlayerAnimation")
+	playerAnimation.setHat(index)
+	%PlayerPreview.setHat(index)
+	%HatList.visible = false

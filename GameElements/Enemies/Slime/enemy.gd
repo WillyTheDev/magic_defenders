@@ -1,11 +1,11 @@
 class_name Enemy
 extends CharacterBody2D
 
-static var base_health = 5
+static var base_health = 5.0
 var base_speed = 100
 @export var speed = 100
 @export var MANA_AMOUNT = 2
-@export var health = 2
+@export var health = 2.0
 @export var enemy_damage = 1
 @export var follow_path = true
 
@@ -37,6 +37,8 @@ func take_damage(damage):
 	play_animation_hit()
 	%HitAudio.play()
 	health -= damage
+	var values = (255 * (health/base_health))
+	modulate = "ff%x%xff" % [values, values]
 	if health <= 0:
 		slime_has_been_killed.emit()
 		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")

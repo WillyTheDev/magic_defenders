@@ -2,6 +2,7 @@ extends Node
 
 static var selected_map = 1
 
+
 #Player Data
 static var player_level = 0
 static var accumulated_mana = 0
@@ -49,8 +50,22 @@ func getDefenseFireRate():
 	return (defense_base_fire_rate +(defense_base_fire_rate / defense_divider_fire_rate) * defense_stat_fire_rate)
 
 static var player_avail_pts = 0
-#Player equipped hat ( number represent index of hat
+#Player equipped hat ( number represent index of hat )
 static var player_equipped_hat = 0
+static var accumulated_stars = 0
+
+#======================
+# Game Progression
+#======================
+
+static var map_progression = {
+	"map_1_1" : 2,
+	"map_1_2" : 0,
+	"map_1_3" : 0,
+	"map_1_4" : 0,
+	"map_1_5" : 0,
+	"map_1_6" : 0
+}
 
 func getStatFromIndex(index: int) -> int:
 	match index:
@@ -94,7 +109,9 @@ func save():
 		"defense_stat_fire_rate" : defense_stat_fire_rate,
 		"player_avail_pts": player_avail_pts,
 		"player_equipped_hat" : player_equipped_hat,
-		"accumulated_gold" : accumulated_gold
+		"accumulated_gold" : accumulated_gold,
+		"accumulated_stars" : accumulated_stars,
+		"map_progression" : map_progression
 	}
 	return save_dict
 	
@@ -111,12 +128,22 @@ func new_save():
 		"defense_stat_fire_rate" : 0,
 		"player_avail_pts": 0,
 		"player_equipped_hat" : 0,
-		"accumulated_gold" : 0
+		"accumulated_gold" : 0,
+		"accumulated_stars" : 0,
+		"map_progression" : {
+							"map_1_1" : 0,
+							"map_1_2" : 0,
+							"map_1_3" : 0,
+							"map_1_4" : 0,
+							"map_1_5" : 0,
+							"map_1_6" : 0
+							}
 	}
 	var json_string = JSON.stringify(data)
 	save_game.store_line(json_string)
 	
 func save_game():
+	print("Saving data...")
 	var save_game = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	var data = save()
 	# JSON provides a static method to serialized JSON string.
@@ -125,6 +152,7 @@ func save_game():
 	save_game.store_line(json_string)
 	
 func load_game():
+	print("Loading game...")
 	if not FileAccess.file_exists("user://savegame.save"):
 		return # Error! We don't have a save to load.
 		
@@ -148,4 +176,5 @@ func load_game():
 		for i in data.keys():
 			if i == "filename" or i == "parent":
 				continue
+			print("Setting %s with value %s..." % [i, data[i]])
 			set(i, data[i])

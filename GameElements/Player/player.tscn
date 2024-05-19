@@ -35,7 +35,7 @@ rotation = -2.80191
 script = ExtResource("2_xip2f")
 
 [node name="Baguette" type="Sprite2D" parent="WandPivot"]
-position = Vector2(130.799, 12.3584)
+position = Vector2(148.553, 12.2009)
 rotation = -3.14159
 texture = ExtResource("3_y7bhc")
 
@@ -45,7 +45,7 @@ position = Vector2(-40.3265, -37.7325)
 
 [node name="PlayerAnimation" parent="." instance=ExtResource("2_m3wv4")]
 unique_name_in_owner = true
-position = Vector2(24, 28)
+position = Vector2(16, 56)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

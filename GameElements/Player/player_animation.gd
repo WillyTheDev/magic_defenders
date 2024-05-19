@@ -1,5 +1,7 @@
 extends Node2D
 
+func setHat(hat_index):
+	%Hat.texture = load("res://Assets/hats/hat_%s.png" % hat_index)
 
 func play_animation_idle():
 	%AnimationPlayer.play("idle")

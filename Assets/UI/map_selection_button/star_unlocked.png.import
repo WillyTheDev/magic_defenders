@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co8j1est5s5pi"
-path="res://.godot/imported/full_v2.png-6aaee79cd077dfea92b545004de57a3b.ctex"
+uid="uid://bm7v4e5n4j7xv"
+path="res://.godot/imported/star_unlocked.png-04f0f05140b8580f894c81968f38c807.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/full_v2.png"
-dest_files=["res://.godot/imported/full_v2.png-6aaee79cd077dfea92b545004de57a3b.ctex"]
+source_file="res://Assets/UI/map_selection_button/star_unlocked.png"
+dest_files=["res://.godot/imported/star_unlocked.png-04f0f05140b8580f894c81968f38c807.ctex"]
 
 [params]
 

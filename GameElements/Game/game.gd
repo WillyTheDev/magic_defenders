@@ -56,6 +56,20 @@ func end_of_wave():
 	%EnemiesLabel.text = ""
 	%WaveActionLabel.visible = true
 	Global.accumulated_gold += 1
+	# Give stars base on the current_wave
+	match current_wave:
+		map_of_game.min_wave_star_3:
+			if Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] < 3:
+				Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] = 3.0
+				Global.accumulated_stars += 1
+		map_of_game.min_wave_star_2:
+			if Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] < 2:
+				Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] = 2.0
+				Global.accumulated_stars += 1
+		map_of_game.min_wave_star_1:
+			if Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] < 1:
+				Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] = 1.0
+				Global.accumulated_stars += 1
 	is_idle = true
 
 func spawn_flying_mob():
