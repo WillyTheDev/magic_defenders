@@ -56,7 +56,7 @@ unique_name_in_owner = true
 position = Vector2(2516, 1346)
 
 [node name="Arrière-plan" type="Sprite2D" parent="."]
-z_index = -2
+z_index = -1
 position = Vector2(1247, 670)
 scale = Vector2(1.58751, 1.53689)
 texture = ExtResource("2_khqj2")

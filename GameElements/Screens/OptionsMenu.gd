@@ -29,7 +29,8 @@ func _on_quit_to_menu_pressed():
 	Global.save_game()
 	get_tree().call_group("has_static_properties", "_reinitialize_static_properties")
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://GameElements/Screens/welcome_screen.tscn")
+	get_node("/root/Game/TransitionLayer").close_transition()
+	
 
 
 func _on_restart_button_pressed():

@@ -19,6 +19,13 @@ z_index = 1
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_h1uax")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(112.64, 16)
+rotation = 3.14159
+scale = Vector2(1.08, -1)
+zoom = Vector2(2, 2)
+script = ExtResource("6_8a3rv")
+
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(-0.999998, 175)
@@ -46,10 +53,6 @@ position = Vector2(-40.3265, -37.7325)
 [node name="PlayerAnimation" parent="." instance=ExtResource("2_m3wv4")]
 unique_name_in_owner = true
 position = Vector2(16, 56)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-script = ExtResource("6_8a3rv")
 
 [node name="AutoShootTimer" type="Timer" parent="."]
 unique_name_in_owner = true

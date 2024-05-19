@@ -50,7 +50,8 @@ func _ready():
 		
 
 func _launch_game():
-	get_tree().change_scene_to_file("res://GameElements/Game/game.tscn")
+	%TransitionLayer.close_transition()
+	
 
 func _on_map_1_pressed():
 	if nb_map > 0:
@@ -87,3 +88,6 @@ func _on_map_6_pressed():
 		Global.selected_map = 6
 		_launch_game()
 
+
+func _on_transition_layer_transition_is_finished(anim_name):
+	get_tree().change_scene_to_file("res://GameElements/Game/game.tscn")

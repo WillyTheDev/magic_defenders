@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://ccbpp75ye3ttb"]
+
+[ext_resource type="Script" path="res://GameElements/transition_layer.gd" id="1_gh3ci"]
+[ext_resource type="Shader" path="res://Shaders/mask.gdshader" id="1_npp1h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gkihj"]
+shader = ExtResource("1_npp1h")
+shader_parameter/size = 1.0
+shader_parameter/sides = 50
+shader_parameter/rotation = 0.0
+shader_parameter/position_x = 0.5
+shader_parameter/position_y = 0.5
+shader_parameter/border_width = 0.0
+shader_parameter/border_color = Color(0.34902, 0.34902, 1, 0)
+shader_parameter/maintain_aspect_ratio = false
+
+[sub_resource type="Animation" id="Animation_vsrdm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_8wjub"]
+resource_name = "close_transition"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.2974, 2.2974),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pakev"]
+resource_name = "open_transition"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(4.59479, 4.59479),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hasi5"]
+_data = {
+"RESET": SubResource("Animation_vsrdm"),
+"close_transition": SubResource("Animation_8wjub"),
+"open_transition": SubResource("Animation_pakev")
+}
+
+[node name="TransitionLayer" type="CanvasLayer"]
+script = ExtResource("1_gh3ci")
+
+[node name="Transition" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gkihj")
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 6
+mouse_filter = 2
+color = Color(0.129412, 0.129412, 0.129412, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="TransitionPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_hasi5")
+}
+
+[connection signal="animation_finished" from="TransitionPlayer" to="." method="_on_transition_player_animation_finished"]

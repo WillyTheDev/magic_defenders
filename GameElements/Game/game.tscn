@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=23 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="5_vhx2p"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://GameElements/Game/UI.gd" id="10_c0pl3"]
 [ext_resource type="Texture2D" uid="uid://c7buce4ehpwkn" path="res://Assets/UI/Button/turret_btn-1.png" id="11_4n668"]
 [ext_resource type="Texture2D" uid="uid://86qc7467xexx" path="res://Assets/UI/Button/meteor_btn.png" id="12_aiyr0"]
+[ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="13_ester"]
 [ext_resource type="PackedScene" uid="uid://c2o1lsmd80cnp" path="res://GameElements/Player/PlayerManager/PlayerManager.tscn" id="15_ykkkp"]
 [ext_resource type="PackedScene" uid="uid://b2p14mfp2sdol" path="res://GameElements/misc/confetti.tscn" id="16_8e8up"]
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="16_yatl6"]
@@ -423,9 +424,13 @@ visible = false
 
 [node name="Confetti" parent="." instance=ExtResource("16_8e8up")]
 unique_name_in_owner = true
-position = Vector2(-7, 9)
+position = Vector2(6, -1)
+
+[node name="TransitionLayer" parent="." instance=ExtResource("13_ester")]
+unique_name_in_owner = true
 
 [connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
 [connection signal="timeout" from="SpawnFlyingEnemyTimer" to="." method="_on_spawn_flying_enemy_timer_timeout"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="finished" from="BackgroundAudioPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="transition_is_finished" from="TransitionLayer" to="." method="_on_transition_layer_transition_is_finished"]

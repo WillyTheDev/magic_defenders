@@ -2,6 +2,7 @@ extends Node2D
 
 func _ready():
 	Global.load_game()
+	%TransitionLayer.open_transition()
 
 func _on_new_game_button_pressed():
 	Global.new_save()

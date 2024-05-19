@@ -18,7 +18,7 @@ signal show_cards
 
 func _ready():
 	screen_size = get_node("/root/Game/Map/MapLimit").global_position
-	update_mana_amount(starting_mana_amount, true)
+	update_mana_amount(starting_mana_amount, false)
 
 
 func update_mana_amount(mana: int, acquire: bool):

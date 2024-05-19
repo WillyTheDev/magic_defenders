@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cste8v1g53q7o"]
+[gd_scene load_steps=17 format=3 uid="uid://cste8v1g53q7o"]
 
 [ext_resource type="Script" path="res://WelcomeScreen.gd" id="1_oh8bs"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_xqk6b"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dllf2l4ll7i7n" path="res://Assets/UI/welcome_screen_button/quit_click.png" id="10_3lq7y"]
 [ext_resource type="Texture2D" uid="uid://dp3fpk8i2mnhg" path="res://Assets/UI/welcome_screen_button/continue_hover.png" id="10_j4a1v"]
 [ext_resource type="Texture2D" uid="uid://cksl7pbpaph84" path="res://Assets/UI/welcome_screen_button/qui_hover.png" id="11_4pw8m"]
+[ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="15_nwpt0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_obnlc"]
 shader = ExtResource("2_xqk6b")
@@ -83,6 +84,9 @@ texture_normal = ExtResource("9_qhiyh")
 texture_pressed = ExtResource("10_3lq7y")
 texture_hover = ExtResource("11_4pw8m")
 stretch_mode = 0
+
+[node name="TransitionLayer" parent="." instance=ExtResource("15_nwpt0")]
+unique_name_in_owner = true
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

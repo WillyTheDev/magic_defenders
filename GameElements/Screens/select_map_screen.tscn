@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmb5cs8occw40"]
+[gd_scene load_steps=15 format=3 uid="uid://dmb5cs8occw40"]
 
 [ext_resource type="Script" path="res://GameElements/Screens/select_map_screen.gd" id="1_7ui5d"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_oylf7"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://efjdh0lampaa" path="res://Assets/UI/map_selection_button/map_1_1_hover.png" id="7_vnl67"]
 [ext_resource type="Texture2D" uid="uid://ispx11saoeqv" path="res://Assets/UI/map_selection_button/star_locked.png" id="8_t1y7u"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="12_c1v8v"]
+[ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="13_mn7lt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ygnxb"]
 shader = ExtResource("2_oylf7")
@@ -407,9 +408,13 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("12_c1v8v")
 theme_override_font_sizes/font_size = 128
 
+[node name="TransitionLayer" parent="." instance=ExtResource("13_mn7lt")]
+unique_name_in_owner = true
+
 [connection signal="pressed" from="GridContainer/map_1" to="." method="_on_map_1_pressed"]
 [connection signal="pressed" from="GridContainer/map_2" to="." method="_on_map_2_pressed"]
 [connection signal="pressed" from="GridContainer/map_3" to="." method="_on_map_3_pressed"]
 [connection signal="pressed" from="GridContainer/map_4" to="." method="_on_map_4_pressed"]
 [connection signal="pressed" from="GridContainer/map_5" to="." method="_on_map_5_pressed"]
 [connection signal="pressed" from="GridContainer/map_6" to="." method="_on_map_6_pressed"]
+[connection signal="transition_is_finished" from="TransitionLayer" to="." method="_on_transition_layer_transition_is_finished"]

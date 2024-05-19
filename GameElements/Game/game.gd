@@ -16,6 +16,7 @@ var current_wave : float = 0.0
 
 # Use the _ready methode to reinitialize static properties from various classes
 func _ready():
+	
 	var map = load("res://GameElements/Maps/map_%s.tscn" % Global.selected_map).instantiate()
 	add_child(map)
 	map_of_game = map
@@ -24,6 +25,7 @@ func _ready():
 	player.player_update_mana_amount.connect(_on_player_player_update_mana_amount)
 	add_child(player)
 	max_wave = map.max_wave
+	%TransitionLayer.open_transition()
 	
 
 func start_new_wave():
@@ -165,3 +167,8 @@ func _on_core_core_destroyed():
 
 func _on_audio_stream_player_finished():
 	%BackgroundAudioPlayer.play()
+
+
+func _on_transition_layer_transition_is_finished(anim_name):
+	if anim_name == "close_transition":
+		get_tree().change_scene_to_file("res://GameElements/Screens/welcome_screen.tscn")
