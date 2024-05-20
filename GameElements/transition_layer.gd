@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-signal transition_is_finished()
+signal transition_is_finished(anim_name)
 
 func open_transition():
 	%TransitionPlayer.play("open_transition")

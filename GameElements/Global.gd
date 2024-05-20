@@ -1,7 +1,7 @@
 extends Node
 
 static var selected_map = 1
-
+static var has_save = false
 
 #Player Data
 static var player_level = 0
@@ -154,8 +154,10 @@ func save_game():
 func load_game():
 	print("Loading game...")
 	if not FileAccess.file_exists("user://savegame.save"):
-		return # Error! We don't have a save to load.
-		
+		has_save = false
+		return
+	
+	has_save = true	
 	var save_game = FileAccess.open("user://savegame.save", FileAccess.READ)
 	while save_game.get_position() < save_game.get_length():
 		var json_string = save_game.get_line()

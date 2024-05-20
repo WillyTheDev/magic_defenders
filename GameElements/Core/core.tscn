@@ -21,7 +21,7 @@ size = Vector2(69, 65)
 
 [node name="Core" type="Node2D"]
 position = Vector2(386, 196)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2, 2)
 script = ExtResource("1_10bn3")
 has_been_build = true
 

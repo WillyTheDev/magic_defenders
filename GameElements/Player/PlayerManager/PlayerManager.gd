@@ -19,6 +19,13 @@ func show_player_profile():
 	playerhasLeveledUp = true
 	%PlayerProfileTimer.start()
 	%PlayerManagerAnimationPlayer.play("show_player_profile")
+	print(Game.is_idle)
+	if Game.is_idle == false:
+		%HatButton.disabled = true
+		%HatButton.texture_normal = load("res://Assets/UI/player_profile_background/hat_button_locked.png")
+	else:
+		%HatButton.disabled = false
+		%HatButton.texture_normal = load("res://Assets/UI/player_profile_background/hat_button.png")
 	visible = true
 	
 func hide_player_profile():
@@ -127,6 +134,7 @@ func _on_hat_list_item_clicked(index, at_position, mouse_button_index):
 	_reset_hat_effect()
 	_apply_hat_effect()
 	%HatDescription.text = hats[index].information
+	%SelectedHatTexture.texture = load("res://Assets/hats/hat_%s.png" % index)
 	%HatList.visible = false
 	
 var hats : Array[Hat] = [
@@ -149,6 +157,19 @@ var hats : Array[Hat] = [
 			MagicBolt.texture = load("res://Assets/Player/bouncing_bolt.png"),
 			"Projectiles pass through enemies."
 		),
+	Hat.new(
+		func():
+			var lambda = func heal_defenses():
+				var game = get_node("/root/Game/")
+				var children = game.get_children()
+				for child in children:
+					if child is Defense:
+						child.heal_defense(100)
+			var game = get_node("/root/Game/")
+			game.wave_is_over.connect(lambda)
+			,
+			"Heals all defenses on the end of a wave"
+		),
 ]
 
 func _apply_hat_effect():
@@ -160,8 +181,10 @@ func _reset_hat_effect():
 	MagicBolt.is_passing_through = false
 	MagicBolt.texture = load("res://Assets/Player/fire_bolt.png")
 	MagicBolt.range = 1600
-	
-
+	var game = get_node("/root/Game/")
+	var lambdas = game.wave_is_over.get_connections()
+	for lambda in lambdas:
+		game.wave_is_over.disconnect(lambda.callable)
 
 func _on_player_manager_animation_player_animation_finished(anim_name):
 	if anim_name == "hide_player_profile":

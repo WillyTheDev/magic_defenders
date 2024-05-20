@@ -86,7 +86,6 @@ func _bigShoot():
 
 
 func _shoot():
-	print("shoot")
 	%FireAudio.play()
 	print(Global.getPlayerDamage())
 	const FIRE_BOLT = preload("res://GameElements/Player/fire_bolt.tscn")
@@ -99,7 +98,6 @@ func _shoot():
 
 func _place_defense():
 	%PlaceDefenseAudio.play()
-	print("Place defense !")
 	is_building = false	
 
 func _on_defense_button_pressed():

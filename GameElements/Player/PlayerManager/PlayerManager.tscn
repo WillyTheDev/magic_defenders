@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c2o1lsmd80cnp"]
+[gd_scene load_steps=28 format=3 uid="uid://c2o1lsmd80cnp"]
 
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/PlayerManager.gd" id="1_ctqjo"]
 [ext_resource type="Texture2D" uid="uid://7ldxtyg31ar8" path="res://Assets/UI/player_profile_background/background.png" id="2_3il38"]
@@ -15,7 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://d02y7l7i12gy7" path="res://Assets/hats/hat_0.png" id="12_arevw"]
 [ext_resource type="Texture2D" uid="uid://cyruvm2mtfo1e" path="res://Assets/hats/hat_1.png" id="12_tvfx2"]
 [ext_resource type="PackedScene" uid="uid://kbm12vsaf3ev" path="res://GameElements/Player/player_animation.tscn" id="13_71dtm"]
+[ext_resource type="Texture2D" uid="uid://bnqvulr6cj34d" path="res://Assets/UI/player_profile_background/hat_placeholder.png" id="13_mxkna"]
 [ext_resource type="Texture2D" uid="uid://bb0i4rje2oy5f" path="res://Assets/hats/hat_2.png" id="13_q65v3"]
+[ext_resource type="Texture2D" uid="uid://dtp6f6suw0ucs" path="res://Assets/hats/hat_3.png" id="16_57g04"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdv3k"]
 bg_color = Color(0.244776, 0.244776, 0.244776, 1)
@@ -31,6 +33,42 @@ corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00jmx"]
 bg_color = Color(0.962888, 0.3777, 0.392169, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnpgj"]
+bg_color = Color(0.205584, 0.660621, 0.784564, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4brp"]
+bg_color = Color(0.23017, 0.708015, 0.335578, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dht5s"]
+bg_color = Color(0.871058, 0.744029, 0.135508, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -140,10 +178,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.196078, 0.196078, 0.196078, 0)
+color = Color(0.196078, 0.196078, 0.196078, 0.784314)
 
 [node name="Background" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
 position = Vector2(961, 543)
 texture = ExtResource("2_3il38")
 
@@ -159,8 +196,11 @@ offset_right = -961.0
 offset_bottom = -137.0
 grow_horizontal = 0
 grow_vertical = 2
+size_flags_horizontal = 10
+size_flags_vertical = 6
 theme_override_constants/margin_left = 72
 theme_override_constants/margin_right = 72
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer"]
 layout_mode = 2
@@ -211,6 +251,7 @@ theme_override_constants/outline_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
 theme_override_styles/fill = SubResource("StyleBoxFlat_00jmx")
 step = 1.0
+value = 100.0
 show_percentage = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_1"]
@@ -271,8 +312,9 @@ size_flags_stretch_ratio = 0.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
-theme_override_styles/fill = SubResource("StyleBoxFlat_00jmx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qnpgj")
 step = 1.0
+value = 100.0
 show_percentage = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_2"]
@@ -335,6 +377,7 @@ theme_override_constants/outline_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
 theme_override_styles/fill = SubResource("StyleBoxFlat_00jmx")
 step = 1.0
+value = 100.0
 show_percentage = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_3"]
@@ -395,8 +438,9 @@ size_flags_stretch_ratio = 0.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
-theme_override_styles/fill = SubResource("StyleBoxFlat_00jmx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_j4brp")
 step = 1.0
+value = 100.0
 show_percentage = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_4"]
@@ -457,8 +501,9 @@ size_flags_stretch_ratio = 0.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
-theme_override_styles/fill = SubResource("StyleBoxFlat_00jmx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dht5s")
 step = 1.0
+value = 50.0
 show_percentage = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_5"]
@@ -526,12 +571,45 @@ scale = Vector2(0.75, 0.75)
 theme_override_constants/separation = 20
 
 [node name="HatButton" type="TextureButton" parent="Background/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("5_upd7b")
 texture_hover = ExtResource("6_x1x4c")
 metadata/_edit_use_anchors_ = true
 
-[node name="HatDescription" type="Label" parent="Background/HBoxContainer"]
+[node name="SelectedHatTexture" type="TextureRect" parent="Background/HBoxContainer/HatButton"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.5
+offset_top = -67.5
+offset_right = 67.5
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_mxkna")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/HBoxContainer"]
+layout_mode = 2
+
+[node name="HatDescriptionTitle" type="Label" parent="Background/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 48
+text = "Hat Effects :"
+uppercase = true
+
+[node name="HatDescription" type="Label" parent="Background/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -539,7 +617,7 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_gyvey")
 theme_override_font_sizes/font_size = 28
-text = "test description"
+text = "-"
 
 [node name="HatList" type="ItemList" parent="Background"]
 unique_name_in_owner = true
@@ -563,7 +641,7 @@ theme_override_constants/icon_margin = 5
 allow_rmb_select = true
 allow_search = false
 auto_height = true
-item_count = 3
+item_count = 4
 max_columns = 3
 same_column_width = true
 item_0/text = ""
@@ -572,6 +650,8 @@ item_1/text = ""
 item_1/icon = ExtResource("12_tvfx2")
 item_2/text = ""
 item_2/icon = ExtResource("13_q65v3")
+item_3/text = ""
+item_3/icon = ExtResource("16_57g04")
 
 [node name="PlayerPreview" parent="Background" instance=ExtResource("13_71dtm")]
 unique_name_in_owner = true
@@ -600,8 +680,8 @@ libraries = {
 [connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_4/VBoxContainer/remove_stat_4" to="." method="_on_remove_stat_4_pressed"]
 [connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_5/VBoxContainer/add_stat_5" to="." method="_on_add_stat_5_pressed"]
 [connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_5/VBoxContainer/remove_stat_5" to="." method="_on_remove_stat_5_pressed"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_apply_pressed"]
+[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Background/HBoxContainer/HatButton" to="." method="_on_hat_button_pressed"]
 [connection signal="item_clicked" from="Background/HatList" to="." method="_on_hat_list_item_clicked"]
 [connection signal="timeout" from="PlayerProfileTimer" to="." method="_on_card_timer_timeout"]

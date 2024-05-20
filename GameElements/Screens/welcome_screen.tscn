@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cste8v1g53q7o"]
+[gd_scene load_steps=18 format=3 uid="uid://cste8v1g53q7o"]
 
 [ext_resource type="Script" path="res://WelcomeScreen.gd" id="1_oh8bs"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_xqk6b"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dp3fpk8i2mnhg" path="res://Assets/UI/welcome_screen_button/continue_hover.png" id="10_j4a1v"]
 [ext_resource type="Texture2D" uid="uid://cksl7pbpaph84" path="res://Assets/UI/welcome_screen_button/qui_hover.png" id="11_4pw8m"]
 [ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="15_nwpt0"]
+[ext_resource type="AudioStream" uid="uid://baqryg5nks0t1" path="res://Assets/audio/KleptoLindaCredits.wav" id="16_kex6u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_obnlc"]
 shader = ExtResource("2_xqk6b")
@@ -51,11 +52,13 @@ theme_override_constants/margin_top = 64
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
 [node name="NewGameButton" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 texture_normal = ExtResource("5_5kubb")
@@ -64,6 +67,8 @@ texture_hover = ExtResource("7_hior2")
 stretch_mode = 0
 
 [node name="ContinueButton" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 texture_normal = ExtResource("8_x4bar")
@@ -87,6 +92,12 @@ stretch_mode = 0
 
 [node name="TransitionLayer" parent="." instance=ExtResource("15_nwpt0")]
 unique_name_in_owner = true
+
+[node name="BackgroundAudioPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("16_kex6u")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

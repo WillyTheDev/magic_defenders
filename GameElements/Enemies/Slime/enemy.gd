@@ -5,9 +5,12 @@ static var base_health = 5.0
 var base_speed = 100
 @export var speed = 100
 @export var MANA_AMOUNT = 2
-@export var health = 2.0
+@export var health_increment = 0
+var health = 0
 @export var enemy_damage = 1
 @export var follow_path = true
+
+var total_health = base_health + health_increment
 
 signal slime_has_been_killed
 
@@ -20,8 +23,13 @@ func play_animation_idle():
 
 
 func _ready():
+	total_health = base_health + health_increment
 	base_speed = speed
-	health += base_health
+	print("Enemy health increment : %s" % health_increment)
+	print("Enemy total health : %s" % total_health)
+	health = total_health
+	%HealthBar.max_value = total_health
+	%HealthBar.value = total_health
 	play_animation_idle()
 	get_node("/root/Game/PlayerManager").enemy_modified.connect(_on_enemy_modification)
 	
@@ -37,8 +45,7 @@ func take_damage(damage):
 	play_animation_hit()
 	%HitAudio.play()
 	health -= damage
-	var values = (255 * (health/base_health))
-	modulate = "ff%x%xff" % [values, values]
+	%HealthBar.value = health
 	if health <= 0:
 		slime_has_been_killed.emit()
 		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")

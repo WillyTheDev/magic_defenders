@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://GameElements/defense/turret.gd" id="1_c4q16"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_3qxle"]
-[ext_resource type="Texture2D" uid="uid://b5v7ycymulj75" path="res://Assets/Zone/bande1.png" id="2_26sh2"]
+[ext_resource type="Texture2D" uid="uid://b5v7ycymulj75" path="res://Assets/Map/bande1.png" id="2_26sh2"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_62kps"]
 [ext_resource type="Texture2D" uid="uid://cqd7ep7gabify" path="res://Assets/Defense/turret.png" id="2_c3r0p"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_vsh7u"]

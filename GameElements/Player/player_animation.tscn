@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://kbm12vsaf3ev"]
+[gd_scene load_steps=13 format=3 uid="uid://kbm12vsaf3ev"]
 
 [ext_resource type="Script" path="res://GameElements/Player/player_animation.gd" id="1_uy0ks"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_dsmio"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_objk4"]
 [ext_resource type="Texture2D" uid="uid://co8j1est5s5pi" path="res://Assets/Player/full_v2.png" id="4_u4lju"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="5_jfb0f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ak51"]
 shader = ExtResource("2_dsmio")
@@ -140,18 +141,22 @@ scale = Vector2(1.05, 1)
 
 [node name="Hat" type="Sprite2D" parent="Full"]
 unique_name_in_owner = true
-z_index = 1
 material = SubResource("ShaderMaterial_uh2nj")
 position = Vector2(-20.3175, -202.667)
 scale = Vector2(1.2, 1.2)
 
 [node name="FullV2" type="Sprite2D" parent="Full"]
-z_index = 1
 material = SubResource("ShaderMaterial_lxqha")
 position = Vector2(-0.694551, -5.35575)
 scale = Vector2(0.958935, 0.999399)
 skew = -0.0110239
 texture = ExtResource("4_u4lju")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-18.6667, 161.333)
+scale = Vector2(1.21229, 1.21229)
+texture = ExtResource("5_jfb0f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

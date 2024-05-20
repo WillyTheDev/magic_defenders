@@ -1,3 +1,4 @@
+class_name Game
 extends Node2D
 
 @export var total_enemies = 10
@@ -6,7 +7,8 @@ extends Node2D
 @export var enemies_left = 10
 @export var spawn_rates = 2
 @export var spawn_flying_enemy_rates = 20
-@export var is_idle = true
+
+static var is_idle = true
 
 var map_of_game = Map
 var paths: Array[Path2D] = []
@@ -14,17 +16,19 @@ var options_menu_open = false
 var max_wave : float = 30.0
 var current_wave : float = 0.0
 
+signal wave_is_over
+
 # Use the _ready methode to reinitialize static properties from various classes
 func _ready():
-	
 	var map = load("res://GameElements/Maps/map_%s.tscn" % Global.selected_map).instantiate()
 	add_child(map)
 	map_of_game = map
 	print(map_of_game.paths[0])
 	var player = preload("res://GameElements/Player/player.tscn").instantiate()
 	player.player_update_mana_amount.connect(_on_player_player_update_mana_amount)
+	player.global_position = map.get_node("PlayerSpawnPoint").global_position
 	add_child(player)
-	max_wave = map.max_wave
+	max_wave = map_of_game.difficulty
 	%TransitionLayer.open_transition()
 	
 
@@ -59,23 +63,35 @@ func end_of_wave():
 	%WaveActionLabel.visible = true
 	Global.accumulated_gold += 1
 	# Give stars base on the current_wave
+	print(current_wave)
+	print(map_of_game.min_wave_star_3)
+	print(map_of_game.min_wave_star_2)
+	print(map_of_game.min_wave_star_1)
 	match current_wave:
 		map_of_game.min_wave_star_3:
+			%StarAnimation.play("show_second_star")
 			if Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] < 3:
 				Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] = 3.0
 				Global.accumulated_stars += 1
+				%StarAnimation.play("show_third_star")
 		map_of_game.min_wave_star_2:
+			%StarAnimation.play("show_second_star")
 			if Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] < 2:
 				Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] = 2.0
 				Global.accumulated_stars += 1
 		map_of_game.min_wave_star_1:
+			%StarAnimation.play("show_first_star")
 			if Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] < 1:
 				Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] = 1.0
 				Global.accumulated_stars += 1
+				
+		var other:
+			print("current wave is %s" % other)
 	is_idle = true
+	wave_is_over.emit()
 
 func spawn_flying_mob():
-	if current_wave > 2:
+	if current_wave > map_of_game.flying_enemy_start_wave:
 		enemies_spawn += 1
 		var flying_enemy = preload("res://GameElements/Enemies/Slime/bat.tscn").instantiate()
 		map_of_game.flyingSpawnPoint.progress_ratio = randf()
@@ -90,12 +106,12 @@ func spawn_mob():
 	var enemy = preload("res://GameElements/Enemies/Enemy.tscn").instantiate()
 	var slime = null
 	var enemy_spawn_chance : float = randf()
-	var medium_enemy_spawn_chance: float = (current_wave)/(max_wave * 2)
-	var hard_enemy_spawn_chance :float =  current_wave/(max_wave * 5)
+	var medium_enemy_spawn_chance: float = (current_wave)/(map_of_game.difficulty * 2)
+	var hard_enemy_spawn_chance :float =  current_wave/(map_of_game.difficulty * 10)
 	var mana_enemy_spawn_chance : float = 0.005
-	if (enemy_spawn_chance < hard_enemy_spawn_chance) && current_wave > 8:
+	if (enemy_spawn_chance < hard_enemy_spawn_chance) && current_wave > map_of_game.hard_enemy_start_wave:
 		slime = preload("res://GameElements/Enemies/Slime/slime_hard.tscn").instantiate()
-	elif (enemy_spawn_chance < medium_enemy_spawn_chance) && current_wave > 4:
+	elif (enemy_spawn_chance < medium_enemy_spawn_chance) && current_wave > map_of_game.medium_enemy_start_wave:
 		slime = preload("res://GameElements/Enemies/Slime/slime_medium.tscn").instantiate()
 	elif enemy_spawn_chance > 1 - mana_enemy_spawn_chance:
 		slime = preload("res://GameElements/Enemies/Slime/slime_mana.tscn").instantiate()
@@ -116,7 +132,7 @@ func spawn_visual_indicator(target):
 	
 func game_over():
 	%GameOverScreen.visible = true
-	%ScoreLabel.text = "The lotus has been destroyed :\n %s waves" % current_wave
+	%ScoreLabel.text = "The lotus has been destroyed\n %s waves" % current_wave
 	get_tree().paused = true
 	
 func on_enemy_has_been_killed():

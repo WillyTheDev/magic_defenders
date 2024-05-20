@@ -1,6 +1,5 @@
 extends Node2D
 
-var value = 10
 
 func set_value(damage_value):
 	%Label.text = "%s" % damage_value

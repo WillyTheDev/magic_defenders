@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0h5viffh6xrj"]
+[gd_scene load_steps=16 format=3 uid="uid://d0h5viffh6xrj"]
 
 [ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_pg2k5"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_dhwrf"]
@@ -109,12 +109,27 @@ _data = {
 "idle": SubResource("Animation_vlpra")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdw2u"]
+bg_color = Color(0.136826, 0.136826, 0.136826, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cu4tc"]
+bg_color = Color(0.974545, 0.360152, 0.408545, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="Slime" type="CharacterBody2D"]
 z_index = 1
 scale = Vector2(0.4, 0.4)
 platform_floor_layers = 4294967040
 script = ExtResource("1_pg2k5")
-health = 0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -142,3 +157,16 @@ libraries = {
 unique_name_in_owner = true
 stream = ExtResource("7_nj8hl")
 volume_db = 1.0
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -72.5
+offset_top = -85.0
+offset_right = 74.5
+offset_bottom = -70.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hdw2u")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cu4tc")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false

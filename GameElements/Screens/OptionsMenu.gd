@@ -27,6 +27,7 @@ func closeOptionsMenu():
 
 func _on_quit_to_menu_pressed():
 	Global.save_game()
+	Enemy.base_health = 5
 	get_tree().call_group("has_static_properties", "_reinitialize_static_properties")
 	get_tree().paused = false
 	get_node("/root/Game/TransitionLayer").close_transition()

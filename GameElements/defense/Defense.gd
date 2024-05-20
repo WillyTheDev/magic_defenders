@@ -6,14 +6,16 @@ static var defense_price = 10
 @export var has_been_build = false
 @export var can_be_placed = true
 
-
-
-
 var current_health = 4.0
 var cumulated_damage = 0
 
 func _reinitialize_static_properties():
 	defense_price = 10
+
+func heal_defense(amount):
+	current_health = clamp(amount, 0,Global.getDefenseHealth())
+	var values = (255 * (current_health/Global.getDefenseHealth()))
+	modulate = "ff%x%xff" % [values, values]
 
 func _ready():
 	add_to_group("has_static_properties")

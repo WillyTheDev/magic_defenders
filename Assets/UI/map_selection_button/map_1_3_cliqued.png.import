@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb65vqteo10xf"
-path="res://.godot/imported/arrière-plan.png-209d02fdefa4188822308004ad8f7c27.ctex"
+uid="uid://cxtd3cw0bgjm5"
+path="res://.godot/imported/map_1_3_cliqued.png-93af0c646adb1a0da557f07a3bae5609.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Zone/arrière-plan.png"
-dest_files=["res://.godot/imported/arrière-plan.png-209d02fdefa4188822308004ad8f7c27.ctex"]
+source_file="res://Assets/UI/map_selection_button/map_1_3_cliqued.png"
+dest_files=["res://.godot/imported/map_1_3_cliqued.png-93af0c646adb1a0da557f07a3bae5609.ctex"]
 
 [params]
 
