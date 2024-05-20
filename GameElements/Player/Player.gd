@@ -17,9 +17,19 @@ signal player_update_mana_amount
 signal show_cards
 
 func _ready():
+	var playerManager = get_node("/root/Game/PlayerManager")
+	var optionMenu = get_node("/root/Game/OptionsMenu")
+	optionMenu.sound_value_changed.connect(_update_sound_volume)
+	playerManager.apply_hat()
 	screen_size = get_node("/root/Game/Map/MapLimit").global_position
+	_update_sound_volume()
 	update_mana_amount(starting_mana_amount, false)
 
+func _update_sound_volume():
+	%WalkAudio.volume_db = Global.sound_volume
+	%PlaceDefenseAudio.volume_db = Global.sound_volume
+	%FireAudio.volume_db = Global.sound_volume
+	%ManaAudio.volume_db = Global.sound_volume
 
 func update_mana_amount(mana: int, acquire: bool):
 	mana_amount += mana
@@ -29,14 +39,13 @@ func update_mana_amount(mana: int, acquire: bool):
 		%ManaAudio.play()
 		Global.accumulated_mana += mana
 		if Global.accumulated_mana >= (offset_accumulated_mana_value + ( Global.player_level * 10 )):
+			%PlayerAnimation.play_animation_levelup()
 			print("Level up 🐸")
 			Global.accumulated_mana -= (offset_accumulated_mana_value + ( Global.player_level * 10 ))
 			Global.player_level += 1
 			Global.player_avail_pts = points_per_level
 			var confetti = get_node("/root/Game/Confetti") 
 			var player_manager : PlayerManager = get_node("/root/Game/PlayerManager")
-			player_manager.show_player_profile()
-			confetti.play_confetti("level up")
 
 func _physics_process(delta):
 	position.x = clamp(position.x, 0, screen_size.x)

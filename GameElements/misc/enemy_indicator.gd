@@ -9,7 +9,6 @@ func _ready():
 
 func _physics_process(delta):
 	if target != null :
-		print(camera.get_screen_center_position().x - get_viewport_rect().size.x / 4)
 		var direction = (global_position - target.global_position).normalized() * -1
 		position += delta * direction * speed
 		global_position.x = clamp(global_position.x,camera.get_screen_center_position().x - get_viewport_rect().size.x / 4,camera.get_screen_center_position().x + get_viewport_rect().size.x / 4)

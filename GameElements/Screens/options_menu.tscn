@@ -53,9 +53,25 @@ theme_override_constants/separation = 10
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_j8go6")
 theme_override_font_sizes/font_size = 24
-text = "Audio Volume :"
+text = "Music Volume :"
 
 [node name="AudioSlider" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = -100.0
+max_value = 5.0
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_j8go6")
+theme_override_font_sizes/font_size = 24
+text = "Sound Volume :"
+
+[node name="SoundSlider" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 min_value = -100.0
@@ -79,6 +95,7 @@ theme_override_font_sizes/font_size = 32
 text = "Quit to menu"
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/VBoxContainer2/AudioSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/VBoxContainer3/SoundSlider" to="." method="_on_sound_slider_value_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/EraseSaveButton" to="." method="_on_erase_save_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]

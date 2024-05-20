@@ -84,6 +84,7 @@ script = ExtResource("1_ysl11")
 paths = [NodePath("Arrière-plan/Paths/Path2D"), NodePath("Arrière-plan/Paths/Path2D2"), NodePath("Arrière-plan/Paths/Path2D3"), NodePath("Arrière-plan/Paths/Path2D4"), NodePath("Arrière-plan/Paths/Path2D5")]
 flyingSpawnPoint = NodePath("Arrière-plan/Paths/Path_flying/FlyingSpawnPoint")
 difficulty = 10
+enemy_health_increment = 3
 map_index = 4
 medium_enemy_start_wave = 1
 hard_enemy_start_wave = 1

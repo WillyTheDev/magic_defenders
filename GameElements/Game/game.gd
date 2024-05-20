@@ -20,6 +20,7 @@ signal wave_is_over
 
 # Use the _ready methode to reinitialize static properties from various classes
 func _ready():
+	is_idle = true
 	var map = load("res://GameElements/Maps/map_%s.tscn" % Global.selected_map).instantiate()
 	add_child(map)
 	map_of_game = map
@@ -52,7 +53,7 @@ func start_new_wave():
 	%SpawnFlyingEnemyTimer.start()
 	
 	if current_wave >= 5:
-		Enemy.base_health += 1
+		Enemy.base_health += map_of_game.enemy_health_increment
 
 func end_of_wave():
 	%WaveLAbel.text = "Wave : %s Cleared !" % current_wave
@@ -71,19 +72,19 @@ func end_of_wave():
 	match current_wave:
 		map_of_game.min_wave_star_3:
 			%StarAnimation.play("show_second_star")
-			if Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] < 3:
-				Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] = 3.0
+			if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 3:
+				Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 3.0
 				Global.accumulated_stars += 1
 				%StarAnimation.play("show_third_star")
 		map_of_game.min_wave_star_2:
 			%StarAnimation.play("show_second_star")
-			if Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] < 2:
-				Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] = 2.0
+			if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 2:
+				Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 2.0
 				Global.accumulated_stars += 1
 		map_of_game.min_wave_star_1:
 			%StarAnimation.play("show_first_star")
-			if Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] < 1:
-				Global.map_progression["map_%s_%s" % [map_of_game.map_index, map_of_game.chapter_index]] = 1.0
+			if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 1:
+				Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 1.0
 				Global.accumulated_stars += 1
 				
 		var other:

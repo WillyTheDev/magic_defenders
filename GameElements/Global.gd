@@ -3,6 +3,7 @@ extends Node
 #Player - settings
 
 static var audio_volume = 0
+static var sound_volume = 0
 
 static var selected_map = 1
 static var has_save = false
@@ -116,7 +117,8 @@ func save():
 		"accumulated_gold" : accumulated_gold,
 		"accumulated_stars" : accumulated_stars,
 		"map_progression" : map_progression,
-		"audio_volume": audio_volume
+		"audio_volume": audio_volume,
+		"sound_volume": sound_volume
 	}
 	return save_dict
 	
@@ -143,7 +145,8 @@ func new_save():
 							"map_1_5" : 0,
 							"map_1_6" : 0
 							},
-		"audio_volume": 0
+		"audio_volume": 0,
+		"sound_volume": 0
 	}
 	var json_string = JSON.stringify(data)
 	save_game.store_line(json_string)

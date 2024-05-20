@@ -5,6 +5,7 @@ extends Node2D
 @export var flyingSpawnPoint: PathFollow2D = null
 ## Set the difficulty of the map lower the difficulty value is, higher the real difficulty
 @export var difficulty : int = 30
+@export var enemy_health_increment : int = 1
 
 @export var min_wave_star_1 = 5.0
 @export var min_wave_star_2 = 10.0

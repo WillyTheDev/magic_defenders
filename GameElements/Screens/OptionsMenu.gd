@@ -3,6 +3,8 @@ extends CanvasLayer
 var options_menu_open = false
 var game_was_paused = false
 
+signal sound_value_changed()
+
 func _ready():
 	%AudioSlider.value = Global.audio_volume
 
@@ -48,8 +50,14 @@ func _on_h_slider_value_changed(value):
 	var music = get_node("/root/Game/BackgroundAudioPlayer")
 	music.volume_db = Global.audio_volume
 
+func _on_sound_slider_value_changed(value):
+	Global.sound_volume = value
+	sound_value_changed.emit()
 
 func _on_erase_save_button_pressed():
 	Global.new_save()
 	get_tree().paused = false
 	get_node("/root/Game/TransitionLayer").close_transition()
+
+
+
