@@ -98,23 +98,24 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("8_t1y7u")
 
-[node name="Label" type="Label" parent="GridContainer/map_1"]
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_1"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = -109.0
-offset_right = 45.0
-offset_bottom = 43.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("12_c1v8v")
-theme_override_font_sizes/font_size = 128
-text = "
-"
+mouse_filter = 2
+theme_override_constants/margin_top = 120
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_1/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
 
 [node name="map_2" type="TextureButton" parent="GridContainer"]
 unique_name_in_owner = true
@@ -157,23 +158,24 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("8_t1y7u")
 
-[node name="Label" type="Label" parent="GridContainer/map_2"]
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_2"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = -109.0
-offset_right = 45.0
-offset_bottom = 43.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("12_c1v8v")
-theme_override_font_sizes/font_size = 128
-text = "
-"
+mouse_filter = 2
+theme_override_constants/margin_top = 120
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_2/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
 
 [node name="map_3" type="TextureButton" parent="GridContainer"]
 unique_name_in_owner = true
@@ -216,21 +218,24 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("8_t1y7u")
 
-[node name="Label" type="Label" parent="GridContainer/map_3"]
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_3"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = -109.0
-offset_right = 45.0
-offset_bottom = 43.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("12_c1v8v")
-theme_override_font_sizes/font_size = 128
+mouse_filter = 2
+theme_override_constants/margin_top = 120
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_3/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
 
 [node name="map_4" type="TextureButton" parent="GridContainer"]
 unique_name_in_owner = true
@@ -273,21 +278,24 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("8_t1y7u")
 
-[node name="Label" type="Label" parent="GridContainer/map_4"]
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_4"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = -109.0
-offset_right = 45.0
-offset_bottom = 43.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("12_c1v8v")
-theme_override_font_sizes/font_size = 128
+mouse_filter = 2
+theme_override_constants/margin_top = 120
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_4/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
 
 [node name="map_5" type="TextureButton" parent="GridContainer"]
 unique_name_in_owner = true
@@ -330,21 +338,24 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("8_t1y7u")
 
-[node name="Label" type="Label" parent="GridContainer/map_5"]
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_5"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = -109.0
-offset_right = 45.0
-offset_bottom = 43.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("12_c1v8v")
-theme_override_font_sizes/font_size = 128
+mouse_filter = 2
+theme_override_constants/margin_top = 120
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_5/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
 
 [node name="map_6" type="TextureButton" parent="GridContainer"]
 unique_name_in_owner = true
@@ -387,21 +398,24 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("8_t1y7u")
 
-[node name="Label" type="Label" parent="GridContainer/map_6"]
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_6"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = -109.0
-offset_right = 45.0
-offset_bottom = 43.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("12_c1v8v")
-theme_override_font_sizes/font_size = 128
+mouse_filter = 2
+theme_override_constants/margin_top = 120
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_6/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
 
 [node name="TransitionLayer" parent="." instance=ExtResource("13_mn7lt")]
 unique_name_in_owner = true

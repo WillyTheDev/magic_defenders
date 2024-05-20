@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var options_menu_open = false
 var game_was_paused = false
+var is_on_welcome_scrren = false
 
 signal sound_value_changed()
 signal audio_value_changed()
@@ -23,6 +24,7 @@ func openOptionsMenu(from: String):
 	get_tree().paused = true
 	visible = true
 	if from == "Welcome Screen":
+		is_on_welcome_scrren = true
 		%RestartButton.visible = false
 		%QuitToMenu.visible = false
 

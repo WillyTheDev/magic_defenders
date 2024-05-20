@@ -11,20 +11,21 @@ var actual_chapter = 1
 
 func _input(event):
 	if event.is_action_pressed("show_options"):
-		get_tree().change_scene_to_file("res://GameElements/Screens/welcome_screen.tscn")
+		visible = false
 		
 		
 func _ready():
 	for map in range(1, nb_map + 1):
 		var btn = get_node("GridContainer/map_%s" % map)
-		var label = get_node("GridContainer/map_%s/Label" % map)
+		var label = get_node("GridContainer/map_%s/MarginContainer/Label" % map)
 		if stars_to_unlock_map[map - 1] > Global.accumulated_stars:
 			btn.disabled = true
-			label.text = "%s" % (stars_to_unlock_map[map - 1] - Global.accumulated_stars)
+			label.text = "[center]%s [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]" % (stars_to_unlock_map[map - 1] - Global.accumulated_stars)
 			btn.texture_normal = load("res://Assets/UI/map_selection_button/map_0.png")
 			btn.texture_hover = load("res://Assets/UI/map_selection_button/map_0_hover.png")
 			btn.texture_pressed = load("res://Assets/UI/map_selection_button/map_0_clicked.png")
 		else:
+			label.text = ""
 			btn.texture_normal = load("res://Assets/UI/map_selection_button/map_%s_%s.png" % [actual_chapter, map])
 			btn.texture_hover = load("res://Assets/UI/map_selection_button/map_%s_%s_hover.png" % [actual_chapter, map])
 			btn.texture_pressed = load("res://Assets/UI/map_selection_button/map_%s_%s_cliqued.png" % [actual_chapter, map])
@@ -46,9 +47,9 @@ func _ready():
 				star_1.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")
 	for map in range(nb_map + 1, MAX_NB_MAP_PER_CHAPTER + 1):
 		var btn = get_node("GridContainer/map_%s" %  map)
-		var label = get_node("GridContainer/map_%s/Label" % map)
+		var label = get_node("GridContainer/map_%s/MarginContainer/Label" % map)
 		if stars_to_unlock_map[map - 1] > Global.accumulated_stars:
-			label.text = "%s" % (stars_to_unlock_map[map - 1] - Global.accumulated_stars)
+			label.text = "[center]%s [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]" % (stars_to_unlock_map[map - 1] - Global.accumulated_stars)
 		btn.texture_normal = load("res://Assets/UI/map_selection_button/map_0.png")
 		btn.texture_hover = load("res://Assets/UI/map_selection_button/map_0_hover.png")
 		btn.texture_pressed = load("res://Assets/UI/map_selection_button/map_0_clicked.png")
