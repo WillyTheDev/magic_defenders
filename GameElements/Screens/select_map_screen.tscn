@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmb5cs8occw40"]
+[gd_scene load_steps=16 format=3 uid="uid://dmb5cs8occw40"]
 
 [ext_resource type="Script" path="res://GameElements/Screens/select_map_screen.gd" id="1_7ui5d"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_oylf7"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://ispx11saoeqv" path="res://Assets/UI/map_selection_button/star_locked.png" id="8_t1y7u"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="12_c1v8v"]
 [ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="13_mn7lt"]
+[ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="14_l6oou"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ygnxb"]
 shader = ExtResource("2_oylf7")
@@ -405,6 +406,11 @@ theme_override_font_sizes/font_size = 128
 [node name="TransitionLayer" parent="." instance=ExtResource("13_mn7lt")]
 unique_name_in_owner = true
 layer = 20
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("14_l6oou")
+volume_db = -5.0
 
 [connection signal="pressed" from="GridContainer/map_1" to="." method="_on_map_1_pressed"]
 [connection signal="pressed" from="GridContainer/map_2" to="." method="_on_map_2_pressed"]

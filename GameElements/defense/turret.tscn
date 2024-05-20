@@ -96,7 +96,6 @@ unique_name_in_owner = true
 stream = ExtResource("6_8mp06")
 volume_db = 0.8
 pitch_scale = 2.24
-autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_exited" from="ShootZone" to="." method="_on_shoot_zone_body_exited"]

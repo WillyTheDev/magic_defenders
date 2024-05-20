@@ -74,7 +74,6 @@ stream = ExtResource("7_3y2qv")
 [node name="FireAudio" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("8_1vlqa")
-volume_db = 0.8
 pitch_scale = 2.24
 
 [node name="ManaAudio" type="AudioStreamPlayer2D" parent="."]

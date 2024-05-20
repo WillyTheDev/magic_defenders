@@ -5,6 +5,7 @@ static var turret_price = 20
 var target : Enemy = null
 
 func _ready():
+	%FireAudio.volume_db = Global.sound_volume
 	current_health = Global.getTurretHealth()
 	add_to_group("has_static_properties")
 	%TimerShoot.wait_time = Global.getDefenseFireRate()

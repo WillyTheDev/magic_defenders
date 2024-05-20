@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2p14mfp2sdol"]
+[gd_scene load_steps=6 format=3 uid="uid://b2p14mfp2sdol"]
 
 [ext_resource type="Script" path="res://GameElements/misc/confetti.gd" id="1_k3bqs"]
-[ext_resource type="AudioStream" uid="uid://dpq3uihffgodb" path="res://Assets/audio/Fanfare_1.wav" id="2_2kou4"]
 [ext_resource type="AudioStream" uid="uid://kas3l8of2b6k" path="res://Assets/audio/Fanfare_3.wav" id="2_m4div"]
 
 [sub_resource type="Curve" id="Curve_i53rw"]
@@ -82,11 +81,6 @@ scale_amount_curve = SubResource("Curve_i53rw")
 color_ramp = SubResource("Gradient_b2l6u")
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_b22e5")
-
-[node name="LevelupAudio" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("2_2kou4")
-volume_db = 1.0
 
 [node name="EndOfWaveAudio" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

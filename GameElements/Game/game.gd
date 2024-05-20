@@ -58,7 +58,7 @@ func start_new_wave():
 func end_of_wave():
 	%WaveLAbel.text = "Wave : %s Cleared !" % current_wave
 	%UI.show_next_wave_label()
-	%Confetti.play_confetti("end of wave")
+	%Confetti.play_confetti()
 	%SpawnEnemyTimer.stop()
 	%SpawnFlyingEnemyTimer.stop()
 	%EnemiesLabel.text = ""
@@ -191,3 +191,7 @@ func _on_audio_stream_player_finished():
 func _on_transition_layer_transition_is_finished(anim_name):
 	if anim_name == "close_transition":
 		get_tree().change_scene_to_file("res://GameElements/Screens/welcome_screen.tscn")
+
+
+func _on_options_menu_audio_value_changed():
+	%BackgroundAudioPlayer.volume_db = Global.audio_volume

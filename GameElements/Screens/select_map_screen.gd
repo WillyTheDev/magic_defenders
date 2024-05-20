@@ -55,6 +55,7 @@ func _ready():
 		
 
 func _launch_game():
+	%ClickPlayer.play()
 	%TransitionLayer.close_transition()
 	
 

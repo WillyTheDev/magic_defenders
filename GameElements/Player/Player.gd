@@ -40,7 +40,6 @@ func update_mana_amount(mana: int, acquire: bool):
 		Global.accumulated_mana += mana
 		if Global.accumulated_mana >= (offset_accumulated_mana_value + ( Global.player_level * 10 )):
 			%PlayerAnimation.play_animation_levelup()
-			print("Level up 🐸")
 			Global.accumulated_mana -= (offset_accumulated_mana_value + ( Global.player_level * 10 ))
 			Global.player_level += 1
 			Global.player_avail_pts = points_per_level
@@ -64,6 +63,7 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed("left_click"):
 		if is_building:
+			print("PLACE BUILDING")
 			_place_defense()
 		else:
 			%AutoShootTimer.start()

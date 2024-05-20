@@ -645,5 +645,6 @@ color = Color(0.666667, 0.866667, 0.596078, 1)
 [connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
 [connection signal="timeout" from="SpawnFlyingEnemyTimer" to="." method="_on_spawn_flying_enemy_timer_timeout"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="audio_value_changed" from="OptionsMenu" to="." method="_on_options_menu_audio_value_changed"]
 [connection signal="transition_is_finished" from="TransitionLayer" to="." method="_on_transition_layer_transition_is_finished"]
 [connection signal="finished" from="BackgroundAudioPlayer" to="." method="_on_audio_stream_player_finished"]

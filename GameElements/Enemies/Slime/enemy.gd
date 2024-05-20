@@ -31,6 +31,7 @@ func _ready():
 	%HealthBar.max_value = total_health
 	%HealthBar.value = total_health
 	play_animation_idle()
+	%HitAudio.volume_db = Global.sound_volume
 	get_node("/root/Game/PlayerManager").enemy_modified.connect(_on_enemy_modification)
 	
 func _on_enemy_modification(args: Callable):

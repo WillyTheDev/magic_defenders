@@ -1,10 +1,10 @@
 extends Node2D
 
-func play_confetti(event):
+func _ready():
+	%EndOfWaveAudio.volume_db = Global.audio_volume
+
+func play_confetti():
 	print("Play Confetti")
 	%ConfettiLeft.emitting = true
 	%ConfettiRight.emitting = true
-	if event == "level up":
-		%LevelupAudio.play()
-	else:
-		%EndOfWaveAudio.play()
+	%EndOfWaveAudio.play()
