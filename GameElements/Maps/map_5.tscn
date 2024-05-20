@@ -83,6 +83,7 @@ y_sort_enabled = true
 script = ExtResource("1_1n138")
 paths = [NodePath("Arrière-plan/Paths/Path2D"), NodePath("Arrière-plan/Paths/Path2D2"), NodePath("Arrière-plan/Paths/Path2D3"), NodePath("Arrière-plan/Paths/Path2D4"), NodePath("Arrière-plan/Paths/Path2D5")]
 flyingSpawnPoint = NodePath("Arrière-plan/Paths/Path_flying/FlyingSpawnPoint")
+difficulty = 5
 map_index = 5
 medium_enemy_start_wave = 1
 hard_enemy_start_wave = 1
