@@ -101,10 +101,6 @@ color = Color(0.682353, 0.886275, 1, 1)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="River/StaticBody2D"]
 polygon = PackedVector2Array(331, 521, 399, 284, 528, 74, 856, 46, 1113, 61, 1237, 325, 1294, 529)
 
-[node name="MapLimit" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(2740, 1442)
-
 [node name="Arrière-plan" type="Sprite2D" parent="."]
 z_index = -1
 material = SubResource("ShaderMaterial_lfba4")
@@ -116,9 +112,9 @@ texture = ExtResource("4_uk50i")
 z_index = 5
 material = SubResource("ShaderMaterial_2jags")
 offset_left = -1388.34
-offset_top = -968.84
-offset_right = 531.658
-offset_bottom = 111.16
+offset_top = -966.237
+offset_right = 531.66
+offset_bottom = 113.763
 scale = Vector2(1.5, 1.5)
 
 [node name="Paths" type="Node2D" parent="Arrière-plan"]
@@ -152,6 +148,10 @@ curve = SubResource("Curve2D_sxegj")
 
 [node name="Path2D5" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_dcqyp")
+
+[node name="MapLimit" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2776, 1471)
 
 [node name="env" type="Node2D" parent="."]
 z_as_relative = false

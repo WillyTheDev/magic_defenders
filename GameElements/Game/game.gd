@@ -30,6 +30,7 @@ func _ready():
 	add_child(player)
 	max_wave = map_of_game.difficulty
 	%TransitionLayer.open_transition()
+	%BackgroundAudioPlayer.volume_db = Global.audio_volume
 	
 
 func start_new_wave():
@@ -128,6 +129,7 @@ func spawn_visual_indicator(target):
 	# Add a visual indicator for each Enemy spawned
 	var indicator = preload("res://GameElements/misc/enemy_indicator.tscn").instantiate()
 	indicator.target = target
+	indicator.global_position = get_node("Player").global_position
 	get_node("Player").add_child(indicator)
 	
 func game_over():
