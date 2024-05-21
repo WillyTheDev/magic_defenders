@@ -55,46 +55,42 @@ func _ready():
 		btn.texture_pressed = load("res://Assets/UI/map_selection_button/map_0_clicked.png")
 		
 
-func _launch_game():
-	%ClickPlayer.play()
-	%TransitionLayer.close_transition()
+func _show_difficulty_screen():
+	%SelectDifficultyScreen.openDifficultySelectionScreen()
 	
 
 func _on_map_1_pressed():
 	if nb_map > 0:
 		Global.selected_map = 1
-		_launch_game()
+		_show_difficulty_screen()
 
 
 func _on_map_2_pressed():
 	if nb_map > 1:
 		Global.selected_map = 2
-		_launch_game()
+		_show_difficulty_screen()
 
 
 func _on_map_3_pressed():
 	if nb_map > 2:
 		Global.selected_map = 3
-		_launch_game()
+		_show_difficulty_screen()
 
 
 func _on_map_4_pressed():
 	if nb_map > 3:
 		Global.selected_map = 4
-		_launch_game()
+		_show_difficulty_screen()
 
 
 func _on_map_5_pressed():
 	if nb_map > 4:
 		Global.selected_map = 5
-		_launch_game()
+		_show_difficulty_screen()
 
 
 func _on_map_6_pressed():
 	if nb_map > 5:
 		Global.selected_map = 6
-		_launch_game()
+		_show_difficulty_screen()
 
-
-func _on_transition_layer_transition_is_finished(anim_name):
-	get_tree().change_scene_to_file("res://GameElements/Game/game.tscn")

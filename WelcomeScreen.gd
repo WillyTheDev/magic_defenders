@@ -33,3 +33,7 @@ func _on_continue_button_pressed():
 
 func _on_options_menu_audio_value_changed():
 	%BackgroundAudioPlayer.volume_db = Global.audio_volume
+
+
+func _on_settings_button_pressed():
+	%OptionsMenu.openOptionsMenu("Welcome Screen")

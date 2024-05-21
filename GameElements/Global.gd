@@ -6,6 +6,7 @@ static var audio_volume = 0
 static var sound_volume = 0
 
 static var selected_map = 1
+static var selected_difficulty = 1
 static var has_save = false
 
 #Player Data

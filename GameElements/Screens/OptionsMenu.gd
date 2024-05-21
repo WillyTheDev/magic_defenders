@@ -2,20 +2,24 @@ extends CanvasLayer
 
 var options_menu_open = false
 var game_was_paused = false
-var is_on_welcome_scrren = false
+@export var is_on_welcome_screen = false
 
 signal sound_value_changed()
 signal audio_value_changed()
 
 func _ready():
 	%AudioSlider.value = Global.audio_volume
+	if is_on_welcome_screen == true:
+		%RestartButton.visible = false
+		%QuitToMenu.visible = false
 
 func _input(event):
-	if event.is_action_pressed("show_options"):
-		if options_menu_open:
-			closeOptionsMenu()
-		else:
-			openOptionsMenu("")
+	if is_on_welcome_screen == false:
+		if event.is_action_pressed("show_options"):
+			if options_menu_open:
+				closeOptionsMenu()
+			else:
+				openOptionsMenu("")
 			
 func openOptionsMenu(from: String):
 	options_menu_open = true
@@ -23,10 +27,6 @@ func openOptionsMenu(from: String):
 		game_was_paused = true
 	get_tree().paused = true
 	visible = true
-	if from == "Welcome Screen":
-		is_on_welcome_scrren = true
-		%RestartButton.visible = false
-		%QuitToMenu.visible = false
 
 func closeOptionsMenu():
 	options_menu_open = false
@@ -66,5 +66,7 @@ func _on_erase_save_button_pressed():
 	get_tree().paused = false
 	get_node("/root/Game/TransitionLayer").close_transition()
 
-func _on_settings_button_pressed():
-	openOptionsMenu("Welcome Screen")
+
+func _on_resume_button_pressed():
+	%ClickPlayer.play()
+	closeOptionsMenu()

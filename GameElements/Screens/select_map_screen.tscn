@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dmb5cs8occw40"]
+[gd_scene load_steps=26 format=3 uid="uid://dmb5cs8occw40"]
 
 [ext_resource type="Script" path="res://GameElements/Screens/select_map_screen.gd" id="1_7ui5d"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_oylf7"]
@@ -14,6 +14,16 @@
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="12_c1v8v"]
 [ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="13_mn7lt"]
 [ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="14_l6oou"]
+[ext_resource type="Script" path="res://GameElements/Screens/difficulty_selection_screen.gd" id="14_mljd0"]
+[ext_resource type="Texture2D" uid="uid://cehi8kawggg86" path="res://Assets/UI/challenge_selection/easy.png" id="15_c4h71"]
+[ext_resource type="Texture2D" uid="uid://dqm25tjavdpqs" path="res://Assets/UI/challenge_selection/easy_click.png" id="16_g20c2"]
+[ext_resource type="Texture2D" uid="uid://crupdevsepf26" path="res://Assets/UI/challenge_selection/easy_hover.png" id="17_aqhoc"]
+[ext_resource type="Texture2D" uid="uid://bkdgvasc5icja" path="res://Assets/UI/challenge_selection/medium.png" id="18_jw0wd"]
+[ext_resource type="Texture2D" uid="uid://bm2418lrjknrn" path="res://Assets/UI/challenge_selection/medium_click.png" id="19_1gmvo"]
+[ext_resource type="Texture2D" uid="uid://lto2xqiw38uq" path="res://Assets/UI/challenge_selection/medium_hover.png" id="20_s6tpx"]
+[ext_resource type="Texture2D" uid="uid://cluijtu07rhch" path="res://Assets/UI/challenge_selection/hard.png" id="21_0sfas"]
+[ext_resource type="Texture2D" uid="uid://xtm4qtmg4b6x" path="res://Assets/UI/challenge_selection/hard_click.png" id="22_dwjka"]
+[ext_resource type="Texture2D" uid="uid://cqfjrd2ecasj0" path="res://Assets/UI/challenge_selection/hard_hover.png" id="23_w8i7k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ygnxb"]
 shader = ExtResource("2_oylf7")
@@ -417,14 +427,120 @@ bbcode_enabled = true
 text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
 fit_content = true
 
-[node name="TransitionLayer" parent="." instance=ExtResource("13_mn7lt")]
-unique_name_in_owner = true
-layer = 20
-
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("14_l6oou")
 volume_db = -5.0
+
+[node name="SelectDifficultyScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 3
+visible = false
+script = ExtResource("14_mljd0")
+
+[node name="TextureRect" type="TextureRect" parent="SelectDifficultyScreen"]
+material = SubResource("ShaderMaterial_ygnxb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = -72.0
+offset_right = 215.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0jndw")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectDifficultyScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="EasyButton" type="TextureButton" parent="SelectDifficultyScreen/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("15_c4h71")
+texture_pressed = ExtResource("16_g20c2")
+texture_hover = ExtResource("17_aqhoc")
+
+[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen/VBoxContainer/EasyButton"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -49.0
+offset_bottom = 49.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 30
+
+[node name="EasyStar" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/EasyButton/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("8_t1y7u")
+
+[node name="MediumButton" type="TextureButton" parent="SelectDifficultyScreen/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_jw0wd")
+texture_pressed = ExtResource("19_1gmvo")
+texture_hover = ExtResource("20_s6tpx")
+
+[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen/VBoxContainer/MediumButton"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -49.0
+offset_bottom = 49.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 30
+
+[node name="MediumStar" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/MediumButton/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("8_t1y7u")
+
+[node name="HardButton" type="TextureButton" parent="SelectDifficultyScreen/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("21_0sfas")
+texture_pressed = ExtResource("22_dwjka")
+texture_hover = ExtResource("23_w8i7k")
+
+[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen/VBoxContainer/HardButton"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -49.0
+offset_bottom = 49.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 30
+
+[node name="MediumStar" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/HardButton/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("8_t1y7u")
+
+[node name="TransitionLayer" parent="SelectDifficultyScreen" instance=ExtResource("13_mn7lt")]
+unique_name_in_owner = true
+layer = 20
 
 [connection signal="pressed" from="GridContainer/map_1" to="." method="_on_map_1_pressed"]
 [connection signal="pressed" from="GridContainer/map_2" to="." method="_on_map_2_pressed"]
@@ -432,4 +548,7 @@ volume_db = -5.0
 [connection signal="pressed" from="GridContainer/map_4" to="." method="_on_map_4_pressed"]
 [connection signal="pressed" from="GridContainer/map_5" to="." method="_on_map_5_pressed"]
 [connection signal="pressed" from="GridContainer/map_6" to="." method="_on_map_6_pressed"]
-[connection signal="transition_is_finished" from="TransitionLayer" to="." method="_on_transition_layer_transition_is_finished"]
+[connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/EasyButton" to="SelectDifficultyScreen" method="_on_easy_button_pressed"]
+[connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/MediumButton" to="SelectDifficultyScreen" method="_on_medium_button_pressed"]
+[connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/HardButton" to="SelectDifficultyScreen" method="_on_hard_button_pressed"]
+[connection signal="transition_is_finished" from="SelectDifficultyScreen/TransitionLayer" to="SelectDifficultyScreen" method="_on_transition_layer_transition_is_finished"]
