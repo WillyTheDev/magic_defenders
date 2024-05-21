@@ -54,6 +54,7 @@ debug_color = Color(0.755894, 0.189016, 1, 0.42)
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
+autostart = true
 
 [connection signal="body_entered" from="StaticBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="StaticBody2D/Area2D" to="." method="_on_area_2d_body_exited"]

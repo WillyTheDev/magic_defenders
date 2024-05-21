@@ -23,3 +23,8 @@ func _on_hard_button_pressed():
 
 func _on_transition_layer_transition_is_finished(anim_name):
 	get_tree().change_scene_to_file("res://GameElements/Game/game.tscn")
+
+
+func _on_infinity_button_pressed():
+	Global.selected_difficulty = 4
+	_launch_game()

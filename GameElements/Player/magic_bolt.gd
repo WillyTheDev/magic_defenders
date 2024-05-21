@@ -70,7 +70,6 @@ func _on_body_entered(body):
 			body.modulate = "6464ff"
 		# Effect of the magic bolt if you have is passing_through or auto_target_on
 		if is_passing_through == false && has_auto_target_on == false:
-			print("removing magic bolt !")
 			queue_free()
 		
 

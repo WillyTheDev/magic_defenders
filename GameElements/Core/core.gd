@@ -7,18 +7,19 @@ func abstract_final_action():
 	destroy_core()
 
 func abstract_defense_take_damage():
-	print("Timer Initialized !") 
-	var vignette = get_node("/root/Game/UI/CoreAttackedRect")
-	vignette.visible = true
-	var timer = Timer.new()
-	timer.wait_time = 0.4
-	timer.one_shot = true
-	timer.autostart = true	
-	add_child(timer)
-	timer.timeout.connect(func():
-		vignette.visible = false
-		timer.queue_free()
-		)
+	if cumulated_damage > 0:
+		print("Timer Initialized !") 
+		var vignette = get_node("/root/Game/UI/CoreAttackedRect")
+		vignette.visible = true
+		var timer = Timer.new()
+		timer.wait_time = 0.4
+		timer.one_shot = true
+		timer.autostart = true	
+		add_child(timer)
+		timer.timeout.connect(func():
+			vignette.visible = false
+			timer.queue_free()
+			)
 	
 
 		

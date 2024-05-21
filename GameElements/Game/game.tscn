@@ -1,10 +1,15 @@
-[gd_scene load_steps=30 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=35 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Texture2D" uid="uid://ispx11saoeqv" path="res://Assets/UI/map_selection_button/star_locked.png" id="3_kmwdb"]
 [ext_resource type="Texture2D" uid="uid://bm7v4e5n4j7xv" path="res://Assets/UI/map_selection_button/star_unlocked.png" id="4_1ono3"]
+[ext_resource type="Texture2D" uid="uid://cpdlu2y0t1ie7" path="res://Assets/Ennemies/Slime_v2.png" id="4_j2nm2"]
+[ext_resource type="Texture2D" uid="uid://b5vyv208jniqd" path="res://Assets/Ennemies/Slime_v2_medium.png" id="5_ugksp"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="5_vhx2p"]
+[ext_resource type="Texture2D" uid="uid://b5w58d8v50f7h" path="res://Assets/Ennemies/Slime_v2_hard.png" id="6_1rmdc"]
+[ext_resource type="Texture2D" uid="uid://c60d3lddk6bb0" path="res://Assets/Ennemies/bat.png" id="7_yhg0u"]
 [ext_resource type="Texture2D" uid="uid://bnoteo8epe2ck" path="res://Assets/UI/Button/defense_btn.png" id="8_n7k4h"]
+[ext_resource type="Texture2D" uid="uid://d0ig6hkyys31f" path="res://Assets/Ennemies/Slime_v2_gold.png" id="8_qctxw"]
 [ext_resource type="AudioStream" uid="uid://0lc8krsnc1y2" path="res://Assets/audio/The Verdant Grove.ogg" id="9_1qta1"]
 [ext_resource type="Texture2D" uid="uid://ckhmpy7a0sacy" path="res://Assets/UI/Button/turret_btn.png" id="10_a41jm"]
 [ext_resource type="Script" path="res://GameElements/Game/UI.gd" id="10_c0pl3"]
@@ -15,6 +20,105 @@
 [ext_resource type="PackedScene" uid="uid://b2p14mfp2sdol" path="res://GameElements/misc/confetti.tscn" id="16_8e8up"]
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="16_yatl6"]
 [ext_resource type="PackedScene" uid="uid://dfk2ty751jcp5" path="res://GameElements/Screens/options_menu.tscn" id="19_c68rg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cce1o"]
+bg_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oeowq"]
+bg_color = Color(1, 0.324317, 0.404642, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qo0i"]
+shader = ExtResource("16_yatl6")
+shader_parameter/alpha = 0.5
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_buab2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov5d5"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 0.882353)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6ubk"]
+bg_color = Color(0.415425, 0.609676, 0.864728, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Animation" id="Animation_5xlgv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WaveLAbel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%WaveLAbel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hvb5b"]
+resource_name = "showWaveLabel"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WaveLAbel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(0.210224, 1.68179, 1.68179),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%WaveLAbel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4, 2.3, 3),
+"transitions": PackedFloat32Array(0.241484, 0.241484, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_142pq"]
+_data = {
+"RESET": SubResource("Animation_5xlgv"),
+"showWaveLabel": SubResource("Animation_hvb5b")
+}
 
 [sub_resource type="Animation" id="Animation_wsnqi"]
 length = 0.001
@@ -195,105 +299,6 @@ _data = {
 "show_third_star": SubResource("Animation_2frgx")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cce1o"]
-bg_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
-border_blend = true
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oeowq"]
-bg_color = Color(1, 0.324317, 0.404642, 1)
-border_blend = true
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qo0i"]
-shader = ExtResource("16_yatl6")
-shader_parameter/alpha = 0.5
-shader_parameter/inner_radius = 0.0
-shader_parameter/outer_radius = 1.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_buab2"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov5d5"]
-bg_color = Color(0.145098, 0.145098, 0.145098, 0.882353)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6ubk"]
-bg_color = Color(0.415425, 0.609676, 0.864728, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="Animation" id="Animation_5xlgv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WaveLAbel:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%WaveLAbel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_hvb5b"]
-resource_name = "showWaveLabel"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WaveLAbel:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 3),
-"transitions": PackedFloat32Array(0.210224, 1.68179, 1.68179),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%WaveLAbel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.4, 2.3, 3),
-"transitions": PackedFloat32Array(0.241484, 0.241484, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_142pq"]
-_data = {
-"RESET": SubResource("Animation_5xlgv"),
-"showWaveLabel": SubResource("Animation_hvb5b")
-}
-
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_m44sk")
@@ -310,39 +315,10 @@ wait_time = 0.186
 unique_name_in_owner = true
 script = ExtResource("10_c0pl3")
 
-[node name="StarsContainer" type="HBoxContainer" parent="UI"]
-unique_name_in_owner = true
-offset_left = 803.0
-offset_top = 86.0
-offset_right = 1117.0
-offset_bottom = 184.0
-scale = Vector2(1e-05, 1e-05)
-pivot_offset = Vector2(157, 50)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Star_1" type="TextureRect" parent="UI/StarsContainer"]
-layout_mode = 2
-texture = ExtResource("3_kmwdb")
-
-[node name="Star_2" type="TextureRect" parent="UI/StarsContainer"]
-layout_mode = 2
-texture = ExtResource("3_kmwdb")
-
-[node name="Star_3" type="TextureRect" parent="UI/StarsContainer"]
-layout_mode = 2
-texture = ExtResource("3_kmwdb")
-
-[node name="StarAnimation" type="AnimationPlayer" parent="UI/StarsContainer"]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_udnpp")
-}
-
 [node name="Progress Bar" type="MarginContainer" parent="UI"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 50.0
+offset_bottom = 66.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 128
 theme_override_constants/margin_top = 16
@@ -401,6 +377,57 @@ text = "Press \"space\" to start the next wave !"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MarginContainer" type="MarginContainer" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Enemy_1" type="TextureRect" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("4_j2nm2")
+expand_mode = 3
+
+[node name="Enemy_2" type="TextureRect" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("5_ugksp")
+expand_mode = 3
+
+[node name="Enemy_3" type="TextureRect" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("6_1rmdc")
+expand_mode = 3
+
+[node name="Enemy_4" type="TextureRect" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("7_yhg0u")
+expand_mode = 3
+
+[node name="Enemy_5" type="TextureRect" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("8_qctxw")
+expand_mode = 3
+
 [node name="CoreAttackedRect" type="ColorRect" parent="UI"]
 unique_name_in_owner = true
 visible = false
@@ -454,7 +481,7 @@ grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_buab2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ov5d5")
 max_value = 10.0
-step = 1.0
+step = 2.0
 fill_mode = 2
 show_percentage = false
 
@@ -475,7 +502,7 @@ grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_buab2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ov5d5")
 max_value = 20.0
-step = 1.0
+step = 2.0
 fill_mode = 2
 show_percentage = false
 
@@ -495,7 +522,7 @@ grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_buab2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ov5d5")
 max_value = 60.0
-step = 1.0
+step = 5.0
 fill_mode = 2
 show_percentage = false
 
@@ -563,8 +590,8 @@ libraries = {
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-process_mode = 2
-layer = 20
+process_mode = 3
+layer = 6
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
@@ -580,7 +607,8 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="GameOverScreen/VBoxContainer"]
+[node name="GameOverTitle" type="Label" parent="GameOverScreen/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("5_vhx2p")
@@ -601,13 +629,59 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/margin_top = 40
 
-[node name="RestartButton" type="Button" parent="GameOverScreen/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="GameOverScreen/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
 theme_override_constants/h_separation = 0
 theme_override_font_sizes/font_size = 32
 text = "Play again"
+
+[node name="QuitToMenu" type="Button" parent="GameOverScreen/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 0
+theme_override_font_sizes/font_size = 32
+text = "Quit To menu"
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -157.0
+offset_right = 157.0
+offset_bottom = 98.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 200
+
+[node name="StarsContainer" type="HBoxContainer" parent="GameOverScreen/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Star_1" type="TextureRect" parent="GameOverScreen/MarginContainer/StarsContainer"]
+layout_mode = 2
+texture = ExtResource("3_kmwdb")
+
+[node name="Star_2" type="TextureRect" parent="GameOverScreen/MarginContainer/StarsContainer"]
+layout_mode = 2
+texture = ExtResource("3_kmwdb")
+
+[node name="Star_3" type="TextureRect" parent="GameOverScreen/MarginContainer/StarsContainer"]
+layout_mode = 2
+texture = ExtResource("3_kmwdb")
+
+[node name="StarAnimation" type="AnimationPlayer" parent="GameOverScreen/MarginContainer/StarsContainer"]
+unique_name_in_owner = true
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_udnpp")
+}
 
 [node name="OptionsMenu" parent="." instance=ExtResource("19_c68rg")]
 process_mode = 3
@@ -644,7 +718,8 @@ color = Color(0.666667, 0.866667, 0.596078, 1)
 
 [connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
 [connection signal="timeout" from="SpawnFlyingEnemyTimer" to="." method="_on_spawn_flying_enemy_timer_timeout"]
-[connection signal="pressed" from="GameOverScreen/VBoxContainer/MarginContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/MarginContainer/VBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]
 [connection signal="audio_value_changed" from="OptionsMenu" to="." method="_on_options_menu_audio_value_changed"]
 [connection signal="transition_is_finished" from="TransitionLayer" to="." method="_on_transition_layer_transition_is_finished"]
 [connection signal="finished" from="BackgroundAudioPlayer" to="." method="_on_audio_stream_player_finished"]

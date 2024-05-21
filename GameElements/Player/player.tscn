@@ -54,7 +54,7 @@ position = Vector2(16, 56)
 
 [node name="AutoShootTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.4
+wait_time = 0.3
 
 [node name="WalkAudio" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true

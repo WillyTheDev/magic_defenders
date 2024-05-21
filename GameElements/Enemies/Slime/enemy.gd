@@ -2,11 +2,12 @@ class_name Enemy
 extends CharacterBody2D
 
 static var base_health = 5.0
-var base_speed = 100
-@export var speed = 100
+static var base_speed = 5
+@export var speed_increment = 100
 @export var MANA_AMOUNT = 2
 @export var health_increment = 0
 var health = 0
+var speed = 0
 @export var enemy_damage = 1
 @export var follow_path = true
 
@@ -21,17 +22,18 @@ func play_animation_hit():
 func play_animation_idle():
 	%AnimationPlayer.play("idle")
 
+func reset_speed():
+	speed = base_speed + speed_increment
 
 func _ready():
 	total_health = base_health + health_increment
-	base_speed = speed
+	speed = base_speed + speed_increment
 	print("Enemy health increment : %s" % health_increment)
 	print("Enemy total health : %s" % total_health)
 	health = total_health
 	%HealthBar.max_value = total_health
 	%HealthBar.value = total_health
 	play_animation_idle()
-	%HitAudio.volume_db = Global.sound_volume
 	get_node("/root/Game/PlayerManager").enemy_modified.connect(_on_enemy_modification)
 	
 func _on_enemy_modification(args: Callable):

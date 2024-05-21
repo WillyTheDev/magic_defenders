@@ -646,12 +646,20 @@ max_columns = 3
 same_column_width = true
 item_0/text = ""
 item_0/icon = ExtResource("12_arevw")
+item_0/selectable = false
+item_0/disabled = true
 item_1/text = ""
 item_1/icon = ExtResource("12_tvfx2")
+item_1/selectable = false
+item_1/disabled = true
 item_2/text = ""
 item_2/icon = ExtResource("13_q65v3")
+item_2/selectable = false
+item_2/disabled = true
 item_3/text = ""
 item_3/icon = ExtResource("16_57g04")
+item_3/selectable = false
+item_3/disabled = true
 
 [node name="PlayerPreview" parent="Background" instance=ExtResource("13_71dtm")]
 unique_name_in_owner = true

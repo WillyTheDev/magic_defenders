@@ -14,8 +14,8 @@ static var player_level = 0
 static var accumulated_mana = 0
 static var accumulated_gold = 0
 #Player stats
-static var player_base_damage = 1.0
-static var player_stat_damage = clamp(0, 1.0, 1000.0)
+static var player_base_damage = 0.5
+static var player_stat_damage = clamp(0, 0.5, 50)
 static var player_divider_damage = 3.0
 
 func getPlayerDamage():
@@ -57,7 +57,8 @@ func getDefenseFireRate():
 
 static var player_avail_pts = 0
 #Player equipped hat ( number represent index of hat )
-static var player_equipped_hat = 0
+static var player_equipped_hat = 3
+static var unlocked_hats: Array[bool] = [false, false, false, false]
 static var accumulated_stars = 0
 
 #======================
@@ -65,7 +66,7 @@ static var accumulated_stars = 0
 #======================
 
 static var map_progression = {
-	"map_1_1" : 2,
+	"map_1_1" : 0,
 	"map_1_2" : 0,
 	"map_1_3" : 0,
 	"map_1_4" : 0,
@@ -135,7 +136,7 @@ func new_save():
 		"defense_stat_range" : 0,
 		"defense_stat_fire_rate" : 0,
 		"player_avail_pts": 0,
-		"player_equipped_hat" : 0,
+		"player_equipped_hat" : 99,
 		"accumulated_gold" : 0,
 		"accumulated_stars" : 0,
 		"map_progression" : {

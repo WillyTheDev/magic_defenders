@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@export var starting_mana_amount = 60
+@export var starting_mana_amount = 10
 @export var points_per_level = 1
 var mana_amount = 0
 @export var screen_size = Vector2i(0,0)
@@ -12,6 +12,8 @@ var player_speed = 300
 var big_shoot_damage = 50
 var big_shoot_price = 60
 var is_building = false
+var has_shoot = false
+
 
 signal player_update_mana_amount
 signal show_cards
@@ -33,7 +35,6 @@ func _update_sound_volume():
 
 func update_mana_amount(mana: int, acquire: bool):
 	mana_amount += mana
-	print("Update mana Label")
 	player_update_mana_amount.emit(mana_amount)
 	if acquire:
 		%ManaAudio.play()
@@ -42,7 +43,7 @@ func update_mana_amount(mana: int, acquire: bool):
 			%PlayerAnimation.play_animation_levelup()
 			Global.accumulated_mana -= (offset_accumulated_mana_value + ( Global.player_level * 10 ))
 			Global.player_level += 1
-			Global.player_avail_pts = points_per_level
+			Global.player_avail_pts += points_per_level
 			var confetti = get_node("/root/Game/Confetti") 
 			var player_manager : PlayerManager = get_node("/root/Game/PlayerManager")
 
@@ -102,7 +103,9 @@ func _shoot():
 	new_fire_bolt.global_position = %ShootingPoint.global_position
 	new_fire_bolt.global_rotation = %ShootingPoint.global_rotation
 	new_fire_bolt.damage = Global.getPlayerDamage()
-	new_fire_bolt.direction = (%ShootingPoint.global_position - get_global_mouse_position()).normalized() * -1
+	var direction = (%ShootingPoint.global_position - get_global_mouse_position()).normalized() * -1
+	velocity = direction * -1
+	new_fire_bolt.direction = direction
 	get_parent().add_child(new_fire_bolt)
 
 func _place_defense():

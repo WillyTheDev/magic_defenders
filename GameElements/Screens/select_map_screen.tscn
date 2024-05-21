@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dmb5cs8occw40"]
+[gd_scene load_steps=30 format=3 uid="uid://dmb5cs8occw40"]
 
 [ext_resource type="Script" path="res://GameElements/Screens/select_map_screen.gd" id="1_7ui5d"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_oylf7"]
@@ -24,6 +24,10 @@
 [ext_resource type="Texture2D" uid="uid://cluijtu07rhch" path="res://Assets/UI/challenge_selection/hard.png" id="21_0sfas"]
 [ext_resource type="Texture2D" uid="uid://xtm4qtmg4b6x" path="res://Assets/UI/challenge_selection/hard_click.png" id="22_dwjka"]
 [ext_resource type="Texture2D" uid="uid://cqfjrd2ecasj0" path="res://Assets/UI/challenge_selection/hard_hover.png" id="23_w8i7k"]
+[ext_resource type="Texture2D" uid="uid://bf8en5nqacd3n" path="res://Assets/UI/challenge_selection/infinity.png" id="24_ydng7"]
+[ext_resource type="Texture2D" uid="uid://qdjoufhbmbwu" path="res://Assets/UI/challenge_selection/infinity_click.png" id="25_6f3jd"]
+[ext_resource type="Texture2D" uid="uid://ccpguq742vhrn" path="res://Assets/UI/challenge_selection/infinity_hover.png" id="26_ftmqe"]
+[ext_resource type="Texture2D" uid="uid://dtp6f6suw0ucs" path="res://Assets/hats/hat_3.png" id="27_ni53x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ygnxb"]
 shader = ExtResource("2_oylf7")
@@ -36,6 +40,7 @@ shader_parameter/flowMap = ExtResource("3_x2faw")
 layer = 2
 script = ExtResource("1_7ui5d")
 nb_map = 5
+stars_to_unlock_map = [0, 1, 2, 4, 6, 10]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_ygnxb")
@@ -538,6 +543,30 @@ theme_override_constants/margin_right = 30
 layout_mode = 2
 texture = ExtResource("8_t1y7u")
 
+[node name="InfinityButton" type="TextureButton" parent="SelectDifficultyScreen/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("24_ydng7")
+texture_pressed = ExtResource("25_6f3jd")
+texture_hover = ExtResource("26_ftmqe")
+
+[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen/VBoxContainer/InfinityButton"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -49.0
+offset_bottom = 49.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 30
+
+[node name="Reward" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/InfinityButton/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("27_ni53x")
+
 [node name="TransitionLayer" parent="SelectDifficultyScreen" instance=ExtResource("13_mn7lt")]
 unique_name_in_owner = true
 layer = 20
@@ -551,4 +580,5 @@ layer = 20
 [connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/EasyButton" to="SelectDifficultyScreen" method="_on_easy_button_pressed"]
 [connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/MediumButton" to="SelectDifficultyScreen" method="_on_medium_button_pressed"]
 [connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/HardButton" to="SelectDifficultyScreen" method="_on_hard_button_pressed"]
+[connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/InfinityButton" to="SelectDifficultyScreen" method="_on_infinity_button_pressed"]
 [connection signal="transition_is_finished" from="SelectDifficultyScreen/TransitionLayer" to="SelectDifficultyScreen" method="_on_transition_layer_transition_is_finished"]

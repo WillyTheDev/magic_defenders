@@ -54,6 +54,7 @@ shape = SubResource("RectangleShape2D_eyh6e")
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
+autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true

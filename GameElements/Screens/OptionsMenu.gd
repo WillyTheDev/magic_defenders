@@ -39,7 +39,6 @@ func closeOptionsMenu():
 func _on_quit_to_menu_pressed():
 	%ClickPlayer.play()
 	Global.save_game()
-	Enemy.base_health = 5
 	get_tree().call_group("has_static_properties", "_reinitialize_static_properties")
 	get_tree().paused = false
 	get_node("/root/Game/TransitionLayer").close_transition()
@@ -62,9 +61,13 @@ func _on_sound_slider_value_changed(value):
 	sound_value_changed.emit()
 
 func _on_erase_save_button_pressed():
+	%ClickPlayer.play()
 	Global.new_save()
 	get_tree().paused = false
-	get_node("/root/Game/TransitionLayer").close_transition()
+	if is_on_welcome_screen:
+		closeOptionsMenu()
+	else:
+		get_node("/root/Game/TransitionLayer").close_transition()
 
 
 func _on_resume_button_pressed():

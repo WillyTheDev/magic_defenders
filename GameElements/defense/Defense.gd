@@ -81,6 +81,7 @@ func _input(event):
 func take_damage():
 	abstract_defense_take_damage()
 	current_health -= cumulated_damage
+	print("Defense take Damage : %s" % current_health)
 	if current_health <= 0:
 		abstract_final_action()
 		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
@@ -96,16 +97,12 @@ func _on_area_2d_body_entered(body):
 	if body is Enemy:
 		body.speed = 0
 		cumulated_damage += body.enemy_damage
-		if %Timer.is_stopped():
-			%Timer.start()
 	
 func _on_area_2d_body_exited(body):
 	if body is Enemy:
 		cumulated_damage -= body.enemy_damage
-		body.speed = body.base_speed
+		body.reset_speed()
 		abstract_on_body_exited_defense_zone()
-		if current_health > 0:
-			%Timer.stop()
 
 func _on_timer_timeout():
 	take_damage()

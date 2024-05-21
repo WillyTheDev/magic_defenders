@@ -11,6 +11,10 @@ func _ready():
 		var progress = get_node("Background/MarginContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [index,index])
 		label.text = "%s" % Global.getStatFromIndex(index)
 		progress.value = Global.getStatFromIndex(index)
+	for index in range(Global.unlocked_hats.size()):
+		if Global.unlocked_hats[index]:
+			%HatList.items[index].selectable = true
+			%HatList.items[index].disabled = false
 	
 func show_player_profile():
 	%LevelLabel.text = "Level : %s" % Global.player_level
@@ -125,14 +129,15 @@ func _on_hat_button_pressed():
 	%HatList.visible = true
 
 func apply_hat():
-	var playerAnimation = get_node("/root/Game/Player/PlayerAnimation")
-	playerAnimation.setHat(Global.player_equipped_hat)
-	%PlayerPreview.setHat(Global.player_equipped_hat)
-	_reset_hat_effect()
-	_apply_hat_effect()
-	%HatDescription.text = hats[Global.player_equipped_hat].information
-	%SelectedHatTexture.texture = load("res://Assets/hats/hat_%s.png" % Global.player_equipped_hat)
-	%HatList.visible = false
+	if Global.player_equipped_hat != 99:
+		var playerAnimation = get_node("/root/Game/Player/PlayerAnimation")
+		playerAnimation.setHat(Global.player_equipped_hat)
+		%PlayerPreview.setHat(Global.player_equipped_hat)
+		_reset_hat_effect()
+		_apply_hat_effect()
+		%HatDescription.text = hats[Global.player_equipped_hat].information
+		%SelectedHatTexture.texture = load("res://Assets/hats/hat_%s.png" % Global.player_equipped_hat)
+		%HatList.visible = false
 
 func _on_hat_list_item_clicked(index, at_position, mouse_button_index):
 	Global.player_equipped_hat = index

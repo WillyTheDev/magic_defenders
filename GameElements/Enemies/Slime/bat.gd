@@ -4,6 +4,8 @@ extends Enemy
 var target = null
 
 func _ready():
+	speed = base_speed + speed_increment
+	health = health_increment
 	play_animation_idle()
 	target = get_parent().get_node("Map/Core")
 
