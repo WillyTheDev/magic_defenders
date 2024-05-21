@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cste8v1g53q7o"]
+[gd_scene load_steps=23 format=3 uid="uid://cste8v1g53q7o"]
 
 [ext_resource type="Script" path="res://WelcomeScreen.gd" id="1_oh8bs"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_xqk6b"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://GameElements/Screens/BackgroundAudioPlayer.gd" id="17_eywxx"]
 [ext_resource type="PackedScene" uid="uid://dfk2ty751jcp5" path="res://GameElements/Screens/options_menu.tscn" id="18_uk2s8"]
 [ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="19_26kxm"]
+[ext_resource type="PackedScene" uid="uid://dmb5cs8occw40" path="res://GameElements/Screens/select_map_screen.tscn" id="21_nyo1u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_obnlc"]
 shader = ExtResource("2_xqk6b")
@@ -121,6 +122,10 @@ is_on_welcome_screen = true
 unique_name_in_owner = true
 stream = ExtResource("19_26kxm")
 volume_db = -5.0
+
+[node name="SelectMapScreen" parent="." instance=ExtResource("21_nyo1u")]
+unique_name_in_owner = true
+visible = false
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

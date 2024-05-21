@@ -178,9 +178,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.196078, 0.196078, 0.196078, 0.784314)
+color = Color(0.196078, 0.196078, 0.196078, 0)
 
 [node name="Background" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(961, 543)
 texture = ExtResource("2_3il38")
 

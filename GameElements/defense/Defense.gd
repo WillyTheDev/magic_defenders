@@ -81,7 +81,6 @@ func _input(event):
 func take_damage():
 	abstract_defense_take_damage()
 	current_health -= cumulated_damage
-	print("Defense take Damage : %s" % current_health)
 	if current_health <= 0:
 		abstract_final_action()
 		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")

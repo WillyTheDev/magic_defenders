@@ -129,6 +129,7 @@ func _on_hat_button_pressed():
 	%HatList.visible = true
 
 func apply_hat():
+	print("apply hat : %s " % Global.player_equipped_hat)
 	if Global.player_equipped_hat != 99:
 		var playerAnimation = get_node("/root/Game/Player/PlayerAnimation")
 		playerAnimation.setHat(Global.player_equipped_hat)

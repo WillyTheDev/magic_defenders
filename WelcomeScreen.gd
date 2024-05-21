@@ -13,9 +13,7 @@ func _on_new_game_button_pressed():
 	%ClickPlayer.play()
 	Global.new_save()
 	Global.load_game()
-	var map_selection_screen = preload("res://GameElements/Screens/select_map_screen.tscn").instantiate()
-	add_child(map_selection_screen)
-	#get_tree().change_scene_to_file("res://GameElements/Screens/select_map_screen.tscn")
+	%SelectMapScreen.show_select_map()
 
 
 func _on_quit_button_pressed():
@@ -26,9 +24,7 @@ func _on_quit_button_pressed():
 
 func _on_continue_button_pressed():
 	%ClickPlayer.play()
-	var map_selection_screen = preload("res://GameElements/Screens/select_map_screen.tscn").instantiate()
-	add_child(map_selection_screen)
-	#get_tree().change_scene_to_file("res://GameElements/Screens/select_map_screen.tscn")
+	%SelectMapScreen.show_select_map()
 
 
 func _on_options_menu_audio_value_changed():

@@ -83,11 +83,11 @@ y_sort_enabled = true
 script = ExtResource("1_0yut5")
 paths = [NodePath("Arrière-plan/Paths/Path2D"), NodePath("Arrière-plan/Paths/Path2D2"), NodePath("Arrière-plan/Paths/Path2D3"), NodePath("Arrière-plan/Paths/Path2D4"), NodePath("Arrière-plan/Paths/Path2D5")]
 flyingSpawnPoint = NodePath("Arrière-plan/Paths/Path_flying/FlyingSpawnPoint")
-difficulty = 20
-enemy_health_increment = 2
+enemy_health_increment = 3
+unparsed_easy_sequences = Array[String](["5x1", "8x1", "15x1", "15x1,2x4", "15x1,2x4", "15x1,2x4,5x1", "15x1,2x4,1x2", "15x1,2x4,1x2,5x1", "20x4", "3x2,1x5"])
+unparsed_medium_sequences = Array[String](["10x1", "10x1,3x2", "10x1,3x2,1x4", "10x1,3x2,1x4", "10x1,3x2,1x4", "10x1,3x2,2x4", "10x1,3x2,2x4", "10x1,3x3,2x4", "30x4", "1x3,1x5"])
+unparsed_hard_sequences = Array[String](["10x1", "10x1,6x2", "10x1,6x2", "10x1,6x2,1x4", "10x1,6x2,1x4", "10x1,6x2,4x4,1x3", "10x1,6x2,5x4,2x3", "10x1,6x2,6x4,2x3", "40x4", "5x3,2x5"])
 map_index = 3
-medium_enemy_start_wave = 1
-hard_enemy_start_wave = 3
 
 [node name="River" type="ColorRect" parent="."]
 z_index = -2

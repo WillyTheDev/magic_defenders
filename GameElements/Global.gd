@@ -5,6 +5,7 @@ extends Node
 static var audio_volume = 0
 static var sound_volume = 0
 
+static var selected_chapter = 1
 static var selected_map = 1
 static var selected_difficulty = 1
 static var has_save = false
@@ -57,7 +58,7 @@ func getDefenseFireRate():
 
 static var player_avail_pts = 0
 #Player equipped hat ( number represent index of hat )
-static var player_equipped_hat = 3
+static var player_equipped_hat = 99
 static var unlocked_hats: Array[bool] = [false, false, false, false]
 static var accumulated_stars = 0
 

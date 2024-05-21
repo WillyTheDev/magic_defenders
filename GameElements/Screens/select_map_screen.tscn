@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dmb5cs8occw40"]
+[gd_scene load_steps=33 format=3 uid="uid://dmb5cs8occw40"]
 
 [ext_resource type="Script" path="res://GameElements/Screens/select_map_screen.gd" id="1_7ui5d"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_oylf7"]
@@ -28,6 +28,9 @@
 [ext_resource type="Texture2D" uid="uid://qdjoufhbmbwu" path="res://Assets/UI/challenge_selection/infinity_click.png" id="25_6f3jd"]
 [ext_resource type="Texture2D" uid="uid://ccpguq742vhrn" path="res://Assets/UI/challenge_selection/infinity_hover.png" id="26_ftmqe"]
 [ext_resource type="Texture2D" uid="uid://dtp6f6suw0ucs" path="res://Assets/hats/hat_3.png" id="27_ni53x"]
+[ext_resource type="Texture2D" uid="uid://cahuuxwk45jot" path="res://Assets/UI/challenge_selection/back.png" id="29_0jbdu"]
+[ext_resource type="Texture2D" uid="uid://lrqcr411i8sd" path="res://Assets/UI/challenge_selection/back_click.png" id="30_lxh2v"]
+[ext_resource type="Texture2D" uid="uid://bkqv2ykx8m0a0" path="res://Assets/UI/challenge_selection/back_hover.png" id="31_c2vk1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ygnxb"]
 shader = ExtResource("2_oylf7")
@@ -54,7 +57,6 @@ offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_0jndw")
-expand_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="."]
 anchors_preset = 8
@@ -62,12 +64,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -10.0
-offset_right = 16.0
-offset_bottom = 10.0
+offset_left = -526.5
+offset_top = -344.0
+offset_right = 526.5
+offset_bottom = 344.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 theme_override_constants/h_separation = 36
 theme_override_constants/v_separation = 36
 columns = 3
@@ -80,6 +84,7 @@ size_flags_vertical = 4
 texture_normal = ExtResource("5_vdb36")
 texture_pressed = ExtResource("6_o6f3v")
 texture_hover = ExtResource("7_vnl67")
+stretch_mode = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/map_1"]
 layout_mode = 1
@@ -88,9 +93,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 41.0
-offset_top = -124.0
+offset_top = -90.0
 offset_right = 59.0
-offset_bottom = 9.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.75, 0.75)
@@ -121,13 +126,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_top = 120
+theme_override_constants/margin_top = 85
 
 [node name="Label" type="RichTextLabel" parent="GridContainer/map_1/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("12_c1v8v")
-theme_override_font_sizes/normal_font_size = 100
+theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
 text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
 fit_content = true
@@ -140,6 +145,26 @@ size_flags_vertical = 4
 texture_normal = ExtResource("4_6joch")
 texture_pressed = ExtResource("5_iugak")
 texture_hover = ExtResource("6_a5rkf")
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 85
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_2/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/map_2"]
 layout_mode = 1
@@ -148,9 +173,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 41.0
-offset_top = -122.0
+offset_top = -90.0
 offset_right = 59.0
-offset_bottom = 8.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.75, 0.75)
@@ -173,25 +198,6 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("8_t1y7u")
 
-[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_top = 120
-
-[node name="Label" type="RichTextLabel" parent="GridContainer/map_2/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("12_c1v8v")
-theme_override_font_sizes/normal_font_size = 100
-bbcode_enabled = true
-text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
-fit_content = true
-
 [node name="map_3" type="TextureButton" parent="GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -200,6 +206,26 @@ size_flags_vertical = 4
 texture_normal = ExtResource("4_6joch")
 texture_pressed = ExtResource("5_iugak")
 texture_hover = ExtResource("6_a5rkf")
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 85
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_3/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/map_3"]
 layout_mode = 1
@@ -208,9 +234,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 41.0
-offset_top = -122.0
+offset_top = -90.0
 offset_right = 59.0
-offset_bottom = 8.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.75, 0.75)
@@ -233,25 +259,6 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("8_t1y7u")
 
-[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_top = 120
-
-[node name="Label" type="RichTextLabel" parent="GridContainer/map_3/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("12_c1v8v")
-theme_override_font_sizes/normal_font_size = 100
-bbcode_enabled = true
-text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
-fit_content = true
-
 [node name="map_4" type="TextureButton" parent="GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -260,6 +267,26 @@ size_flags_vertical = 4
 texture_normal = ExtResource("4_6joch")
 texture_pressed = ExtResource("5_iugak")
 texture_hover = ExtResource("6_a5rkf")
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 85
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_4/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/map_4"]
 layout_mode = 1
@@ -268,9 +295,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 41.0
-offset_top = -124.0
+offset_top = -90.0
 offset_right = 59.0
-offset_bottom = 9.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.75, 0.75)
@@ -293,25 +320,6 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("8_t1y7u")
 
-[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_top = 120
-
-[node name="Label" type="RichTextLabel" parent="GridContainer/map_4/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("12_c1v8v")
-theme_override_font_sizes/normal_font_size = 100
-bbcode_enabled = true
-text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
-fit_content = true
-
 [node name="map_5" type="TextureButton" parent="GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -320,6 +328,26 @@ size_flags_vertical = 4
 texture_normal = ExtResource("4_6joch")
 texture_pressed = ExtResource("5_iugak")
 texture_hover = ExtResource("6_a5rkf")
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 85
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_5/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/map_5"]
 layout_mode = 1
@@ -328,9 +356,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 41.0
-offset_top = -122.0
+offset_top = -90.0
 offset_right = 59.0
-offset_bottom = 8.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.75, 0.75)
@@ -353,25 +381,6 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("8_t1y7u")
 
-[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_5"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_top = 120
-
-[node name="Label" type="RichTextLabel" parent="GridContainer/map_5/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("12_c1v8v")
-theme_override_font_sizes/normal_font_size = 100
-bbcode_enabled = true
-text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
-fit_content = true
-
 [node name="map_6" type="TextureButton" parent="GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -380,6 +389,26 @@ size_flags_vertical = 4
 texture_normal = ExtResource("4_6joch")
 texture_pressed = ExtResource("5_iugak")
 texture_hover = ExtResource("6_a5rkf")
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 85
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_6/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/map_6"]
 layout_mode = 1
@@ -388,9 +417,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 41.0
-offset_top = -122.0
+offset_top = -90.0
 offset_right = 59.0
-offset_bottom = 8.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.75, 0.75)
@@ -412,25 +441,6 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("8_t1y7u")
-
-[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_6"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_top = 120
-
-[node name="Label" type="RichTextLabel" parent="GridContainer/map_6/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("12_c1v8v")
-theme_override_font_sizes/normal_font_size = 100
-bbcode_enabled = true
-text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
-fit_content = true
 
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -492,6 +502,7 @@ grow_vertical = 2
 theme_override_constants/margin_right = 30
 
 [node name="EasyStar" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/EasyButton/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("8_t1y7u")
 
@@ -516,6 +527,7 @@ grow_vertical = 2
 theme_override_constants/margin_right = 30
 
 [node name="MediumStar" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/MediumButton/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("8_t1y7u")
 
@@ -539,7 +551,8 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/margin_right = 30
 
-[node name="MediumStar" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/HardButton/MarginContainer"]
+[node name="HardStar" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/HardButton/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("8_t1y7u")
 
@@ -564,12 +577,45 @@ grow_vertical = 2
 theme_override_constants/margin_right = 30
 
 [node name="Reward" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/InfinityButton/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("27_ni53x")
 
 [node name="TransitionLayer" parent="SelectDifficultyScreen" instance=ExtResource("13_mn7lt")]
 unique_name_in_owner = true
 layer = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_bottom = 32
+
+[node name="BackButton" type="TextureButton" parent="SelectDifficultyScreen/MarginContainer"]
+layout_mode = 2
+texture_normal = ExtResource("29_0jbdu")
+texture_pressed = ExtResource("30_lxh2v")
+texture_hover = ExtResource("31_c2vk1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_bottom = 32
+
+[node name="BackButton" type="TextureButton" parent="MarginContainer"]
+layout_mode = 2
+texture_normal = ExtResource("29_0jbdu")
+texture_pressed = ExtResource("30_lxh2v")
+texture_hover = ExtResource("31_c2vk1")
 
 [connection signal="pressed" from="GridContainer/map_1" to="." method="_on_map_1_pressed"]
 [connection signal="pressed" from="GridContainer/map_2" to="." method="_on_map_2_pressed"]
@@ -582,3 +628,5 @@ layer = 20
 [connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/HardButton" to="SelectDifficultyScreen" method="_on_hard_button_pressed"]
 [connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/InfinityButton" to="SelectDifficultyScreen" method="_on_infinity_button_pressed"]
 [connection signal="transition_is_finished" from="SelectDifficultyScreen/TransitionLayer" to="SelectDifficultyScreen" method="_on_transition_layer_transition_is_finished"]
+[connection signal="pressed" from="SelectDifficultyScreen/MarginContainer/BackButton" to="SelectDifficultyScreen" method="_on_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]

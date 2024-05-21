@@ -8,13 +8,13 @@ extends CanvasLayer
 
 const MAX_NB_MAP_PER_CHAPTER = 6
 var actual_chapter = 1
+var is_showing_difficulty = false
 
 func _input(event):
-	if event.is_action_pressed("show_options"):
+	if event.is_action_pressed("show_options") && %SelectDifficultyScreen.is_open == false:
 		visible = false
 		
-		
-func _ready():
+func show_select_map():
 	for map in range(1, nb_map + 1):
 		var btn = get_node("GridContainer/map_%s" % map)
 		var label = get_node("GridContainer/map_%s/MarginContainer/Label" % map)
@@ -53,7 +53,7 @@ func _ready():
 		btn.texture_normal = load("res://Assets/UI/map_selection_button/map_0.png")
 		btn.texture_hover = load("res://Assets/UI/map_selection_button/map_0_hover.png")
 		btn.texture_pressed = load("res://Assets/UI/map_selection_button/map_0_clicked.png")
-		
+	visible = true	
 
 func _show_difficulty_screen():
 	%SelectDifficultyScreen.openDifficultySelectionScreen()
@@ -94,3 +94,7 @@ func _on_map_6_pressed():
 		Global.selected_map = 6
 		_show_difficulty_screen()
 
+
+
+func _on_back_button_pressed():
+	visible = false
