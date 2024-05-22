@@ -309,11 +309,11 @@ script = ExtResource("1_m44sk")
 
 [node name="SpawnEnemyTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 1.5
+wait_time = 2.0
 
 [node name="SpawnFlyingEnemyTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.186
+wait_time = 2.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

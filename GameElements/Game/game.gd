@@ -5,7 +5,7 @@ var total_enemies = 0
 var increments_nb_enemies_per_wave = 8
 var enemies_spawn = 0
 var enemies_left = 0
-var spawn_rates = 1.5
+var spawn_rates = 2.5
 var spawn_flying_enemy_rates = 20
 
 static var is_idle = true
@@ -33,15 +33,14 @@ var sequence_enemies = {
 # Use the _ready methode to reinitialize static properties from various classes
 func _ready():
 	is_idle = true
-	var map = load("res://GameElements/Maps/map_%s.tscn" % Global.selected_map).instantiate()
-	add_child(map)
-	map_of_game = map
+	map_of_game = load("res://GameElements/Maps/map_%s.tscn" % Global.selected_map).instantiate()
+	spawn_rates = map_of_game.starting_spawn_rate
 	print(map_of_game.paths[0])
 	var player = preload("res://GameElements/Player/player.tscn").instantiate()
 	player.player_update_mana_amount.connect(_on_player_player_update_mana_amount)
 	%UI.set_ammo_progress_max_value(player.base_ammo)
 	player.player_has_shoot.connect(%UI.update_ammo_bar)
-	player.global_position = map.get_node("PlayerSpawnPoint").global_position
+	player.global_position = map_of_game.get_node("PlayerSpawnPoint").global_position
 	add_child(player)
 	%TransitionLayer.open_transition()
 	%BackgroundAudioPlayer.volume_db = Global.audio_volume

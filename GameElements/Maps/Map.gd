@@ -6,6 +6,7 @@ extends Node2D
 ## Set the difficulty of the map lower the difficulty value is, higher the real difficulty
 @export var enemy_health_increment : int = 1
 @export var enemy_speed_increment : int = 20
+@export var starting_spawn_rate : float = 2
 @export var unparsed_easy_sequences : Array[String]
 @export var unparsed_medium_sequences : Array[String]
 @export var unparsed_hard_sequences : Array[String]
