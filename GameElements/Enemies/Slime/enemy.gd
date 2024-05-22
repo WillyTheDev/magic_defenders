@@ -1,12 +1,17 @@
 class_name Enemy
 extends CharacterBody2D
 
-static var base_health = 5
-@export var speed = 100
+static var base_health = 5.0
+static var base_speed = 5
+@export var speed_increment = 100
 @export var MANA_AMOUNT = 2
-@export var health = 2
+@export var health_increment = 0
+var health = 0
+var speed = 0
 @export var enemy_damage = 1
 @export var follow_path = true
+
+var total_health = base_health + health_increment
 
 signal slime_has_been_killed
 
@@ -17,11 +22,19 @@ func play_animation_hit():
 func play_animation_idle():
 	%AnimationPlayer.play("idle")
 
+func reset_speed():
+	speed = base_speed + speed_increment
 
 func _ready():
-	health += base_health
+	total_health = base_health + health_increment
+	speed = base_speed + speed_increment
+	print("Enemy health increment : %s" % health_increment)
+	print("Enemy total health : %s" % total_health)
+	health = total_health
+	%HealthBar.max_value = total_health
+	%HealthBar.value = total_health
 	play_animation_idle()
-	get_node("/root/Game/CardsManager").enemy_modified.connect(_on_enemy_modification)
+	get_node("/root/Game/PlayerManager").enemy_modified.connect(_on_enemy_modification)
 	
 func _on_enemy_modification(args: Callable):
 	args.call(self)
@@ -29,11 +42,13 @@ func _on_enemy_modification(args: Callable):
 func _process(delta):
 	if follow_path:
 		get_parent().progress += delta * speed
+		
 
 func take_damage(damage):
 	play_animation_hit()
 	%HitAudio.play()
 	health -= damage
+	%HealthBar.value = health
 	if health <= 0:
 		slime_has_been_killed.emit()
 		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")

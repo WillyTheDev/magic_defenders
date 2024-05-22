@@ -1,38 +1,54 @@
 class_name Player
 extends CharacterBody2D
 
-@export var starting_mana_amount = 0
+@export var starting_mana_amount = 10
+@export var points_per_level = 1
 var mana_amount = 0
 @export var screen_size = Vector2i(0,0)
 static var accumulated_mana = 0
-static var level = 1
 static var offset_accumulated_mana_value = 10
-var player_damage = 1
-var player_speed = 300
-var is_building = false
 
+var player_speed = 300
+var big_shoot_damage = 50
+var big_shoot_price = 60
+var is_building = false
+var has_shoot = false
+
+signal player_has_level_up
 signal player_update_mana_amount
 signal show_cards
 
 func _ready():
-	screen_size = get_parent().get_node("MapLimit").global_position
-	get_node("/root/Game/CardsManager").player_modified.connect(_on_player_modified)
+	var playerManager = get_node("/root/Game/PlayerManager")
+	var optionMenu = get_node("/root/Game/OptionsMenu")
+	optionMenu.sound_value_changed.connect(_update_sound_volume)
+	var uiMenu = get_node("/root/Game/UI")
+	player_has_level_up.connect(uiMenu.show_available_point)
+	playerManager.apply_hat()
+	screen_size = get_node("/root/Game/Map/MapLimit").global_position
+	_update_sound_volume()
 	update_mana_amount(starting_mana_amount, false)
 
-func _on_player_modified(args):
-	args.call(self)
+func _update_sound_volume():
+	%WalkAudio.volume_db = Global.sound_volume
+	%PlaceDefenseAudio.volume_db = Global.sound_volume
+	%FireAudio.volume_db = Global.sound_volume
+	%ManaAudio.volume_db = Global.sound_volume
 
 func update_mana_amount(mana: int, acquire: bool):
 	mana_amount += mana
-	print("Update mana Label")
 	player_update_mana_amount.emit(mana_amount)
 	if acquire:
 		%ManaAudio.play()
-		accumulated_mana += mana
-		if accumulated_mana >= (offset_accumulated_mana_value + ( level * 10 )):
-			accumulated_mana -= (offset_accumulated_mana_value + ( level * 10 ))
-			level += 1
-			show_cards.emit()
+		Global.accumulated_mana += mana
+		if Global.accumulated_mana >= (offset_accumulated_mana_value + ( Global.player_level * 10 )):
+			%PlayerAnimation.play_animation_levelup()
+			Global.accumulated_mana -= (offset_accumulated_mana_value + ( Global.player_level * 10 ))
+			Global.player_level += 1
+			Global.player_avail_pts += points_per_level
+			player_has_level_up.emit()
+			var confetti = get_node("/root/Game/Confetti") 
+			var player_manager : PlayerManager = get_node("/root/Game/PlayerManager")
 
 func _physics_process(delta):
 	position.x = clamp(position.x, 0, screen_size.x)
@@ -51,6 +67,7 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed("left_click"):
 		if is_building:
+			print("PLACE BUILDING")
 			_place_defense()
 		else:
 			%AutoShootTimer.start()
@@ -63,22 +80,39 @@ func _input(event):
 	if event.is_action_pressed("defense_key_pressed"):
 		if is_building == false:
 			_on_defense_button_pressed()
-		
+	if event.is_action_pressed("right_click"):
+		_bigShoot()
+
+
+
+func _bigShoot():
+	if mana_amount >= big_shoot_price:
+		update_mana_amount(-big_shoot_price, false)
+		const METEOR_BOLT = preload("res://GameElements/Player/meteor_bolt.tscn")
+		var explosion = preload("res://GameElements/misc/explosion_sound.tscn").instantiate()
+		var new_meteor_bolt = METEOR_BOLT.instantiate()
+		explosion.global_position = get_global_mouse_position()
+		new_meteor_bolt.global_position = get_global_mouse_position()
+		new_meteor_bolt.damage = big_shoot_damage
+		get_parent().add_child(new_meteor_bolt)
+		get_parent().add_child(explosion)
+
 
 func _shoot():
-	print("shoot")
 	%FireAudio.play()
+	print(Global.getPlayerDamage())
 	const FIRE_BOLT = preload("res://GameElements/Player/fire_bolt.tscn")
 	var new_fire_bolt = FIRE_BOLT.instantiate()
 	new_fire_bolt.global_position = %ShootingPoint.global_position
 	new_fire_bolt.global_rotation = %ShootingPoint.global_rotation
-	new_fire_bolt.damage = player_damage
-	new_fire_bolt.direction = (%ShootingPoint.global_position - get_global_mouse_position()).normalized() * -1
+	new_fire_bolt.damage = Global.getPlayerDamage()
+	var direction = (%ShootingPoint.global_position - get_global_mouse_position()).normalized() * -1
+	velocity = direction * -1
+	new_fire_bolt.direction = direction
 	get_parent().add_child(new_fire_bolt)
 
 func _place_defense():
 	%PlaceDefenseAudio.play()
-	print("Place defense !")
 	is_building = false	
 
 func _on_defense_button_pressed():

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b25d008cch7qm"]
+[gd_scene load_steps=10 format=3 uid="uid://b25d008cch7qm"]
 
 [ext_resource type="Script" path="res://GameElements/defense/Defense.gd" id="1_4mahn"]
 [ext_resource type="Texture2D" uid="uid://c40y3nj7nitkx" path="res://Assets/Defense/defense.png" id="2_36tbu"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_xocap"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_gmou5"]
 [ext_resource type="AudioStream" uid="uid://bdb7radgqx0js" path="res://Assets/audio/fire.wav" id="5_ghwvl"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="6_ja5ql"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a30ys"]
 shader = ExtResource("2_xocap")
@@ -24,9 +25,17 @@ modulate = Color(0.521569, 1, 0, 0.639216)
 position = Vector2(386, 196)
 script = ExtResource("1_4mahn")
 
-[node name="Defense" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-4, -9.53674e-07)
+rotation = 1.5708
+scale = Vector2(0.334957, 0.334957)
+texture = ExtResource("6_ja5ql")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_a30ys")
-position = Vector2(-1, -2)
+position = Vector2(-5.96046e-08, -1.19209e-07)
 rotation = 1.57079
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_36tbu")
@@ -40,11 +49,12 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-1.90735e-05, 0.392955)
+position = Vector2(2.76815, 0.78591)
 shape = SubResource("RectangleShape2D_eyh6e")
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
+autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -53,7 +63,7 @@ scale = Vector2(1.32, 3.23429)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.57574, -0.463783)
+position = Vector2(-5.30302, 0.309189)
 shape = SubResource("RectangleShape2D_1ejl3")
 debug_color = Color(0.755894, 0.189016, 1, 0.42)
 
@@ -62,7 +72,6 @@ unique_name_in_owner = true
 stream = ExtResource("5_ghwvl")
 volume_db = 0.8
 pitch_scale = 2.24
-autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

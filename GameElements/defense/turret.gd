@@ -1,18 +1,17 @@
 class_name Turret
 extends Defense
 
-static var fire_rate = 1.5
-static var damage = 1
 static var turret_price = 20
-static var turret_shoot_area = 1
 var target : Enemy = null
 
-
 func _ready():
-	%TimerShoot.wait_time = fire_rate
-	get_node("/root/Game/CardsManager").turret_modified.connect(_apply_modification)
-	%ShootZone.scale.x = turret_shoot_area
-	%ShootZone.scale.y = turret_shoot_area
+	%FireAudio.volume_db = Global.sound_volume
+	current_health = Global.getTurretHealth()
+	add_to_group("has_static_properties")
+	%TimerShoot.wait_time = Global.getDefenseFireRate()
+	get_node("/root/Game/PlayerManager").turret_modified.connect(_apply_modification)
+	%ShootZone.scale.x = Global.getDefenseRange()
+	%ShootZone.scale.y = Global.getDefenseRange()
 	
 func _apply_modification(args : Callable):
 	args.call(self)
@@ -36,7 +35,8 @@ func shoot():
 		%FireAudio.play()
 		const FIRE_BOLT = preload("res://GameElements/Player/fire_bolt.tscn")
 		var new_fire_bolt = FIRE_BOLT.instantiate()
-		new_fire_bolt.damage = damage
+		new_fire_bolt.damage = Global.getDefenseDamage()
+		print(new_fire_bolt.damage)
 		new_fire_bolt.global_position = %ShootingPoint.global_position
 		new_fire_bolt.global_rotation = %ShootingPoint.global_rotation
 		new_fire_bolt.direction = (global_position - target.global_position).normalized() * -1

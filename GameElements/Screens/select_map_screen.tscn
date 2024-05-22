@@ -1,0 +1,632 @@
+[gd_scene load_steps=33 format=3 uid="uid://dmb5cs8occw40"]
+
+[ext_resource type="Script" path="res://GameElements/Screens/select_map_screen.gd" id="1_7ui5d"]
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_oylf7"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_x2faw"]
+[ext_resource type="Texture2D" uid="uid://ct73cjbbcufdq" path="res://Assets/UI/screen_background.png" id="4_0jndw"]
+[ext_resource type="Texture2D" uid="uid://dx7y8p2sl3p3p" path="res://Assets/UI/map_selection_button/map_0.png" id="4_6joch"]
+[ext_resource type="Texture2D" uid="uid://cia87gsqbc8os" path="res://Assets/UI/map_selection_button/map_0_clicked.png" id="5_iugak"]
+[ext_resource type="Texture2D" uid="uid://db2tw8h0mf2hi" path="res://Assets/UI/map_selection_button/map_1_1.png" id="5_vdb36"]
+[ext_resource type="Texture2D" uid="uid://dnesxwgrcfhdk" path="res://Assets/UI/map_selection_button/map_0_hover.png" id="6_a5rkf"]
+[ext_resource type="Texture2D" uid="uid://b41vvim3sm8fa" path="res://Assets/UI/map_selection_button/map_1_1_cliqued.png" id="6_o6f3v"]
+[ext_resource type="Texture2D" uid="uid://efjdh0lampaa" path="res://Assets/UI/map_selection_button/map_1_1_hover.png" id="7_vnl67"]
+[ext_resource type="Texture2D" uid="uid://ispx11saoeqv" path="res://Assets/UI/map_selection_button/star_locked.png" id="8_t1y7u"]
+[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="12_c1v8v"]
+[ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="13_mn7lt"]
+[ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="14_l6oou"]
+[ext_resource type="Script" path="res://GameElements/Screens/difficulty_selection_screen.gd" id="14_mljd0"]
+[ext_resource type="Texture2D" uid="uid://cehi8kawggg86" path="res://Assets/UI/challenge_selection/easy.png" id="15_c4h71"]
+[ext_resource type="Texture2D" uid="uid://dqm25tjavdpqs" path="res://Assets/UI/challenge_selection/easy_click.png" id="16_g20c2"]
+[ext_resource type="Texture2D" uid="uid://crupdevsepf26" path="res://Assets/UI/challenge_selection/easy_hover.png" id="17_aqhoc"]
+[ext_resource type="Texture2D" uid="uid://bkdgvasc5icja" path="res://Assets/UI/challenge_selection/medium.png" id="18_jw0wd"]
+[ext_resource type="Texture2D" uid="uid://bm2418lrjknrn" path="res://Assets/UI/challenge_selection/medium_click.png" id="19_1gmvo"]
+[ext_resource type="Texture2D" uid="uid://lto2xqiw38uq" path="res://Assets/UI/challenge_selection/medium_hover.png" id="20_s6tpx"]
+[ext_resource type="Texture2D" uid="uid://cluijtu07rhch" path="res://Assets/UI/challenge_selection/hard.png" id="21_0sfas"]
+[ext_resource type="Texture2D" uid="uid://xtm4qtmg4b6x" path="res://Assets/UI/challenge_selection/hard_click.png" id="22_dwjka"]
+[ext_resource type="Texture2D" uid="uid://cqfjrd2ecasj0" path="res://Assets/UI/challenge_selection/hard_hover.png" id="23_w8i7k"]
+[ext_resource type="Texture2D" uid="uid://bf8en5nqacd3n" path="res://Assets/UI/challenge_selection/infinity.png" id="24_ydng7"]
+[ext_resource type="Texture2D" uid="uid://qdjoufhbmbwu" path="res://Assets/UI/challenge_selection/infinity_click.png" id="25_6f3jd"]
+[ext_resource type="Texture2D" uid="uid://ccpguq742vhrn" path="res://Assets/UI/challenge_selection/infinity_hover.png" id="26_ftmqe"]
+[ext_resource type="Texture2D" uid="uid://dtp6f6suw0ucs" path="res://Assets/hats/hat_3.png" id="27_ni53x"]
+[ext_resource type="Texture2D" uid="uid://cahuuxwk45jot" path="res://Assets/UI/challenge_selection/back.png" id="29_0jbdu"]
+[ext_resource type="Texture2D" uid="uid://lrqcr411i8sd" path="res://Assets/UI/challenge_selection/back_click.png" id="30_lxh2v"]
+[ext_resource type="Texture2D" uid="uid://bkqv2ykx8m0a0" path="res://Assets/UI/challenge_selection/back_hover.png" id="31_c2vk1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ygnxb"]
+shader = ExtResource("2_oylf7")
+shader_parameter/strength = 0.002
+shader_parameter/speed = 6.0
+shader_parameter/frames = 6
+shader_parameter/flowMap = ExtResource("3_x2faw")
+
+[node name="SelectMapScreen" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_7ui5d")
+nb_map = 5
+stars_to_unlock_map = [0, 1, 2, 4, 6, 10]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ygnxb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = -72.0
+offset_right = 215.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0jndw")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -526.5
+offset_top = -344.0
+offset_right = 526.5
+offset_bottom = 344.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/h_separation = 36
+theme_override_constants/v_separation = 36
+columns = 3
+
+[node name="map_1" type="TextureButton" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("5_vdb36")
+texture_pressed = ExtResource("6_o6f3v")
+texture_hover = ExtResource("7_vnl67")
+stretch_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/map_1"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = -90.0
+offset_right = 59.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+
+[node name="star_1" type="TextureRect" parent="GridContainer/map_1/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="star_2" type="TextureRect" parent="GridContainer/map_1/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="star_3" type="TextureRect" parent="GridContainer/map_1/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 85
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_1/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
+
+[node name="map_2" type="TextureButton" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_6joch")
+texture_pressed = ExtResource("5_iugak")
+texture_hover = ExtResource("6_a5rkf")
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 85
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_2/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/map_2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = -90.0
+offset_right = 59.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+
+[node name="star_1" type="TextureRect" parent="GridContainer/map_2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="star_2" type="TextureRect" parent="GridContainer/map_2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="star_3" type="TextureRect" parent="GridContainer/map_2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="map_3" type="TextureButton" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_6joch")
+texture_pressed = ExtResource("5_iugak")
+texture_hover = ExtResource("6_a5rkf")
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 85
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_3/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/map_3"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = -90.0
+offset_right = 59.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+
+[node name="star_1" type="TextureRect" parent="GridContainer/map_3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="star_2" type="TextureRect" parent="GridContainer/map_3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="star_3" type="TextureRect" parent="GridContainer/map_3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="map_4" type="TextureButton" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_6joch")
+texture_pressed = ExtResource("5_iugak")
+texture_hover = ExtResource("6_a5rkf")
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 85
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_4/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/map_4"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = -90.0
+offset_right = 59.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+
+[node name="star_1" type="TextureRect" parent="GridContainer/map_4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="star_2" type="TextureRect" parent="GridContainer/map_4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="star_3" type="TextureRect" parent="GridContainer/map_4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="map_5" type="TextureButton" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_6joch")
+texture_pressed = ExtResource("5_iugak")
+texture_hover = ExtResource("6_a5rkf")
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 85
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_5/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/map_5"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = -90.0
+offset_right = 59.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+
+[node name="star_1" type="TextureRect" parent="GridContainer/map_5/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="star_2" type="TextureRect" parent="GridContainer/map_5/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="star_3" type="TextureRect" parent="GridContainer/map_5/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="map_6" type="TextureButton" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_6joch")
+texture_pressed = ExtResource("5_iugak")
+texture_hover = ExtResource("6_a5rkf")
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/map_6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 85
+
+[node name="Label" type="RichTextLabel" parent="GridContainer/map_6/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("12_c1v8v")
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]4 [img]res://Assets/UI/map_selection_button/star_needed.png[/img][center]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/map_6"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.0
+offset_top = -90.0
+offset_right = 59.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+
+[node name="star_1" type="TextureRect" parent="GridContainer/map_6/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="star_2" type="TextureRect" parent="GridContainer/map_6/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="star_3" type="TextureRect" parent="GridContainer/map_6/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("8_t1y7u")
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("14_l6oou")
+volume_db = -5.0
+
+[node name="SelectDifficultyScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 3
+visible = false
+script = ExtResource("14_mljd0")
+
+[node name="TextureRect" type="TextureRect" parent="SelectDifficultyScreen"]
+material = SubResource("ShaderMaterial_ygnxb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = -72.0
+offset_right = 215.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0jndw")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectDifficultyScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="EasyButton" type="TextureButton" parent="SelectDifficultyScreen/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("15_c4h71")
+texture_pressed = ExtResource("16_g20c2")
+texture_hover = ExtResource("17_aqhoc")
+
+[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen/VBoxContainer/EasyButton"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -49.0
+offset_bottom = 49.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 30
+
+[node name="EasyStar" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/EasyButton/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("8_t1y7u")
+
+[node name="MediumButton" type="TextureButton" parent="SelectDifficultyScreen/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_jw0wd")
+texture_pressed = ExtResource("19_1gmvo")
+texture_hover = ExtResource("20_s6tpx")
+
+[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen/VBoxContainer/MediumButton"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -49.0
+offset_bottom = 49.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 30
+
+[node name="MediumStar" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/MediumButton/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("8_t1y7u")
+
+[node name="HardButton" type="TextureButton" parent="SelectDifficultyScreen/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("21_0sfas")
+texture_pressed = ExtResource("22_dwjka")
+texture_hover = ExtResource("23_w8i7k")
+
+[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen/VBoxContainer/HardButton"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -49.0
+offset_bottom = 49.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 30
+
+[node name="HardStar" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/HardButton/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("8_t1y7u")
+
+[node name="InfinityButton" type="TextureButton" parent="SelectDifficultyScreen/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("24_ydng7")
+texture_pressed = ExtResource("25_6f3jd")
+texture_hover = ExtResource("26_ftmqe")
+
+[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen/VBoxContainer/InfinityButton"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -49.0
+offset_bottom = 49.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 30
+
+[node name="Reward" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/InfinityButton/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("27_ni53x")
+
+[node name="TransitionLayer" parent="SelectDifficultyScreen" instance=ExtResource("13_mn7lt")]
+unique_name_in_owner = true
+layer = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_bottom = 32
+
+[node name="BackButton" type="TextureButton" parent="SelectDifficultyScreen/MarginContainer"]
+layout_mode = 2
+texture_normal = ExtResource("29_0jbdu")
+texture_pressed = ExtResource("30_lxh2v")
+texture_hover = ExtResource("31_c2vk1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_bottom = 32
+
+[node name="BackButton" type="TextureButton" parent="MarginContainer"]
+layout_mode = 2
+texture_normal = ExtResource("29_0jbdu")
+texture_pressed = ExtResource("30_lxh2v")
+texture_hover = ExtResource("31_c2vk1")
+
+[connection signal="pressed" from="GridContainer/map_1" to="." method="_on_map_1_pressed"]
+[connection signal="pressed" from="GridContainer/map_2" to="." method="_on_map_2_pressed"]
+[connection signal="pressed" from="GridContainer/map_3" to="." method="_on_map_3_pressed"]
+[connection signal="pressed" from="GridContainer/map_4" to="." method="_on_map_4_pressed"]
+[connection signal="pressed" from="GridContainer/map_5" to="." method="_on_map_5_pressed"]
+[connection signal="pressed" from="GridContainer/map_6" to="." method="_on_map_6_pressed"]
+[connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/EasyButton" to="SelectDifficultyScreen" method="_on_easy_button_pressed"]
+[connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/MediumButton" to="SelectDifficultyScreen" method="_on_medium_button_pressed"]
+[connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/HardButton" to="SelectDifficultyScreen" method="_on_hard_button_pressed"]
+[connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/InfinityButton" to="SelectDifficultyScreen" method="_on_infinity_button_pressed"]
+[connection signal="transition_is_finished" from="SelectDifficultyScreen/TransitionLayer" to="SelectDifficultyScreen" method="_on_transition_layer_transition_is_finished"]
+[connection signal="pressed" from="SelectDifficultyScreen/MarginContainer/BackButton" to="SelectDifficultyScreen" method="_on_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]

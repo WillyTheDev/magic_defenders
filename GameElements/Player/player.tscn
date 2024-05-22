@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://bcw643o4voapk"]
 
 [ext_resource type="Script" path="res://GameElements/Player/Player.gd" id="1_h1uax"]
-[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_i052n"]
 [ext_resource type="PackedScene" uid="uid://kbm12vsaf3ev" path="res://GameElements/Player/player_animation.tscn" id="2_m3wv4"]
 [ext_resource type="Script" path="res://GameElements/Player/wand.gd" id="2_xip2f"]
 [ext_resource type="Texture2D" uid="uid://di58fe5otqeay" path="res://Assets/Player/baguette.png" id="3_y7bhc"]
+[ext_resource type="Script" path="res://GameElements/Player/Camera.gd" id="6_8a3rv"]
 [ext_resource type="AudioStream" uid="uid://b86q5bm48poyj" path="res://Assets/audio/walk.ogg" id="6_u8c0g"]
 [ext_resource type="AudioStream" uid="uid://dq10lwer6ug24" path="res://Assets/audio/drop.ogg" id="7_3y2qv"]
 [ext_resource type="AudioStream" uid="uid://bdb7radgqx0js" path="res://Assets/audio/fire.wav" id="8_1vlqa"]
@@ -14,14 +14,21 @@
 radius = 112.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_h1uax")
 
-[node name="Shadow" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(-0.999998, 175)
-scale = Vector2(0.802682, 0.802682)
-texture = ExtResource("2_i052n")
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_right = 2776
+limit_bottom = 1500
+limit_smoothed = true
+position_smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource("6_8a3rv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 80)
@@ -33,7 +40,7 @@ rotation = -2.80191
 script = ExtResource("2_xip2f")
 
 [node name="Baguette" type="Sprite2D" parent="WandPivot"]
-position = Vector2(130.799, 12.3584)
+position = Vector2(148.553, 12.2009)
 rotation = -3.14159
 texture = ExtResource("3_y7bhc")
 
@@ -43,14 +50,11 @@ position = Vector2(-40.3265, -37.7325)
 
 [node name="PlayerAnimation" parent="." instance=ExtResource("2_m3wv4")]
 unique_name_in_owner = true
-position = Vector2(24, 28)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+position = Vector2(16, 56)
 
 [node name="AutoShootTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.4
+wait_time = 0.3
 
 [node name="WalkAudio" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
@@ -64,7 +68,6 @@ stream = ExtResource("7_3y2qv")
 [node name="FireAudio" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("8_1vlqa")
-volume_db = 0.8
 pitch_scale = 2.24
 
 [node name="ManaAudio" type="AudioStreamPlayer2D" parent="."]

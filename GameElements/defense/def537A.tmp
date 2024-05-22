@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://b25d008cch7qm"]
+
+[ext_resource type="Script" path="res://GameElements/defense/Defense.gd" id="1_4mahn"]
+[ext_resource type="Shader" path="res://Shaders/shadow.gdshader" id="2_32p0i"]
+[ext_resource type="Texture2D" uid="uid://c40y3nj7nitkx" path="res://Assets/Defense/defense.png" id="2_36tbu"]
+[ext_resource type="AudioStream" uid="uid://bdb7radgqx0js" path="res://Assets/audio/fire.wav" id="5_ghwvl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a30ys"]
+shader = ExtResource("2_32p0i")
+shader_parameter/r = 10.0
+shader_parameter/offset = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyh6e"]
+size = Vector2(21, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ejl3"]
+size = Vector2(25.8788, 29.3728)
+
+[node name="Defense" type="Node2D"]
+modulate = Color(0.521569, 1, 0, 0.639216)
+position = Vector2(386, 196)
+script = ExtResource("1_4mahn")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_a30ys")
+position = Vector2(-1, -2)
+rotation = 1.57079
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_36tbu")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(0, -1)
+scale = Vector2(0.7225, 2.54482)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1.90735e-05, 0.392955)
+shape = SubResource("RectangleShape2D_eyh6e")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(7, -1)
+scale = Vector2(1.32, 3.23429)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.57574, -0.463783)
+shape = SubResource("RectangleShape2D_1ejl3")
+debug_color = Color(0.755894, 0.189016, 1, 0.42)
+
+[node name="FireAudio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_ghwvl")
+volume_db = 0.8
+pitch_scale = 2.24
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

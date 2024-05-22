@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmo608hicdlq5"]
+[gd_scene load_steps=14 format=3 uid="uid://cmo608hicdlq5"]
 
 [ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_1dq6v"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_oowi8"]
@@ -78,15 +78,31 @@ _data = {
 "idle": SubResource("Animation_vlpra")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dyu0x"]
+bg_color = Color(0.136826, 0.136826, 0.136826, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lduki"]
+bg_color = Color(0.974545, 0.360152, 0.408545, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="Slime" type="CharacterBody2D"]
 z_index = 1
 material = SubResource("ShaderMaterial_jyd47")
 scale = Vector2(0.7, 0.7)
 platform_floor_layers = 4294967040
 script = ExtResource("1_1dq6v")
-MANA_AMOUNT = 35
-health = 100
-enemy_damage = 5
+MANA_AMOUNT = 15
+health_increment = 80
+enemy_damage = 10
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -112,3 +128,16 @@ libraries = {
 
 [node name="HitAudio" parent="." instance=ExtResource("5_2ss8j")]
 unique_name_in_owner = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -72.5
+offset_top = -85.0
+offset_right = 74.5
+offset_bottom = -70.0
+theme_override_styles/background = SubResource("StyleBoxFlat_dyu0x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lduki")
+max_value = 5.0
+step = 0.5
+value = 5.0
+show_percentage = false

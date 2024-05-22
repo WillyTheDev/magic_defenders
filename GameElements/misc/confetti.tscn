@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2p14mfp2sdol"]
 
 [ext_resource type="Script" path="res://GameElements/misc/confetti.gd" id="1_k3bqs"]
-[ext_resource type="AudioStream" uid="uid://kas3l8of2b6k" path="res://Assets/audio/fanfare_3.wav" id="2_m4div"]
+[ext_resource type="AudioStream" uid="uid://kas3l8of2b6k" path="res://Assets/audio/Fanfare_3.wav" id="2_m4div"]
 
 [sub_resource type="Curve" id="Curve_i53rw"]
 _data = [Vector2(0, 0.119493), 0.0, 0.0, 0, 0, Vector2(0.217514, 0.992841), 0.0, 0.0, 0, 0, Vector2(1, 0.749449), 0.0, 0.0, 0, 0]
@@ -16,15 +16,23 @@ min_value = -1.0
 _data = [Vector2(0.00564972, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Confetti" type="Node2D"]
-position = Vector2(9, -8)
+[node name="Confetti" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_k3bqs")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ConfettiRight" type="CPUParticles2D" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="."]
 unique_name_in_owner = true
-position = Vector2(1920, 597)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ConfettiRight" type="CPUParticles2D" parent="Control"]
+unique_name_in_owner = true
+position = Vector2(1920, 408)
 emitting = false
 amount = 64
 lifetime = 3.0
@@ -47,9 +55,9 @@ color_ramp = SubResource("Gradient_b2l6u")
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_b22e5")
 
-[node name="ConfettiLeft" type="CPUParticles2D" parent="CanvasLayer"]
+[node name="ConfettiLeft" type="CPUParticles2D" parent="Control"]
 unique_name_in_owner = true
-position = Vector2(4, 566)
+position = Vector2(0, 413)
 emitting = false
 amount = 64
 lifetime = 3.0
@@ -72,7 +80,9 @@ color_ramp = SubResource("Gradient_b2l6u")
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_b22e5")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="EndOfWaveAudio" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("2_m4div")
 volume_db = 1.0
+
+[connection signal="resized" from="Control" to="." method="_on_control_resized"]
