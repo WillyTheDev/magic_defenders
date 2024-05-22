@@ -156,9 +156,9 @@ func spawn_flying_mob():
 		var flying_enemy = preload("res://GameElements/Enemies/Slime/bat.tscn").instantiate()
 		map_of_game.flyingSpawnPoint.progress_ratio = randf()
 		flying_enemy.global_position = map_of_game.flyingSpawnPoint.global_position
+		#Track when the flying enemy has been killed
 		flying_enemy.slime_has_been_killed.connect(on_enemy_has_been_killed)
 		add_child(flying_enemy)
-		print("🦇 BAT TARGET = %s 🦇" % flying_enemy.target)
 		spawn_visual_indicator(flying_enemy)
 		number_of_time -= 1
 
@@ -220,6 +220,7 @@ func spawn_mob():
 			var other:
 				print("WRONG ENEMY TYPE : %s" % other)
 		number_of_time -= 1
+	# Connect a signal to track when an enemy has been killed
 	enemy.slime_has_been_killed.connect(on_enemy_has_been_killed)
 	follower.add_child(enemy)
 	follower.child = enemy
@@ -236,15 +237,14 @@ func spawn_visual_indicator(target):
 	indicator.global_position = get_node("Player").global_position
 	get_node("Player").add_child(indicator)
 	
-func game_over():
-	%GameOverScreen.visible = true
-	%ScoreLabel.text = "The lotus has been destroyed\n %s waves" % current_wave
-	get_tree().paused = true
-	
+
 func on_enemy_has_been_killed():
 	enemies_left -= 1
 	%EnemiesProgressBar.value = enemies_left
 	%EnemiesLabel.text = "%s / %s" % [enemies_left, total_enemies]
+	# This is the part to debug !
+	# When there is no more enemy to spawn & the player just kille the last enemy then :
+	# @enemies_left is decremented each time the player is killing an ennemy
 	if enemies_left <= 0 && is_spawning == false:
 		end_of_wave()
 
@@ -261,6 +261,18 @@ func _on_player_player_update_mana_amount(mana):
 	%AccumulatedManaLabel.text = "%s / %s until the next level" % [Global.accumulated_mana, (Player.offset_accumulated_mana_value + Global.player_level * 10)]
 	%AccumulatedMana.max_value = Player.offset_accumulated_mana_value + Global.player_level * 10
 	%AccumulatedMana.value = Player.accumulated_mana
+
+func game_over():
+	%GameOverScreen.visible = true
+	%ScoreLabel.text = "The lotus has been destroyed\n %s waves" % current_wave
+	get_tree().paused = true
+
+func game_completed():
+	%GameOverScreen.visible = true
+	%GameOverTitle.text = "Success !"
+	%ScoreLabel.text = "You've completed this map and survided :\n %s" % current_wave
+	%Confetti.play_confetti()
+	get_tree().paused = true
 
 func _on_spawn_enemy_timer_timeout():
 		spawn_mob()
@@ -289,13 +301,6 @@ func _on_transition_layer_transition_is_finished(anim_name):
 
 func _on_options_menu_audio_value_changed():
 	%BackgroundAudioPlayer.volume_db = Global.audio_volume
-
-func game_completed():
-	%GameOverScreen.visible = true
-	%GameOverTitle.text = "Success !"
-	%ScoreLabel.text = "You've completed this map and survided :\n %s" % current_wave
-	%Confetti.play_confetti()
-	get_tree().paused = true
 
 
 func _on_quit_to_menu_pressed():

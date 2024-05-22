@@ -14,7 +14,7 @@ var big_shoot_price = 60
 var is_building = false
 var has_shoot = false
 
-
+signal player_has_level_up
 signal player_update_mana_amount
 signal show_cards
 
@@ -22,6 +22,8 @@ func _ready():
 	var playerManager = get_node("/root/Game/PlayerManager")
 	var optionMenu = get_node("/root/Game/OptionsMenu")
 	optionMenu.sound_value_changed.connect(_update_sound_volume)
+	var uiMenu = get_node("/root/Game/UI")
+	player_has_level_up.connect(uiMenu.show_available_point)
 	playerManager.apply_hat()
 	screen_size = get_node("/root/Game/Map/MapLimit").global_position
 	_update_sound_volume()
@@ -44,6 +46,7 @@ func update_mana_amount(mana: int, acquire: bool):
 			Global.accumulated_mana -= (offset_accumulated_mana_value + ( Global.player_level * 10 ))
 			Global.player_level += 1
 			Global.player_avail_pts += points_per_level
+			player_has_level_up.emit()
 			var confetti = get_node("/root/Game/Confetti") 
 			var player_manager : PlayerManager = get_node("/root/Game/PlayerManager")
 

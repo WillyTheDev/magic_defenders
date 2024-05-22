@@ -54,6 +54,8 @@ signal enemy_modified
 
 signal player_modified
 
+signal player_has_available_point
+
 func apply_player_modification(args : Callable):
 	player_modified.emit(args)
 
@@ -84,6 +86,10 @@ func update_stat(stat_index : int, increment_value : int):
 		label.text = "%s" % Global.getStatFromIndex(stat_index)
 		progress.value = Global.getStatFromIndex(stat_index)
 		Global.player_avail_pts -= 1
+		if Global.player_avail_pts == 0:
+			player_has_available_point.emit(false)
+		else :
+			player_has_available_point.emit(true)
 	%AvailPtsLabel.text = "Available points : %s" % Global.player_avail_pts
 
 
@@ -196,3 +202,9 @@ func _reset_hat_effect():
 func _on_player_manager_animation_player_animation_finished(anim_name):
 	if anim_name == "hide_player_profile":
 		visible = false
+
+
+func _on_background_resized():
+	var rect_size = %Background.get_size()
+	%PlayerPreview.position.x = rect_size.x / 5
+	%PlayerPreview.position.y = rect_size.y / 2

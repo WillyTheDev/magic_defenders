@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=37 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Texture2D" uid="uid://ispx11saoeqv" path="res://Assets/UI/map_selection_button/star_locked.png" id="3_kmwdb"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://c7buce4ehpwkn" path="res://Assets/UI/Button/turret_btn-1.png" id="11_4n668"]
 [ext_resource type="Texture2D" uid="uid://86qc7467xexx" path="res://Assets/UI/Button/meteor_btn.png" id="12_aiyr0"]
 [ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="13_ester"]
+[ext_resource type="Texture2D" uid="uid://cnlo0i8q24vki" path="res://Assets/UI/player_profile_background/new_point.png" id="14_j7wpw"]
 [ext_resource type="PackedScene" uid="uid://c2o1lsmd80cnp" path="res://GameElements/Player/PlayerManager/PlayerManager.tscn" id="15_ykkkp"]
 [ext_resource type="PackedScene" uid="uid://b2p14mfp2sdol" path="res://GameElements/misc/confetti.tscn" id="16_8e8up"]
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="16_yatl6"]
@@ -85,6 +86,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AvailablePoints:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
 
 [sub_resource type="Animation" id="Animation_hvb5b"]
 resource_name = "showWaveLabel"
@@ -114,10 +127,27 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_lmsc6"]
+resource_name = "show_available_point"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AvailablePoints:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(4.92457, 0.129408),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_142pq"]
 _data = {
 "RESET": SubResource("Animation_5xlgv"),
-"showWaveLabel": SubResource("Animation_hvb5b")
+"showWaveLabel": SubResource("Animation_hvb5b"),
+"show_available_point": SubResource("Animation_lmsc6")
 }
 
 [sub_resource type="Animation" id="Animation_wsnqi"]
@@ -125,19 +155,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("../HBoxContainer/Star_1:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05)]
+"update": 1,
+"values": [ExtResource("3_kmwdb")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Star_1:texture")
+tracks/1/path = NodePath("../HBoxContainer/Star_2:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -149,22 +179,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Star_2:texture")
+tracks/2/path = NodePath("../HBoxContainer/Star_3:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_kmwdb")]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Star_3:texture")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -177,22 +195,10 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("../HBoxContainer/Star_1:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 3),
-"transitions": PackedFloat32Array(0.153893, 4.59479, 4.59479),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Star_1:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(0.392292, 0.392292),
 "update": 1,
@@ -205,34 +211,22 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("../HBoxContainer/Star_1:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.1, 3),
-"transitions": PackedFloat32Array(0.101532, 6.06287, 6.06287),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Star_1:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("3_kmwdb"), ExtResource("4_1ono3")]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Star_2:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HBoxContainer/Star_2:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -245,19 +239,19 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("../HBoxContainer/Star_1:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.9, 3),
-"transitions": PackedFloat32Array(0.101532, 6.06287, 6.06287),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1e-05, 1e-05)]
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_kmwdb"), ExtResource("4_1ono3")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Star_1:texture")
+tracks/1/path = NodePath("../HBoxContainer/Star_2:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -269,22 +263,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Star_2:texture")
+tracks/2/path = NodePath("../HBoxContainer/Star_3:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("3_kmwdb"), ExtResource("4_1ono3")]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Star_3:texture")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -470,6 +452,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 texture_normal = ExtResource("8_n7k4h")
+stretch_mode = 0
 
 [node name="ProgressBarBackground" type="ProgressBar" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer/DefenseButton"]
 layout_mode = 1
@@ -491,6 +474,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 texture_normal = ExtResource("10_a41jm")
 texture_pressed = ExtResource("11_4n668")
+stretch_mode = 0
 
 [node name="ProgressBarBackground" type="ProgressBar" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer/TurretButton"]
 layout_mode = 1
@@ -511,6 +495,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 texture_normal = ExtResource("12_aiyr0")
+stretch_mode = 0
 
 [node name="ProgressBarBackground" type="ProgressBar" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer/MeteorButton"]
 layout_mode = 1
@@ -588,6 +573,27 @@ libraries = {
 "": SubResource("AnimationLibrary_142pq")
 }
 
+[node name="AvailablePoints" type="MarginContainer" parent="UI"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -166.0
+offset_top = -106.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(80, 60)
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="TextureRect" type="TextureRect" parent="UI/AvailablePoints"]
+layout_mode = 2
+texture = ExtResource("14_j7wpw")
+
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
@@ -656,29 +662,30 @@ offset_left = -157.0
 offset_right = 157.0
 offset_bottom = 98.0
 grow_horizontal = 2
-theme_override_constants/margin_top = 200
+theme_override_constants/margin_top = 96
 
-[node name="StarsContainer" type="HBoxContainer" parent="GameOverScreen/MarginContainer"]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOverScreen/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
-[node name="Star_1" type="TextureRect" parent="GameOverScreen/MarginContainer/StarsContainer"]
+[node name="Star_1" type="TextureRect" parent="GameOverScreen/MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 6
 texture = ExtResource("3_kmwdb")
 
-[node name="Star_2" type="TextureRect" parent="GameOverScreen/MarginContainer/StarsContainer"]
+[node name="Star_2" type="TextureRect" parent="GameOverScreen/MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 6
 texture = ExtResource("3_kmwdb")
 
-[node name="Star_3" type="TextureRect" parent="GameOverScreen/MarginContainer/StarsContainer"]
+[node name="Star_3" type="TextureRect" parent="GameOverScreen/MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 6
 texture = ExtResource("3_kmwdb")
 
-[node name="StarAnimation" type="AnimationPlayer" parent="GameOverScreen/MarginContainer/StarsContainer"]
+[node name="StarAnimation" type="AnimationPlayer" parent="GameOverScreen/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 process_mode = 3
+root_node = NodePath("")
 libraries = {
 "": SubResource("AnimationLibrary_udnpp")
 }
@@ -697,7 +704,6 @@ layer = 31
 
 [node name="Confetti" parent="." instance=ExtResource("16_8e8up")]
 unique_name_in_owner = true
-position = Vector2(6, -1)
 
 [node name="BackgroundAudioPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -721,5 +727,6 @@ color = Color(0.666667, 0.866667, 0.596078, 1)
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameOverScreen/VBoxContainer/MarginContainer/VBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]
 [connection signal="audio_value_changed" from="OptionsMenu" to="." method="_on_options_menu_audio_value_changed"]
+[connection signal="player_has_available_point" from="PlayerManager" to="UI" method="_on_player_manager_player_has_available_point"]
 [connection signal="transition_is_finished" from="TransitionLayer" to="." method="_on_transition_layer_transition_is_finished"]
 [connection signal="finished" from="BackgroundAudioPlayer" to="." method="_on_audio_stream_player_finished"]

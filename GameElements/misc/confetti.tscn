@@ -16,15 +16,12 @@ min_value = -1.0
 _data = [Vector2(0.00564972, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Confetti" type="Node2D"]
+[node name="Confetti" type="CanvasLayer"]
 process_mode = 3
-position = Vector2(9, -8)
 script = ExtResource("1_k3bqs")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 7
-
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,9 +30,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ConfettiRight" type="CPUParticles2D" parent="CanvasLayer/Control"]
+[node name="ConfettiRight" type="CPUParticles2D" parent="Control"]
 unique_name_in_owner = true
-position = Vector2(1927, 408)
+position = Vector2(1920, 408)
 emitting = false
 amount = 64
 lifetime = 3.0
@@ -58,9 +55,9 @@ color_ramp = SubResource("Gradient_b2l6u")
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_b22e5")
 
-[node name="ConfettiLeft" type="CPUParticles2D" parent="CanvasLayer/Control"]
+[node name="ConfettiLeft" type="CPUParticles2D" parent="Control"]
 unique_name_in_owner = true
-position = Vector2(8, 413)
+position = Vector2(0, 413)
 emitting = false
 amount = 64
 lifetime = 3.0
@@ -87,3 +84,5 @@ hue_variation_curve = SubResource("Curve_b22e5")
 unique_name_in_owner = true
 stream = ExtResource("2_m4div")
 volume_db = 1.0
+
+[connection signal="resized" from="Control" to="." method="_on_control_resized"]
