@@ -39,6 +39,8 @@ func _ready():
 	print(map_of_game.paths[0])
 	var player = preload("res://GameElements/Player/player.tscn").instantiate()
 	player.player_update_mana_amount.connect(_on_player_player_update_mana_amount)
+	%UI.set_ammo_progress_max_value(player.base_ammo)
+	player.player_has_shoot.connect(%UI.update_ammo_bar)
 	player.global_position = map.get_node("PlayerSpawnPoint").global_position
 	add_child(player)
 	%TransitionLayer.open_transition()

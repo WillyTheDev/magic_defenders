@@ -2,6 +2,7 @@ extends Node2D
 
 func _ready():
 	Global.load_game()
+	Global.get_accumulated_stars()
 	%BackgroundAudioPlayer.volume_db = Global.audio_volume
 	if Global.has_save :
 		%ContinueButton.visible = true

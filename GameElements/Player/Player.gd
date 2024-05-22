@@ -7,16 +7,17 @@ var mana_amount = 0
 @export var screen_size = Vector2i(0,0)
 static var accumulated_mana = 0
 static var offset_accumulated_mana_value = 10
-
+var base_ammo = 10
+var ammo = 10
 var player_speed = 300
 var big_shoot_damage = 50
 var big_shoot_price = 60
 var is_building = false
-var has_shoot = false
 
 signal player_has_level_up
 signal player_update_mana_amount
 signal show_cards
+signal player_has_shoot
 
 func _ready():
 	var playerManager = get_node("/root/Game/PlayerManager")
@@ -70,8 +71,11 @@ func _input(event):
 			print("PLACE BUILDING")
 			_place_defense()
 		else:
-			%AutoShootTimer.start()
-			_shoot()
+			if ammo > 0:
+				%AutoShootTimer.start()
+				_shoot()
+			elif %ReloadTimer.is_stopped():
+				_reload()
 	if event.is_action_released("left_click"):
 			%AutoShootTimer.stop()
 	if event.is_action_pressed("turret_key_pressed"):
@@ -97,10 +101,12 @@ func _bigShoot():
 		get_parent().add_child(new_meteor_bolt)
 		get_parent().add_child(explosion)
 
+func _reload():
+	%ReloadAnimation.play("reload")
+	%ReloadTimer.start()
 
 func _shoot():
 	%FireAudio.play()
-	print(Global.getPlayerDamage())
 	const FIRE_BOLT = preload("res://GameElements/Player/fire_bolt.tscn")
 	var new_fire_bolt = FIRE_BOLT.instantiate()
 	new_fire_bolt.global_position = %ShootingPoint.global_position
@@ -110,6 +116,8 @@ func _shoot():
 	velocity = direction * -1
 	new_fire_bolt.direction = direction
 	get_parent().add_child(new_fire_bolt)
+	ammo -= 1
+	player_has_shoot.emit(ammo)
 
 func _place_defense():
 	%PlaceDefenseAudio.play()
@@ -139,5 +147,12 @@ func _on_turret_button_pressed():
 		get_parent().add_child(new_turret)
 
 
+func _on_reload_timer_timeout():
+	ammo = base_ammo
+	player_has_shoot.emit(ammo)
+	
 func _on_auto_shoot_timer_timeout():
-	_shoot()
+	if ammo > 0:
+		_shoot()
+	elif %ReloadTimer.is_stopped():
+		_reload()

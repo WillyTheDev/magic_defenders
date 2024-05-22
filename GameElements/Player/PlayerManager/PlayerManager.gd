@@ -154,20 +154,20 @@ var hats : Array[Hat] = [
 	Hat.new(
 		func():
 			MagicBolt.has_auto_target_on = true
-			MagicBolt.range = 1000
-			MagicBolt.texture = load("res://Assets/Player/water_bolt.png"),
+			MagicBolt.range = 1000,
+			#MagicBolt.texture = load("res://Assets/Player/water_bolt.png"),
 			"Projectiles ricochet between enemies."
 		),
 	Hat.new(
 		func():
-			MagicBolt.is_reducing_speed = true
-			MagicBolt.texture = load("res://Assets/Player/frost_bolt.png"),
+			MagicBolt.is_reducing_speed = true,
+			#MagicBolt.texture = load("res://Assets/Player/frost_bolt.png"),
 			"Projectiles slow down enemies."
 		),
 	Hat.new(
 		func():
-			MagicBolt.is_passing_through = true
-			MagicBolt.texture = load("res://Assets/Player/bouncing_bolt.png"),
+			MagicBolt.is_passing_through = true,
+			#MagicBolt.texture = load("res://Assets/Player/bouncing_bolt.png"),
 			"Projectiles pass through enemies."
 		),
 	Hat.new(
@@ -192,7 +192,7 @@ func _reset_hat_effect():
 	MagicBolt.has_auto_target_on = false
 	MagicBolt.is_reducing_speed = false
 	MagicBolt.is_passing_through = false
-	MagicBolt.texture = load("res://Assets/Player/fire_bolt.png")
+	#MagicBolt.texture = load("res://Assets/Player/fire_bolt.png")
 	MagicBolt.range = 1600
 	var game = get_node("/root/Game/")
 	var lambdas = game.wave_is_over.get_connections()

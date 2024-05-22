@@ -101,6 +101,18 @@ texture_pressed = ExtResource("10_3lq7y")
 texture_hover = ExtResource("9_qhiyh")
 stretch_mode = 0
 
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "v.0.0.5.17"
+
 [node name="TransitionLayer" parent="." instance=ExtResource("15_nwpt0")]
 unique_name_in_owner = true
 

@@ -11,7 +11,6 @@ static var range = 1600
 static var has_auto_target_on = false
 static var is_reducing_speed = false
 static var is_passing_through = false
-static var texture = preload("res://Assets/Player/fire_bolt.png")
 var target : Enemy = null
 var nb_of_rebound = 4
 
@@ -21,11 +20,9 @@ func _reinitialize_static_properties():
 	has_auto_target_on = false
 	is_reducing_speed = false
 	is_passing_through = false
-	texture = preload("res://Assets/Player/fire_bolt.png")
 
 func _ready():
 	add_to_group("has_static_properties")
-	%MagicBoltSprite.texture = texture
 
 func _physics_process(delta):
 	if has_auto_target_on && target != null:

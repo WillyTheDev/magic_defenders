@@ -65,7 +65,7 @@ static var accumulated_stars = 0
 static func get_accumulated_stars():
 	accumulated_stars = 0
 	for map in map_progression:
-		accumulated_stars += map
+		accumulated_stars += map_progression[map]
 
 #======================
 # Game Progression
@@ -146,7 +146,7 @@ func new_save():
 		"accumulated_gold" : 0,
 		"accumulated_stars" : 0,
 		"map_progression" : {
-							"map_1_1" : 0,
+							"map_1_1" : 1,
 							"map_1_2" : 0,
 							"map_1_3" : 0,
 							"map_1_4" : 0,

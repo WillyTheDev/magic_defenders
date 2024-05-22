@@ -15,6 +15,7 @@ func _input(event):
 		visible = false
 		
 func show_select_map():
+	Global.get_accumulated_stars()
 	for map in range(1, nb_map + 1):
 		var btn = get_node("GridContainer/map_%s" % map)
 		var label = get_node("GridContainer/map_%s/MarginContainer/Label" % map)
