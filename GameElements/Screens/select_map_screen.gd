@@ -45,6 +45,12 @@ func show_select_map():
 			1.0:
 				print("Loading 1 new texture...")
 				star_1.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")
+			4.0:
+				print("Loading 3 new texture...")
+				star_3.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")
+				star_2.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")
+				star_1.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")
+				# HERE SHOULD CHANGE THE REWARD TEXTURE TO SOMETHING ELSE !
 	for map in range(nb_map + 1, MAX_NB_MAP_PER_CHAPTER + 1):
 		var btn = get_node("GridContainer/map_%s" %  map)
 		var label = get_node("GridContainer/map_%s/MarginContainer/Label" % map)

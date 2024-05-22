@@ -119,7 +119,7 @@ func end_of_wave():
 				%StarAnimation.play("show_first_star")
 				if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 1:
 					Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 1
-					Global.accumulated_stars += 1
+					Global.get_accumulated_stars()
 				game_completed()
 				
 		2:
@@ -127,20 +127,21 @@ func end_of_wave():
 				%StarAnimation.play("show_second_star")
 				if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 2:
 					Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 2
-					Global.accumulated_stars += 1
+					Global.get_accumulated_stars()
 				game_completed()
 		3:
 			if current_wave == map_of_game.sequences.size():
 				%StarAnimation.play("show_third_star")
 				if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 3:
 					Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 3
-					Global.accumulated_stars += 1
+					Global.get_accumulated_stars()
 				game_completed()
 		4:
 			if current_wave == 30:
 				if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 4:
 					Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 4
 					Global.unlocked_hats[map_of_game.win_hat_index] = true
+					Global.get_accumulated_stars()
 				game_completed()
 		var other:
 			print("current wave is %s" % other)

@@ -38,7 +38,7 @@ func closeOptionsMenu():
 
 func _on_quit_to_menu_pressed():
 	%ClickPlayer.play()
-	Global.save_game()
+	Global.save()
 	get_tree().call_group("has_static_properties", "_reinitialize_static_properties")
 	get_tree().paused = false
 	get_node("/root/Game/TransitionLayer").close_transition()
@@ -61,8 +61,10 @@ func _on_sound_slider_value_changed(value):
 	sound_value_changed.emit()
 
 func _on_erase_save_button_pressed():
+	print("ERASING DATA")
 	%ClickPlayer.play()
 	Global.new_save()
+	Global.load_game()
 	get_tree().paused = false
 	if is_on_welcome_screen:
 		closeOptionsMenu()

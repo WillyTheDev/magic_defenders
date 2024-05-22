@@ -19,6 +19,8 @@ func heal_defense(amount):
 
 func _ready():
 	add_to_group("has_static_properties")
+	var DefenseTimer = get_node("/root/Game/DefenseTimer")
+	DefenseTimer.timeout.connect(_on_timer_timeout)
 	current_health = Global.getDefenseHealth()
 	get_node("/root/Game/PlayerManager").defense_modified.connect(_apply_modification)
 	

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://kas3l8of2b6k"
-path="res://.godot/imported/Fanfare_3.wav-71d92fe2fdb2e08a15179c6396f9ecdb.sample"
+path="res://.godot/imported/fanfare_3.wav-6908c07accbf6e397025a518b23262ce.sample"
 
 [deps]
 
-source_file="res://Assets/audio/Fanfare_3.wav"
-dest_files=["res://.godot/imported/Fanfare_3.wav-71d92fe2fdb2e08a15179c6396f9ecdb.sample"]
+source_file="res://Assets/audio/fanfare_3.wav"
+dest_files=["res://.godot/imported/fanfare_3.wav-6908c07accbf6e397025a518b23262ce.sample"]
 
 [params]
 

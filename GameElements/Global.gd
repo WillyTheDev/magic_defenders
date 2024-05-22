@@ -62,6 +62,11 @@ static var player_equipped_hat = 99
 static var unlocked_hats: Array[bool] = [false, false, false, false]
 static var accumulated_stars = 0
 
+static func get_accumulated_stars():
+	accumulated_stars = 0
+	for map in map_progression:
+		accumulated_stars += map
+
 #======================
 # Game Progression
 #======================

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2p14mfp2sdol"]
 
 [ext_resource type="Script" path="res://GameElements/misc/confetti.gd" id="1_k3bqs"]
-[ext_resource type="AudioStream" uid="uid://kas3l8of2b6k" path="res://Assets/audio/Fanfare_3.wav" id="2_m4div"]
+[ext_resource type="AudioStream" uid="uid://kas3l8of2b6k" path="res://Assets/audio/fanfare_3.wav" id="2_m4div"]
 
 [sub_resource type="Curve" id="Curve_i53rw"]
 _data = [Vector2(0, 0.119493), 0.0, 0.0, 0, 0, Vector2(0.217514, 0.992841), 0.0, 0.0, 0, 0, Vector2(1, 0.749449), 0.0, 0.0, 0, 0]

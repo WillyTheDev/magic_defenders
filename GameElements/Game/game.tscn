@@ -569,6 +569,7 @@ vertical_alignment = 1
 
 [node name="UIAnimationPlayer" type="AnimationPlayer" parent="UI"]
 unique_name_in_owner = true
+process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_142pq")
 }
@@ -721,6 +722,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.666667, 0.866667, 0.596078, 1)
+
+[node name="DefenseTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
 
 [connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
 [connection signal="timeout" from="SpawnFlyingEnemyTimer" to="." method="_on_spawn_flying_enemy_timer_timeout"]
