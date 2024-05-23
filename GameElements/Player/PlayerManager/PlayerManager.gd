@@ -15,6 +15,7 @@ func _ready():
 		if Global.unlocked_hats[index]:
 			%HatList.items[index].selectable = true
 			%HatList.items[index].disabled = false
+	apply_hat()
 	
 func show_player_profile():
 	%LevelLabel.text = "Level : %s" % Global.player_level
@@ -132,7 +133,15 @@ func _on_remove_stat_1_pressed():
 	update_stat(1, -1)
 
 func _on_hat_button_pressed():
-	%HatList.visible = true
+	print(Global.unlocked_hats)
+	var hat_index = 0
+	for hat in Global.unlocked_hats:
+		print(hat)
+		if hat:
+			%HatList.set_item_selectable(hat_index, true)
+			%HatList.set_item_disabled(hat_index, false)
+		hat_index += 1
+	%HatList.visible = !%HatList.visible
 
 func apply_hat():
 	print("apply hat : %s " % Global.player_equipped_hat)
@@ -153,10 +162,11 @@ func _on_hat_list_item_clicked(index, at_position, mouse_button_index):
 var hats : Array[Hat] = [
 	Hat.new(
 		func():
-			MagicBolt.has_auto_target_on = true
-			MagicBolt.range = 1000,
+			#MagicBolt.has_auto_target_on = true
+			#MagicBolt.range = 1000,
 			#MagicBolt.texture = load("res://Assets/Player/water_bolt.png"),
-			"Projectiles ricochet between enemies."
+			pass,
+			"Just a nice looking crown"
 		),
 	Hat.new(
 		func():

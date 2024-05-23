@@ -12,6 +12,8 @@ var speed = 0
 @export var follow_path = true
 
 var total_health = base_health + health_increment
+var has_hat = false
+var hat_index = 0
 
 signal slime_has_been_killed
 
@@ -61,7 +63,20 @@ func take_damage(damage):
 			new_mana.rotation = rotation
 			new_mana.global_position += Vector2(randi() % 30, randi() % 30)
 			get_parent().call_deferred("add_child", new_mana)
+		if has_hat:
+			var hat = preload("res://GameElements/hat/hat.tscn").instantiate()
+			print(hat_index)
+			hat.hat_index = hat_index
+			hat.get_node("Mana").texture = %Hat.texture
+			hat.rotation = rotation
+			hat.global_position += Vector2(randi() % 30, randi() % 30)
+			get_parent().call_deferred("add_child", hat)
 		queue_free()
 	
 func no_longer_attacking_defense():
 	speed = 100
+
+func add_hat(index: int):
+	has_hat = true
+	hat_index = index
+	%Hat.texture = load("res://Assets/hats/hat_%s.png" % index)

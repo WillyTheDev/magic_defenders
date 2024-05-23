@@ -1,11 +1,11 @@
 extends CanvasLayer
 
 func show_next_wave_label():
-	%UIAnimationPlayer.play("showWaveLabel")
+	%UIAnimationPlayer.queue("showWaveLabel")
 
 func show_available_point():
 	%AvailablePoints.visible = true
-	%UIAnimationPlayer.play("show_available_point")
+	%UIAnimationPlayer.queue("show_available_point")
 	
 func hide_available_point():
 	%AvailablePoints.visible = false

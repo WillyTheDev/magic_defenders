@@ -35,9 +35,10 @@ func _ready():
 	is_idle = true
 	map_of_game = load("res://GameElements/Maps/map_%s.tscn" % Global.selected_map).instantiate()
 	spawn_rates = map_of_game.starting_spawn_rate
-	print(map_of_game.paths[0])
+	add_child(map_of_game)
 	var player = preload("res://GameElements/Player/player.tscn").instantiate()
 	player.player_update_mana_amount.connect(_on_player_player_update_mana_amount)
+	player.player_got_new_hat.connect(_show_new_hat_animation)
 	%UI.set_ammo_progress_max_value(player.base_ammo)
 	player.player_has_shoot.connect(%UI.update_ammo_bar)
 	player.global_position = map_of_game.get_node("PlayerSpawnPoint").global_position
@@ -165,7 +166,6 @@ func spawn_flying_mob():
 		number_of_time -= 1
 
 func spawn_mob():
-	print("Spawning new Enemy !")
 	#Load a new Enemy ( Path2DFollower ) and attach the relevent monster ( e.g slime, slimeMedium, archer...)
 	var follower = preload("res://GameElements/Enemies/Enemy.tscn").instantiate()
 	var enemy = null
@@ -224,6 +224,17 @@ func spawn_mob():
 		number_of_time -= 1
 	# Connect a signal to track when an enemy has been killed
 	enemy.slime_has_been_killed.connect(on_enemy_has_been_killed)
+	# Add hat to unlock on enemy's head
+	var hat_chance = 0.01
+	if randf() <= hat_chance:
+		var index_hat = 0
+		for hat in Global.unlocked_hats:
+			if hat == false:
+				break;
+			index_hat += 1
+		enemy.add_hat(index_hat)
+		
+	# Add the enemy on a FollowerPath2D
 	follower.add_child(enemy)
 	follower.child = enemy
 	# Add the Enemy on a random path
@@ -310,3 +321,7 @@ func _on_quit_to_menu_pressed():
 	get_tree().call_group("has_static_properties", "_reinitialize_static_properties")
 	get_tree().paused = false
 	get_node("/root/Game/TransitionLayer").close_transition()
+	
+func _show_new_hat_animation(hat_index : int):
+	%NewHatTexture.texture = load("res://Assets/hats/hat_%s.png" % hat_index)
+	%UI/UIAnimationPlayer.queue("show_new_hat")

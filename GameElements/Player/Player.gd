@@ -18,6 +18,7 @@ signal player_has_level_up
 signal player_update_mana_amount
 signal show_cards
 signal player_has_shoot
+signal player_got_new_hat
 
 func _ready():
 	var playerManager = get_node("/root/Game/PlayerManager")
@@ -156,3 +157,8 @@ func _on_auto_shoot_timer_timeout():
 		_shoot()
 	elif %ReloadTimer.is_stopped():
 		_reload()
+		
+func get_new_hat(index : int):
+	get_parent()
+	Global.unlocked_hats[index] = true
+	player_got_new_hat.emit(index)

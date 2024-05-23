@@ -126,7 +126,8 @@ func save():
 		"accumulated_stars" : accumulated_stars,
 		"map_progression" : map_progression,
 		"audio_volume": audio_volume,
-		"sound_volume": sound_volume
+		"sound_volume": sound_volume,
+		"unlocked_hats": unlocked_hats,
 	}
 	return save_dict
 	
@@ -154,7 +155,8 @@ func new_save():
 							"map_1_6" : 0
 							},
 		"audio_volume": 0,
-		"sound_volume": 0
+		"sound_volume": 0,
+		"unlocked_hats": [false, false, false, false],
 	}
 	var json_string = JSON.stringify(data)
 	save_game.store_line(json_string)

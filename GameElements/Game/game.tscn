@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=42 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Texture2D" uid="uid://ispx11saoeqv" path="res://Assets/UI/map_selection_button/star_locked.png" id="3_kmwdb"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://86qc7467xexx" path="res://Assets/UI/Button/meteor_btn.png" id="12_aiyr0"]
 [ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="13_ester"]
 [ext_resource type="Texture2D" uid="uid://cnlo0i8q24vki" path="res://Assets/UI/player_profile_background/new_point.png" id="14_j7wpw"]
+[ext_resource type="Texture2D" uid="uid://bnqvulr6cj34d" path="res://Assets/UI/player_profile_background/hat_placeholder.png" id="15_x47dn"]
 [ext_resource type="PackedScene" uid="uid://c2o1lsmd80cnp" path="res://GameElements/Player/PlayerManager/PlayerManager.tscn" id="15_ykkkp"]
 [ext_resource type="PackedScene" uid="uid://b2p14mfp2sdol" path="res://GameElements/misc/confetti.tscn" id="16_8e8up"]
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="16_yatl6"]
@@ -98,6 +99,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1e-05, 1e-05)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HatMarginContainer:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
 
 [sub_resource type="Animation" id="Animation_hvb5b"]
 resource_name = "showWaveLabel"
@@ -143,11 +156,28 @@ tracks/0/keys = {
 "values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_tp1m4"]
+resource_name = "show_new_hat"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HatMarginContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4, 2.3, 3),
+"transitions": PackedFloat32Array(0.435275, 0.435275, 0.812252, 0.812252),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_142pq"]
 _data = {
 "RESET": SubResource("Animation_5xlgv"),
 "showWaveLabel": SubResource("Animation_hvb5b"),
-"show_available_point": SubResource("Animation_lmsc6")
+"show_available_point": SubResource("Animation_lmsc6"),
+"show_new_hat": SubResource("Animation_tp1m4")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3p6qc"]
@@ -640,6 +670,43 @@ max_value = 10.0
 step = 1.0
 fill_mode = 3
 show_percentage = false
+
+[node name="HatMarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.5
+offset_right = 350.5
+offset_bottom = 232.0
+grow_horizontal = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(350, 300)
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 256
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HatMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="NewHatTexture" type="TextureRect" parent="UI/HatMarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("15_x47dn")
+
+[node name="HatDescriptionTitle" type="Label" parent="UI/HatMarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("5_vhx2p")
+theme_override_font_sizes/font_size = 36
+text = "New Hat unlocked
+"
+uppercase = true
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
