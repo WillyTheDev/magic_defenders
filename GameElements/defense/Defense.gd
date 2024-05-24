@@ -60,6 +60,7 @@ func build_defense():
 func _process(float):
 	abstract_on_process()
 	if has_been_build == false:
+		print("Has been Build : %s" % has_been_build)
 		global_position = get_global_mouse_position()
 		rotation = get_node("/root/Game/Player").get_angle_to(get_global_mouse_position())
 		if %Area2D.get_overlapping_bodies().size() > 0 :

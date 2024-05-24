@@ -6,6 +6,8 @@ var target : Enemy = null
 
 func _ready():
 	%FireAudio.volume_db = Global.sound_volume
+	var DefenseTimer = get_node("/root/Game/DefenseTimer")
+	DefenseTimer.timeout.connect(_on_timer_timeout)
 	current_health = Global.getTurretHealth()
 	add_to_group("has_static_properties")
 	%TimerShoot.wait_time = Global.getDefenseFireRate()
@@ -42,6 +44,21 @@ func shoot():
 		new_fire_bolt.direction = (global_position - target.global_position).normalized() * -1
 		get_parent().add_child(new_fire_bolt)
 
+
+func take_damage():
+	abstract_defense_take_damage()
+	current_health -= cumulated_damage
+	if current_health <= 0:
+		abstract_final_action()
+		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
+		var new_smoke = SMOKE.instantiate()
+		new_smoke.global_position = global_position
+		get_parent().add_child(new_smoke)
+		queue_free()
+	else:
+		var values = (255 * (current_health/Global.getTurretHealth()))
+		modulate = "ff%x%xff" % [values, values]
+		
 func abstract_input(event):
 	if event.is_action_pressed("show_shoot_zone"):
 		%ShootingZoneSprite.visible = true

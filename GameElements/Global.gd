@@ -39,7 +39,7 @@ func getDefenseDamage():
 	return (defense_base_damage + (defense_base_damage / defense_divider_damage) * defense_stat_damage)
 
 static var defense_base_health = 10.0
-static var turret_base_health = 1.0
+static var turret_base_health = 2.0
 static var defense_stat_health = clamp(0, 1.0, 1000.0)
 static var defense_divider_health = 3.0
 
