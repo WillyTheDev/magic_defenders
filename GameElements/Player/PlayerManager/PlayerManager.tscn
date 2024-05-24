@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c2o1lsmd80cnp"]
+[gd_scene load_steps=29 format=3 uid="uid://c2o1lsmd80cnp"]
 
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/PlayerManager.gd" id="1_ctqjo"]
 [ext_resource type="Texture2D" uid="uid://7ldxtyg31ar8" path="res://Assets/UI/player_profile_background/background.png" id="2_3il38"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://kbm12vsaf3ev" path="res://GameElements/Player/player_animation.tscn" id="13_71dtm"]
 [ext_resource type="Texture2D" uid="uid://bnqvulr6cj34d" path="res://Assets/UI/player_profile_background/hat_placeholder.png" id="13_mxkna"]
 [ext_resource type="Texture2D" uid="uid://bb0i4rje2oy5f" path="res://Assets/hats/hat_2.png" id="13_q65v3"]
+[ext_resource type="Texture2D" uid="uid://dovrqtecvs03f" path="res://Assets/hats/hat_4.png" id="15_d8o2l"]
 [ext_resource type="Texture2D" uid="uid://dtp6f6suw0ucs" path="res://Assets/hats/hat_3.png" id="16_57g04"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdv3k"]
@@ -587,7 +588,7 @@ theme_override_constants/icon_margin = 5
 allow_rmb_select = true
 allow_search = false
 auto_height = true
-item_count = 4
+item_count = 5
 max_columns = 3
 same_column_width = true
 item_0/text = ""
@@ -606,6 +607,10 @@ item_3/text = ""
 item_3/icon = ExtResource("16_57g04")
 item_3/selectable = false
 item_3/disabled = true
+item_4/text = ""
+item_4/icon = ExtResource("15_d8o2l")
+item_4/selectable = false
+item_4/disabled = true
 
 [node name="PlayerPreview" parent="Background" instance=ExtResource("13_71dtm")]
 unique_name_in_owner = true

@@ -47,7 +47,7 @@ func getDefenseHealth():
 	return  (defense_base_health + (defense_base_health / defense_divider_health) * defense_stat_health)
 	
 func getTurretHealth():
-	return (defense_base_health + (turret_base_health / defense_divider_health) * defense_stat_health)
+	return (turret_base_health + (turret_base_health / defense_divider_health) * defense_stat_health)
 
 static var defense_base_fire_rate = 2.0
 static var defense_stat_fire_rate = clamp(0, 1.0, 1000.0)
@@ -59,7 +59,7 @@ func getDefenseFireRate():
 static var player_avail_pts = 0
 #Player equipped hat ( number represent index of hat )
 static var player_equipped_hat = 99
-static var unlocked_hats: Array[bool] = [false, false, false, false]
+static var unlocked_hats: Array[bool] = [false, false, false, false, false]
 static var accumulated_stars = 0
 
 static func get_accumulated_stars():
@@ -156,7 +156,7 @@ func new_save():
 							},
 		"audio_volume": 0,
 		"sound_volume": 0,
-		"unlocked_hats": [false, false, false, false],
+		"unlocked_hats": [false, false, false, false, false],
 	}
 	var json_string = JSON.stringify(data)
 	save_game.store_line(json_string)

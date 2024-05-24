@@ -80,7 +80,7 @@ func _input(event):
 			if ammo > 0:
 				%AutoShootTimer.start()
 				_shoot()
-			elif %ReloadTimer.is_stopped():
+			else:
 				_reload()
 	if event.is_action_released("left_click"):
 			%AutoShootTimer.stop()
@@ -102,6 +102,8 @@ func _input(event):
 				update_mana_amount(Defense.defense_price, false)
 	if event.is_action_released("show_options"):
 		is_building = false
+	if event.is_action_pressed("reload"):
+		_reload()
 			
 
 
@@ -119,8 +121,9 @@ func _bigShoot():
 		get_parent().add_child(explosion)
 
 func _reload():
-	%ReloadAnimation.play("reload")
-	%ReloadTimer.start()
+	if %ReloadTimer.is_stopped():
+		%ReloadAnimation.play("reload")
+		%ReloadTimer.start()
 
 func _shoot():
 	%FireAudio.play()

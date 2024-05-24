@@ -188,6 +188,11 @@ var hats : Array[Hat] = [
 			,
 			"Heals all defenses on the end of a wave"
 		),
+	Hat.new(
+	func():
+			Player.magic_bolt = preload("res://GameElements/Spells/fire_bolt.tscn"),
+			"Projectiles is burning the enemy until they die"
+	),
 ]
 
 func _apply_hat_effect():
