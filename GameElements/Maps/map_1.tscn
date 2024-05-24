@@ -62,8 +62,8 @@ flyingSpawnPoint = NodePath("Arrière-plan/Paths/Path_flying/FlyingSpawnPoint")
 enemy_speed_increment = 5
 starting_spawn_rate = 2.5
 unparsed_easy_sequences = Array[String](["7x1", "10x1", "13x1", "5x1,1x4", "15x1", "15x1,1x4", "15x4", "20x1,2x4,5x1", "30x1", "1x2,1x5"])
-unparsed_medium_sequences = Array[String](["12x1", "15x1,2x4,2x1", "15x1,1x2", "5x1,1x2,5x1,1x2", "4x2,1x5", "10x1,6x4,2x2,5x1", "20x1,3x2", "6x2", "20x4", "1x3,1x5"])
-unparsed_hard_sequences = Array[String](["15x1,1x2", "5x1,1x2,5x1,1x2", "4x2,1x5", "10x1,6x4,2x2,5x1", "20x1,3x2", "6x2", "10x1,5x2,10x1,4x4", "1x3,1x5", "30x4", "3x3"])
+unparsed_medium_sequences = Array[String](["12x1", "17x1", "15x1,1x2", "5x1,1x2,5x1,1x2", "4x2,1x5", "10x1,6x4,2x2,5x1", "20x1,3x2", "6x2", "20x4", "1x3,1x5"])
+unparsed_hard_sequences = Array[String](["15x1,1x2", "15x1,1x2,5x1,1x2", "4x2,1x5", "10x1,6x4,2x2,5x1", "20x1,3x2", "6x2", "10x1,5x2,10x1,4x4", "1x3,1x5", "30x4", "3x3"])
 
 [node name="MapLimit" type="Marker2D" parent="."]
 unique_name_in_owner = true

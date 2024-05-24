@@ -162,23 +162,18 @@ func _on_hat_list_item_clicked(index, at_position, mouse_button_index):
 var hats : Array[Hat] = [
 	Hat.new(
 		func():
-			#MagicBolt.has_auto_target_on = true
-			#MagicBolt.range = 1000,
-			#MagicBolt.texture = load("res://Assets/Player/water_bolt.png"),
-			pass,
-			"Just a nice looking crown"
-		),
-	Hat.new(
-		func():
-			MagicBolt.is_reducing_speed = true,
-			#MagicBolt.texture = load("res://Assets/Player/frost_bolt.png"),
+			Player.magic_bolt = preload("res://GameElements/Spells/frost_bolt.tscn"),
 			"Projectiles slow down enemies."
 		),
 	Hat.new(
 		func():
-			MagicBolt.is_passing_through = true,
-			#MagicBolt.texture = load("res://Assets/Player/bouncing_bolt.png"),
+			Player.magic_bolt = preload("res://GameElements/Spells/ghost_bolt.tscn"),
 			"Projectiles pass through enemies."
+		),
+	Hat.new(
+		func():
+			pass,
+			"Just a nice looking hat to make your life more playful"
 		),
 	Hat.new(
 		func():
@@ -199,10 +194,6 @@ func _apply_hat_effect():
 	hats[Global.player_equipped_hat].apply_effect()
 
 func _reset_hat_effect():
-	MagicBolt.has_auto_target_on = false
-	MagicBolt.is_reducing_speed = false
-	MagicBolt.is_passing_through = false
-	#MagicBolt.texture = load("res://Assets/Player/fire_bolt.png")
 	MagicBolt.range = 1600
 	var game = get_node("/root/Game/")
 	var lambdas = game.wave_is_over.get_connections()

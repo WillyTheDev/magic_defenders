@@ -1,17 +1,19 @@
 class_name Player
 extends CharacterBody2D
 
-@export var starting_mana_amount = 10
+var starting_mana_amount = 30
 @export var points_per_level = 1
 var mana_amount = 0
 @export var screen_size = Vector2i(0,0)
 static var accumulated_mana = 0
 static var offset_accumulated_mana_value = 10
-var base_ammo = 10
+static var base_ammo = 10
 var ammo = 10
 var player_speed = 300
 var big_shoot_damage = 50
 var big_shoot_price = 60
+var defense_to_be_placed : Node2D = null
+var defense_to_be_placed_type : String = ''
 var is_building = false
 
 signal player_has_level_up
@@ -19,6 +21,8 @@ signal player_update_mana_amount
 signal show_cards
 signal player_has_shoot
 signal player_got_new_hat
+
+static var magic_bolt = null
 
 func _ready():
 	var playerManager = get_node("/root/Game/PlayerManager")
@@ -30,6 +34,7 @@ func _ready():
 	screen_size = get_node("/root/Game/Map/MapLimit").global_position
 	_update_sound_volume()
 	update_mana_amount(starting_mana_amount, false)
+	magic_bolt = preload("res://GameElements/Spells/magic_bolt.tscn")
 
 func _update_sound_volume():
 	%WalkAudio.volume_db = Global.sound_volume
@@ -87,13 +92,24 @@ func _input(event):
 			_on_defense_button_pressed()
 	if event.is_action_pressed("right_click"):
 		_bigShoot()
+	if event.is_action_pressed("show_options"):
+		if is_building && defense_to_be_placed != null:
+			defense_to_be_placed_type
+			defense_to_be_placed.queue_free()
+			if defense_to_be_placed_type == 'turret':
+				update_mana_amount(Turret.turret_price, false)
+			else:
+				update_mana_amount(Defense.defense_price, false)
+	if event.is_action_released("show_options"):
+		is_building = false
+			
 
 
 
 func _bigShoot():
 	if mana_amount >= big_shoot_price:
 		update_mana_amount(-big_shoot_price, false)
-		const METEOR_BOLT = preload("res://GameElements/Player/meteor_bolt.tscn")
+		const METEOR_BOLT = preload("res://GameElements/Spells/meteor_bolt.tscn")
 		var explosion = preload("res://GameElements/misc/explosion_sound.tscn").instantiate()
 		var new_meteor_bolt = METEOR_BOLT.instantiate()
 		explosion.global_position = get_global_mouse_position()
@@ -108,21 +124,21 @@ func _reload():
 
 func _shoot():
 	%FireAudio.play()
-	const FIRE_BOLT = preload("res://GameElements/Player/fire_bolt.tscn")
-	var new_fire_bolt = FIRE_BOLT.instantiate()
-	new_fire_bolt.global_position = %ShootingPoint.global_position
-	new_fire_bolt.global_rotation = %ShootingPoint.global_rotation
-	new_fire_bolt.damage = Global.getPlayerDamage()
+	var new_magic_bolt = magic_bolt.instantiate()
+	new_magic_bolt.global_position = %ShootingPoint.global_position
+	new_magic_bolt.global_rotation = %ShootingPoint.global_rotation
+	new_magic_bolt.damage = Global.getPlayerDamage()
 	var direction = (%ShootingPoint.global_position - get_global_mouse_position()).normalized() * -1
 	velocity = direction * -1
-	new_fire_bolt.direction = direction
-	get_parent().add_child(new_fire_bolt)
+	new_magic_bolt.direction = direction
+	get_parent().add_child(new_magic_bolt)
 	ammo -= 1
 	player_has_shoot.emit(ammo)
 
 func _place_defense():
-	%PlaceDefenseAudio.play()
-	is_building = false	
+	if(defense_to_be_placed.can_be_placed):
+		%PlaceDefenseAudio.play()
+		is_building = false	
 
 func _on_defense_button_pressed():
 	var defense_price = Defense.defense_price
@@ -133,6 +149,8 @@ func _on_defense_button_pressed():
 		var new_defense = DEFENSE.instantiate()
 		new_defense.global_position = get_global_mouse_position()
 		new_defense.rotation = get_angle_to(get_global_mouse_position())
+		defense_to_be_placed = new_defense
+		defense_to_be_placed_type = 'defense'
 		get_parent().add_child(new_defense)
 
 
@@ -145,6 +163,8 @@ func _on_turret_button_pressed():
 		var new_turret = TURRET.instantiate()
 		new_turret.global_position = get_global_mouse_position()
 		new_turret.rotation = get_angle_to(get_global_mouse_position())
+		defense_to_be_placed = new_turret
+		defense_to_be_placed_type = 'turret'
 		get_parent().add_child(new_turret)
 
 

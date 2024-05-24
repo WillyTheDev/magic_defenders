@@ -46,11 +46,16 @@ func _process(delta):
 		get_parent().progress += delta * speed
 		
 
-func take_damage(damage):
+func take_damage(damage=1):
 	play_animation_hit()
 	%HitAudio.play()
 	health -= damage
 	%HealthBar.value = health
+	var dmg_indicator = preload("res://GameElements/misc/damage_indicator.tscn").instantiate()
+	dmg_indicator.set_value(int(damage * 10))
+	dmg_indicator.scale = scale
+	dmg_indicator.global_position = %Hat.global_position
+	get_node("/root/Game").add_child(dmg_indicator)
 	if health <= 0:
 		slime_has_been_killed.emit()
 		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")

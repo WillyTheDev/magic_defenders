@@ -15,11 +15,12 @@ func _ready():
 
 func _input(event):
 	if is_on_welcome_screen == false:
-		if event.is_action_pressed("show_options"):
-			if options_menu_open:
-				closeOptionsMenu()
-			else:
-				openOptionsMenu("")
+		var player = get_node("/root/Game/Player")
+		if event.is_action_pressed("show_options") && player.is_building == false:
+				if options_menu_open:
+					closeOptionsMenu()
+				else:
+					openOptionsMenu("")
 			
 func openOptionsMenu(from: String):
 	options_menu_open = true

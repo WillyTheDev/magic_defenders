@@ -147,7 +147,7 @@ func new_save():
 		"accumulated_gold" : 0,
 		"accumulated_stars" : 0,
 		"map_progression" : {
-							"map_1_1" : 1,
+							"map_1_1" : 0,
 							"map_1_2" : 0,
 							"map_1_3" : 0,
 							"map_1_4" : 0,

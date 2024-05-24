@@ -155,15 +155,16 @@ func spawn_flying_mob():
 			is_spawning = false
 			return
 	else:
-		enemies_spawn += 1
-		var flying_enemy = preload("res://GameElements/Enemies/Slime/bat.tscn").instantiate()
-		map_of_game.flyingSpawnPoint.progress_ratio = randf()
-		flying_enemy.global_position = map_of_game.flyingSpawnPoint.global_position
-		#Track when the flying enemy has been killed
-		flying_enemy.slime_has_been_killed.connect(on_enemy_has_been_killed)
-		add_child(flying_enemy)
-		spawn_visual_indicator(flying_enemy)
-		number_of_time -= 1
+		if current_wave > 2:
+			enemies_spawn += 1
+			var flying_enemy = preload("res://GameElements/Enemies/Slime/bat.tscn").instantiate()
+			map_of_game.flyingSpawnPoint.progress_ratio = randf()
+			flying_enemy.global_position = map_of_game.flyingSpawnPoint.global_position
+			#Track when the flying enemy has been killed
+			flying_enemy.slime_has_been_killed.connect(on_enemy_has_been_killed)
+			add_child(flying_enemy)
+			spawn_visual_indicator(flying_enemy)
+			number_of_time -= 1
 
 func spawn_mob():
 	#Load a new Enemy ( Path2DFollower ) and attach the relevent monster ( e.g slime, slimeMedium, archer...)
@@ -225,7 +226,7 @@ func spawn_mob():
 	# Connect a signal to track when an enemy has been killed
 	enemy.slime_has_been_killed.connect(on_enemy_has_been_killed)
 	# Add hat to unlock on enemy's head
-	var hat_chance = 0.01
+	var hat_chance = 0.5
 	if randf() <= hat_chance:
 		var index_hat = 0
 		for hat in Global.unlocked_hats:

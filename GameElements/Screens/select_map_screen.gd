@@ -33,6 +33,7 @@ func show_select_map():
 		var star_1 = get_node("GridContainer/map_%s/HBoxContainer/star_1" % map)
 		var star_2 = get_node("GridContainer/map_%s/HBoxContainer/star_2" % map)
 		var star_3 = get_node("GridContainer/map_%s/HBoxContainer/star_3" % map)
+		print(Global.map_progression["map_%s_%s" % [actual_chapter , map]])
 		match Global.map_progression["map_%s_%s" % [actual_chapter , map]]:
 			3.0:
 				print("Loading 3 new texture...")

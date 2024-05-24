@@ -3,6 +3,13 @@ extends Defense
 
 signal core_destroyed
 
+func _ready():
+	add_to_group("has_static_properties")
+	var DefenseTimer = get_node("/root/Game/DefenseTimer")
+	DefenseTimer.timeout.connect(_on_timer_timeout)
+	current_health = 10
+	get_node("/root/Game/PlayerManager").defense_modified.connect(_apply_modification)
+
 func abstract_final_action():
 	destroy_core()
 
