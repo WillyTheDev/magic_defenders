@@ -17,7 +17,7 @@ func _explode():
 			get_parent().add_child(dmg_indicator)
 			body.take_damage(damage)
 	var camera = get_node("/root/Game/Player/Camera2D")
-	camera.apply_shake()
+	camera.apply_shake(60)
 	const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
 	var new_smoke = SMOKE.instantiate()
 	new_smoke.scale.x = 1.5
@@ -30,5 +30,5 @@ func _explode():
 		
 
 
-func _on_animation_player_animation_finished(anim_name):
+func _on_animation_player_animation_finished(_anim_name):
 	_explode()

@@ -20,7 +20,7 @@ func _on_mana_body_body_entered(body):
 			body.get_new_hat(hat_index)
 		else:
 			body.update_mana_amount(mana_value, true)
-			queue_free()
+		queue_free()
 	
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://buxfj316qobc3"]
+[gd_scene load_steps=18 format=3 uid="uid://buxfj316qobc3"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_jrvlj"]
 [ext_resource type="Texture2D" uid="uid://5ua06b2sb6jr" path="res://Assets/Map/map_1.png" id="2_hod1y"]
@@ -7,9 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="4_5icl4"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="5_lbfrp"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="6_f7sma"]
-[ext_resource type="Texture2D" uid="uid://dtr0xi8ia5jvw" path="res://Assets/envirronment/arbre.png" id="7_my30t"]
+[ext_resource type="Texture2D" uid="uid://bqnvxqkjk66ec" path="res://Assets/envirronment/arbre.png" id="7_my30t"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="8_ksp42"]
 [ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/core.tscn" id="9_4uokl"]
+[ext_resource type="Texture2D" uid="uid://d1v07087ptaua" path="res://Assets/envirronment/buisson.png" id="11_75abc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfba4"]
 shader = ExtResource("5_lbfrp")
@@ -1545,3 +1546,16 @@ scale = Vector2(1.5, 1.5)
 [node name="PlayerSpawnPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(2005, 570)
+
+[node name="Buisson" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(936, 432)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("11_75abc")
+
+[node name="Shadow" type="Sprite2D" parent="Buisson"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("8_ksp42")

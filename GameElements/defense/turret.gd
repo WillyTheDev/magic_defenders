@@ -1,10 +1,13 @@
 class_name Turret
 extends Defense
 
-static var turret_price = 20
 var target : Enemy = null
 
+func _abstract_turret_ready():
+	pass
+
 func _ready():
+	_abstract_turret_ready()
 	%FireAudio.volume_db = Global.sound_volume
 	var DefenseTimer = get_node("/root/Game/DefenseTimer")
 	DefenseTimer.timeout.connect(_on_timer_timeout)
@@ -14,6 +17,7 @@ func _ready():
 	get_node("/root/Game/PlayerManager").turret_modified.connect(_apply_modification)
 	%ShootZone.scale.x = Global.getDefenseRange()
 	%ShootZone.scale.y = Global.getDefenseRange()
+	_abstract_turret_ready()
 	
 func _apply_modification(args : Callable):
 	args.call(self)
@@ -46,18 +50,19 @@ func shoot():
 
 
 func take_damage():
-	abstract_defense_take_damage()
-	current_health -= cumulated_damage
-	if current_health <= 0:
-		abstract_final_action()
-		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
-		var new_smoke = SMOKE.instantiate()
-		new_smoke.global_position = global_position
-		get_parent().add_child(new_smoke)
-		queue_free()
-	else:
-		var values = (255 * (current_health/Global.getTurretHealth()))
-		modulate = "ff%x%xff" % [values, values]
+	if cumulated_damage > 0:
+		abstract_defense_take_damage()
+		current_health -= cumulated_damage
+		if current_health <= 0:
+			abstract_final_action()
+			const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
+			var new_smoke = SMOKE.instantiate()
+			new_smoke.global_position = global_position
+			get_parent().add_child(new_smoke)
+			queue_free()
+		else:
+			var values = (255 * (current_health/Global.getTurretHealth()))
+			modulate = "ff%x%xff" % [values, values]
 		
 func abstract_input(event):
 	if event.is_action_pressed("show_shoot_zone"):
@@ -65,9 +70,13 @@ func abstract_input(event):
 	elif event.is_action_released("show_shoot_zone"):
 		%ShootingZoneSprite.visible = false
 
+func heal_defense(amount):
+	current_health = clamp(amount, 0,Global.getTurretHealth())
+	var values = (255 * (current_health/Global.getTurretHealth()))
+	modulate = "ff%x%xff" % [values, values]
 
 func _on_timer_shoot_timeout():
 	shoot()
 
-func _on_shoot_zone_body_exited(body):
+func _on_shoot_zone_body_exited(_body):
 	target = null

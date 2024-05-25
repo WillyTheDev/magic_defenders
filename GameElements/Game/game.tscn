@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=37 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Texture2D" uid="uid://ispx11saoeqv" path="res://Assets/UI/map_selection_button/star_locked.png" id="3_kmwdb"]
@@ -8,13 +8,10 @@
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="5_vhx2p"]
 [ext_resource type="Texture2D" uid="uid://b5w58d8v50f7h" path="res://Assets/Ennemies/Slime_v2_hard.png" id="6_1rmdc"]
 [ext_resource type="Texture2D" uid="uid://c60d3lddk6bb0" path="res://Assets/Ennemies/bat.png" id="7_yhg0u"]
-[ext_resource type="Texture2D" uid="uid://bnoteo8epe2ck" path="res://Assets/UI/Button/defense_btn.png" id="8_n7k4h"]
 [ext_resource type="Texture2D" uid="uid://d0ig6hkyys31f" path="res://Assets/Ennemies/Slime_v2_gold.png" id="8_qctxw"]
 [ext_resource type="AudioStream" uid="uid://0lc8krsnc1y2" path="res://Assets/audio/The Verdant Grove.ogg" id="9_1qta1"]
-[ext_resource type="Texture2D" uid="uid://ckhmpy7a0sacy" path="res://Assets/UI/Button/turret_btn.png" id="10_a41jm"]
 [ext_resource type="Script" path="res://GameElements/Game/UI.gd" id="10_c0pl3"]
-[ext_resource type="Texture2D" uid="uid://c7buce4ehpwkn" path="res://Assets/UI/Button/turret_btn-1.png" id="11_4n668"]
-[ext_resource type="Texture2D" uid="uid://86qc7467xexx" path="res://Assets/UI/Button/meteor_btn.png" id="12_aiyr0"]
+[ext_resource type="PackedScene" uid="uid://dk18yh7kobthq" path="res://GameElements/Skills/skill_container.tscn" id="10_wf8js"]
 [ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="13_ester"]
 [ext_resource type="Texture2D" uid="uid://cnlo0i8q24vki" path="res://Assets/UI/player_profile_background/new_point.png" id="14_j7wpw"]
 [ext_resource type="Texture2D" uid="uid://bnqvulr6cj34d" path="res://Assets/UI/player_profile_background/hat_placeholder.png" id="15_x47dn"]
@@ -33,7 +30,11 @@ corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oeowq"]
 bg_color = Color(1, 0.324317, 0.404642, 1)
-border_blend = true
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.00820203, 0.00820202, 0.00820201, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -44,15 +45,6 @@ shader = ExtResource("16_yatl6")
 shader_parameter/alpha = 0.5
 shader_parameter/inner_radius = 0.0
 shader_parameter/outer_radius = 1.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_buab2"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov5d5"]
-bg_color = Color(0.145098, 0.145098, 0.145098, 0.882353)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6ubk"]
 bg_color = Color(0.415425, 0.609676, 0.864728, 1)
@@ -190,17 +182,22 @@ corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqj0w"]
 bg_color = Color(0.933874, 0.50916, 0.222206, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="Animation" id="Animation_wsnqi"]
+[sub_resource type="Animation" id="Animation_mxxav"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../HBoxContainer/Star_1:texture")
+tracks/0/path = NodePath("HBoxContainer/Star_1:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -212,7 +209,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBoxContainer/Star_2:texture")
+tracks/1/path = NodePath("HBoxContainer/Star_2:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -224,7 +221,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBoxContainer/Star_3:texture")
+tracks/2/path = NodePath("HBoxContainer/Star_3:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -234,29 +231,29 @@ tracks/2/keys = {
 "values": [ExtResource("3_kmwdb")]
 }
 
-[sub_resource type="Animation" id="Animation_tg1ku"]
+[sub_resource type="Animation" id="Animation_k5dgm"]
 resource_name = "show_first_star"
-length = 3.0
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../HBoxContainer/Star_1:texture")
+tracks/0/path = NodePath("HBoxContainer/Star_1:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(0.392292, 0.392292),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("3_kmwdb"), ExtResource("4_1ono3")]
 }
 
-[sub_resource type="Animation" id="Animation_pty3v"]
+[sub_resource type="Animation" id="Animation_777lq"]
 resource_name = "show_second_star"
-length = 3.0
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../HBoxContainer/Star_1:texture")
+tracks/0/path = NodePath("HBoxContainer/Star_1:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -268,7 +265,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBoxContainer/Star_2:texture")
+tracks/1/path = NodePath("HBoxContainer/Star_2:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -278,13 +275,13 @@ tracks/1/keys = {
 "values": [ExtResource("3_kmwdb"), ExtResource("4_1ono3")]
 }
 
-[sub_resource type="Animation" id="Animation_2frgx"]
+[sub_resource type="Animation" id="Animation_wfmp0"]
 resource_name = "show_third_star"
-length = 3.0
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../HBoxContainer/Star_1:texture")
+tracks/0/path = NodePath("HBoxContainer/Star_1:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -296,7 +293,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HBoxContainer/Star_2:texture")
+tracks/1/path = NodePath("HBoxContainer/Star_2:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -308,22 +305,22 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HBoxContainer/Star_3:texture")
+tracks/2/path = NodePath("HBoxContainer/Star_3:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("3_kmwdb")]
+"values": [ExtResource("3_kmwdb"), ExtResource("4_1ono3")]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_udnpp"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6v0rh"]
 _data = {
-"RESET": SubResource("Animation_wsnqi"),
-"show_first_star": SubResource("Animation_tg1ku"),
-"show_second_star": SubResource("Animation_pty3v"),
-"show_third_star": SubResource("Animation_2frgx")
+"RESET": SubResource("Animation_mxxav"),
+"show_first_star": SubResource("Animation_k5dgm"),
+"show_second_star": SubResource("Animation_777lq"),
+"show_third_star": SubResource("Animation_wfmp0")
 }
 
 [sub_resource type="Environment" id="Environment_qdm87"]
@@ -370,6 +367,7 @@ size_flags_horizontal = 3
 theme_override_styles/background = SubResource("StyleBoxFlat_cce1o")
 theme_override_styles/fill = SubResource("StyleBoxFlat_oeowq")
 step = 1.0
+value = 100.0
 rounded = true
 show_percentage = false
 
@@ -495,73 +493,9 @@ theme_override_fonts/font = ExtResource("5_vhx2p")
 theme_override_font_sizes/font_size = 24
 text = "mana"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/SkillsContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="DefenseButton" type="TextureButton" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer"]
+[node name="SkillContainer" parent="UI/SkillsContainer/VBoxContainer" instance=ExtResource("10_wf8js")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 6
-texture_normal = ExtResource("8_n7k4h")
-stretch_mode = 0
-
-[node name="ProgressBarBackground" type="ProgressBar" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer/DefenseButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxEmpty_buab2")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ov5d5")
-max_value = 10.0
-step = 2.0
-fill_mode = 2
-show_percentage = false
-
-[node name="TurretButton" type="TextureButton" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 6
-texture_normal = ExtResource("10_a41jm")
-texture_pressed = ExtResource("11_4n668")
-stretch_mode = 0
-
-[node name="ProgressBarBackground" type="ProgressBar" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer/TurretButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxEmpty_buab2")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ov5d5")
-max_value = 20.0
-step = 2.0
-fill_mode = 2
-show_percentage = false
-
-[node name="MeteorButton" type="TextureButton" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 6
-texture_normal = ExtResource("12_aiyr0")
-stretch_mode = 0
-
-[node name="ProgressBarBackground" type="ProgressBar" parent="UI/SkillsContainer/VBoxContainer/HBoxContainer/MeteorButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxEmpty_buab2")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ov5d5")
-max_value = 60.0
-step = 5.0
-fill_mode = 2
-show_percentage = false
 
 [node name="AccumulatedMana" type="ProgressBar" parent="UI/SkillsContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -668,6 +602,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_3p6qc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mqj0w")
 max_value = 10.0
 step = 1.0
+value = 5.0
 fill_mode = 3
 show_percentage = false
 
@@ -796,12 +731,10 @@ layout_mode = 2
 size_flags_horizontal = 6
 texture = ExtResource("3_kmwdb")
 
-[node name="StarAnimation" type="AnimationPlayer" parent="GameOverScreen/MarginContainer/HBoxContainer"]
+[node name="StarAnimation" type="AnimationPlayer" parent="GameOverScreen/MarginContainer"]
 unique_name_in_owner = true
-process_mode = 3
-root_node = NodePath("")
 libraries = {
-"": SubResource("AnimationLibrary_udnpp")
+"": SubResource("AnimationLibrary_6v0rh")
 }
 
 [node name="OptionsMenu" parent="." instance=ExtResource("19_c68rg")]
@@ -838,6 +771,7 @@ color = Color(0.529241, 0.739018, 0.453577, 1)
 
 [node name="DefenseTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 2.0
 autostart = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

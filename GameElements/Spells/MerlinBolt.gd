@@ -7,8 +7,9 @@ func abstrat_bolt_effect_on_body(body: Node2D):
 	const SMOKE = preload("res://smoke_explosion/merlin_explosion.tscn")
 	var new_smoke = SMOKE.instantiate()
 	new_smoke.global_position = global_position
-	new_smoke.scale = Vector2(1.5,1.5)
+	new_smoke.scale = Vector2(1.2,1.2)
 	get_parent().add_child(new_smoke)
+	print(Global.getPlayerDamage()/3)
 	for bodyInZone in bodies:
 		if bodyInZone is Enemy:
-			bodyInZone.take_damage(damage / 3)
+			bodyInZone.take_damage(clamp(Global.getPlayerDamage()/3, 0.1, 2))

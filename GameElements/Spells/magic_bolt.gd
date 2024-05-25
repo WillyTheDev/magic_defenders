@@ -7,18 +7,18 @@ var damage = 1.0
 var travelled_distance = 0
 var direction
 
-static var range = 1600
+var bolt_range = 1600
 @export var is_passing_through = false
 var has_touch_enemy = false
 var target : Enemy = null
 
-func abstrat_bolt_effect_on_body(body: Node2D):
+func abstrat_bolt_effect_on_body(_body: Node2D):
 	pass
 
 
 func _reinitialize_static_properties():
 	print("Reinitializing Properties !")
-	range = 1600
+	bolt_range = 1600
 
 func _ready():
 	add_to_group("has_static_properties")
@@ -29,7 +29,7 @@ func _physics_process(delta):
 	rotate(6 * delta)
 	position += direction * SPEED * delta
 	travelled_distance += delta * SPEED
-	if travelled_distance > range :
+	if travelled_distance > bolt_range :
 		queue_free()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c2o1lsmd80cnp"]
+[gd_scene load_steps=31 format=3 uid="uid://c2o1lsmd80cnp"]
 
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/PlayerManager.gd" id="1_ctqjo"]
 [ext_resource type="Texture2D" uid="uid://7ldxtyg31ar8" path="res://Assets/UI/player_profile_background/background.png" id="2_3il38"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cqbelpmljed1s" path="res://Assets/UI/player_profile_background/select_down_normal.png" id="5_yh11t"]
 [ext_resource type="Texture2D" uid="uid://whbmuxb1eahl" path="res://Assets/UI/player_profile_background/select_down_pressed.png" id="6_f3uvs"]
 [ext_resource type="Texture2D" uid="uid://ccvj64tx7otbf" path="res://Assets/UI/player_profile_background/hat_button_hover.png" id="6_x1x4c"]
+[ext_resource type="PackedScene" uid="uid://dk18yh7kobthq" path="res://GameElements/Skills/skill_container.tscn" id="8_pjo68"]
 [ext_resource type="Texture2D" uid="uid://djy8a7ycwr56x" path="res://Assets/UI/player_profile_background/apply.png" id="9_dnnii"]
 [ext_resource type="Texture2D" uid="uid://bykke8w4lv8ba" path="res://Assets/UI/player_profile_background/apply_clicked.png" id="10_4uncc"]
 [ext_resource type="Texture2D" uid="uid://im3s6ag6e4n" path="res://Assets/UI/player_profile_background/apply_hover.png" id="11_4ikb7"]
@@ -19,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bb0i4rje2oy5f" path="res://Assets/hats/hat_2.png" id="13_q65v3"]
 [ext_resource type="Texture2D" uid="uid://dovrqtecvs03f" path="res://Assets/hats/hat_4.png" id="15_d8o2l"]
 [ext_resource type="Texture2D" uid="uid://dtp6f6suw0ucs" path="res://Assets/hats/hat_3.png" id="16_57g04"]
+[ext_resource type="Texture2D" uid="uid://c23o5qwfpntls" path="res://Assets/hats/hat_5.png" id="17_ykywm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdv3k"]
 bg_color = Color(0.244776, 0.244776, 0.244776, 1)
@@ -538,9 +540,12 @@ layout_mode = 2
 texture_normal = ExtResource("5_yh11t")
 texture_pressed = ExtResource("6_f3uvs")
 
+[node name="SkillContainer" parent="Background/MarginContainer/VBoxContainer" instance=ExtResource("8_pjo68")]
+layout_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 72
+theme_override_constants/margin_top = 16
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -587,7 +592,7 @@ theme_override_constants/icon_margin = 5
 allow_rmb_select = true
 allow_search = false
 auto_height = true
-item_count = 5
+item_count = 6
 max_columns = 3
 same_column_width = true
 item_0/text = ""
@@ -610,6 +615,10 @@ item_4/text = ""
 item_4/icon = ExtResource("15_d8o2l")
 item_4/selectable = false
 item_4/disabled = true
+item_5/text = ""
+item_5/icon = ExtResource("17_ykywm")
+item_5/selectable = false
+item_5/disabled = true
 
 [node name="PlayerPreview" parent="Background" instance=ExtResource("13_71dtm")]
 unique_name_in_owner = true
@@ -621,8 +630,8 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -200.0
-offset_right = 573.0
+offset_top = -232.0
+offset_right = 790.0
 grow_vertical = 0
 theme_override_constants/margin_left = 128
 theme_override_constants/margin_bottom = 32

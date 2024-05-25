@@ -1,20 +1,31 @@
 extends Node
 
-#Player - settings
+#======================
+# Player options selected
+#======================
 
 static var audio_volume = 0
 static var sound_volume = 0
+
+#======================
+# Player Map selected
+#======================
 
 static var selected_chapter = 1
 static var selected_map = 1
 static var selected_difficulty = 1
 static var has_save = false
 
-#Player Data
+#======================
+# Player Data
+#======================
 static var player_level = 0
 static var accumulated_mana = 0
 static var accumulated_gold = 0
-#Player stats
+
+#======================
+# Player Stats
+#======================
 static var player_base_damage = 0.5
 static var player_stat_damage = clamp(0, 0.5, 50)
 static var player_divider_damage = 3.0
@@ -59,13 +70,24 @@ func getDefenseFireRate():
 static var player_avail_pts = 0
 #Player equipped hat ( number represent index of hat )
 static var player_equipped_hat = 99
-static var unlocked_hats: Array[bool] = [false, false, false, false, false]
-static var accumulated_stars = 0
 
-static func get_accumulated_stars():
-	accumulated_stars = 0
-	for map in map_progression:
-		accumulated_stars += map_progression[map]
+#======================
+# Player Skills
+#======================
+
+static var unlocked_skills = {
+	"skill_0": true,
+	"skill_1": true,
+	"skill_2": true,
+	"skill_3": true
+}
+
+static var selected_skills = {
+	"skill_0": 0,
+	"skill_1": 1,
+	"skill_2": 2,
+	"skill_3": 3,
+}
 
 #======================
 # Game Progression
@@ -79,6 +101,22 @@ static var map_progression = {
 	"map_1_5" : 0,
 	"map_1_6" : 0
 }
+
+static var accumulated_stars = 0
+
+static var unlocked_hats:  = {
+	"hat_0" : false,
+	"hat_1" : false,
+	"hat_2" : false,
+	"hat_3" : false,
+	"hat_4" : false,
+	"hat_5" : false,
+}
+
+func get_accumulated_stars():
+	accumulated_stars = 0
+	for map in map_progression:
+		accumulated_stars += map_progression[map]
 
 func getStatFromIndex(index: int) -> int:
 	match index:
@@ -110,6 +148,17 @@ func setStatFromIndex(index: int, value: int):
 		_:
 			return 0
 			
+			
+			
+			
+
+
+
+
+#======================
+# Save/Load System
+#======================
+
 func save():
 	var save_dict = {
 		"filename" : get_scene_file_path(),
@@ -132,7 +181,7 @@ func save():
 	return save_dict
 	
 func new_save():
-	var save_game = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var save = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	var data = {
 		"filename" : get_scene_file_path(),
 		"player_level" : 1,
@@ -156,19 +205,27 @@ func new_save():
 							},
 		"audio_volume": 0,
 		"sound_volume": 0,
-		"unlocked_hats": [false, false, false, false, false],
+		"unlocked_hats": {
+							"hat_0" : true,
+							"hat_1" : true,
+							"hat_2" : true,
+							"hat_3" : true,
+							"hat_4" : true,
+							"hat_5" : true,
+						},
 	}
 	var json_string = JSON.stringify(data)
-	save_game.store_line(json_string)
+	save.store_line(json_string)
+	load_game()
 	
 func save_game():
 	print("Saving data...")
-	var save_game = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var save = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	var data = save()
 	# JSON provides a static method to serialized JSON string.
 	var json_string = JSON.stringify(data)
 	# Store the save dictionary as a new line in the save file.
-	save_game.store_line(json_string)
+	save.store_line(json_string)
 	
 func load_game():
 	print("Loading game...")
@@ -177,9 +234,9 @@ func load_game():
 		return
 	
 	has_save = true	
-	var save_game = FileAccess.open("user://savegame.save", FileAccess.READ)
-	while save_game.get_position() < save_game.get_length():
-		var json_string = save_game.get_line()
+	var save = FileAccess.open("user://savegame.save", FileAccess.READ)
+	while save.get_position() < save.get_length():
+		var json_string = save.get_line()
 
 		# Creates the helper class to interact with JSON
 		var json = JSON.new()
@@ -199,3 +256,4 @@ func load_game():
 				continue
 			print("Setting %s with value %s..." % [i, data[i]])
 			set(i, data[i])
+		print(unlocked_hats)

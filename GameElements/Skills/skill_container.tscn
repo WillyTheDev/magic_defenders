@@ -1,0 +1,214 @@
+[gd_scene load_steps=6 format=3 uid="uid://dk18yh7kobthq"]
+
+[ext_resource type="Script" path="res://GameElements/Game/SkillManager.gd" id="1_0dqmf"]
+[ext_resource type="Texture2D" uid="uid://33a4fljdofkd" path="res://Assets/UI/Skills_button/defense_normal.png" id="2_kcxfs"]
+[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="3_lby4j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_211iv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkffb"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 0.882353)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="SkillContainer" type="MarginContainer"]
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 16
+script = ExtResource("1_0dqmf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SkillList" type="ItemList" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+theme_override_constants/icon_margin = 5
+allow_rmb_select = true
+allow_search = false
+auto_height = true
+max_columns = 4
+same_column_width = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="SkillButton_1" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("2_kcxfs")
+stretch_mode = 0
+
+[node name="ProgressBarBackground" type="ProgressBar" parent="VBoxContainer/HBoxContainer/SkillButton_1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_211iv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gkffb")
+max_value = 10.0
+step = 2.0
+fill_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SkillButton_1"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.5
+offset_top = -31.5
+offset_right = 20.5
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.119928, 0.137119, 0.17318, 1)
+theme_override_fonts/font = ExtResource("3_lby4j")
+theme_override_font_sizes/font_size = 24
+text = "[1]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillButton_2" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("2_kcxfs")
+stretch_mode = 0
+
+[node name="ProgressBarBackground" type="ProgressBar" parent="VBoxContainer/HBoxContainer/SkillButton_2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_211iv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gkffb")
+max_value = 20.0
+step = 2.0
+fill_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SkillButton_2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.5
+offset_top = -31.5
+offset_right = 20.5
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.119928, 0.137119, 0.17318, 1)
+theme_override_fonts/font = ExtResource("3_lby4j")
+theme_override_font_sizes/font_size = 24
+text = "[2]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillButton_3" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("2_kcxfs")
+stretch_mode = 0
+
+[node name="ProgressBarBackground" type="ProgressBar" parent="VBoxContainer/HBoxContainer/SkillButton_3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_211iv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gkffb")
+max_value = 60.0
+step = 5.0
+fill_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SkillButton_3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.5
+offset_top = -31.5
+offset_right = 20.5
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.119928, 0.137119, 0.17318, 1)
+theme_override_fonts/font = ExtResource("3_lby4j")
+theme_override_font_sizes/font_size = 24
+text = "[3]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillButton_4" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("2_kcxfs")
+stretch_mode = 0
+
+[node name="ProgressBarBackground" type="ProgressBar" parent="VBoxContainer/HBoxContainer/SkillButton_4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_211iv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gkffb")
+max_value = 60.0
+step = 5.0
+fill_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SkillButton_4"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.5
+offset_top = -31.5
+offset_right = 20.5
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.119928, 0.137119, 0.17318, 1)
+theme_override_fonts/font = ExtResource("3_lby4j")
+theme_override_font_sizes/font_size = 24
+text = "[4]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="item_clicked" from="VBoxContainer/SkillList" to="." method="_on_skill_list_item_clicked"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_1" to="." method="_on_skill_button_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_2" to="." method="_on_skill_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_3" to="." method="_on_skill_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_4" to="." method="_on_skill_button_4_pressed"]

@@ -11,6 +11,7 @@ extends Node2D
 @export var unparsed_medium_sequences : Array[String]
 @export var unparsed_hard_sequences : Array[String]
 @export var win_hat_index : int = 1
+@export var player_starting_mana = 30
 
 @export var map_index = 1
 @export var chapter_index = 1

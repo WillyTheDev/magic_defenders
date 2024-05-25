@@ -39,6 +39,7 @@ func _ready():
 	var player = preload("res://GameElements/Player/player.tscn").instantiate()
 	player.player_update_mana_amount.connect(_on_player_player_update_mana_amount)
 	player.player_got_new_hat.connect(_show_new_hat_animation)
+	player.starting_mana_amount = map_of_game.player_starting_mana
 	%UI.set_ammo_progress_max_value(player.base_ammo)
 	player.player_has_shoot.connect(%UI.update_ammo_bar)
 	player.global_position = map_of_game.get_node("PlayerSpawnPoint").global_position
@@ -54,7 +55,6 @@ func start_new_wave():
 	%Enemy_3.visible = false
 	%Enemy_4.visible = false
 	%Enemy_5.visible = false
-	print("Starting new wave !")
 	is_idle = false
 	is_spawning = true
 	spawn_rates -= 0.2
@@ -78,7 +78,6 @@ func start_new_wave():
 					%Enemy_4.visible = true
 				5:
 					%Enemy_5.visible = true
-			print(value)
 			total_enemies += value
 			index += 2
 		spawn_index = 0
@@ -100,7 +99,7 @@ func start_new_wave():
 	%SpawnFlyingEnemyTimer.wait_time = clamp(spawn_flying_enemy_rates, 0.5, 2.5)
 	%SpawnFlyingEnemyTimer.start()
 
-	if current_wave >= 5 && Global.selected_difficulty > 2:
+	if current_wave >= 5 && Global.selected_difficulty > 1:
 		Enemy.base_health += map_of_game.enemy_health_increment
 		Enemy.base_speed += map_of_game.enemy_speed_increment
 
@@ -114,7 +113,6 @@ func end_of_wave():
 	%WaveActionLabel.visible = true
 	Global.accumulated_gold += 1
 	# Give stars base on the current_wave
-	print(current_wave)
 	match Global.selected_difficulty:
 		1:
 			if current_wave == map_of_game.sequences.size():
@@ -145,8 +143,6 @@ func end_of_wave():
 					Global.unlocked_hats[map_of_game.win_hat_index] = true
 					Global.get_accumulated_stars()
 				game_completed()
-		var other:
-			print("current wave is %s" % other)
 	is_idle = true
 	wave_is_over.emit()
 
@@ -171,7 +167,6 @@ func spawn_mob():
 	var follower = preload("res://GameElements/Enemies/Enemy.tscn").instantiate()
 	var enemy = null
 	# if infinity mode, ennemies spawner don't foller any sequence
-	print("Difficulty selected = %s" % Global.selected_difficulty)
 	if Global.selected_difficulty == 4:
 		if enemies_spawn >= total_enemies:
 			is_spawning = false
@@ -190,51 +185,34 @@ func spawn_mob():
 			else:
 				enemy = preload("res://GameElements/Enemies/Slime/slime.tscn").instantiate()
 	else:
-		# follow a sequence$
-		print("Number of enemy of the same type to spawn : %s" % number_of_time)
+		# follow a sequence
 		if number_of_time == 0:
 			if spawn_index + 2 == map_of_game.sequences[sequence_index].size():
-				print(map_of_game.sequences[sequence_index].size())
-				print("🐸 have Spawned all Enemy ! 🐸")
 				is_spawning = false
 				return
 			else:
 				spawn_index += 2
 				number_of_time = map_of_game.sequences[sequence_index][spawn_index]
 				type_of_enemy = map_of_game.sequences[sequence_index][spawn_index + 1]
-				print("Type of Enemy ! %s" % type_of_enemy)
 		match type_of_enemy:
 			1: 
-				print("Enemy type == 1")
 				enemy = preload("res://GameElements/Enemies/Slime/slime.tscn").instantiate()
 			2:
-				print("Enemy type == 2")
 				enemy = preload("res://GameElements/Enemies/Slime/slime_medium.tscn").instantiate()
 			3:
-				print("Enemy type == 3")
 				enemy = preload("res://GameElements/Enemies/Slime/slime_hard.tscn").instantiate()
 			4: 
-				print("Enemy type == 4")
 				spawn_flying_mob()
 				return
 			5: 
-				print("Enemy type == 5")
 				enemy = preload("res://GameElements/Enemies/Slime/slime_mana.tscn").instantiate()
-			var other:
-				print("WRONG ENEMY TYPE : %s" % other)
 		number_of_time -= 1
 	# Connect a signal to track when an enemy has been killed
 	enemy.slime_has_been_killed.connect(on_enemy_has_been_killed)
 	# Add hat to unlock on enemy's head
-	var hat_chance = 0.5
-	if randf() <= hat_chance:
-		var index_hat = 0
-		for hat in Global.unlocked_hats:
-			if hat == false:
-				break;
-			index_hat += 1
-		enemy.add_hat(index_hat)
-		
+	var hat_chance = 0.001
+	if randf() <= hat_chance && !(Global.unlocked_hats.values().all(func(value):return value==true)):
+		enemy.add_hat(get_index_of_random_available_hat())
 	# Add the enemy on a FollowerPath2D
 	follower.add_child(enemy)
 	follower.child = enemy
@@ -269,9 +247,7 @@ func _input(event):
 
 func _on_player_player_update_mana_amount(mana):
 	%ManaLabel.text = "Mana : %s" % mana
-	%TurretButton/ProgressBarBackground.value = 20 - mana
-	%DefenseButton/ProgressBarBackground.value = 10 - mana
-	%MeteorButton/ProgressBarBackground.value = 60 - mana
+	%SkillContainer.update_progress_bar(mana)
 	%AccumulatedManaLabel.text = "%s / %s until the next level" % [Global.accumulated_mana, (Player.offset_accumulated_mana_value + Global.player_level * 10)]
 	%AccumulatedMana.max_value = Player.offset_accumulated_mana_value + Global.player_level * 10
 	%AccumulatedMana.value = Player.accumulated_mana
@@ -296,7 +272,6 @@ func _on_spawn_flying_enemy_timer_timeout():
 		spawn_flying_mob()
 
 func _on_restart_button_pressed():
-	print("replay !")
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
@@ -326,3 +301,10 @@ func _on_quit_to_menu_pressed():
 func _show_new_hat_animation(hat_index : int):
 	%NewHatTexture.texture = load("res://Assets/hats/hat_%s.png" % hat_index)
 	%UI/UIAnimationPlayer.queue("show_new_hat")
+	
+func get_index_of_random_available_hat() -> int:
+	var rand_index = randi_range(0, Global.unlocked_hats.size() - 1)
+	if Global.unlocked_hats.values()[rand_index]:
+		return get_index_of_random_available_hat()
+	else:
+		return rand_index

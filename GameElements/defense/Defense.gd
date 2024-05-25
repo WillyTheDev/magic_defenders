@@ -29,22 +29,22 @@ func _apply_modification(args: Callable):
 		
 
 func abstract_final_action():
-	assert("This class is not derived from Defense !")
+	pass
 	
 func abstract_on_body_exited_defense_zone():
-	assert("This class is not derived from Defense !")
+	pass
 	
 func abstract_on_process():
-	assert("This class is not derived from Defense !")
+	pass
 	
 func abstract_build_defense():
-	assert("This class is not derived from Defense !")
+	pass
 
 func abstract_defense_take_damage():
-	assert("This class is not derived from Defense !")
+	pass
 
-func abstract_input(event):
-	assert("This class is not derived from Defense !")
+func abstract_input(_event):
+	pass
 
 	
 func build_defense():
@@ -57,10 +57,9 @@ func build_defense():
 	abstract_build_defense()
 	has_been_build = true
 
-func _process(float):
+func _process(_float):
 	abstract_on_process()
 	if has_been_build == false:
-		print("Has been Build : %s" % has_been_build)
 		global_position = get_global_mouse_position()
 		rotation = get_node("/root/Game/Player").get_angle_to(get_global_mouse_position())
 		if %Area2D.get_overlapping_bodies().size() > 0 :
@@ -82,18 +81,21 @@ func _input(event):
 
 
 func take_damage():
-	abstract_defense_take_damage()
-	current_health -= cumulated_damage
-	if current_health <= 0:
-		abstract_final_action()
-		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
-		var new_smoke = SMOKE.instantiate()
-		new_smoke.global_position = global_position
-		get_parent().add_child(new_smoke)
-		queue_free()
-	else:
-		var values = (255 * (current_health/Global.getDefenseHealth()))
-		modulate = "ff%x%xff" % [values, values]
+	if cumulated_damage > 0:
+		
+		abstract_defense_take_damage()
+		current_health -= cumulated_damage
+		print("Defense Damage taken : %s Defense health left : %s" % [cumulated_damage, current_health])
+		if current_health <= 0:
+			abstract_final_action()
+			const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
+			var new_smoke = SMOKE.instantiate()
+			new_smoke.global_position = global_position
+			get_parent().add_child(new_smoke)
+			queue_free()
+		else:
+			var values = (255 * (current_health/Global.getDefenseHealth()))
+			modulate = "ff%x%xff" % [values, values]
 
 func _on_area_2d_body_entered(body):
 	if body is Enemy:

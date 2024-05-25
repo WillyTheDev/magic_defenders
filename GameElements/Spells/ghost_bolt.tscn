@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c737wjyohpc8"]
 
-[ext_resource type="Script" path="res://GameElements/Spells/magic_bolt.gd" id="1_shjwn"]
+[ext_resource type="Script" path="res://GameElements/Spells/ghost_bolt.gd" id="1_mfp7y"]
 [ext_resource type="Texture2D" uid="uid://bbw7be33lrgsa" path="res://Assets/Player/bouncing_bolt.png" id="2_4vr7t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oie8i"]
@@ -11,7 +11,7 @@ modulate = Color(3, 3, 3, 1)
 scale = Vector2(0.75, 0.75)
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("1_shjwn")
+script = ExtResource("1_mfp7y")
 is_passing_through = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

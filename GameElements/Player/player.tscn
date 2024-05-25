@@ -97,6 +97,7 @@ scale = Vector2(0.25, 0.25)
 script = ExtResource("1_h1uax")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
 zoom = Vector2(2, 2)
 process_callback = 0
 limit_left = 0

@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://cv2s61kx652j"]
 
 [ext_resource type="Script" path="res://GameElements/Spells/magic_bolt.gd" id="1_8s2fa"]
-[ext_resource type="Texture2D" uid="uid://bvprvhxisohd2" path="res://Assets/Player/fire_bolt.png" id="2_06lvk"]
+[ext_resource type="Texture2D" uid="uid://dglif25oljcne" path="res://Assets/Player/water_bolt.png" id="2_d8y60"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oie8i"]
 radius = 16.0555
 
 [node name="Area2D" type="Area2D" groups=["has_static_properties"]]
-modulate = Color(3, 3, 3, 1)
+modulate = Color(2, 1, 2, 1)
 scale = Vector2(0.75, 0.75)
 collision_layer = 3
 collision_mask = 3
@@ -18,7 +18,8 @@ shape = SubResource("CircleShape2D_oie8i")
 
 [node name="MagicBoltSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-texture = ExtResource("2_06lvk")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_d8y60")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -13,7 +13,7 @@ var player_speed = 300
 var big_shoot_damage = 50
 var big_shoot_price = 60
 var defense_to_be_placed : Node2D = null
-var defense_to_be_placed_type : String = ''
+var applying_skill_index : int = 0
 var is_building = false
 
 signal player_has_level_up
@@ -74,7 +74,6 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed("left_click"):
 		if is_building:
-			print("PLACE BUILDING")
 			_place_defense()
 		else:
 			if ammo > 0:
@@ -84,41 +83,29 @@ func _input(event):
 				_reload()
 	if event.is_action_released("left_click"):
 			%AutoShootTimer.stop()
-	if event.is_action_pressed("turret_key_pressed"):
-		if is_building == false:
-			_on_turret_button_pressed()
-	if event.is_action_pressed("defense_key_pressed"):
-		if is_building == false:
-			_on_defense_button_pressed()
-	if event.is_action_pressed("right_click"):
-		_bigShoot()
+	#====================
+	#Skills Input
+	#====================
+	if event.is_action_pressed("skill_1"):
+		_on_skill_pressed(0)
+	if event.is_action_pressed("skill_2"):
+		_on_skill_pressed(1)
+	if event.is_action_pressed("skill_3"):
+		_on_skill_pressed(2)
+	if event.is_action_pressed("skill_4"):
+		_on_skill_pressed(3)
+	
+	
 	if event.is_action_pressed("show_options"):
 		if is_building && defense_to_be_placed != null:
-			defense_to_be_placed_type
 			defense_to_be_placed.queue_free()
-			if defense_to_be_placed_type == 'turret':
-				update_mana_amount(Turret.turret_price, false)
-			else:
-				update_mana_amount(Defense.defense_price, false)
+			update_mana_amount(SkillManager.selected_skills[applying_skill_index].mana_cost, false)
 	if event.is_action_released("show_options"):
 		is_building = false
 	if event.is_action_pressed("reload"):
 		_reload()
 			
 
-
-
-func _bigShoot():
-	if mana_amount >= big_shoot_price:
-		update_mana_amount(-big_shoot_price, false)
-		const METEOR_BOLT = preload("res://GameElements/Spells/meteor_bolt.tscn")
-		var explosion = preload("res://GameElements/misc/explosion_sound.tscn").instantiate()
-		var new_meteor_bolt = METEOR_BOLT.instantiate()
-		explosion.global_position = get_global_mouse_position()
-		new_meteor_bolt.global_position = get_global_mouse_position()
-		new_meteor_bolt.damage = big_shoot_damage
-		get_parent().add_child(new_meteor_bolt)
-		get_parent().add_child(explosion)
 
 func _reload():
 	if %ReloadTimer.is_stopped():
@@ -139,37 +126,28 @@ func _shoot():
 	player_has_shoot.emit(ammo)
 
 func _place_defense():
-	if(defense_to_be_placed.can_be_placed):
+	if defense_to_be_placed.can_be_placed:
 		%PlaceDefenseAudio.play()
 		is_building = false	
-
-func _on_defense_button_pressed():
-	var defense_price = Defense.defense_price
-	if mana_amount >= defense_price:
-		update_mana_amount(-defense_price, false)
-		is_building = true
-		const DEFENSE = preload("res://GameElements/defense/defense.tscn")
-		var new_defense = DEFENSE.instantiate()
-		new_defense.global_position = get_global_mouse_position()
-		new_defense.rotation = get_angle_to(get_global_mouse_position())
-		defense_to_be_placed = new_defense
-		defense_to_be_placed_type = 'defense'
-		get_parent().add_child(new_defense)
-
-
-func _on_turret_button_pressed():
-	var turret_price = Turret.turret_price
-	if mana_amount >= turret_price:
-		update_mana_amount(-turret_price, false)
-		is_building = true
-		const TURRET = preload("res://GameElements/defense/turret.tscn")
-		var new_turret = TURRET.instantiate()
-		new_turret.global_position = get_global_mouse_position()
-		new_turret.rotation = get_angle_to(get_global_mouse_position())
-		defense_to_be_placed = new_turret
-		defense_to_be_placed_type = 'turret'
-		get_parent().add_child(new_turret)
-
+		
+func _on_skill_pressed(index : int):
+	var price = SkillManager.selected_skills[index].mana_cost
+	if mana_amount >= price && is_building == false:
+		update_mana_amount(-price, false)
+		if(SkillManager.selected_skills[index].type == "defense"):
+			is_building = true
+			var skill_object = SkillManager.selected_skills[index].scene
+			var new_object = skill_object.instantiate()
+			new_object.global_position = get_global_mouse_position()
+			new_object.rotation = get_angle_to(get_global_mouse_position())
+			defense_to_be_placed = new_object
+			applying_skill_index = index
+			get_parent().add_child(new_object)
+		else:
+			var skill = SkillManager.selected_skills[index].scene.instantiate()
+			var explosion = preload("res://GameElements/misc/explosion_sound.tscn").instantiate()
+			skill.global_position = get_global_mouse_position()
+			get_parent().add_child(skill)
 
 func _on_reload_timer_timeout():
 	ammo = base_ammo

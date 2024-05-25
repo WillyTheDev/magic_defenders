@@ -9,6 +9,7 @@ func _ready():
 	DefenseTimer.timeout.connect(_on_timer_timeout)
 	current_health = 10
 	get_node("/root/Game/PlayerManager").defense_modified.connect(_apply_modification)
+	print("Core current health : %s" % current_health)
 
 func abstract_final_action():
 	destroy_core()

@@ -22,7 +22,7 @@ func _input(event):
 				else:
 					openOptionsMenu("")
 			
-func openOptionsMenu(from: String):
+func openOptionsMenu(_from: String):
 	options_menu_open = true
 	if get_tree().paused:
 		game_was_paused = true

@@ -278,8 +278,8 @@ scale = Vector2(1.05, 1)
 [node name="Hat" type="Sprite2D" parent="Full"]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_uh2nj")
-position = Vector2(-20.3175, -202.667)
-scale = Vector2(1.2, 1.2)
+position = Vector2(-22.8571, -217.333)
+scale = Vector2(1.5, 1.5)
 
 [node name="FullV2" type="Sprite2D" parent="Full"]
 material = SubResource("ShaderMaterial_lxqha")
