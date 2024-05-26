@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cste8v1g53q7o"]
+[gd_scene load_steps=24 format=3 uid="uid://cste8v1g53q7o"]
 
 [ext_resource type="Script" path="res://WelcomeScreen.gd" id="1_oh8bs"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_xqk6b"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://mwqj33u3dxkg" path="res://Assets/UI/welcome_screen_button/settings_hover.png" id="13_vdf0w"]
 [ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="15_nwpt0"]
 [ext_resource type="AudioStream" uid="uid://cgf42h3rpcibi" path="res://Assets/audio/VGMA Challenge - 12.ogg" id="16_dlkjs"]
+[ext_resource type="Texture2D" uid="uid://c11u56rufsapq" path="res://Assets/UI/welcome_screen_button/quit_hover.png" id="16_rpfy4"]
 [ext_resource type="Script" path="res://GameElements/Screens/BackgroundAudioPlayer.gd" id="17_eywxx"]
 [ext_resource type="PackedScene" uid="uid://dfk2ty751jcp5" path="res://GameElements/Screens/options_menu.tscn" id="18_uk2s8"]
 [ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="19_26kxm"]
@@ -98,7 +99,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 texture_normal = ExtResource("9_qhiyh")
 texture_pressed = ExtResource("10_3lq7y")
-texture_hover = ExtResource("9_qhiyh")
+texture_hover = ExtResource("16_rpfy4")
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="CanvasLayer"]

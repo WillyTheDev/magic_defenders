@@ -5,11 +5,11 @@
 [ext_resource type="Script" path="res://GameElements/Player/wand.gd" id="2_xip2f"]
 [ext_resource type="Texture2D" uid="uid://c5bcum68g3gd3" path="res://Assets/Player/arm.png" id="4_6y3n2"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="4_a1136"]
-[ext_resource type="Texture2D" uid="uid://ipc4frxgx8y2" path="res://Assets/Player/wand.png" id="5_58hrn"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="5_wdent"]
 [ext_resource type="Script" path="res://GameElements/Player/Camera.gd" id="6_8a3rv"]
 [ext_resource type="AudioStream" uid="uid://b86q5bm48poyj" path="res://Assets/audio/walk.ogg" id="6_u8c0g"]
 [ext_resource type="AudioStream" uid="uid://dq10lwer6ug24" path="res://Assets/audio/drop.ogg" id="7_3y2qv"]
+[ext_resource type="Texture2D" uid="uid://dmyfaxb37b1ps" path="res://Assets/Player/wand_1.png" id="7_kjg7k"]
 [ext_resource type="AudioStream" uid="uid://bdb7radgqx0js" path="res://Assets/audio/fire.wav" id="8_1vlqa"]
 [ext_resource type="AudioStream" uid="uid://bvo2n5b8vi5gw" path="res://Assets/audio/mana.ogg" id="9_cuy5d"]
 [ext_resource type="AudioStream" uid="uid://ca7kq2f0qovbl" path="res://Assets/audio/reload.ogg" id="13_43w34"]
@@ -130,7 +130,7 @@ material = SubResource("ShaderMaterial_0vy6h")
 position = Vector2(-57.1679, -51.9708)
 rotation = -0.20944
 scale = Vector2(0.875595, 0.875595)
-texture = ExtResource("5_58hrn")
+texture = ExtResource("7_kjg7k")
 
 [node name="ShootingPoint" type="Marker2D" parent="WandPivot/Arm/Wand"]
 unique_name_in_owner = true

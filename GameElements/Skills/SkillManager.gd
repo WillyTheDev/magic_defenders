@@ -64,13 +64,13 @@ static var skills : Array[Skill] = [
 	 preload("res://GameElements/Spells/meteor_bolt.tscn"),
 	"A meteor",
 	"spell"),
-	Skill.new(30,
+	Skill.new(40,
 	 preload("res://Assets/UI/Skills_button/fire_turret_normal.png"),
 	 preload("res://Assets/UI/Skills_button/fire_turret_hover.png"),
 	 preload("res://GameElements/defense/fire_turret.tscn"),
 	"A fire turret",
 	"defense"),
-	Skill.new(30,
+	Skill.new(40,
 	 preload("res://Assets/UI/Skills_button/frost_turret_normal.png"),
 	 preload("res://Assets/UI/Skills_button/frost_turret_hover.png"),
 	 preload("res://GameElements/defense/frost_turret.tscn"),
@@ -116,3 +116,6 @@ func _on_skill_button_4_pressed():
 	show_skill_list()
 
 
+func _on_player_manager_apply_change():
+	var mana = get_node("/root/Game/Player").mana_amount
+	update_progress_bar(mana)

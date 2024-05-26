@@ -29,13 +29,6 @@ func abstract_build_defense():
 		%ShootingZoneSprite.visible = false
 		%ShootZone.collision_mask = 1
 
-func abstract_on_process():
-	if target == null:
-		for body in %ShootZone.get_overlapping_bodies():
-			if body is Enemy:
-				target = body
-				break
-
 func shoot():
 	if target != null:
 		%FireAudio.play()
@@ -80,3 +73,11 @@ func _on_timer_shoot_timeout():
 
 func _on_shoot_zone_body_exited(_body):
 	target = null
+	if %ShootZone != null:
+		for body in %ShootZone.get_overlapping_bodies():
+				if body is Enemy:
+					target = body
+
+func _on_shoot_zone_body_entered(body):
+	if target == null && body is Enemy:
+		target = body

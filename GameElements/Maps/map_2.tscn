@@ -19,19 +19,6 @@ shader_parameter/speed = 2.0
 shader_parameter/frames = 6
 shader_parameter/flowMap = ExtResource("6_6m2yq")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2jags"]
-shader = ExtResource("2_km4vc")
-shader_parameter/OCTAVE = 6
-shader_parameter/mulscale = 5.0
-shader_parameter/height = 0.6
-shader_parameter/tide = 0.1
-shader_parameter/foamthickness = 1.0
-shader_parameter/timescale = 0.25
-shader_parameter/waterdeep = 0.3
-shader_parameter/WATER2_COL = Color(0.0392157, 0.34902, 0.780392, 0)
-shader_parameter/WATER_COL = Color(0.0392157, 0.380392, 0.878431, 0)
-shader_parameter/FOAM_COL = Color(0.0196078, 0.101961, 0.105882, 0.0392157)
-
 [sub_resource type="Curve2D" id="Curve2D_wb7bk"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 890, -285, 0, 0, 0, 0, 2936, -264, 0, 0, 0, 0, 2943, 1525, 0, 0, 0, 0, 427, 1568, 0, 0, 0, 0, -364, 1518, 0, 0, 0, 0, -329, -236, 0, 0, 0, 0, 1275, -321)
@@ -56,6 +43,19 @@ _data = {
 }
 point_count = 6
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wf3g2"]
+shader = ExtResource("2_km4vc")
+shader_parameter/OCTAVE = 6
+shader_parameter/mulscale = 5.0
+shader_parameter/height = 0.6
+shader_parameter/tide = 0.1
+shader_parameter/foamthickness = 1.0
+shader_parameter/timescale = 0.25
+shader_parameter/waterdeep = 0.3
+shader_parameter/WATER_COL = Color(0.0392157, 0.380392, 0.878431, 0)
+shader_parameter/WATER2_COL = Color(0.0392157, 0.34902, 0.780392, 0)
+shader_parameter/FOAM_COL = Color(0.0196078, 0.101961, 0.105882, 0.0784314)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4adnp"]
 shader = ExtResource("3_p6aui")
 
@@ -76,6 +76,7 @@ enemy_health_increment = 2
 unparsed_easy_sequences = Array[String](["5x1", "8x1", "15x1", "15x1,2x4", "18x1,2x4", "15x1,2x4,5x1", "17x1,2x4,7x1", "17x1,2x4,9x1,5x1", "20x4", "3x2,1x5"])
 unparsed_medium_sequences = Array[String](["10x1", "10x1,3x2", "15x1,3x2,1x4", "15x1,3x2,1x4", "15x1,3x2,1x4", "15x1,3x2,2x4", "15x1,3x2,2x4", "15x1,5x2,2x4", "30x4", "1x3,1x5"])
 unparsed_hard_sequences = Array[String](["10x1", "10x1,6x2", "10x1,6x2", "10x1,6x2,1x4", "10x1,6x2,1x4", "10x1,6x2,4x4,1x3", "10x1,6x2,5x4,2x3", "10x1,6x2,6x4,2x3", "40x4", "5x3,2x5"])
+player_starting_mana = 60
 map_index = 2
 
 [node name="River" type="ColorRect" parent="."]
@@ -103,15 +104,6 @@ position = Vector2(1269, 675)
 scale = Vector2(1.58751, 1.53689)
 texture = ExtResource("3_ylanq")
 
-[node name="Cloud" type="ColorRect" parent="Arrière-plan"]
-z_index = 5
-material = SubResource("ShaderMaterial_2jags")
-offset_left = -1388.34
-offset_top = -968.84
-offset_right = 531.658
-offset_bottom = 111.16
-scale = Vector2(1.5, 1.5)
-
 [node name="Paths" type="Node2D" parent="Arrière-plan"]
 position = Vector2(-799.365, -439.199)
 scale = Vector2(0.629917, 0.650665)
@@ -138,6 +130,15 @@ curve = SubResource("Curve2D_wfim6")
 
 [node name="Path2D3" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_trq67")
+
+[node name="Cloud" type="ColorRect" parent="Arrière-plan"]
+z_index = 5
+material = SubResource("ShaderMaterial_wf3g2")
+offset_left = -1390.23
+offset_top = -964.285
+offset_right = 529.771
+offset_bottom = 115.715
+scale = Vector2(1.5, 1.5)
 
 [node name="env" type="Node2D" parent="."]
 z_as_relative = false

@@ -2,6 +2,7 @@ class_name FrostTurret
 extends Turret
 
 func _abstract_turret_ready():
+	print(Global.getDefenseFireRate() * 1.5)
 	%TimerShoot.wait_time = Global.getDefenseFireRate() * 1.5
 	
 func shoot():

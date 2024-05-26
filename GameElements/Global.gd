@@ -14,6 +14,7 @@ static var sound_volume = 0
 static var selected_chapter = 1
 static var selected_map = 1
 static var selected_difficulty = 1
+static var starting_wave = 0
 static var has_save = false
 
 #======================
@@ -206,12 +207,12 @@ func new_save():
 		"audio_volume": 0,
 		"sound_volume": 0,
 		"unlocked_hats": {
-							"hat_0" : true,
-							"hat_1" : true,
-							"hat_2" : true,
-							"hat_3" : true,
-							"hat_4" : true,
-							"hat_5" : true,
+							"hat_0" : false,
+							"hat_1" : false,
+							"hat_2" : false,
+							"hat_3" : false,
+							"hat_4" : false,
+							"hat_5" : false,
 						},
 	}
 	var json_string = JSON.stringify(data)

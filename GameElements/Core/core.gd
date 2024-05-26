@@ -12,6 +12,7 @@ func _ready():
 	print("Core current health : %s" % current_health)
 
 func abstract_final_action():
+	$/root/Game/UI/CoreAttackedRect.visible = false
 	destroy_core()
 
 func abstract_defense_take_damage():
@@ -30,8 +31,6 @@ func abstract_defense_take_damage():
 			)
 	
 
-		
 func destroy_core():
-	var game = get_node("/root/Game")
-	game.game_over()
+	get_node("/root/Game/GameOverScreen").game_over($/root/Game.current_wave)
 	

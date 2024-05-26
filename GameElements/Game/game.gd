@@ -32,6 +32,7 @@ var sequence_enemies = {
 
 # Use the _ready methode to reinitialize static properties from various classes
 func _ready():
+	current_wave = Global.starting_wave
 	is_idle = true
 	map_of_game = load("res://GameElements/Maps/map_%s.tscn" % Global.selected_map).instantiate()
 	spawn_rates = map_of_game.starting_spawn_rate
@@ -116,33 +117,16 @@ func end_of_wave():
 	match Global.selected_difficulty:
 		1:
 			if current_wave == map_of_game.sequences.size():
-				%StarAnimation.play("show_first_star")
-				if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 1:
-					Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 1
-					Global.get_accumulated_stars()
-				game_completed()
-				
+				%GameOverScreen.game_completed(current_wave, 1, map_of_game)
 		2:
 			if current_wave == map_of_game.sequences.size():
-				%StarAnimation.play("show_second_star")
-				if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 2:
-					Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 2
-					Global.get_accumulated_stars()
-				game_completed()
+				%GameOverScreen.game_completed(current_wave, 2, map_of_game)
 		3:
 			if current_wave == map_of_game.sequences.size():
-				%StarAnimation.play("show_third_star")
-				if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 3:
-					Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 3
-					Global.get_accumulated_stars()
-				game_completed()
+				%GameOverScreen.game_completed(current_wave, 3, map_of_game)
 		4:
 			if current_wave == 30:
-				if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 4:
-					Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 4
-					Global.unlocked_hats[map_of_game.win_hat_index] = true
-					Global.get_accumulated_stars()
-				game_completed()
+				%GameOverScreen.game_completed(current_wave, 4, map_of_game)
 	is_idle = true
 	wave_is_over.emit()
 
@@ -210,9 +194,8 @@ func spawn_mob():
 	# Connect a signal to track when an enemy has been killed
 	enemy.slime_has_been_killed.connect(on_enemy_has_been_killed)
 	# Add hat to unlock on enemy's head
-	var hat_chance = 0.001
-	if randf() <= hat_chance && !(Global.unlocked_hats.values().all(func(value):return value==true)):
-		enemy.add_hat(get_index_of_random_available_hat())
+	add_hat_to_enemy(enemy)
+	
 	# Add the enemy on a FollowerPath2D
 	follower.add_child(enemy)
 	follower.child = enemy
@@ -233,7 +216,7 @@ func spawn_visual_indicator(target):
 func on_enemy_has_been_killed():
 	enemies_left -= 1
 	%EnemiesProgressBar.value = enemies_left
-	%EnemiesLabel.text = "%s / %s" % [enemies_left, total_enemies]
+	%EnemiesLabel.text = "Wave %s : %s / %s" % [current_wave,enemies_left, total_enemies]
 	# This is the part to debug !
 	# When there is no more enemy to spawn & the player just kille the last enemy then :
 	# @enemies_left is decremented each time the player is killing an ennemy
@@ -252,17 +235,6 @@ func _on_player_player_update_mana_amount(mana):
 	%AccumulatedMana.max_value = Player.offset_accumulated_mana_value + Global.player_level * 10
 	%AccumulatedMana.value = Player.accumulated_mana
 
-func game_over():
-	%GameOverScreen.visible = true
-	%ScoreLabel.text = "The lotus has been destroyed\n %s waves" % current_wave
-	get_tree().paused = true
-
-func game_completed():
-	%GameOverScreen.visible = true
-	%GameOverTitle.text = "Success !"
-	%ScoreLabel.text = "You've completed this map and survided :\n %s" % current_wave
-	%Confetti.play_confetti()
-	get_tree().paused = true
 
 func _on_spawn_enemy_timer_timeout():
 		spawn_mob()
@@ -271,33 +243,18 @@ func _on_spawn_flying_enemy_timer_timeout():
 	if Global.selected_difficulty == 4:
 		spawn_flying_mob()
 
-func _on_restart_button_pressed():
-	get_tree().paused = false
-	get_tree().reload_current_scene()
-
 func _on_core_core_destroyed():
-	game_over()
+	%GameOverScreen.game_over(current_wave)
 
 
 func _on_audio_stream_player_finished():
 	%BackgroundAudioPlayer.play()
 
 
-func _on_transition_layer_transition_is_finished(anim_name):
-	if anim_name == "close_transition":
-		get_tree().change_scene_to_file("res://GameElements/Screens/welcome_screen.tscn")
-
-
 func _on_options_menu_audio_value_changed():
 	%BackgroundAudioPlayer.volume_db = Global.audio_volume
 
 
-func _on_quit_to_menu_pressed():
-	Global.save_game()
-	get_tree().call_group("has_static_properties", "_reinitialize_static_properties")
-	get_tree().paused = false
-	get_node("/root/Game/TransitionLayer").close_transition()
-	
 func _show_new_hat_animation(hat_index : int):
 	%NewHatTexture.texture = load("res://Assets/hats/hat_%s.png" % hat_index)
 	%UI/UIAnimationPlayer.queue("show_new_hat")
@@ -308,3 +265,12 @@ func get_index_of_random_available_hat() -> int:
 		return get_index_of_random_available_hat()
 	else:
 		return rand_index
+		
+func _on_transition_layer_transition_is_finished(anim_name):
+	if anim_name == "close_transition":
+		get_tree().change_scene_to_file("res://GameElements/Screens/welcome_screen.tscn")
+
+func add_hat_to_enemy(enemy: Node2D):
+	var hat_chance = 0.005
+	if randf() <= hat_chance && !(Global.unlocked_hats.values().all(func(value):return value==true)):
+		enemy.add_hat(get_index_of_random_available_hat())

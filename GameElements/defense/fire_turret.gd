@@ -2,7 +2,8 @@ class_name FireTurret
 extends Turret
 
 func _abstract_turret_ready():
-	%TimerShoot.wait_time = Global.getDefenseFireRate() * 2
+	print(Global.getDefenseFireRate() * 3)
+	%TimerShoot.wait_time = Global.getDefenseFireRate() * 3
 	
 func shoot():
 	if target != null:

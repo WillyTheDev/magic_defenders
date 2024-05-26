@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di58fe5otqeay"
-path="res://.godot/imported/baguette.png-ead85bd542ae2c8c55ec721fca9efd38.ctex"
+uid="uid://dmdsrjbg2gy0w"
+path="res://.godot/imported/try_again.png-4a02fd5808ba63472f9f1c55906e5871.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/baguette.png"
-dest_files=["res://.godot/imported/baguette.png-ead85bd542ae2c8c55ec721fca9efd38.ctex"]
+source_file="res://Assets/UI/game_over/try_again.png"
+dest_files=["res://.godot/imported/try_again.png-4a02fd5808ba63472f9f1c55906e5871.ctex"]
 
 [params]
 

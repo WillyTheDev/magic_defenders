@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dk18yh7kobthq"]
 
-[ext_resource type="Script" path="res://GameElements/Game/SkillManager.gd" id="1_0dqmf"]
+[ext_resource type="Script" path="res://GameElements/Skills/SkillManager.gd" id="1_qmdoi"]
 [ext_resource type="Texture2D" uid="uid://33a4fljdofkd" path="res://Assets/UI/Skills_button/defense_normal.png" id="2_kcxfs"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="3_lby4j"]
 
@@ -16,23 +16,10 @@ corner_radius_bottom_left = 8
 [node name="SkillContainer" type="MarginContainer"]
 size_flags_horizontal = 4
 theme_override_constants/margin_top = 16
-script = ExtResource("1_0dqmf")
+script = ExtResource("1_qmdoi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-
-[node name="SkillList" type="ItemList" parent="VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 5
-theme_override_constants/icon_margin = 5
-allow_rmb_select = true
-allow_search = false
-auto_height = true
-max_columns = 4
-same_column_width = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -207,8 +194,34 @@ text = "[4]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="item_clicked" from="VBoxContainer/SkillList" to="." method="_on_skill_list_item_clicked"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 12
+
+[node name="SkillList" type="ItemList" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.0
+offset_top = -62.0
+offset_right = 194.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+theme_override_constants/icon_margin = 5
+allow_rmb_select = true
+allow_search = false
+auto_height = true
+max_columns = 4
+same_column_width = true
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_1" to="." method="_on_skill_button_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_2" to="." method="_on_skill_button_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_3" to="." method="_on_skill_button_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_4" to="." method="_on_skill_button_4_pressed"]
+[connection signal="item_clicked" from="CanvasLayer/SkillList" to="." method="_on_skill_list_item_clicked"]

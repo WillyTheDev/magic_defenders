@@ -26,11 +26,11 @@ shader_parameter/mulscale = 5.0
 shader_parameter/height = 0.6
 shader_parameter/tide = 0.1
 shader_parameter/foamthickness = 1.0
-shader_parameter/timescale = 0.25
+shader_parameter/timescale = 0.1
 shader_parameter/waterdeep = 0.3
-shader_parameter/WATER2_COL = Color(0.0392157, 0.34902, 0.780392, 0)
 shader_parameter/WATER_COL = Color(0.0392157, 0.380392, 0.878431, 0)
-shader_parameter/FOAM_COL = Color(0.0196078, 0.101961, 0.105882, 0.0392157)
+shader_parameter/WATER2_COL = Color(0.0392157, 0.34902, 0.780392, 0)
+shader_parameter/FOAM_COL = Color(0.0196078, 0.101961, 0.105882, 0.156863)
 
 [sub_resource type="Curve2D" id="Curve2D_ro73k"]
 _data = {
@@ -109,6 +109,110 @@ one_shot = true
 [node name="env" type="Node2D" parent="."]
 z_as_relative = false
 y_sort_enabled = true
+
+[node name="Buisson" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(936, 432)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("11_75abc")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("8_ksp42")
+
+[node name="Buisson2" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(2135, 956)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("11_75abc")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson2"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("8_ksp42")
+
+[node name="Buisson3" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(2468, 414)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("11_75abc")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson3"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("8_ksp42")
+
+[node name="Buisson4" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(1383, 114)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("11_75abc")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson4"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("8_ksp42")
+
+[node name="Buisson5" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(400, 1191)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("11_75abc")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson5"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("8_ksp42")
+
+[node name="Buisson6" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(1434, 1168)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("11_75abc")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson6"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("8_ksp42")
+
+[node name="Buisson7" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(951, 870)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("11_75abc")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson7"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("8_ksp42")
+
+[node name="Buisson8" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(77.9999, 125)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("11_75abc")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson8"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("8_ksp42")
 
 [node name="weed" type="Sprite2D" parent="env"]
 z_index = 1
@@ -1546,16 +1650,3 @@ scale = Vector2(1.5, 1.5)
 [node name="PlayerSpawnPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(2005, 570)
-
-[node name="Buisson" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(936, 432)
-scale = Vector2(0.192913, 0.192913)
-texture = ExtResource("11_75abc")
-
-[node name="Shadow" type="Sprite2D" parent="Buisson"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(10.7431, 87.0859)
-scale = Vector2(1.97676, 1.97676)
-texture = ExtResource("8_ksp42")

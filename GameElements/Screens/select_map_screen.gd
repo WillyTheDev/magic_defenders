@@ -64,42 +64,49 @@ func show_select_map():
 	visible = true	
 
 func _show_difficulty_screen():
+	%ClickPlayer.play()
 	%SelectDifficultyScreen.openDifficultySelectionScreen()
 	
 
 func _on_map_1_pressed():
 	if nb_map > 0:
 		Global.selected_map = 1
+		Global.starting_wave = 0
 		_show_difficulty_screen()
 
 
 func _on_map_2_pressed():
 	if nb_map > 1:
 		Global.selected_map = 2
+		Global.starting_wave = 0
 		_show_difficulty_screen()
 
 
 func _on_map_3_pressed():
 	if nb_map > 2:
 		Global.selected_map = 3
+		Global.starting_wave = 0
 		_show_difficulty_screen()
 
 
 func _on_map_4_pressed():
 	if nb_map > 3:
 		Global.selected_map = 4
+		Global.starting_wave = 0
 		_show_difficulty_screen()
 
 
 func _on_map_5_pressed():
 	if nb_map > 4:
 		Global.selected_map = 5
+		Global.starting_wave = 0
 		_show_difficulty_screen()
 
 
 func _on_map_6_pressed():
 	if nb_map > 5:
 		Global.selected_map = 6
+		Global.starting_wave = 0
 		_show_difficulty_screen()
 
 
