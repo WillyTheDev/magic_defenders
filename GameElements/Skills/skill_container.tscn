@@ -1,10 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://dk18yh7kobthq"]
+[gd_scene load_steps=20 format=3 uid="uid://dk18yh7kobthq"]
 
 [ext_resource type="Script" path="res://GameElements/Skills/SkillManager.gd" id="1_qmdoi"]
 [ext_resource type="Texture2D" uid="uid://33a4fljdofkd" path="res://Assets/UI/Skills_button/defense_normal.png" id="2_kcxfs"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="3_lby4j"]
-[ext_resource type="Texture2D" uid="uid://dpv6xqmm5jm1q" path="res://Assets/UI/Skills_button/locked_skill.png" id="4_4b4w8"]
 [ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="4_r3bw3"]
+[ext_resource type="Texture2D" uid="uid://dhguypk40lbjg" path="res://Assets/UI/Skills_button/empty_normal.png" id="4_uv5xn"]
+[ext_resource type="Texture2D" uid="uid://blgbcbhvlvfax" path="res://Assets/UI/Skills_button/empty_hover.png" id="5_newcm"]
+[ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="6_nuyxt"]
+[ext_resource type="Script" path="res://GameElements/Skills/outside_click_control.gd" id="6_o7o7e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_211iv"]
 
@@ -14,6 +17,10 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w00qt"]
+shader = ExtResource("6_nuyxt")
+shader_parameter/lod = 1.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5bvno"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -50,9 +57,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1e-05)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_b3oj1"]
-resource_name = "hide_skill_list"
+resource_name = "hide_list"
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -64,6 +84,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.233258, 0.233258, 0.233258),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_a13vp"]
@@ -80,11 +112,23 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l7apm"]
 _data = {
 "RESET": SubResource("Animation_qe0q6"),
-"hide_skill_list": SubResource("Animation_b3oj1"),
+"hide_list": SubResource("Animation_b3oj1"),
 "show_skill_list": SubResource("Animation_a13vp")
 }
 
@@ -189,7 +233,8 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-texture_normal = ExtResource("4_4b4w8")
+texture_normal = ExtResource("4_uv5xn")
+texture_hover = ExtResource("5_newcm")
 stretch_mode = 0
 
 [node name="ProgressBarBackground" type="ProgressBar" parent="VBoxContainer/HBoxContainer/SkillButton_3"]
@@ -231,7 +276,8 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-texture_normal = ExtResource("4_4b4w8")
+texture_normal = ExtResource("4_uv5xn")
+texture_hover = ExtResource("5_newcm")
 stretch_mode = 0
 
 [node name="ProgressBarBackground" type="ProgressBar" parent="VBoxContainer/HBoxContainer/SkillButton_4"]
@@ -272,6 +318,19 @@ vertical_alignment = 1
 [node name="SkillSelection" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 12
+visible = false
+
+[node name="Control" type="ColorRect" parent="SkillSelection" node_paths=PackedStringArray("player")]
+material = SubResource("ShaderMaterial_w00qt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("6_o7o7e")
+player = NodePath("../SkillAnimationPlayer")
+animation_name = "hide_list"
 
 [node name="TextureRect" type="TextureRect" parent="SkillSelection"]
 anchors_preset = 8
@@ -339,4 +398,6 @@ libraries = {
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_2" to="." method="_on_skill_button_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_3" to="." method="_on_skill_button_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_4" to="." method="_on_skill_button_4_pressed"]
+[connection signal="gui_input" from="SkillSelection/Control" to="SkillSelection/Control" method="_on_gui_input"]
 [connection signal="item_selected" from="SkillSelection/TextureRect/MarginContainer/ScrollContainer/SkillList" to="." method="_on_skill_list_item_selected"]
+[connection signal="animation_finished" from="SkillSelection/SkillAnimationPlayer" to="." method="_on_skill_animation_player_animation_finished"]

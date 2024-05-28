@@ -9,7 +9,6 @@ extends Control
 static var selected_skills : Array[Skill] = [null, null, null, null]
 
 static var skill_to_update = 0
-var skill_list_open = false
 
 func _ready():
 	var player_manager = get_node("/root/Game/PlayerManager")
@@ -48,17 +47,14 @@ func update_progress_bar():
 		index += 1
 
 func toggle_skill_list():
-	print(Game.is_idle)
 	if Game.is_idle && PlayerManager.is_open:
-		if skill_list_open:
-			%SkillAnimationPlayer.play("hide_skill_list")
-			%SkillList.visible = false
-			skill_list_open = false
+		print("Skill selection is visible : %s" % %SkillSelection.visible )
+		if %SkillSelection.visible:
+			%SkillAnimationPlayer.play("hide_list")
 		else:
 			update_skill_list()
 			%SkillAnimationPlayer.play("show_skill_list")
-			%SkillList.visible = true
-			skill_list_open = true
+			
 
 	
 func update_skill_list():
@@ -133,5 +129,3 @@ static var skills : Array[Skill] = [
 	"A meteor",
 	"spell", 15),
 ]
-	
-

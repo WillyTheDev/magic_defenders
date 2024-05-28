@@ -200,8 +200,8 @@ func spawn_mob():
 		number_of_time -= 1
 	# Connect a signal to track when an enemy has been killed
 	enemy.slime_has_been_killed.connect(on_enemy_has_been_killed)
-	# Add hat to unlock on enemy's head
-	add_hat_to_enemy(enemy)
+	# Add potential loot to enemy
+	%LootManager.add_loot_to_enemy(enemy)
 	
 	# Add the enemy on a FollowerPath2D
 	follower.add_child(enemy)
@@ -261,25 +261,13 @@ func _on_audio_stream_player_finished():
 func _on_options_menu_audio_value_changed():
 	%BackgroundAudioPlayer.volume_db = Global.audio_volume
 
-
 func _show_new_hat_animation(hat_index : int):
 	%NewHatTexture.texture = load("res://Assets/hats/hat_%s.png" % hat_index)
 	%UI/UIAnimationPlayer.queue("show_new_hat")
 	
-func get_index_of_random_available_hat() -> int:
-	var rand_index = randi_range(0, Global.unlocked_hats.size() -1)
-	if Global.unlocked_hats.values()[rand_index]:
-		return get_index_of_random_available_hat()
-	else:
-		return rand_index
 		
 func _on_transition_layer_transition_is_finished(anim_name):
 	if anim_name == "close_transition":
 		get_tree().change_scene_to_file("res://GameElements/Screens/welcome_screen.tscn")
 
-func add_hat_to_enemy(enemy: Node2D):
-	#best chance is 0.005
-	var hat_chance = 0.5
-	print(Global.unlocked_hats.values().all(func(value):return value==true))
-	if randf() <= hat_chance && !(Global.unlocked_hats.values().all(func(value):return value==true)):
-		enemy.add_hat(get_index_of_random_available_hat())
+

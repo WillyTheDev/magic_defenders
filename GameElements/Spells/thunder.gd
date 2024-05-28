@@ -3,7 +3,7 @@ extends Node2D
 var has_enemy = false
 
 func _shoot(body):
-	var strike = preload("res://thunderStrike.tscn").instantiate()
+	var strike = preload("res://GameElements/Skills/thunderStrike.tscn").instantiate()
 	strike.global_position = (body.global_position + Vector2(0,-488))
 	$/root/Game.add_child(strike)
 	body.take_damage(2 + Global.getPlayerDamage() / 4)

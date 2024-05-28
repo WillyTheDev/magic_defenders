@@ -1,9 +1,10 @@
-[gd_scene load_steps=39 format=3 uid="uid://c2o1lsmd80cnp"]
+[gd_scene load_steps=48 format=3 uid="uid://c2o1lsmd80cnp"]
 
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/PlayerManager.gd" id="1_ctqjo"]
 [ext_resource type="Texture2D" uid="uid://7ldxtyg31ar8" path="res://Assets/UI/player_profile_background/background.png" id="2_3il38"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="2_gyvey"]
 [ext_resource type="Texture2D" uid="uid://bbydamgjqu45d" path="res://Assets/UI/player_profile_background/select_up_normal.png" id="3_nsun1"]
+[ext_resource type="Script" path="res://GameElements/Player/PlayerManager/InventoryManager.gd" id="3_u5ue7"]
 [ext_resource type="Texture2D" uid="uid://c6welklvyyunf" path="res://Assets/UI/player_profile_background/select_up_pressed.png" id="4_e3aay"]
 [ext_resource type="Texture2D" uid="uid://dc88kr5yipjix" path="res://Assets/UI/player_profile_background/hat_button.png" id="5_upd7b"]
 [ext_resource type="Texture2D" uid="uid://cqbelpmljed1s" path="res://Assets/UI/player_profile_background/select_down_normal.png" id="5_yh11t"]
@@ -13,16 +14,15 @@
 [ext_resource type="Texture2D" uid="uid://djy8a7ycwr56x" path="res://Assets/UI/player_profile_background/apply.png" id="9_dnnii"]
 [ext_resource type="Texture2D" uid="uid://bykke8w4lv8ba" path="res://Assets/UI/player_profile_background/apply_clicked.png" id="10_4uncc"]
 [ext_resource type="Texture2D" uid="uid://im3s6ag6e4n" path="res://Assets/UI/player_profile_background/apply_hover.png" id="11_4ikb7"]
-[ext_resource type="Texture2D" uid="uid://d02y7l7i12gy7" path="res://Assets/hats/hat_0.png" id="12_arevw"]
-[ext_resource type="Texture2D" uid="uid://cyruvm2mtfo1e" path="res://Assets/hats/hat_1.png" id="12_tvfx2"]
 [ext_resource type="PackedScene" uid="uid://kbm12vsaf3ev" path="res://GameElements/Player/player_animation.tscn" id="13_71dtm"]
 [ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="13_lme1u"]
 [ext_resource type="Texture2D" uid="uid://bnqvulr6cj34d" path="res://Assets/UI/player_profile_background/hat_placeholder.png" id="13_mxkna"]
-[ext_resource type="Texture2D" uid="uid://bb0i4rje2oy5f" path="res://Assets/hats/hat_2.png" id="13_q65v3"]
-[ext_resource type="Texture2D" uid="uid://dovrqtecvs03f" path="res://Assets/hats/hat_4.png" id="15_d8o2l"]
-[ext_resource type="Texture2D" uid="uid://dtp6f6suw0ucs" path="res://Assets/hats/hat_3.png" id="16_57g04"]
-[ext_resource type="Texture2D" uid="uid://c23o5qwfpntls" path="res://Assets/hats/hat_5.png" id="17_ykywm"]
-[ext_resource type="Texture2D" uid="uid://c6awtyyei7lnm" path="res://Assets/hats/hat_6.png" id="23_1i7bm"]
+[ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="16_1uron"]
+[ext_resource type="Texture2D" uid="uid://4y33cmdxh8ao" path="res://Assets/UI/player_profile_background/necklace_placeholder.png" id="16_oqu4o"]
+[ext_resource type="Texture2D" uid="uid://bbww30wt2hq3g" path="res://Assets/UI/player_profile_background/ring_placeholder.png" id="17_85sj4"]
+[ext_resource type="Texture2D" uid="uid://5xdbr5y0ldo4" path="res://Assets/UI/player_profile_background/pants_placeholder.png" id="18_wcvkc"]
+[ext_resource type="Texture2D" uid="uid://bp3rdxmpwjiyi" path="res://Assets/UI/player_profile_background/boots_placeholder.png" id="19_bng3d"]
+[ext_resource type="Script" path="res://GameElements/Skills/outside_click_control.gd" id="24_bvpje"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdv3k"]
 bg_color = Color(0.244776, 0.244776, 0.244776, 1)
@@ -84,6 +84,10 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8kbk6"]
+shader = ExtResource("16_1uron")
+shader_parameter/lod = 1.5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qepbm"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -91,7 +95,16 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11ars"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+bg_color = Color(3.85046e-07, 0.497298, 0.487444, 0.498039)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(4.81307e-07, 0.698073, 0.691016, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nqsa"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -101,7 +114,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/Background:modulate")
+tracks/0/path = NodePath("PlayerManager/InventoryManager:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -125,7 +138,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerManager/Background/TextureRect:scale")
+tracks/2/path = NodePath("PlayerManager/InventoryManager/HatsContainer/Texture:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -134,32 +147,150 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1e-05)]
 }
-
-[sub_resource type="Animation" id="Animation_gpqnf"]
-resource_name = "hide_hat_list"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/Background/TextureRect:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.7),
-"transitions": PackedFloat32Array(0.366022, 0.366022, 0.366022),
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerManager/InventoryManager/HatsContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerManager/StatsContainer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PlayerManager/TextureRect:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer/Texture:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("PlayerManager/InventoryManager/RingContainer:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("PlayerManager/InventoryManager/RingContainer/Texture:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("PlayerManager/InventoryManager/PantsContainer:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("PlayerManager/InventoryManager/PantsContainer/Texture:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("PlayerManager/InventoryManager/BootsContainer:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("PlayerManager/InventoryManager/BootsContainer/Texture:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
 }
 
 [sub_resource type="Animation" id="Animation_ri22y"]
 resource_name = "hide_player_profile"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/Background:modulate")
+tracks/0/path = NodePath("PlayerManager/InventoryManager:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(0.210224, 0.210224),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -171,37 +302,47 @@ tracks/1/path = NodePath("PlayerManager/ColorRect:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.196078, 0.196078, 0.196078, 0.784314), Color(0.196078, 0.196078, 0.196078, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_qxghg"]
-resource_name = "show_hat_list"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/Background/TextureRect:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.6),
-"transitions": PackedFloat32Array(0.34151, 0.34151, 0.34151),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerManager/StatsContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerManager/TextureRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_qngu4"]
 resource_name = "show_player_profile"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/Background:modulate")
+tracks/0/path = NodePath("PlayerManager/InventoryManager:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(0.258816, 0.258816),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -213,19 +354,331 @@ tracks/1/path = NodePath("PlayerManager/ColorRect:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(0.258816, 0.258816),
 "update": 0,
 "values": [Color(0.196078, 0.196078, 0.196078, 0), Color(0.196078, 0.196078, 0.196078, 0.784314)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerManager/StatsContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerManager/TextureRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b6pd7"]
+resource_name = "show_hat_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/HatsContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/InventoryManager/HatsContainer/Texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8),
+"transitions": PackedFloat32Array(0.517632, 0.517632, 0.517632),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_48pbo"]
+resource_name = "hide_hat_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/HatsContainer/Texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8),
+"transitions": PackedFloat32Array(0.594604, 0.594604, 0.594604),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/InventoryManager/HatsContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3ngui"]
+resource_name = "show_necklace_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer/Texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8),
+"transitions": PackedFloat32Array(0.594604, 0.594604, 0.594604),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q2hyi"]
+resource_name = "hide_necklace_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer/Texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8),
+"transitions": PackedFloat32Array(0.574349, 0.574349, 0.574349),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ypjss"]
+resource_name = "show_ring_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/RingContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/InventoryManager/RingContainer/Texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8),
+"transitions": PackedFloat32Array(0.574349, 0.574349, 0.574349),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ax2ra"]
+resource_name = "hide_ring_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/RingContainer/Texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8),
+"transitions": PackedFloat32Array(0.594604, 0.594604, 0.594604),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/InventoryManager/RingContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_53cj3"]
+resource_name = "show_pants_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/PantsContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/InventoryManager/PantsContainer/Texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8),
+"transitions": PackedFloat32Array(0.594603, 0.594603, 0.594603),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6kdje"]
+resource_name = "hide_pants_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/PantsContainer/Texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8),
+"transitions": PackedFloat32Array(0.574349, 0.574349, 0.574349),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/InventoryManager/PantsContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ae73c"]
+resource_name = "show_boots_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/BootsContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/InventoryManager/BootsContainer/Texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8),
+"transitions": PackedFloat32Array(0.594604, 0.594604, 0.594604),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ahfyw"]
+resource_name = "hide_boots_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/BootsContainer/Texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8),
+"transitions": PackedFloat32Array(0.554785, 0.554785, 0.554785),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/InventoryManager/BootsContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xrpxs"]
 _data = {
 "RESET": SubResource("Animation_qticw"),
-"hide_hat_list": SubResource("Animation_gpqnf"),
+"hide_boots_list": SubResource("Animation_ahfyw"),
+"hide_hat_list": SubResource("Animation_48pbo"),
+"hide_necklace_list": SubResource("Animation_q2hyi"),
+"hide_pants_list": SubResource("Animation_6kdje"),
 "hide_player_profile": SubResource("Animation_ri22y"),
-"show_hat_list": SubResource("Animation_qxghg"),
-"show_player_profile": SubResource("Animation_qngu4")
+"hide_ring_list": SubResource("Animation_ax2ra"),
+"show_boots_list": SubResource("Animation_ae73c"),
+"show_hat_list": SubResource("Animation_b6pd7"),
+"show_necklace_list": SubResource("Animation_3ngui"),
+"show_pants_list": SubResource("Animation_53cj3"),
+"show_player_profile": SubResource("Animation_qngu4"),
+"show_ring_list": SubResource("Animation_ypjss")
 }
 
 [node name="PlayerManager" type="CanvasLayer"]
@@ -239,34 +692,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.196078, 0.196078, 0.196078, 0)
+color = Color(0.196078, 0.196078, 0.196078, 0.784314)
 
-[node name="Background" type="TextureRect" parent="."]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
 texture = ExtResource("2_3il38")
-expand_mode = 3
 
-[node name="PlayerPreview" parent="Background" instance=ExtResource("13_71dtm")]
-unique_name_in_owner = true
-position = Vector2(457, 457)
-scale = Vector2(1.5, 1.5)
-
-[node name="MarginContainer" type="MarginContainer" parent="Background"]
-layout_mode = 1
+[node name="StatsContainer" type="MarginContainer" parent="."]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -868.0
-offset_top = -406.0
-offset_bottom = 406.0
+offset_top = -446.5
+offset_bottom = 446.5
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 10
@@ -274,12 +715,12 @@ size_flags_vertical = 6
 theme_override_constants/margin_left = 72
 theme_override_constants/margin_right = 72
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="LevelLabel" type="Label" parent="Background/MarginContainer/VBoxContainer"]
+[node name="LevelLabel" type="Label" parent="StatsContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -290,16 +731,16 @@ theme_override_font_sizes/font_size = 40
 text = "Level : 0
 "
 
-[node name="stat_1" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer"]
+[node name="stat_1" type="HBoxContainer" parent="StatsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_1"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_1"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="stat_1_label" type="Label" parent="Background/MarginContainer/VBoxContainer/stat_1/VBoxContainer2"]
+[node name="stat_1_label" type="Label" parent="StatsContainer/VBoxContainer/stat_1/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0475577, 0.0475576, 0.0475576, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -308,13 +749,13 @@ theme_override_fonts/font = ExtResource("2_gyvey")
 theme_override_font_sizes/font_size = 28
 text = "Player Damage"
 
-[node name="MarginContainer" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/stat_1/VBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="StatsContainer/VBoxContainer/stat_1/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_bottom = 32
 
-[node name="Progress_stat_1" type="ProgressBar" parent="Background/MarginContainer/VBoxContainer/stat_1/VBoxContainer2/MarginContainer"]
+[node name="Progress_stat_1" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_1/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
@@ -326,19 +767,19 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_1"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="add_stat_1" type="TextureButton" parent="Background/MarginContainer/VBoxContainer/stat_1/VBoxContainer"]
+[node name="add_stat_1" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_1/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource("3_nsun1")
 texture_pressed = ExtResource("4_e3aay")
 
-[node name="label_stat_1" type="Label" parent="Background/MarginContainer/VBoxContainer/stat_1/VBoxContainer"]
+[node name="label_stat_1" type="Label" parent="StatsContainer/VBoxContainer/stat_1/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -347,21 +788,21 @@ theme_override_font_sizes/font_size = 24
 text = "0
 "
 
-[node name="remove_stat_1" type="TextureButton" parent="Background/MarginContainer/VBoxContainer/stat_1/VBoxContainer"]
+[node name="remove_stat_1" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_1/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_yh11t")
 texture_pressed = ExtResource("6_f3uvs")
 
-[node name="stat_2" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer"]
+[node name="stat_2" type="HBoxContainer" parent="StatsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="stat_2_label" type="Label" parent="Background/MarginContainer/VBoxContainer/stat_2/VBoxContainer2"]
+[node name="stat_2_label" type="Label" parent="StatsContainer/VBoxContainer/stat_2/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0475577, 0.0475576, 0.0475576, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -371,13 +812,13 @@ theme_override_font_sizes/font_size = 28
 text = "Defense range
 "
 
-[node name="MarginContainer" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/stat_2/VBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="StatsContainer/VBoxContainer/stat_2/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_bottom = 32
 
-[node name="Progress_stat_2" type="ProgressBar" parent="Background/MarginContainer/VBoxContainer/stat_2/VBoxContainer2/MarginContainer"]
+[node name="Progress_stat_2" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_2/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
@@ -389,19 +830,19 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_2"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="add_stat_2" type="TextureButton" parent="Background/MarginContainer/VBoxContainer/stat_2/VBoxContainer"]
+[node name="add_stat_2" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource("3_nsun1")
 texture_pressed = ExtResource("4_e3aay")
 
-[node name="label_stat_2" type="Label" parent="Background/MarginContainer/VBoxContainer/stat_2/VBoxContainer"]
+[node name="label_stat_2" type="Label" parent="StatsContainer/VBoxContainer/stat_2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -410,21 +851,21 @@ theme_override_font_sizes/font_size = 24
 text = "0
 "
 
-[node name="remove_stat_2" type="TextureButton" parent="Background/MarginContainer/VBoxContainer/stat_2/VBoxContainer"]
+[node name="remove_stat_2" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_2/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_yh11t")
 texture_pressed = ExtResource("6_f3uvs")
 
-[node name="stat_3" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer"]
+[node name="stat_3" type="HBoxContainer" parent="StatsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_3"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_3"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="stat_3_label" type="Label" parent="Background/MarginContainer/VBoxContainer/stat_3/VBoxContainer2"]
+[node name="stat_3_label" type="Label" parent="StatsContainer/VBoxContainer/stat_3/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0475577, 0.0475576, 0.0475576, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -434,13 +875,13 @@ theme_override_font_sizes/font_size = 28
 text = "Defense Damage
 "
 
-[node name="MarginContainer" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/stat_3/VBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="StatsContainer/VBoxContainer/stat_3/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_bottom = 32
 
-[node name="Progress_stat_3" type="ProgressBar" parent="Background/MarginContainer/VBoxContainer/stat_3/VBoxContainer2/MarginContainer"]
+[node name="Progress_stat_3" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_3/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
@@ -452,19 +893,19 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="add_stat_3" type="TextureButton" parent="Background/MarginContainer/VBoxContainer/stat_3/VBoxContainer"]
+[node name="add_stat_3" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_3/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource("3_nsun1")
 texture_pressed = ExtResource("4_e3aay")
 
-[node name="label_stat_3" type="Label" parent="Background/MarginContainer/VBoxContainer/stat_3/VBoxContainer"]
+[node name="label_stat_3" type="Label" parent="StatsContainer/VBoxContainer/stat_3/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -473,21 +914,21 @@ theme_override_font_sizes/font_size = 24
 text = "0
 "
 
-[node name="remove_stat_3" type="TextureButton" parent="Background/MarginContainer/VBoxContainer/stat_3/VBoxContainer"]
+[node name="remove_stat_3" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_3/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_yh11t")
 texture_pressed = ExtResource("6_f3uvs")
 
-[node name="stat_4" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer"]
+[node name="stat_4" type="HBoxContainer" parent="StatsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_4"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_4"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="stat_4_label" type="Label" parent="Background/MarginContainer/VBoxContainer/stat_4/VBoxContainer2"]
+[node name="stat_4_label" type="Label" parent="StatsContainer/VBoxContainer/stat_4/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0475577, 0.0475576, 0.0475576, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -497,13 +938,13 @@ theme_override_font_sizes/font_size = 28
 text = "Defense Health
 "
 
-[node name="MarginContainer" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/stat_4/VBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="StatsContainer/VBoxContainer/stat_4/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_bottom = 32
 
-[node name="Progress_stat_4" type="ProgressBar" parent="Background/MarginContainer/VBoxContainer/stat_4/VBoxContainer2/MarginContainer"]
+[node name="Progress_stat_4" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_4/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
@@ -515,19 +956,19 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_4"]
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_4"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="add_stat_4" type="TextureButton" parent="Background/MarginContainer/VBoxContainer/stat_4/VBoxContainer"]
+[node name="add_stat_4" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_4/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource("3_nsun1")
 texture_pressed = ExtResource("4_e3aay")
 
-[node name="label_stat_4" type="Label" parent="Background/MarginContainer/VBoxContainer/stat_4/VBoxContainer"]
+[node name="label_stat_4" type="Label" parent="StatsContainer/VBoxContainer/stat_4/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -536,21 +977,21 @@ theme_override_font_sizes/font_size = 24
 text = "0
 "
 
-[node name="remove_stat_4" type="TextureButton" parent="Background/MarginContainer/VBoxContainer/stat_4/VBoxContainer"]
+[node name="remove_stat_4" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_4/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_yh11t")
 texture_pressed = ExtResource("6_f3uvs")
 
-[node name="stat_5" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer"]
+[node name="stat_5" type="HBoxContainer" parent="StatsContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_5"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_5"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="stat_5_label" type="Label" parent="Background/MarginContainer/VBoxContainer/stat_5/VBoxContainer2"]
+[node name="stat_5_label" type="Label" parent="StatsContainer/VBoxContainer/stat_5/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0475577, 0.0475576, 0.0475576, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -560,13 +1001,13 @@ theme_override_font_sizes/font_size = 28
 text = "Defense attack speed
 "
 
-[node name="MarginContainer" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/stat_5/VBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="StatsContainer/VBoxContainer/stat_5/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_bottom = 32
 
-[node name="Progress_stat_5" type="ProgressBar" parent="Background/MarginContainer/VBoxContainer/stat_5/VBoxContainer2/MarginContainer"]
+[node name="Progress_stat_5" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_5/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
@@ -578,19 +1019,19 @@ step = 1.0
 value = 50.0
 show_percentage = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/stat_5"]
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_5"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="add_stat_5" type="TextureButton" parent="Background/MarginContainer/VBoxContainer/stat_5/VBoxContainer"]
+[node name="add_stat_5" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_5/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource("3_nsun1")
 texture_pressed = ExtResource("4_e3aay")
 
-[node name="label_stat_5" type="Label" parent="Background/MarginContainer/VBoxContainer/stat_5/VBoxContainer"]
+[node name="label_stat_5" type="Label" parent="StatsContainer/VBoxContainer/stat_5/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -599,23 +1040,23 @@ theme_override_font_sizes/font_size = 24
 text = "0
 "
 
-[node name="remove_stat_5" type="TextureButton" parent="Background/MarginContainer/VBoxContainer/stat_5/VBoxContainer"]
+[node name="remove_stat_5" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_5/VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_yh11t")
 texture_pressed = ExtResource("6_f3uvs")
 
-[node name="SkillContainer" parent="Background/MarginContainer/VBoxContainer" instance=ExtResource("8_pjo68")]
+[node name="SkillContainer" parent="StatsContainer/VBoxContainer" instance=ExtResource("8_pjo68")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="StatsContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="StatsContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="AvailPtsLabel" type="Label" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="AvailPtsLabel" type="Label" parent="StatsContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -626,36 +1067,60 @@ theme_override_font_sizes/font_size = 40
 text = "Available points
 "
 
-[node name="apply" type="TextureButton" parent="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="apply" type="TextureButton" parent="StatsContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 texture_normal = ExtResource("9_dnnii")
 texture_pressed = ExtResource("10_4uncc")
 texture_hover = ExtResource("11_4ikb7")
 
-[node name="HatMarginContainer" type="MarginContainer" parent="Background"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+[node name="InventoryManager" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -232.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_u5ue7")
+
+[node name="PlayerPreview" parent="InventoryManager" instance=ExtResource("13_71dtm")]
+unique_name_in_owner = true
+position = Vector2(511, 587)
+scale = Vector2(1.5, 1.5)
+
+[node name="EquipmentContainer" type="MarginContainer" parent="InventoryManager"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -378.0
 offset_right = 790.0
-grow_vertical = 0
-theme_override_constants/margin_left = 128
+offset_bottom = 378.0
+grow_vertical = 2
+theme_override_constants/margin_left = 72
+theme_override_constants/margin_top = 144
 theme_override_constants/margin_bottom = 32
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/HatMarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryManager/EquipmentContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/EquipmentContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="HatButton" type="TextureButton" parent="Background/HatMarginContainer/HBoxContainer"]
+[node name="HatButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("5_upd7b")
 texture_hover = ExtResource("6_x1x4c")
 metadata/_edit_use_anchors_ = true
 
-[node name="SelectedHatTexture" type="TextureRect" parent="Background/HatMarginContainer/HBoxContainer/HatButton"]
+[node name="SelectedHatTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -663,41 +1128,143 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -67.5
-offset_top = -67.5
-offset_right = 67.5
-offset_bottom = 67.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("13_mxkna")
+stretch_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/HatMarginContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="InventoryManager/EquipmentContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="HatDescriptionTitle" type="Label" parent="Background/HatMarginContainer/HBoxContainer/VBoxContainer"]
+[node name="NecklaceButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("5_upd7b")
+texture_hover = ExtResource("6_x1x4c")
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectedNecklaceTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer2/NecklaceButton"]
 unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 12
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 48
-text = "Hat Effects :"
-uppercase = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_oqu4o")
 
-[node name="HatDescription" type="Label" parent="Background/HatMarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="InventoryManager/EquipmentContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="RingButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture_normal = ExtResource("5_upd7b")
+texture_hover = ExtResource("6_x1x4c")
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectedRingTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3/RingButton"]
 unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 28
-text = "-"
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_85sj4")
 
-[node name="TextureRect" type="TextureRect" parent="Background"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="InventoryManager/EquipmentContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PantsButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+texture_normal = ExtResource("5_upd7b")
+texture_hover = ExtResource("6_x1x4c")
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectedPantsTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer4/PantsButton"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_wcvkc")
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="InventoryManager/EquipmentContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BootsButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+texture_normal = ExtResource("5_upd7b")
+texture_hover = ExtResource("6_x1x4c")
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectedBootsTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer5/BootsButton"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_bng3d")
+
+[node name="HatsContainer" type="Control" parent="InventoryManager"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="ColorRect" parent="InventoryManager/HatsContainer" node_paths=PackedStringArray("player")]
+material = SubResource("ShaderMaterial_8kbk6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("24_bvpje")
+player = NodePath("../../../PlayerManagerAnimationPlayer")
+animation_name = "hide_hat_list"
+
+[node name="Texture" type="TextureRect" parent="InventoryManager/HatsContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -713,7 +1280,7 @@ grow_vertical = 2
 scale = Vector2(1, 1e-05)
 texture = ExtResource("13_lme1u")
 
-[node name="MarginContainer" type="MarginContainer" parent="Background/TextureRect"]
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/HatsContainer/Texture"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -725,12 +1292,11 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 160
 theme_override_constants/margin_bottom = 40
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Background/TextureRect/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/HatsContainer/Texture/MarginContainer"]
 layout_mode = 2
 
-[node name="HatList" type="ItemList" parent="Background/TextureRect/MarginContainer/ScrollContainer"]
+[node name="HatList" type="ItemList" parent="InventoryManager/HatsContainer/Texture/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -749,38 +1315,370 @@ allow_rmb_select = true
 allow_search = false
 max_text_lines = 2
 auto_height = true
-item_count = 7
 same_column_width = true
 fixed_column_width = 400
 icon_mode = 0
-item_0/text = "The player projectiles will slow down ennemies"
-item_0/icon = ExtResource("12_arevw")
-item_0/selectable = false
-item_0/disabled = true
-item_1/text = "The Player projectiles will go throught ennemies"
-item_1/icon = ExtResource("12_tvfx2")
-item_1/selectable = false
-item_1/disabled = true
-item_2/text = "Just a nice looking cap"
-item_2/icon = ExtResource("13_q65v3")
-item_2/selectable = false
-item_2/disabled = true
-item_3/text = "Will heal all the defenses at the end of the wave"
-item_3/icon = ExtResource("16_57g04")
-item_3/selectable = false
-item_3/disabled = true
-item_4/text = "The player projectile will burn the ennemies"
-item_4/icon = ExtResource("15_d8o2l")
-item_4/selectable = false
-item_4/disabled = true
-item_5/text = "The player projetile will explode on contact with an ennemy"
-item_5/icon = ExtResource("17_ykywm")
-item_5/selectable = false
-item_5/disabled = true
-item_6/text = "Lightnings will strike ennemies around you"
-item_6/icon = ExtResource("23_1i7bm")
-item_6/selectable = false
-item_6/disabled = true
+
+[node name="NecklaceContainer" type="Control" parent="InventoryManager"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="ColorRect" parent="InventoryManager/NecklaceContainer" node_paths=PackedStringArray("player")]
+material = SubResource("ShaderMaterial_8kbk6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("24_bvpje")
+player = NodePath("../../../PlayerManagerAnimationPlayer")
+animation_name = "hide_necklace_list"
+
+[node name="Texture" type="TextureRect" parent="InventoryManager/NecklaceContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -377.5
+offset_top = -371.0
+offset_right = 377.5
+offset_bottom = 371.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+texture = ExtResource("13_lme1u")
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/NecklaceContainer/Texture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 160
+theme_override_constants/margin_bottom = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer"]
+layout_mode = 2
+
+[node name="NecklaceList" type="ItemList" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hovered_color = Color(0.988235, 0.862745, 0.705882, 1)
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+theme_override_constants/icon_margin = 5
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
+theme_override_styles/selected = SubResource("StyleBoxFlat_11ars")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
+allow_rmb_select = true
+allow_search = false
+max_text_lines = 2
+auto_height = true
+same_column_width = true
+fixed_column_width = 400
+icon_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="EquipsNecklaces" type="Button" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Equip"
+
+[node name="DeleteNecklaces" type="Button" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Delete"
+
+[node name="RingContainer" type="Control" parent="InventoryManager"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="ColorRect" parent="InventoryManager/RingContainer" node_paths=PackedStringArray("player")]
+material = SubResource("ShaderMaterial_8kbk6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("24_bvpje")
+player = NodePath("../../../PlayerManagerAnimationPlayer")
+animation_name = "hide_ring_list"
+
+[node name="Texture" type="TextureRect" parent="InventoryManager/RingContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -377.5
+offset_top = -371.0
+offset_right = 377.5
+offset_bottom = 371.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+texture = ExtResource("13_lme1u")
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/RingContainer/Texture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 160
+theme_override_constants/margin_bottom = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/RingContainer/Texture/MarginContainer"]
+layout_mode = 2
+
+[node name="RingList" type="ItemList" parent="InventoryManager/RingContainer/Texture/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hovered_color = Color(0.988235, 0.862745, 0.705882, 1)
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+theme_override_constants/icon_margin = 5
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
+theme_override_styles/selected = SubResource("StyleBoxFlat_11ars")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
+allow_rmb_select = true
+allow_search = false
+max_text_lines = 2
+auto_height = true
+same_column_width = true
+fixed_column_width = 400
+icon_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/RingContainer/Texture/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="EquipsRings" type="Button" parent="InventoryManager/RingContainer/Texture/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Equip"
+
+[node name="DeleteRings" type="Button" parent="InventoryManager/RingContainer/Texture/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Delete"
+
+[node name="PantsContainer" type="Control" parent="InventoryManager"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="ColorRect" parent="InventoryManager/PantsContainer" node_paths=PackedStringArray("player")]
+material = SubResource("ShaderMaterial_8kbk6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("24_bvpje")
+player = NodePath("../../../PlayerManagerAnimationPlayer")
+animation_name = "hide_pants_list"
+
+[node name="Texture" type="TextureRect" parent="InventoryManager/PantsContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -377.5
+offset_top = -371.0
+offset_right = 377.5
+offset_bottom = 371.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_lme1u")
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/PantsContainer/Texture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 160
+theme_override_constants/margin_bottom = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/PantsContainer/Texture/MarginContainer"]
+layout_mode = 2
+
+[node name="PantsList" type="ItemList" parent="InventoryManager/PantsContainer/Texture/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hovered_color = Color(0.988235, 0.862745, 0.705882, 1)
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+theme_override_constants/icon_margin = 5
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
+theme_override_styles/selected = SubResource("StyleBoxFlat_11ars")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
+allow_rmb_select = true
+allow_search = false
+max_text_lines = 2
+auto_height = true
+same_column_width = true
+fixed_column_width = 400
+icon_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/PantsContainer/Texture/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="EquipsPants" type="Button" parent="InventoryManager/PantsContainer/Texture/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Equip"
+
+[node name="DeletePants" type="Button" parent="InventoryManager/PantsContainer/Texture/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Delete"
+
+[node name="BootsContainer" type="Control" parent="InventoryManager"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="ColorRect" parent="InventoryManager/BootsContainer" node_paths=PackedStringArray("player")]
+material = SubResource("ShaderMaterial_8kbk6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("24_bvpje")
+player = NodePath("../../../PlayerManagerAnimationPlayer")
+animation_name = "hide_boots_list"
+
+[node name="Texture" type="TextureRect" parent="InventoryManager/BootsContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -377.5
+offset_top = -371.0
+offset_right = 377.5
+offset_bottom = 371.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_lme1u")
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/BootsContainer/Texture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 160
+theme_override_constants/margin_bottom = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/BootsContainer/Texture/MarginContainer"]
+layout_mode = 2
+
+[node name="BootsList" type="ItemList" parent="InventoryManager/BootsContainer/Texture/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hovered_color = Color(0.988235, 0.862745, 0.705882, 1)
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+theme_override_constants/icon_margin = 5
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
+theme_override_styles/selected = SubResource("StyleBoxFlat_11ars")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
+allow_rmb_select = true
+allow_search = false
+max_text_lines = 2
+auto_height = true
+same_column_width = true
+fixed_column_width = 400
+icon_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/BootsContainer/Texture/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="EquipsBoots" type="Button" parent="InventoryManager/BootsContainer/Texture/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Equip"
+
+[node name="DeleteBoots" type="Button" parent="InventoryManager/BootsContainer/Texture/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Delete"
 
 [node name="PlayerProfileTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -794,20 +1692,41 @@ libraries = {
 "": SubResource("AnimationLibrary_xrpxs")
 }
 
-[connection signal="resized" from="Background" to="." method="_on_background_resized"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_1/VBoxContainer/add_stat_1" to="." method="_on_add_stat_1_pressed"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_1/VBoxContainer/remove_stat_1" to="." method="_on_remove_stat_1_pressed"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_2/VBoxContainer/add_stat_2" to="." method="_on_add_stat_2_pressed"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_2/VBoxContainer/remove_stat_2" to="." method="_on_remove_stat_2_pressed"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_3/VBoxContainer/add_stat_3" to="." method="_on_add_stat_3_pressed"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_3/VBoxContainer/remove_stat_3" to="." method="_on_remove_stat_3_pressed"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_4/VBoxContainer/add_stat_4" to="." method="_on_add_stat_4_pressed"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_4/VBoxContainer/remove_stat_4" to="." method="_on_remove_stat_4_pressed"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_5/VBoxContainer/add_stat_5" to="." method="_on_add_stat_5_pressed"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_5/VBoxContainer/remove_stat_5" to="." method="_on_remove_stat_5_pressed"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_apply_pressed"]
-[connection signal="pressed" from="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Background/HatMarginContainer/HBoxContainer/HatButton" to="." method="_on_hat_button_pressed"]
-[connection signal="item_selected" from="Background/TextureRect/MarginContainer/ScrollContainer/HatList" to="." method="_on_hat_list_item_selected"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/stat_1/VBoxContainer/add_stat_1" to="." method="_on_add_stat_1_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/stat_1/VBoxContainer/remove_stat_1" to="." method="_on_remove_stat_1_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/stat_2/VBoxContainer/add_stat_2" to="." method="_on_add_stat_2_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/stat_2/VBoxContainer/remove_stat_2" to="." method="_on_remove_stat_2_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/stat_3/VBoxContainer/add_stat_3" to="." method="_on_add_stat_3_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/stat_3/VBoxContainer/remove_stat_3" to="." method="_on_remove_stat_3_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/stat_4/VBoxContainer/add_stat_4" to="." method="_on_add_stat_4_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/stat_4/VBoxContainer/remove_stat_4" to="." method="_on_remove_stat_4_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/stat_5/VBoxContainer/add_stat_5" to="." method="_on_add_stat_5_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/stat_5/VBoxContainer/remove_stat_5" to="." method="_on_remove_stat_5_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_apply_pressed"]
+[connection signal="resized" from="InventoryManager" to="." method="_on_background_resized"]
+[connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton" to="InventoryManager" method="_on_hat_button_pressed"]
+[connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer2/NecklaceButton" to="InventoryManager" method="_on_necklace_button_pressed"]
+[connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3/RingButton" to="InventoryManager" method="_on_ring_button_pressed"]
+[connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer4/PantsButton" to="InventoryManager" method="_on_pants_button_pressed"]
+[connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer5/BootsButton" to="InventoryManager" method="_on_boots_button_pressed"]
+[connection signal="gui_input" from="InventoryManager/HatsContainer/Control" to="InventoryManager/HatsContainer/Control" method="_on_gui_input"]
+[connection signal="item_selected" from="InventoryManager/HatsContainer/Texture/MarginContainer/ScrollContainer/HatList" to="InventoryManager" method="_on_hat_list_item_selected"]
+[connection signal="gui_input" from="InventoryManager/NecklaceContainer/Control" to="InventoryManager/NecklaceContainer/Control" method="_on_gui_input"]
+[connection signal="item_selected" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/ScrollContainer/NecklaceList" to="InventoryManager" method="_on_necklace_list_item_selected"]
+[connection signal="pressed" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/HBoxContainer/EquipsNecklaces" to="InventoryManager" method="_on_equips_necklaces_pressed"]
+[connection signal="pressed" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/HBoxContainer/DeleteNecklaces" to="InventoryManager" method="_on_delete_necklaces_pressed"]
+[connection signal="gui_input" from="InventoryManager/RingContainer/Control" to="InventoryManager/RingContainer/Control" method="_on_gui_input"]
+[connection signal="item_selected" from="InventoryManager/RingContainer/Texture/MarginContainer/ScrollContainer/RingList" to="InventoryManager" method="_on_ring_list_item_selected"]
+[connection signal="pressed" from="InventoryManager/RingContainer/Texture/MarginContainer/HBoxContainer/EquipsRings" to="InventoryManager" method="_on_equips_rings_pressed"]
+[connection signal="pressed" from="InventoryManager/RingContainer/Texture/MarginContainer/HBoxContainer/DeleteRings" to="InventoryManager" method="_on_delete_rings_pressed"]
+[connection signal="gui_input" from="InventoryManager/PantsContainer/Control" to="InventoryManager/PantsContainer/Control" method="_on_gui_input"]
+[connection signal="item_selected" from="InventoryManager/PantsContainer/Texture/MarginContainer/ScrollContainer/PantsList" to="InventoryManager" method="_on_pants_list_item_selected"]
+[connection signal="pressed" from="InventoryManager/PantsContainer/Texture/MarginContainer/HBoxContainer/EquipsPants" to="InventoryManager" method="_on_equips_pants_pressed"]
+[connection signal="pressed" from="InventoryManager/PantsContainer/Texture/MarginContainer/HBoxContainer/DeletePants" to="InventoryManager" method="_on_delete_pants_pressed"]
+[connection signal="gui_input" from="InventoryManager/BootsContainer/Control" to="InventoryManager/BootsContainer/Control" method="_on_gui_input"]
+[connection signal="item_selected" from="InventoryManager/BootsContainer/Texture/MarginContainer/ScrollContainer/BootsList" to="InventoryManager" method="_on_boots_list_item_selected"]
+[connection signal="pressed" from="InventoryManager/BootsContainer/Texture/MarginContainer/HBoxContainer/EquipsBoots" to="InventoryManager" method="_on_equips_boots_pressed"]
+[connection signal="pressed" from="InventoryManager/BootsContainer/Texture/MarginContainer/HBoxContainer/DeleteBoots" to="InventoryManager" method="_on_delete_boots_pressed"]
 [connection signal="timeout" from="PlayerProfileTimer" to="." method="_on_card_timer_timeout"]
 [connection signal="animation_finished" from="PlayerManagerAnimationPlayer" to="." method="_on_player_manager_animation_player_animation_finished"]

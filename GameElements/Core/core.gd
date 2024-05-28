@@ -8,7 +8,6 @@ func _ready():
 	var DefenseTimer = get_node("/root/Game/DefenseTimer")
 	DefenseTimer.timeout.connect(_on_timer_timeout)
 	current_health = 10
-	get_node("/root/Game/PlayerManager").defense_modified.connect(_apply_modification)
 	print("Core current health : %s" % current_health)
 	%CoreAttackedPlayer.volume_db = Global.sound_volume
 

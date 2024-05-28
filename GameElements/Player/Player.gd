@@ -25,16 +25,16 @@ signal player_got_new_hat
 static var magic_bolt = null
 
 func _ready():
-	var playerManager = get_node("/root/Game/PlayerManager")
+	var inventoryManager = get_node("/root/Game/PlayerManager/InventoryManager")
 	var optionMenu = get_node("/root/Game/OptionsMenu")
 	optionMenu.sound_value_changed.connect(_update_sound_volume)
 	var uiMenu = get_node("/root/Game/UI")
 	player_has_level_up.connect(uiMenu.show_available_point)
-	playerManager.apply_hat()
 	screen_size = get_node("/root/Game/Map/MapLimit").global_position
 	_update_sound_volume()
 	update_mana_amount(starting_mana_amount, false)
 	magic_bolt = preload("res://GameElements/Spells/magic_bolt.tscn")
+	inventoryManager.apply_hat()
 
 func _update_sound_volume():
 	%WalkAudio.volume_db = Global.sound_volume
@@ -164,3 +164,6 @@ func get_new_hat(index : int):
 	print("Player unlocked a new hat ! %s" % index)
 	Global.unlocked_hats["hat_%s" % index] = true
 	player_got_new_hat.emit(index)
+	
+func add_new_loot(loot: Loot):
+	Global.inventory.loots[loot.type].append(loot)

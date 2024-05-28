@@ -14,7 +14,6 @@ func _ready():
 	current_health = Global.getTurretHealth()
 	add_to_group("has_static_properties")
 	%TimerShoot.wait_time = Global.getDefenseFireRate()
-	get_node("/root/Game/PlayerManager").turret_modified.connect(_apply_modification)
 	%ShootZone.scale.x = Global.getDefenseRange()
 	%ShootZone.scale.y = Global.getDefenseRange()
 	_abstract_turret_ready()

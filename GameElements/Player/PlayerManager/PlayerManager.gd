@@ -8,14 +8,10 @@ signal apply_change
 
 func _ready():
 	for index in range(1,6):
-		var label = get_node("Background/MarginContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [index,index])
-		var progress = get_node("Background/MarginContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [index,index])
+		var label = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [index,index])
+		var progress = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [index,index])
 		label.text = "%s" % Global.getStatFromIndex(index)
 		progress.value = Global.getStatFromIndex(index)
-	for index in range(Global.unlocked_hats.values().size()):
-		if Global.unlocked_hats.values()[index]:
-			%HatList.set_item_selectable(index, true)
-			%HatList.set_item_disabled(index, false)
 	
 func show_player_profile():
 	%LevelLabel.text = "Level : %s" % Global.player_level
@@ -24,12 +20,6 @@ func show_player_profile():
 	playerhasLeveledUp = true
 	%PlayerProfileTimer.start()
 	%PlayerManagerAnimationPlayer.play("show_player_profile")
-	if Game.is_idle == false:
-		%HatButton.disabled = true
-		%HatButton.texture_normal = load("res://Assets/UI/player_profile_background/hat_button_locked.png")
-	else:
-		%HatButton.disabled = false
-		%HatButton.texture_normal = load("res://Assets/UI/player_profile_background/hat_button.png")
 	visible = true
 	is_open = true
 	
@@ -47,48 +37,31 @@ func _input(event):
 		else:
 			show_player_profile()
 
-signal turret_modified
-
-signal defense_modified
-
-signal enemy_modified
-
-signal player_modified
 
 signal player_has_available_point
 
-func apply_player_modification(args : Callable):
-	player_modified.emit(args)
-
-func apply_enemy_modification(args : Callable):
-	enemy_modified.emit(args)
-
-func apply_turret_modification(args: Callable):
-	turret_modified.emit(args)
-
-func apply_defense_modification(args: Callable):
-	defense_modified.emit(args)
-
-func update_stat(stat_index : int, increment_value : int):
+func update_stat(stat_index : int, increment_value : int, loot_change : bool):
 	if increment_value < 0:
 		if Global.getStatFromIndex(stat_index) > 0:
-			var label = get_node("Background/MarginContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [stat_index,stat_index])
-			var progress = get_node("Background/MarginContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [stat_index,stat_index])
+			var label = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [stat_index,stat_index])
+			var progress = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [stat_index,stat_index])
 			Global.setStatFromIndex(stat_index, increment_value)
 			label.text = "%s" % Global.getStatFromIndex(stat_index)
 			progress.value = Global.getStatFromIndex(stat_index)
-			Global.player_avail_pts += 1
-	elif Global.player_avail_pts > 0:
-		var label = get_node("Background/MarginContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [stat_index,stat_index])
-		var progress = get_node("Background/MarginContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [stat_index,stat_index])
+			if loot_change == false:
+				Global.player_avail_pts += 1
+	elif Global.player_avail_pts > 0 || loot_change:
+		var label = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [stat_index,stat_index])
+		var progress = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [stat_index,stat_index])
 		Global.setStatFromIndex(stat_index, increment_value)
 		label.text = "%s" % Global.getStatFromIndex(stat_index)
 		progress.value = Global.getStatFromIndex(stat_index)
-		Global.player_avail_pts -= 1
-		if Global.player_avail_pts == 0:
-			player_has_available_point.emit(false)
-		else :
-			player_has_available_point.emit(true)
+		if loot_change == false:
+			Global.player_avail_pts -= 1
+			if Global.player_avail_pts == 0:
+				player_has_available_point.emit(false)
+			else :
+				player_has_available_point.emit(true)
 	%AvailPtsLabel.text = "Available points : %s" % Global.player_avail_pts
 
 
@@ -102,133 +75,37 @@ func _on_apply_pressed():
 	hide_player_profile()
 
 func _on_add_stat_5_pressed():
-	update_stat(5, 1)
+	update_stat(5, 1, false)
 
 func _on_remove_stat_5_pressed():
-	update_stat(5, -1)
+	update_stat(5, -1, false)
 
 func _on_add_stat_4_pressed():
-	update_stat(4, 1)
+	update_stat(4, 1, false)
 
 func _on_remove_stat_4_pressed():
-	update_stat(4, -1)
+	update_stat(4, -1, false)
 
 func _on_add_stat_3_pressed():
-	update_stat(3, 1)
+	update_stat(3, 1, false)
 
 func _on_remove_stat_3_pressed():
-	update_stat(3, -1)
+	update_stat(3, -1, false)
 
 func _on_add_stat_2_pressed():
-	update_stat(2, 1)
+	update_stat(2, 1, false)
 
 func _on_remove_stat_2_pressed():
-	update_stat(2, -1)
+	update_stat(2, -1, false)
 
 func _on_add_stat_1_pressed():
-	update_stat(1, 1)
+	update_stat(1, 1, false)
 
 func _on_remove_stat_1_pressed():
-	update_stat(1, -1)
-
-func _on_hat_button_pressed():
-	var hat_index = 0
-	for hat in Global.unlocked_hats.values():
-		print("hat value %s" % hat)
-		if hat:
-			%HatList.set_item_selectable(hat_index, true)
-			%HatList.set_item_disabled(hat_index, false)
-		hat_index += 1
-	if %HatList.visible:
-		%HatList.visible = false
-		%PlayerManagerAnimationPlayer.play("hide_hat_list")
-	else:
-		%HatList.visible = true
-		%PlayerManagerAnimationPlayer.play("show_hat_list")
-
-func apply_hat():
-	if Global.player_equipped_hat != 99:
-		var playerAnimation = get_node("/root/Game/Player/PlayerAnimation")
-		playerAnimation.setHat(Global.player_equipped_hat)
-		%PlayerPreview.setHat(Global.player_equipped_hat)
-		_reset_hat_effect()
-		_apply_hat_effect()
-		%HatDescription.text = hats[Global.player_equipped_hat].information
-		%SelectedHatTexture.texture = load("res://Assets/hats/hat_%s.png" % Global.player_equipped_hat)
-		%HatList.visible = false
-
-
-	
-var hats : Array[Hat] = [
-	Hat.new(
-		func():
-			Player.magic_bolt = preload("res://GameElements/Spells/frost_bolt.tscn"),
-			"Projectiles slow down enemies."
-		),
-	Hat.new(
-		func():
-			Player.magic_bolt = preload("res://GameElements/Spells/ghost_bolt.tscn"),
-			"Projectiles pass through enemies."
-		),
-	Hat.new(
-		func():
-			pass,
-			"Just a nice looking hat to make your life more playful"
-		),
-	Hat.new(
-		func():
-			var lambda = func heal_defenses():
-				var game = get_node("/root/Game/")
-				var children = game.get_children()
-				for child in children:
-					if child is Defense:
-						child.heal_defense(100)
-			var game = get_node("/root/Game/")
-			game.wave_is_over.connect(lambda)
-			,
-			"Heals all defenses on the end of a wave"
-		),
-	Hat.new(
-	func():
-			Player.magic_bolt = preload("res://GameElements/Spells/fire_bolt.tscn"),
-			"Projectiles is burning the enemy until they die"
-	),
-	Hat.new(
-	func():
-			Player.magic_bolt = preload("res://GameElements/Spells/MerlinBolt.tscn"),
-			"Projectiles is exploding !"
-	),
-	Hat.new(
-	func():
-			var thunder = preload("res://GameElements/Spells/thunder.tscn").instantiate()
-			$/root/Game/Player.add_child(thunder)
-			Player.magic_bolt = preload("res://GameElements/Spells/MerlinBolt.tscn"),
-			"Lightnings will strike ennemies around you"
-	),
-]
-
-func _apply_hat_effect():
-	hats[Global.player_equipped_hat].apply_effect()
-
-func _reset_hat_effect():
-	var game = get_node("/root/Game/")
-	var lambdas = game.wave_is_over.get_connections()
-	for lambda in lambdas:
-		game.wave_is_over.disconnect(lambda.callable)
-	if $/root/Game/Player/Thunder != null:
-		$/root/Game/Player/Thunder.queue_free()
+	update_stat(1, -1, false)
 
 func _on_player_manager_animation_player_animation_finished(anim_name):
 	if anim_name == "hide_player_profile":
 		visible = false
 
 
-func _on_background_resized():
-	var rect_size = %Background.get_size()
-	%PlayerPreview.position.x = rect_size.x / 5
-	%PlayerPreview.position.y = rect_size.y / 2
-
-
-func _on_hat_list_item_selected(index):
-	Global.player_equipped_hat = index
-	apply_hat()

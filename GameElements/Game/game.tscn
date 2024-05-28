@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=51 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Texture2D" uid="uid://ispx11saoeqv" path="res://Assets/UI/map_selection_button/star_locked.png" id="3_kmwdb"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://bod5ko41214d2" path="res://Assets/UI/game_over/quit_click.png" id="21_s8c7m"]
 [ext_resource type="Texture2D" uid="uid://drtxgp28wagps" path="res://Assets/UI/game_over/quit_hover.png" id="22_e26ww"]
 [ext_resource type="AudioStream" uid="uid://b7jnbe3gxscrj" path="res://Assets/audio/Game_Over_1.wav" id="26_ob0a8"]
+[ext_resource type="Script" path="res://GameElements/Game/LootManager.gd" id="32_tfl22"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cce1o"]
 bg_color = Color(0.0846899, 0.0846899, 0.0846899, 1)
@@ -837,6 +838,10 @@ autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qdm87")
+
+[node name="LootManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("32_tfl22")
 
 [connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
 [connection signal="timeout" from="SpawnFlyingEnemyTimer" to="." method="_on_spawn_flying_enemy_timer_timeout"]

@@ -16,6 +16,29 @@ static var selected_map = 1
 static var selected_difficulty = 1
 static var starting_wave = 0
 static var has_save = false
+static var player_equipped_hat = 99
+static var map_progression = {
+	"map_1_1" : 0,
+	"map_1_2" : 0,
+	"map_1_3" : 0,
+	"map_1_4" : 0,
+	"map_1_5" : 0,
+	"map_1_6" : 0
+}
+
+static var accumulated_stars = 0
+
+static var unlocked_hats:  = {
+	"hat_0" : false,
+	"hat_1" : false,
+	"hat_2" : false,
+	"hat_3" : false,
+	"hat_4" : false,
+	"hat_5" : false,
+	"hat_6" : false
+}
+
+static var inventory : Inventory = null
 
 #======================
 # Player Data
@@ -70,7 +93,7 @@ func getDefenseFireRate():
 
 static var player_avail_pts = 0
 #Player equipped hat ( number represent index of hat )
-static var player_equipped_hat = 99
+
 
 #======================
 # Player Skills
@@ -94,26 +117,7 @@ static var selected_skills = {
 # Game Progression
 #======================
 
-static var map_progression = {
-	"map_1_1" : 0,
-	"map_1_2" : 0,
-	"map_1_3" : 0,
-	"map_1_4" : 0,
-	"map_1_5" : 0,
-	"map_1_6" : 0
-}
 
-static var accumulated_stars = 0
-
-static var unlocked_hats:  = {
-	"hat_0" : false,
-	"hat_1" : false,
-	"hat_2" : false,
-	"hat_3" : false,
-	"hat_4" : false,
-	"hat_5" : false,
-	"hat_6" : false
-}
 
 func get_accumulated_stars():
 	accumulated_stars = 0
@@ -151,15 +155,23 @@ func setStatFromIndex(index: int, value: int):
 			return 0
 			
 			
-			
-			
-
-
-
-
 #======================
 # Save/Load System
 #======================
+
+func load_inventory():
+	if ResourceLoader.exists("user://inventory.tres"):
+		print("Inventory save Found !")
+		inventory = ResourceLoader.load("user://inventory.tres")
+		print(inventory)
+		print(inventory.loots)
+		print(inventory.equiped_rings)
+	else:
+		inventory = Inventory.new()
+
+func save_inventory():
+	var status = ResourceSaver.save(inventory, "user://inventory.tres")
+	print("Saving inventory status : %s" % status)
 
 func _save():
 	var save_dict = {
@@ -217,6 +229,10 @@ func new_save():
 							"hat_6" : false
 						},
 	}
+	var inv = Inventory.new()
+	print(inv.loots)
+	var status = ResourceSaver.save(inv, "user://inventory.tres")
+	print("Saving inventory status : %s" % status)
 	var json_string = JSON.stringify(data)
 	save.store_line(json_string)
 	load_game()
@@ -227,6 +243,7 @@ func save_game():
 	var data = _save()
 	# JSON provides a static method to serialized JSON string.
 	var json_string = JSON.stringify(data)
+	save_inventory()
 	# Store the save dictionary as a new line in the save file.
 	save.store_line(json_string)
 	
@@ -260,3 +277,4 @@ func load_game():
 			print("Setting %s with value %s..." % [i, data[i]])
 			set(i, data[i])
 		print(unlocked_hats)
+		load_inventory()

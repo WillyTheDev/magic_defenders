@@ -13,6 +13,8 @@ var speed = 0
 
 var total_health = base_health + health_increment
 var has_hat = false
+var has_loot = false
+var loot : Loot = null
 var can_take_damage = true
 var hat_index = 0
 
@@ -35,7 +37,6 @@ func _ready():
 	%HealthBar.max_value = total_health
 	%HealthBar.value = total_health
 	play_animation_idle()
-	get_node("/root/Game/PlayerManager").enemy_modified.connect(_on_enemy_modification)
 	
 func _on_enemy_modification(args: Callable):
 	args.call(self)
@@ -76,6 +77,16 @@ func take_damage(damage=1):
 				hat.rotation = rotation
 				hat.global_position += Vector2(randi() % 30, randi() % 30)
 				get_parent().call_deferred("add_child", hat)
+			if has_loot:
+				print("🐲Slime spawning some loots !🐲")
+				var loot_to_spawn = preload("res://GameElements/misc/loot.tscn").instantiate()
+				loot_to_spawn.is_loot = true
+				loot_to_spawn.loot = loot
+				loot_to_spawn.get_node("LootSprite").texture = loot.texture
+				loot_to_spawn.global_position += Vector2(randi() % 30, randi() % 30)
+				loot_to_spawn.get_node("LootSprite").modulate = loot.modulate
+				get_parent().call_deferred("add_child", loot_to_spawn)
+				print("Loot location = %s" % loot_to_spawn.global_position)
 			slime_has_been_killed.emit()
 			queue_free()
 	
@@ -86,3 +97,7 @@ func add_hat(index: int):
 	has_hat = true
 	hat_index = index
 	%Hat.texture = load("res://Assets/hats/hat_%s.png" % index)
+
+func add_loot(loot:Loot):
+	has_loot = true
+	self.loot = loot
