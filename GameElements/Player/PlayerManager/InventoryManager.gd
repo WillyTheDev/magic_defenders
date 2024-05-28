@@ -6,8 +6,19 @@ var selected_rings_index = 0
 var selected_pants_index = 0
 var selected_boots_index = 0
 
-
-
+func _ready():
+	if Global.inventory.equiped_necklaces != null:
+		%SelectedNecklaceTexture.texture = Global.inventory.equiped_necklaces.texture
+		%SelectedNecklaceTexture.modulate = Global.inventory.equiped_necklaces.modulate
+	if Global.inventory.equiped_rings != null:
+		%SelectedRingTexture.texture = Global.inventory.equiped_rings.texture
+		%SelectedRingTexture.modulate = Global.inventory.equiped_rings.modulate
+	if Global.inventory.equiped_pants != null:
+		%SelectedPantsTexture.texture = Global.inventory.equiped_pants.texture
+		%SelectedPantsTexture.modulate = Global.inventory.equiped_pants.modulate
+	if Global.inventory.equiped_boots != null:
+		%SelectedBootsTexture.texture = Global.inventory.equiped_boots.texture
+		%SelectedBootsTexture.modulate = Global.inventory.equiped_boots.modulate
 func _reset_hat_effect():
 	var game = get_node("/root/Game/")
 	var lambdas = game.wave_is_over.get_connections()

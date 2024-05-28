@@ -692,9 +692,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.196078, 0.196078, 0.196078, 0.784314)
+color = Color(0.196078, 0.196078, 0.196078, 0)
 
 [node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("2_3il38")
@@ -1076,6 +1077,7 @@ texture_hover = ExtResource("11_4ikb7")
 
 [node name="InventoryManager" type="Control" parent="."]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1503,6 +1505,7 @@ text = "Delete"
 
 [node name="PantsContainer" type="Control" parent="InventoryManager"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1536,6 +1539,7 @@ offset_right = 377.5
 offset_bottom = 371.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 1e-05)
 texture = ExtResource("13_lme1u")
 
 [node name="MarginContainer" type="MarginContainer" parent="InventoryManager/PantsContainer/Texture"]
@@ -1626,6 +1630,7 @@ offset_right = 377.5
 offset_bottom = 371.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 1e-05)
 texture = ExtResource("13_lme1u")
 
 [node name="MarginContainer" type="MarginContainer" parent="InventoryManager/BootsContainer/Texture"]
