@@ -39,7 +39,7 @@ func closeOptionsMenu():
 
 func _on_quit_to_menu_pressed():
 	%ClickPlayer.play()
-	Global.save()
+	Global.save_game()
 	get_tree().call_group("has_static_properties", "_reinitialize_static_properties")
 	get_tree().paused = false
 	get_node("/root/Game/TransitionLayer").close_transition()
@@ -76,3 +76,10 @@ func _on_erase_save_button_pressed():
 func _on_resume_button_pressed():
 	%ClickPlayer.play()
 	closeOptionsMenu()
+
+
+func _on_hub_button_pressed():
+	Global.selected_map = 0
+	Global.selected_difficulty = 0
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://GameElements/Game/game.tscn")

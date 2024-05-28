@@ -16,7 +16,6 @@ func _ready():
 		if Global.unlocked_hats.values()[index]:
 			%HatList.set_item_selectable(index, true)
 			%HatList.set_item_disabled(index, false)
-	apply_hat()
 	
 func show_player_profile():
 	%LevelLabel.text = "Level : %s" % Global.player_level
@@ -44,6 +43,7 @@ func _input(event):
 	if event.is_action_pressed("show_player_profile"):
 		if visible == true:
 			hide_player_profile()
+			apply_change.emit()
 		else:
 			show_player_profile()
 
@@ -134,11 +134,17 @@ func _on_remove_stat_1_pressed():
 func _on_hat_button_pressed():
 	var hat_index = 0
 	for hat in Global.unlocked_hats.values():
+		print("hat value %s" % hat)
 		if hat:
 			%HatList.set_item_selectable(hat_index, true)
 			%HatList.set_item_disabled(hat_index, false)
 		hat_index += 1
-	%HatList.visible = !%HatList.visible
+	if %HatList.visible:
+		%HatList.visible = false
+		%PlayerManagerAnimationPlayer.play("hide_hat_list")
+	else:
+		%HatList.visible = true
+		%PlayerManagerAnimationPlayer.play("show_hat_list")
 
 func apply_hat():
 	if Global.player_equipped_hat != 99:
@@ -151,9 +157,7 @@ func apply_hat():
 		%SelectedHatTexture.texture = load("res://Assets/hats/hat_%s.png" % Global.player_equipped_hat)
 		%HatList.visible = false
 
-func _on_hat_list_item_clicked(index, _at_position, _mouse_button_index):
-	Global.player_equipped_hat = index
-	apply_hat()
+
 	
 var hats : Array[Hat] = [
 	Hat.new(
@@ -194,6 +198,13 @@ var hats : Array[Hat] = [
 			Player.magic_bolt = preload("res://GameElements/Spells/MerlinBolt.tscn"),
 			"Projectiles is exploding !"
 	),
+	Hat.new(
+	func():
+			var thunder = preload("res://GameElements/Spells/thunder.tscn").instantiate()
+			$/root/Game/Player.add_child(thunder)
+			Player.magic_bolt = preload("res://GameElements/Spells/MerlinBolt.tscn"),
+			"Lightnings will strike ennemies around you"
+	),
 ]
 
 func _apply_hat_effect():
@@ -204,6 +215,8 @@ func _reset_hat_effect():
 	var lambdas = game.wave_is_over.get_connections()
 	for lambda in lambdas:
 		game.wave_is_over.disconnect(lambda.callable)
+	if $/root/Game/Player/Thunder != null:
+		$/root/Game/Player/Thunder.queue_free()
 
 func _on_player_manager_animation_player_animation_finished(anim_name):
 	if anim_name == "hide_player_profile":
@@ -214,3 +227,8 @@ func _on_background_resized():
 	var rect_size = %Background.get_size()
 	%PlayerPreview.position.x = rect_size.x / 5
 	%PlayerPreview.position.y = rect_size.y / 2
+
+
+func _on_hat_list_item_selected(index):
+	Global.player_equipped_hat = index
+	apply_hat()

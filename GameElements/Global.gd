@@ -112,6 +112,7 @@ static var unlocked_hats:  = {
 	"hat_3" : false,
 	"hat_4" : false,
 	"hat_5" : false,
+	"hat_6" : false
 }
 
 func get_accumulated_stars():
@@ -160,7 +161,7 @@ func setStatFromIndex(index: int, value: int):
 # Save/Load System
 #======================
 
-func save():
+func _save():
 	var save_dict = {
 		"filename" : get_scene_file_path(),
 		"player_level" : player_level, # Vector2 is not supported by JSON
@@ -213,6 +214,7 @@ func new_save():
 							"hat_3" : false,
 							"hat_4" : false,
 							"hat_5" : false,
+							"hat_6" : false
 						},
 	}
 	var json_string = JSON.stringify(data)
@@ -222,7 +224,7 @@ func new_save():
 func save_game():
 	print("Saving data...")
 	var save = FileAccess.open("user://savegame.save", FileAccess.WRITE)
-	var data = save()
+	var data = _save()
 	# JSON provides a static method to serialized JSON string.
 	var json_string = JSON.stringify(data)
 	# Store the save dictionary as a new line in the save file.

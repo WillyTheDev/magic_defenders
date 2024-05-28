@@ -8,7 +8,6 @@ func _on_quit_to_menu_pressed():
 	get_tree().call_group("has_static_properties", "_reinitialize_static_properties")
 	get_tree().paused = false
 	$/root/Game/TransitionLayer.close_transition()
-	
 
 		
 func _on_restart_button_pressed():
@@ -47,6 +46,7 @@ func game_completed(wave:int, difficulty : int, map_of_game: Node):
 func game_over(wave:int):
 	visible = true
 	%GameOverAnimation.play("show_game_over")
+	%GameOverPlayer.play()
 	self.wave = wave
 	%ScoreLabel.text = "The lotus has been destroyed\n %s waves" % wave
 
@@ -54,4 +54,3 @@ func game_over(wave:int):
 func _on_infinity_button_pressed():
 	Global.selected_difficulty = 4
 	Global.starting_wave = self.wave
-	get_tree().reload_current_scene()

@@ -15,6 +15,7 @@ extends Node2D
 
 @export var map_index = 1
 @export var chapter_index = 1
+@export var is_hub = false
 
 var sequences : Array[Array]
 

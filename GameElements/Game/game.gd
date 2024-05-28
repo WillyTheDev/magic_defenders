@@ -47,6 +47,8 @@ func _ready():
 	add_child(player)
 	%TransitionLayer.open_transition()
 	%BackgroundAudioPlayer.volume_db = Global.audio_volume
+	if map_of_game.is_hub :
+		%EnemiesProgressBar.visible = false
 	
 	
 
@@ -105,6 +107,11 @@ func start_new_wave():
 		Enemy.base_speed += map_of_game.enemy_speed_increment
 
 func end_of_wave():
+	%Enemy_1.visible = false
+	%Enemy_2.visible = false
+	%Enemy_3.visible = false
+	%Enemy_4.visible = false
+	%Enemy_5.visible = false
 	%WaveLAbel.text = "Wave : %s Cleared !" % current_wave
 	%UI.show_next_wave_label()
 	%Confetti.play_confetti()
@@ -225,12 +232,12 @@ func on_enemy_has_been_killed():
 
 func _input(event):
 	if event.is_action_pressed("action_button"):
-		if is_idle:
+		if is_idle && map_of_game.is_hub == false:
 			start_new_wave()
 
 func _on_player_player_update_mana_amount(mana):
 	%ManaLabel.text = "Mana : %s" % mana
-	%SkillContainer.update_progress_bar(mana)
+	%SkillContainer.update_progress_bar()
 	%AccumulatedManaLabel.text = "%s / %s until the next level" % [Global.accumulated_mana, (Player.offset_accumulated_mana_value + Global.player_level * 10)]
 	%AccumulatedMana.max_value = Player.offset_accumulated_mana_value + Global.player_level * 10
 	%AccumulatedMana.value = Player.accumulated_mana
@@ -260,7 +267,7 @@ func _show_new_hat_animation(hat_index : int):
 	%UI/UIAnimationPlayer.queue("show_new_hat")
 	
 func get_index_of_random_available_hat() -> int:
-	var rand_index = randi_range(0, Global.unlocked_hats.size() - 1)
+	var rand_index = randi_range(0, Global.unlocked_hats.size() -1)
 	if Global.unlocked_hats.values()[rand_index]:
 		return get_index_of_random_available_hat()
 	else:
@@ -271,6 +278,8 @@ func _on_transition_layer_transition_is_finished(anim_name):
 		get_tree().change_scene_to_file("res://GameElements/Screens/welcome_screen.tscn")
 
 func add_hat_to_enemy(enemy: Node2D):
-	var hat_chance = 0.005
+	#best chance is 0.005
+	var hat_chance = 0.5
+	print(Global.unlocked_hats.values().all(func(value):return value==true))
 	if randf() <= hat_chance && !(Global.unlocked_hats.values().all(func(value):return value==true)):
 		enemy.add_hat(get_index_of_random_available_hat())

@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody2D
 
-static var base_health = 5.0
+static var base_health = 1.0
 static var base_speed = 5
 @export var speed_increment = 100
 @export var MANA_AMOUNT = 2

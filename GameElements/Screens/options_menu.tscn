@@ -95,6 +95,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit to menu"
 
+[node name="HubButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "go to hub"
+
 [node name="ResumeButton" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -111,4 +117,5 @@ volume_db = -5.0
 [connection signal="pressed" from="MarginContainer/VBoxContainer/EraseSaveButton" to="." method="_on_erase_save_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HubButton" to="." method="_on_hub_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

@@ -131,23 +131,24 @@ func _place_defense():
 		is_building = false	
 		
 func _on_skill_pressed(index : int):
-	var price = SkillManager.selected_skills[index].mana_cost
-	if mana_amount >= price && is_building == false:
-		update_mana_amount(-price, false)
-		if(SkillManager.selected_skills[index].type == "defense"):
-			is_building = true
-			var skill_object = SkillManager.selected_skills[index].scene
-			var new_object = skill_object.instantiate()
-			new_object.global_position = get_global_mouse_position()
-			new_object.rotation = get_angle_to(get_global_mouse_position())
-			defense_to_be_placed = new_object
-			applying_skill_index = index
-			get_parent().add_child(new_object)
-		else:
-			var skill = SkillManager.selected_skills[index].scene.instantiate()
-			var explosion = preload("res://GameElements/misc/explosion_sound.tscn").instantiate()
-			skill.global_position = get_global_mouse_position()
-			get_parent().add_child(skill)
+	if SkillManager.selected_skills[index] != null:
+		var price = SkillManager.selected_skills[index].mana_cost
+		if mana_amount >= price && is_building == false:
+			update_mana_amount(-price, false)
+			if(SkillManager.selected_skills[index].type == "defense"):
+				is_building = true
+				var skill_object = SkillManager.selected_skills[index].scene
+				var new_object = skill_object.instantiate()
+				new_object.global_position = get_global_mouse_position()
+				new_object.rotation = get_angle_to(get_global_mouse_position())
+				defense_to_be_placed = new_object
+				applying_skill_index = index
+				get_parent().add_child(new_object)
+			else:
+				var skill = SkillManager.selected_skills[index].scene.instantiate()
+				var explosion = preload("res://GameElements/misc/explosion_sound.tscn").instantiate()
+				skill.global_position = get_global_mouse_position()
+				get_parent().add_child(skill)
 
 func _on_reload_timer_timeout():
 	ammo = base_ammo
@@ -160,6 +161,6 @@ func _on_auto_shoot_timer_timeout():
 		_reload()
 		
 func get_new_hat(index : int):
-	get_parent()
-	Global.unlocked_hats[index] = true
+	print("Player unlocked a new hat ! %s" % index)
+	Global.unlocked_hats["hat_%s" % index] = true
 	player_got_new_hat.emit(index)

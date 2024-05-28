@@ -16,9 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://ndsaj1uf6kto" path="res://Assets/UI/welcome_screen_button/settings_click.png" id="12_p1tj2"]
 [ext_resource type="Texture2D" uid="uid://mwqj33u3dxkg" path="res://Assets/UI/welcome_screen_button/settings_hover.png" id="13_vdf0w"]
 [ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="15_nwpt0"]
-[ext_resource type="AudioStream" uid="uid://cgf42h3rpcibi" path="res://Assets/audio/VGMA Challenge - 12.ogg" id="16_dlkjs"]
 [ext_resource type="Texture2D" uid="uid://c11u56rufsapq" path="res://Assets/UI/welcome_screen_button/quit_hover.png" id="16_rpfy4"]
 [ext_resource type="Script" path="res://GameElements/Screens/BackgroundAudioPlayer.gd" id="17_eywxx"]
+[ext_resource type="AudioStream" uid="uid://dg5wnsksauopl" path="res://Assets/audio/Patreon Challenge - 06.ogg" id="18_t63y0"]
 [ext_resource type="PackedScene" uid="uid://dfk2ty751jcp5" path="res://GameElements/Screens/options_menu.tscn" id="18_uk2s8"]
 [ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="19_26kxm"]
 [ext_resource type="PackedScene" uid="uid://dmb5cs8occw40" path="res://GameElements/Screens/select_map_screen.tscn" id="21_nyo1u"]
@@ -120,7 +120,7 @@ unique_name_in_owner = true
 [node name="BackgroundAudioPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
-stream = ExtResource("16_dlkjs")
+stream = ExtResource("18_t63y0")
 volume_db = -10.0
 autoplay = true
 script = ExtResource("17_eywxx")

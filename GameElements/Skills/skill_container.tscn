@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk18yh7kobthq"]
+[gd_scene load_steps=16 format=3 uid="uid://dk18yh7kobthq"]
 
 [ext_resource type="Script" path="res://GameElements/Skills/SkillManager.gd" id="1_qmdoi"]
 [ext_resource type="Texture2D" uid="uid://33a4fljdofkd" path="res://Assets/UI/Skills_button/defense_normal.png" id="2_kcxfs"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="3_lby4j"]
+[ext_resource type="Texture2D" uid="uid://dpv6xqmm5jm1q" path="res://Assets/UI/Skills_button/locked_skill.png" id="4_4b4w8"]
+[ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="4_r3bw3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_211iv"]
 
@@ -12,6 +14,79 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5bvno"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8f1lp"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0ivw"]
+bg_color = Color(0.211765, 0.211765, 0.211765, 0.74902)
+
+[sub_resource type="GDScript" id="GDScript_6xebp"]
+script/source = "extends ItemList
+
+
+func _gui_input(event):
+	if event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				var index = get_item_at_position(get_local_mouse_position())
+			elif event.button_index > 2:
+				print(event)
+"
+
+[sub_resource type="Animation" id="Animation_qe0q6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_b3oj1"]
+resource_name = "hide_skill_list"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(0.233258, 0.233258, 0.233258),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_a13vp"]
+resource_name = "show_skill_list"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8),
+"transitions": PackedFloat32Array(0.25, 0.90125, 0.90125),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l7apm"]
+_data = {
+"RESET": SubResource("Animation_qe0q6"),
+"hide_skill_list": SubResource("Animation_b3oj1"),
+"show_skill_list": SubResource("Animation_a13vp")
+}
 
 [node name="SkillContainer" type="MarginContainer"]
 size_flags_horizontal = 4
@@ -114,7 +189,7 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-texture_normal = ExtResource("2_kcxfs")
+texture_normal = ExtResource("4_4b4w8")
 stretch_mode = 0
 
 [node name="ProgressBarBackground" type="ProgressBar" parent="VBoxContainer/HBoxContainer/SkillButton_3"]
@@ -156,7 +231,7 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-texture_normal = ExtResource("2_kcxfs")
+texture_normal = ExtResource("4_4b4w8")
 stretch_mode = 0
 
 [node name="ProgressBarBackground" type="ProgressBar" parent="VBoxContainer/HBoxContainer/SkillButton_4"]
@@ -194,34 +269,74 @@ text = "[4]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="SkillSelection" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 layer = 12
 
-[node name="SkillList" type="ItemList" parent="CanvasLayer"]
-unique_name_in_owner = true
-visible = false
+[node name="TextureRect" type="TextureRect" parent="SkillSelection"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -194.0
-offset_top = -62.0
-offset_right = 194.0
-offset_bottom = 62.0
+offset_left = -377.5
+offset_top = -371.0
+offset_right = 377.5
+offset_bottom = 371.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 1e-05)
+texture = ExtResource("4_r3bw3")
+
+[node name="MarginContainer" type="MarginContainer" parent="SkillSelection/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 160
+theme_override_constants/margin_bottom = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SkillSelection/TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="SkillList" type="ItemList" parent="SkillSelection/TextureRect/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hovered_color = Color(1, 1, 1, 1)
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 theme_override_constants/icon_margin = 5
+theme_override_fonts/font = ExtResource("3_lby4j")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/panel = SubResource("StyleBoxFlat_5bvno")
+theme_override_styles/focus = SubResource("StyleBoxFlat_8f1lp")
+theme_override_styles/hovered = SubResource("StyleBoxFlat_n0ivw")
 allow_rmb_select = true
 allow_search = false
+max_text_lines = 2
 auto_height = true
-max_columns = 4
 same_column_width = true
+fixed_column_width = 400
+icon_mode = 0
+script = SubResource("GDScript_6xebp")
+
+[node name="SkillAnimationPlayer" type="AnimationPlayer" parent="SkillSelection"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_l7apm")
+}
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_1" to="." method="_on_skill_button_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_2" to="." method="_on_skill_button_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_3" to="." method="_on_skill_button_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_4" to="." method="_on_skill_button_4_pressed"]
-[connection signal="item_clicked" from="CanvasLayer/SkillList" to="." method="_on_skill_list_item_clicked"]
+[connection signal="item_selected" from="SkillSelection/TextureRect/MarginContainer/ScrollContainer/SkillList" to="." method="_on_skill_list_item_selected"]

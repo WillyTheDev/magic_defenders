@@ -12,6 +12,7 @@ func play_animation_walk():
 func play_animation_levelup():
 	print("Playing Level up Animation !")
 	%LevelupPlayer.play("level_up")
+	
 
 func _ready():
 	play_animation_idle()

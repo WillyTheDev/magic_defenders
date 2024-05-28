@@ -10,6 +10,7 @@ func _ready():
 	current_health = 10
 	get_node("/root/Game/PlayerManager").defense_modified.connect(_apply_modification)
 	print("Core current health : %s" % current_health)
+	%CoreAttackedPlayer.volume_db = Global.sound_volume
 
 func abstract_final_action():
 	$/root/Game/UI/CoreAttackedRect.visible = false
@@ -20,6 +21,7 @@ func abstract_defense_take_damage():
 		print("Timer Initialized !") 
 		var vignette = get_node("/root/Game/UI/CoreAttackedRect")
 		vignette.visible = true
+		%CoreAttackedPlayer.play()
 		var timer = Timer.new()
 		timer.wait_time = 0.4
 		timer.one_shot = true

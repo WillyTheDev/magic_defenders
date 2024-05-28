@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c2o1lsmd80cnp"]
+[gd_scene load_steps=39 format=3 uid="uid://c2o1lsmd80cnp"]
 
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/PlayerManager.gd" id="1_ctqjo"]
 [ext_resource type="Texture2D" uid="uid://7ldxtyg31ar8" path="res://Assets/UI/player_profile_background/background.png" id="2_3il38"]
@@ -16,11 +16,13 @@
 [ext_resource type="Texture2D" uid="uid://d02y7l7i12gy7" path="res://Assets/hats/hat_0.png" id="12_arevw"]
 [ext_resource type="Texture2D" uid="uid://cyruvm2mtfo1e" path="res://Assets/hats/hat_1.png" id="12_tvfx2"]
 [ext_resource type="PackedScene" uid="uid://kbm12vsaf3ev" path="res://GameElements/Player/player_animation.tscn" id="13_71dtm"]
+[ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="13_lme1u"]
 [ext_resource type="Texture2D" uid="uid://bnqvulr6cj34d" path="res://Assets/UI/player_profile_background/hat_placeholder.png" id="13_mxkna"]
 [ext_resource type="Texture2D" uid="uid://bb0i4rje2oy5f" path="res://Assets/hats/hat_2.png" id="13_q65v3"]
 [ext_resource type="Texture2D" uid="uid://dovrqtecvs03f" path="res://Assets/hats/hat_4.png" id="15_d8o2l"]
 [ext_resource type="Texture2D" uid="uid://dtp6f6suw0ucs" path="res://Assets/hats/hat_3.png" id="16_57g04"]
 [ext_resource type="Texture2D" uid="uid://c23o5qwfpntls" path="res://Assets/hats/hat_5.png" id="17_ykywm"]
+[ext_resource type="Texture2D" uid="uid://c6awtyyei7lnm" path="res://Assets/hats/hat_6.png" id="23_1i7bm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdv3k"]
 bg_color = Color(0.244776, 0.244776, 0.244776, 1)
@@ -82,6 +84,18 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qepbm"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l6u5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11ars"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nqsa"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [sub_resource type="Animation" id="Animation_qticw"]
 length = 0.001
 tracks/0/type = "value"
@@ -107,6 +121,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.196078, 0.196078, 0.196078, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerManager/Background/TextureRect:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_gpqnf"]
+resource_name = "hide_hat_list"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/Background/TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7),
+"transitions": PackedFloat32Array(0.366022, 0.366022, 0.366022),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
 }
 
 [sub_resource type="Animation" id="Animation_ri22y"]
@@ -134,6 +175,21 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.196078, 0.196078, 0.196078, 0.784314), Color(0.196078, 0.196078, 0.196078, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qxghg"]
+resource_name = "show_hat_list"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/Background/TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6),
+"transitions": PackedFloat32Array(0.34151, 0.34151, 0.34151),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_qngu4"]
@@ -166,7 +222,9 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xrpxs"]
 _data = {
 "RESET": SubResource("Animation_qticw"),
+"hide_hat_list": SubResource("Animation_gpqnf"),
 "hide_player_profile": SubResource("Animation_ri22y"),
+"show_hat_list": SubResource("Animation_qxghg"),
 "show_player_profile": SubResource("Animation_qngu4")
 }
 
@@ -181,10 +239,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.196078, 0.196078, 0.196078, 0.784314)
+color = Color(0.196078, 0.196078, 0.196078, 0)
 
 [node name="Background" type="TextureRect" parent="."]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -192,6 +251,11 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_3il38")
 expand_mode = 3
+
+[node name="PlayerPreview" parent="Background" instance=ExtResource("13_71dtm")]
+unique_name_in_owner = true
+position = Vector2(457, 457)
+scale = Vector2(1.5, 1.5)
 
 [node name="MarginContainer" type="MarginContainer" parent="Background"]
 layout_mode = 1
@@ -569,62 +633,6 @@ texture_normal = ExtResource("9_dnnii")
 texture_pressed = ExtResource("10_4uncc")
 texture_hover = ExtResource("11_4ikb7")
 
-[node name="HatList" type="ItemList" parent="Background"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -166.0
-offset_top = -111.5
-offset_right = 166.0
-offset_bottom = 111.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 5
-theme_override_constants/icon_margin = 5
-allow_rmb_select = true
-allow_search = false
-auto_height = true
-item_count = 6
-max_columns = 3
-same_column_width = true
-item_0/text = ""
-item_0/icon = ExtResource("12_arevw")
-item_0/selectable = false
-item_0/disabled = true
-item_1/text = ""
-item_1/icon = ExtResource("12_tvfx2")
-item_1/selectable = false
-item_1/disabled = true
-item_2/text = ""
-item_2/icon = ExtResource("13_q65v3")
-item_2/selectable = false
-item_2/disabled = true
-item_3/text = ""
-item_3/icon = ExtResource("16_57g04")
-item_3/selectable = false
-item_3/disabled = true
-item_4/text = ""
-item_4/icon = ExtResource("15_d8o2l")
-item_4/selectable = false
-item_4/disabled = true
-item_5/text = ""
-item_5/icon = ExtResource("17_ykywm")
-item_5/selectable = false
-item_5/disabled = true
-
-[node name="PlayerPreview" parent="Background" instance=ExtResource("13_71dtm")]
-unique_name_in_owner = true
-position = Vector2(457, 457)
-scale = Vector2(1.5, 1.5)
-
 [node name="HatMarginContainer" type="MarginContainer" parent="Background"]
 layout_mode = 1
 anchors_preset = 2
@@ -689,6 +697,91 @@ theme_override_fonts/font = ExtResource("2_gyvey")
 theme_override_font_sizes/font_size = 28
 text = "-"
 
+[node name="TextureRect" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -377.5
+offset_top = -371.0
+offset_right = 377.5
+offset_bottom = 371.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+texture = ExtResource("13_lme1u")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 160
+theme_override_constants/margin_bottom = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="HatList" type="ItemList" parent="Background/TextureRect/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hovered_color = Color(0.988235, 0.862745, 0.705882, 1)
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+theme_override_constants/icon_margin = 5
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
+theme_override_styles/selected = SubResource("StyleBoxFlat_11ars")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
+allow_rmb_select = true
+allow_search = false
+max_text_lines = 2
+auto_height = true
+item_count = 7
+same_column_width = true
+fixed_column_width = 400
+icon_mode = 0
+item_0/text = "The player projectiles will slow down ennemies"
+item_0/icon = ExtResource("12_arevw")
+item_0/selectable = false
+item_0/disabled = true
+item_1/text = "The Player projectiles will go throught ennemies"
+item_1/icon = ExtResource("12_tvfx2")
+item_1/selectable = false
+item_1/disabled = true
+item_2/text = "Just a nice looking cap"
+item_2/icon = ExtResource("13_q65v3")
+item_2/selectable = false
+item_2/disabled = true
+item_3/text = "Will heal all the defenses at the end of the wave"
+item_3/icon = ExtResource("16_57g04")
+item_3/selectable = false
+item_3/disabled = true
+item_4/text = "The player projectile will burn the ennemies"
+item_4/icon = ExtResource("15_d8o2l")
+item_4/selectable = false
+item_4/disabled = true
+item_5/text = "The player projetile will explode on contact with an ennemy"
+item_5/icon = ExtResource("17_ykywm")
+item_5/selectable = false
+item_5/disabled = true
+item_6/text = "Lightnings will strike ennemies around you"
+item_6/icon = ExtResource("23_1i7bm")
+item_6/selectable = false
+item_6/disabled = true
+
 [node name="PlayerProfileTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
@@ -714,7 +807,7 @@ libraries = {
 [connection signal="pressed" from="Background/MarginContainer/VBoxContainer/stat_5/VBoxContainer/remove_stat_5" to="." method="_on_remove_stat_5_pressed"]
 [connection signal="pressed" from="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_apply_pressed"]
 [connection signal="pressed" from="Background/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_button_pressed"]
-[connection signal="item_clicked" from="Background/HatList" to="." method="_on_hat_list_item_clicked"]
 [connection signal="pressed" from="Background/HatMarginContainer/HBoxContainer/HatButton" to="." method="_on_hat_button_pressed"]
+[connection signal="item_selected" from="Background/TextureRect/MarginContainer/ScrollContainer/HatList" to="." method="_on_hat_list_item_selected"]
 [connection signal="timeout" from="PlayerProfileTimer" to="." method="_on_card_timer_timeout"]
 [connection signal="animation_finished" from="PlayerManagerAnimationPlayer" to="." method="_on_player_manager_animation_player_animation_finished"]

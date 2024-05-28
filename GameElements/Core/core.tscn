@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cak6x4mhllisu"]
+[gd_scene load_steps=10 format=3 uid="uid://cak6x4mhllisu"]
 
 [ext_resource type="Script" path="res://GameElements/Core/core.gd" id="1_10bn3"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_4pd6a"]
 [ext_resource type="Texture2D" uid="uid://bdnatjwiy327k" path="res://Assets/Core/Core.png" id="2_41oe6"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="3_d6ki2"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_1n7re"]
+[ext_resource type="AudioStream" uid="uid://d01k4h4qr68kj" path="res://Assets/audio/error_005.ogg" id="6_s72xd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8bcnf"]
 shader = ExtResource("3_d6ki2")
@@ -55,6 +56,11 @@ debug_color = Color(0.755894, 0.189016, 1, 0.42)
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 autostart = true
+
+[node name="CoreAttackedPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_s72xd")
+pitch_scale = 1.14
 
 [connection signal="body_entered" from="StaticBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="StaticBody2D/Area2D" to="." method="_on_area_2d_body_exited"]
