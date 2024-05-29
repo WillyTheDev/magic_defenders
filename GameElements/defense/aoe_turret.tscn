@@ -35,6 +35,13 @@ rotation = 1.5708
 scale = Vector2(0.282802, 0.367638)
 texture = ExtResource("2_cq56x")
 
+[node name="Shadow2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-5, -0.999994)
+rotation = 3.14159
+scale = Vector2(0.282802, 0.367638)
+texture = ExtResource("2_cq56x")
+
 [node name="Turret" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_crnf5")
 position = Vector2(-4, -2)

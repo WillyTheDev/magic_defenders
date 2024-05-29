@@ -100,10 +100,10 @@ material = SubResource("ShaderMaterial_jyd47")
 scale = Vector2(0.5, 0.5)
 platform_floor_layers = 4294967040
 script = ExtResource("1_anbsf")
-speed_increment = 70
+speed_increment = 50
 MANA_AMOUNT = 15
-health_increment = 35
-enemy_damage = 3
+health_increment = 50
+enemy_damage = 5
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)

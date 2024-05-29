@@ -61,7 +61,7 @@ func start_new_wave():
 	is_idle = false
 	is_spawning = true
 	spawn_rates -= 0.2
-	spawn_flying_enemy_rates -= 0.2
+	spawn_flying_enemy_rates -= 0.1
 	current_wave += 1
 	sequence_index += 1
 	total_enemies = 0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://br105dt7k8lmw"]
 
-[ext_resource type="Script" path="res://GameElements/defense/frost_turret.gd" id="1_mn61p"]
+[ext_resource type="Script" path="res://GameElements/defense/aoe_turret.gd" id="1_82ndi"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_fd2so"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="3_jo5vw"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_xcukv"]
@@ -27,7 +27,7 @@ size = Vector2(26, 31)
 [node name="Turret" type="Node2D"]
 modulate = Color(0.223529, 0.745098, 1, 0.545098)
 position = Vector2(386, 196)
-script = ExtResource("1_mn61p")
+script = ExtResource("1_82ndi")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)

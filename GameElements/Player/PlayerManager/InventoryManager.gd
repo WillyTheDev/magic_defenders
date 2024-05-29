@@ -113,16 +113,19 @@ func load_hat_list():
 
 func apply_loot(previous_loot: Loot, loot:Loot):
 	#Removing effect of previous equiped loot
-	
 	print("Previous loot = %s" % previous_loot)
 	if previous_loot != null:
-		playerManager.update_stat(previous_loot.primary_stat, -previous_loot.primary_stat_value, true)
-		playerManager.update_stat(previous_loot.secondary_stat, -previous_loot.secondary_stat_value, true)
+		Global.inventory.update_equiped_stat(previous_loot.primary_stat, previous_loot.primary_stat_value)
+		Global.inventory.update_equiped_stat(previous_loot.secondary_stat, previous_loot.secondary_stat_value)
+		playerManager.update_stat(previous_loot.primary_stat, 0, true)
+		playerManager.update_stat(previous_loot.secondary_stat, 0, true)
 		
 	#Apply effect of new equiped loot
 	print(loot.primary_stat)
-	playerManager.update_stat(loot.primary_stat, loot.primary_stat_value, true)
-	playerManager.update_stat(loot.secondary_stat, loot.secondary_stat_value, true)
+	Global.inventory.update_equiped_stat(loot.primary_stat, loot.primary_stat_value)
+	Global.inventory.update_equiped_stat(loot.secondary_stat, loot.secondary_stat_value)
+	playerManager.update_stat(loot.primary_stat, 0, true)
+	playerManager.update_stat(loot.secondary_stat, 0, true)
 
 #========================================
 # NECKLACES

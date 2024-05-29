@@ -3,7 +3,11 @@ extends Turret
 
 
 func shoot():
-	if %ShootZone.get_overlapping_bodies().size() > 1:
+	var nb_of_enemy = 0
+	for body in %ShootZone.get_overlapping_bodies():
+		if body is Enemy:
+			nb_of_enemy += 1
+	if nb_of_enemy > 1:
 		print("Turret is Shooting !")
 		%FireAudio.play()
 		const SMOKE = preload("res://smoke_explosion/merlin_explosion.tscn")

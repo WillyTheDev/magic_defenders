@@ -55,7 +55,7 @@ static var player_stat_damage = clamp(0, 0.5, 50)
 static var player_divider_damage = 3.0
 
 func getPlayerDamage():
-	return (player_base_damage + (player_base_damage / player_divider_damage) * player_stat_damage)
+	return (player_base_damage + (player_base_damage / player_divider_damage) * (player_stat_damage + inventory.equiped_player_damage))
 
 static var defense_base_range = 1.0
 static var defense_stat_range = clamp(0, 1.0, 1000.0)
@@ -69,9 +69,7 @@ static var defense_stat_damage = clamp(0, 1.0, 1000.0)
 static var defense_divider_damage = 5.0
 
 func getDefenseDamage():
-	print("Defense_stat_damage = %s " % defense_stat_damage)
-	print("DEFENSE DAMAGE =  %s" % ((defense_base_damage / defense_divider_damage) * defense_stat_damage))
-	return (defense_base_damage + (defense_base_damage / defense_divider_damage) * defense_stat_damage)
+	return (defense_base_damage + (defense_base_damage / defense_divider_damage) * (defense_stat_damage + inventory.equiped_defense_damage))
 
 static var defense_base_health = 10.0
 static var turret_base_health = 2.0
@@ -79,17 +77,17 @@ static var defense_stat_health = clamp(0, 1.0, 1000.0)
 static var defense_divider_health = 3.0
 
 func getDefenseHealth():
-	return  (defense_base_health + (defense_base_health / defense_divider_health) * defense_stat_health)
+	return  (defense_base_health + (defense_base_health / defense_divider_health) * (defense_stat_health + inventory.equiped_defense_health))
 	
 func getTurretHealth():
-	return (turret_base_health + (turret_base_health / defense_divider_health) * defense_stat_health)
+	return (turret_base_health + (turret_base_health / defense_divider_health) * (defense_stat_health + inventory.equiped_defense_health))
 
 static var defense_base_fire_rate = 2.0
 static var defense_stat_fire_rate = clamp(0, 1.0, 1000.0)
-static var defense_divider_fire_rate = -133.0
+static var defense_divider_fire_rate = -200.0
 
 func getDefenseFireRate():
-	return (defense_base_fire_rate +(defense_base_fire_rate / defense_divider_fire_rate) * defense_stat_fire_rate)
+	return (defense_base_fire_rate +(defense_base_fire_rate / defense_divider_fire_rate) * (defense_stat_fire_rate + inventory.equiped_defense_fire_rate))
 
 static var player_avail_pts = 0
 #Player equipped hat ( number represent index of hat )
@@ -123,7 +121,7 @@ func get_accumulated_stars():
 	accumulated_stars = 0
 	for map in map_progression:
 		accumulated_stars += map_progression[map]
-
+		
 func getStatFromIndex(index: int) -> int:
 	match index:
 		1:
@@ -136,6 +134,21 @@ func getStatFromIndex(index: int) -> int:
 			return defense_stat_health
 		5:
 			return defense_stat_fire_rate
+		_:
+			return 0
+
+func getTotalStatFromIndex(index: int) -> int:
+	match index:
+		1:
+			return player_stat_damage + inventory.equiped_player_damage
+		2:
+			return defense_stat_range + inventory.equiped_defense_range
+		3:
+			return defense_stat_damage + inventory.equiped_defense_damage
+		4:
+			return defense_stat_health + inventory.equiped_defense_health
+		5:
+			return defense_stat_fire_rate + inventory.equiped_defense_fire_rate
 		_:
 			return 0
 			
@@ -229,13 +242,13 @@ func new_save():
 							"hat_6" : false
 						},
 	}
+	print("CLEAR INVENTORY")
 	var inv = Inventory.new()
 	print(inv.loots)
 	var status = ResourceSaver.save(inv, "user://inventory.tres")
 	print("Saving inventory status : %s" % status)
 	var json_string = JSON.stringify(data)
 	save.store_line(json_string)
-	load_game()
 	
 func save_game():
 	print("Saving data...")
