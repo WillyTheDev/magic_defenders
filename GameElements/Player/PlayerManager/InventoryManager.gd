@@ -104,12 +104,12 @@ func _on_hat_list_item_selected(index):
 	%PlayerManagerAnimationPlayer.play("hide_hat_list")
 	
 func load_hat_list():
-	var index = 0
+	%HatList.clear()
 	for hat in hats:
-		%HatList.add_item(hat.information,hat.texture, true)
+		var index = %HatList.add_item(hat.information,hat.texture, true)
 		%HatList.set_item_selectable(index, Global.unlocked_hats["hat_%s" % index])
 		%HatList.set_item_disabled(index, !Global.unlocked_hats["hat_%s" % index])
-		index += 1
+		
 
 func apply_loot(previous_loot: Loot, loot:Loot):
 	#Removing effect of previous equiped loot

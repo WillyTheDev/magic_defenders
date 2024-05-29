@@ -14,6 +14,9 @@ var target : Enemy = null
 
 func abstrat_bolt_effect_on_body(_body: Node2D):
 	pass
+	
+func abstract_bolt_on_queue_free(_body : Node2D):
+	pass
 
 
 func _reinitialize_static_properties():
@@ -29,8 +32,10 @@ func _physics_process(delta):
 	rotate(6 * delta)
 	position += direction * SPEED * delta
 	travelled_distance += delta * SPEED
-	if travelled_distance > bolt_range :
+	if travelled_distance >= bolt_range :
+		abstract_bolt_on_queue_free(null)
 		queue_free()
+		
 
 
 func _on_body_entered(body):

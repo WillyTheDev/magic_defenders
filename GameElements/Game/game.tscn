@@ -821,7 +821,6 @@ layer = 30
 
 [node name="PlayerManager" parent="." instance=ExtResource("15_ykkkp")]
 process_mode = 3
-visible = false
 
 [node name="TransitionLayer" parent="." instance=ExtResource("13_ester")]
 unique_name_in_owner = true

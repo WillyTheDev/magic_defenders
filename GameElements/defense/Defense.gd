@@ -22,7 +22,6 @@ func _ready():
 	var DefenseTimer = get_node("/root/Game/DefenseTimer")
 	DefenseTimer.timeout.connect(_on_timer_timeout)
 	current_health = Global.getDefenseHealth()
-	get_node("/root/Game/PlayerManager").defense_modified.connect(_apply_modification)
 	
 func _apply_modification(args: Callable):
 	args.call(self)
