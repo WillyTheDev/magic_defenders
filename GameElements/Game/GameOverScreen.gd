@@ -54,3 +54,4 @@ func game_over(wave:int):
 func _on_infinity_button_pressed():
 	Global.selected_difficulty = 4
 	Global.starting_wave = self.wave
+	visible = false

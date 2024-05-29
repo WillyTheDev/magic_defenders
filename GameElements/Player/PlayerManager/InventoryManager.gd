@@ -133,22 +133,23 @@ func _on_necklace_button_pressed():
 	
 func load_necklace_list():
 	%NecklaceList.clear()
-	var index = 0
 	for loot in Global.inventory.loots["necklaces"]:
-		%NecklaceList.add_item("%s : %s\n%s: %s" % [get_stat_string(loot.primary_stat), loot.primary_stat_value ,get_stat_string(loot.secondary_stat), loot.secondary_stat_value],loot.texture, Global.inventory.equiped_necklaces != loot)
+		var index = %NecklaceList.add_item("%s : %s\n%s: %s" % [get_stat_string(loot.primary_stat), loot.primary_stat_value ,get_stat_string(loot.secondary_stat), loot.secondary_stat_value],loot.texture, true)
 		%NecklaceList.set_item_icon_modulate(index, loot.modulate)
-		%NecklaceList.select(index, Global.inventory.equiped_pants == loot)
+		if Global.inventory.equiped_necklaces == loot:
+			%NecklaceList.set_item_disabled(index, true)
 		
 func _on_necklace_list_item_selected(index):
 	selected_necklaces_index = index
 	
 func _on_equips_necklaces_pressed():
+	print("Equip selected Necklace : %s" % selected_necklaces_index)
 	var previous_loot = Global.inventory.equiped_necklaces
 	apply_loot(previous_loot, Global.inventory.loots["necklaces"][selected_necklaces_index])
 	Global.inventory.equiped_necklaces = Global.inventory.loots["necklaces"][selected_necklaces_index]
 	%PlayerManagerAnimationPlayer.play("hide_necklace_list")
-	%SelectedNecklaceTexture.texture = Global.inventory.loots["necklaces"][selected_necklaces_index].texture
-	%SelectedNecklaceTexture.modulate = Global.inventory.loots["necklaces"][selected_necklaces_index].modulate
+	%SelectedNecklaceTexture.texture = Global.inventory.equiped_necklaces.texture
+	%SelectedNecklaceTexture.modulate = Global.inventory.equiped_necklaces.modulate
 
 func _on_delete_necklaces_pressed():
 	Global.inventory.loots["necklaces"].remove_at(selected_necklaces_index)
@@ -164,12 +165,12 @@ func _on_ring_button_pressed():
 
 func load_ring_list():
 	%RingList.clear()
-	var index = 0
 	for loot in Global.inventory.loots["rings"]:
-		%RingList.add_item("%s : %s\n%s: %s" % [get_stat_string(loot.primary_stat), loot.primary_stat_value ,get_stat_string(loot.secondary_stat), loot.secondary_stat_value],loot.texture, Global.inventory.equiped_rings != loot)
+		var index = %RingList.add_item("%s : %s\n%s: %s" % [get_stat_string(loot.primary_stat), loot.primary_stat_value ,get_stat_string(loot.secondary_stat), loot.secondary_stat_value],loot.texture, true)
 		%RingList.set_item_icon_modulate(index, loot.modulate)
-		%RingList.select(index, Global.inventory.equiped_rings == loot)
-
+		if Global.inventory.equiped_rings == loot:
+			%RingList.set_item_disabled(index, true)
+			
 func _on_ring_list_item_selected(index):
 	selected_rings_index = index
 	
@@ -195,12 +196,13 @@ func _on_pants_button_pressed():
 
 func load_pants_list():
 	%PantsList.clear()
-	var index = 0
 	for loot in Global.inventory.loots["pants"]:
-		%PantsList.add_item("%s : %s\n%s: %s" % [get_stat_string(loot.primary_stat), loot.primary_stat_value ,get_stat_string(loot.secondary_stat), loot.secondary_stat_value],loot.texture, Global.inventory.equiped_pants != loot)
+		var index = %PantsList.add_item("%s : %s\n%s: %s" % [get_stat_string(loot.primary_stat), loot.primary_stat_value ,get_stat_string(loot.secondary_stat), loot.secondary_stat_value],loot.texture,true)
 		%PantsList.set_item_icon_modulate(index, loot.modulate)
-		%PantsList.select(index, Global.inventory.equiped_pants == loot)
-		
+		if Global.inventory.equiped_pants == loot:
+			%PantsList.set_item_disabled(index, true)
+			
+	
 func _on_pants_list_item_selected(index):
 	selected_pants_index = index
 	
@@ -228,12 +230,12 @@ func _on_boots_button_pressed():
 	
 func load_boots_list():
 	%BootsList.clear()
-	var index = 0
 	for loot in Global.inventory.loots["boots"]:
-		%BootsList.add_item("%s : %s\n%s: %s" % [get_stat_string(loot.primary_stat), loot.primary_stat_value ,get_stat_string(loot.secondary_stat), loot.secondary_stat_value],loot.texture, Global.inventory.equiped_boots != loot)
-		%BootsList.select(index, Global.inventory.equiped_boots == loot)
+		var index = %BootsList.add_item("%s : %s\n%s: %s" % [get_stat_string(loot.primary_stat), loot.primary_stat_value ,get_stat_string(loot.secondary_stat), loot.secondary_stat_value],loot.texture, true)
 		%BootsList.set_item_icon_modulate(index, loot.modulate)
-		
+		if Global.inventory.equiped_boots == loot:
+			%BootsList.set_item_disabled(index, true)
+	
 func _on_boots_list_item_selected(index):
 	selected_boots_index = index
 	
@@ -247,7 +249,7 @@ func _on_equips_boots_pressed():
 
 func _on_delete_boots_pressed():
 	Global.inventory.loots["boots"].remove_at(selected_boots_index)
-	load_pants_list()
+	load_boots_list()
 
 func get_stat_string(value: int):
 	print("Stat value = %s" % value)

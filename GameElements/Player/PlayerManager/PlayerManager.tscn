@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c2o1lsmd80cnp"]
+[gd_scene load_steps=54 format=3 uid="uid://c2o1lsmd80cnp"]
 
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/PlayerManager.gd" id="1_ctqjo"]
 [ext_resource type="Texture2D" uid="uid://7ldxtyg31ar8" path="res://Assets/UI/player_profile_background/background.png" id="2_3il38"]
@@ -90,9 +90,13 @@ shader_parameter/lod = 1.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qepbm"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l6u5"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+bg_color = Color(0.756863, 0.756863, 0.756863, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11ars"]
 bg_color = Color(3.85046e-07, 0.497298, 0.487444, 0.498039)
@@ -107,7 +111,104 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nqsa"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+bg_color = Color(0, 0, 0, 0.588235)
+border_color = Color(0.187176, 0.187176, 0.187176, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkxai"]
+bg_color = Color(0, 0.568627, 0.184314, 0.717647)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.372118, 0.84857, 0.397979, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olm0r"]
+bg_color = Color(0.886275, 0.784314, 0.65098, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 16.0
+expand_margin_top = 8.0
+expand_margin_right = 16.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4s8w"]
+bg_color = Color(0.699607, 0.569115, 0.393126, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 16.0
+expand_margin_top = 8.0
+expand_margin_right = 16.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yow2v"]
+bg_color = Color(0.90504, 0.816123, 0.700412, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 16.0
+expand_margin_top = 8.0
+expand_margin_right = 16.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prgbg"]
+bg_color = Color(0.997338, 0.532845, 0.554503, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.0962047, 0.0962048, 0.0962046, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 16.0
+expand_margin_top = 8.0
+expand_margin_right = 16.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kiv38"]
+bg_color = Color(0.659192, 0.0284962, 0.186753, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.0962047, 0.0962048, 0.0962046, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 16.0
+expand_margin_top = 8.0
+expand_margin_right = 16.0
+expand_margin_bottom = 8.0
 
 [sub_resource type="Animation" id="Animation_qticw"]
 length = 0.001
@@ -279,137 +380,45 @@ tracks/13/keys = {
 "update": 0,
 "values": [Vector2(1, 1e-05)]
 }
-
-[sub_resource type="Animation" id="Animation_ri22y"]
-resource_name = "hide_player_profile"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(0.210224, 0.210224),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.196078, 0.196078, 0.196078, 0.784314), Color(0.196078, 0.196078, 0.196078, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerManager/StatsContainer:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerManager/TextureRect:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_qngu4"]
-resource_name = "show_player_profile"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(0.258816, 0.258816),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(0.258816, 0.258816),
-"update": 0,
-"values": [Color(0.196078, 0.196078, 0.196078, 0), Color(0.196078, 0.196078, 0.196078, 0.784314)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerManager/StatsContainer:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerManager/TextureRect:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_b6pd7"]
-resource_name = "show_hat_list"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/HatsContainer:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("PlayerManager:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ahfyw"]
+resource_name = "hide_boots_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/BootsContainer/Texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8),
+"transitions": PackedFloat32Array(0.554785, 0.554785, 0.554785),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/HatsContainer/Texture:scale")
+tracks/1/path = NodePath("PlayerManager/InventoryManager/BootsContainer:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 0.8),
-"transitions": PackedFloat32Array(0.517632, 0.517632, 0.517632),
-"update": 0,
-"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_48pbo"]
@@ -440,34 +449,6 @@ tracks/1/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_3ngui"]
-resource_name = "show_necklace_list"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer/Texture:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 0.8),
-"transitions": PackedFloat32Array(0.594604, 0.594604, 0.594604),
-"update": 0,
-"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_q2hyi"]
 resource_name = "hide_necklace_list"
 length = 0.8
@@ -496,32 +477,96 @@ tracks/1/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_ypjss"]
-resource_name = "show_ring_list"
+[sub_resource type="Animation" id="Animation_6kdje"]
+resource_name = "hide_pants_list"
 length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/RingContainer:visible")
+tracks/0/path = NodePath("PlayerManager/InventoryManager/PantsContainer/Texture:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 0.1, 0.8),
+"transitions": PackedFloat32Array(0.574349, 0.574349, 0.574349),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/RingContainer/Texture:scale")
+tracks/1/path = NodePath("PlayerManager/InventoryManager/PantsContainer:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 0.8),
-"transitions": PackedFloat32Array(0.574349, 0.574349, 0.574349),
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ri22y"]
+resource_name = "hide_player_profile"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.210224, 0.210224),
 "update": 0,
-"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.196078, 0.196078, 0.196078, 0.784314), Color(0.196078, 0.196078, 0.196078, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerManager/StatsContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerManager/TextureRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerManager:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_ax2ra"]
@@ -543,62 +588,6 @@ tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("PlayerManager/InventoryManager/RingContainer:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_53cj3"]
-resource_name = "show_pants_list"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/PantsContainer:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/PantsContainer/Texture:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 0.8),
-"transitions": PackedFloat32Array(0.594603, 0.594603, 0.594603),
-"update": 0,
-"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_6kdje"]
-resource_name = "hide_pants_list"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/PantsContainer/Texture:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.8),
-"transitions": PackedFloat32Array(0.574349, 0.574349, 0.574349),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/PantsContainer:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -636,32 +625,180 @@ tracks/1/keys = {
 "values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_ahfyw"]
-resource_name = "hide_boots_list"
+[sub_resource type="Animation" id="Animation_b6pd7"]
+resource_name = "show_hat_list"
 length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/BootsContainer/Texture:scale")
+tracks/0/path = NodePath("PlayerManager/InventoryManager/HatsContainer:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.8),
-"transitions": PackedFloat32Array(0.554785, 0.554785, 0.554785),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/BootsContainer:visible")
+tracks/1/path = NodePath("PlayerManager/InventoryManager/HatsContainer/Texture:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
+"times": PackedFloat32Array(0, 0.7, 0.8),
+"transitions": PackedFloat32Array(0.517632, 0.517632, 0.517632),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3ngui"]
+resource_name = "show_necklace_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer/Texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8),
+"transitions": PackedFloat32Array(0.594604, 0.594604, 0.594604),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_53cj3"]
+resource_name = "show_pants_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/PantsContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/InventoryManager/PantsContainer/Texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8),
+"transitions": PackedFloat32Array(0.594603, 0.594603, 0.594603),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qngu4"]
+resource_name = "show_player_profile"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.258816, 0.258816),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.258816, 0.258816),
+"update": 0,
+"values": [Color(0.196078, 0.196078, 0.196078, 0), Color(0.196078, 0.196078, 0.196078, 0.784314)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerManager/StatsContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerManager/TextureRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerManager:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ypjss"]
+resource_name = "show_ring_list"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerManager/InventoryManager/RingContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerManager/InventoryManager/RingContainer/Texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8),
+"transitions": PackedFloat32Array(0.574349, 0.574349, 0.574349),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xrpxs"]
@@ -684,6 +821,7 @@ _data = {
 [node name="PlayerManager" type="CanvasLayer"]
 process_mode = 2
 layer = 10
+visible = false
 script = ExtResource("1_ctqjo")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -1381,7 +1519,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hovered_color = Color(0.988235, 0.862745, 0.705882, 1)
+theme_override_colors/font_hovered_color = Color(1, 1, 1, 1)
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 theme_override_constants/icon_margin = 5
@@ -1389,7 +1527,7 @@ theme_override_fonts/font = ExtResource("2_gyvey")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
 theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
-theme_override_styles/selected = SubResource("StyleBoxFlat_11ars")
+theme_override_styles/selected = SubResource("StyleBoxFlat_wkxai")
 theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
 allow_rmb_select = true
 allow_search = false
@@ -1399,17 +1537,36 @@ same_column_width = true
 fixed_column_width = 400
 icon_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme_override_constants/margin_bottom = 16
 
-[node name="EquipsNecklaces" type="Button" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 40
+
+[node name="EquipsNecklaces" type="Button" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
 text = "Equip"
 
-[node name="DeleteNecklaces" type="Button" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/HBoxContainer"]
+[node name="DeleteNecklaces" type="Button" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_prgbg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kiv38")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_prgbg")
 text = "Delete"
 
 [node name="RingContainer" type="Control" parent="InventoryManager"]
@@ -1480,7 +1637,7 @@ theme_override_fonts/font = ExtResource("2_gyvey")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
 theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
-theme_override_styles/selected = SubResource("StyleBoxFlat_11ars")
+theme_override_styles/selected = SubResource("StyleBoxFlat_wkxai")
 theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
 allow_rmb_select = true
 allow_search = false
@@ -1490,17 +1647,36 @@ same_column_width = true
 fixed_column_width = 400
 icon_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/RingContainer/Texture/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/RingContainer/Texture/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme_override_constants/margin_bottom = 16
 
-[node name="EquipsRings" type="Button" parent="InventoryManager/RingContainer/Texture/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 40
+
+[node name="EquipsRings" type="Button" parent="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
 text = "Equip"
 
-[node name="DeleteRings" type="Button" parent="InventoryManager/RingContainer/Texture/MarginContainer/HBoxContainer"]
+[node name="DeleteRings" type="Button" parent="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_prgbg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kiv38")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_prgbg")
 text = "Delete"
 
 [node name="PantsContainer" type="Control" parent="InventoryManager"]
@@ -1571,7 +1747,7 @@ theme_override_fonts/font = ExtResource("2_gyvey")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
 theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
-theme_override_styles/selected = SubResource("StyleBoxFlat_11ars")
+theme_override_styles/selected = SubResource("StyleBoxFlat_wkxai")
 theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
 allow_rmb_select = true
 allow_search = false
@@ -1581,17 +1757,36 @@ same_column_width = true
 fixed_column_width = 400
 icon_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/PantsContainer/Texture/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/PantsContainer/Texture/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme_override_constants/margin_bottom = 16
 
-[node name="EquipsPants" type="Button" parent="InventoryManager/PantsContainer/Texture/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 40
+
+[node name="EquipsPants" type="Button" parent="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
 text = "Equip"
 
-[node name="DeletePants" type="Button" parent="InventoryManager/PantsContainer/Texture/MarginContainer/HBoxContainer"]
+[node name="DeletePants" type="Button" parent="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_prgbg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kiv38")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_prgbg")
 text = "Delete"
 
 [node name="BootsContainer" type="Control" parent="InventoryManager"]
@@ -1662,7 +1857,7 @@ theme_override_fonts/font = ExtResource("2_gyvey")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
 theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
-theme_override_styles/selected = SubResource("StyleBoxFlat_11ars")
+theme_override_styles/selected = SubResource("StyleBoxFlat_wkxai")
 theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
 allow_rmb_select = true
 allow_search = false
@@ -1672,17 +1867,36 @@ same_column_width = true
 fixed_column_width = 400
 icon_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/BootsContainer/Texture/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/BootsContainer/Texture/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme_override_constants/margin_bottom = 16
 
-[node name="EquipsBoots" type="Button" parent="InventoryManager/BootsContainer/Texture/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 40
+
+[node name="EquipsBoots" type="Button" parent="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
 text = "Equip"
 
-[node name="DeleteBoots" type="Button" parent="InventoryManager/BootsContainer/Texture/MarginContainer/HBoxContainer"]
+[node name="DeleteBoots" type="Button" parent="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_prgbg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kiv38")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_prgbg")
 text = "Delete"
 
 [node name="PlayerProfileTimer" type="Timer" parent="."]
@@ -1707,8 +1921,8 @@ libraries = {
 [connection signal="pressed" from="StatsContainer/VBoxContainer/stat_4/VBoxContainer/remove_stat_4" to="." method="_on_remove_stat_4_pressed"]
 [connection signal="pressed" from="StatsContainer/VBoxContainer/stat_5/VBoxContainer/add_stat_5" to="." method="_on_add_stat_5_pressed"]
 [connection signal="pressed" from="StatsContainer/VBoxContainer/stat_5/VBoxContainer/remove_stat_5" to="." method="_on_remove_stat_5_pressed"]
-[connection signal="pressed" from="StatsContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="StatsContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_apply_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_button_pressed"]
 [connection signal="resized" from="InventoryManager" to="." method="_on_background_resized"]
 [connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton" to="InventoryManager" method="_on_hat_button_pressed"]
 [connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer2/NecklaceButton" to="InventoryManager" method="_on_necklace_button_pressed"]
@@ -1719,19 +1933,19 @@ libraries = {
 [connection signal="item_selected" from="InventoryManager/HatsContainer/Texture/MarginContainer/ScrollContainer/HatList" to="InventoryManager" method="_on_hat_list_item_selected"]
 [connection signal="gui_input" from="InventoryManager/NecklaceContainer/Control" to="InventoryManager/NecklaceContainer/Control" method="_on_gui_input"]
 [connection signal="item_selected" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/ScrollContainer/NecklaceList" to="InventoryManager" method="_on_necklace_list_item_selected"]
-[connection signal="pressed" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/HBoxContainer/EquipsNecklaces" to="InventoryManager" method="_on_equips_necklaces_pressed"]
-[connection signal="pressed" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/HBoxContainer/DeleteNecklaces" to="InventoryManager" method="_on_delete_necklaces_pressed"]
+[connection signal="pressed" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/EquipsNecklaces" to="InventoryManager" method="_on_equips_necklaces_pressed"]
+[connection signal="pressed" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/DeleteNecklaces" to="InventoryManager" method="_on_delete_necklaces_pressed"]
 [connection signal="gui_input" from="InventoryManager/RingContainer/Control" to="InventoryManager/RingContainer/Control" method="_on_gui_input"]
 [connection signal="item_selected" from="InventoryManager/RingContainer/Texture/MarginContainer/ScrollContainer/RingList" to="InventoryManager" method="_on_ring_list_item_selected"]
-[connection signal="pressed" from="InventoryManager/RingContainer/Texture/MarginContainer/HBoxContainer/EquipsRings" to="InventoryManager" method="_on_equips_rings_pressed"]
-[connection signal="pressed" from="InventoryManager/RingContainer/Texture/MarginContainer/HBoxContainer/DeleteRings" to="InventoryManager" method="_on_delete_rings_pressed"]
+[connection signal="pressed" from="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/EquipsRings" to="InventoryManager" method="_on_equips_rings_pressed"]
+[connection signal="pressed" from="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/DeleteRings" to="InventoryManager" method="_on_delete_rings_pressed"]
 [connection signal="gui_input" from="InventoryManager/PantsContainer/Control" to="InventoryManager/PantsContainer/Control" method="_on_gui_input"]
 [connection signal="item_selected" from="InventoryManager/PantsContainer/Texture/MarginContainer/ScrollContainer/PantsList" to="InventoryManager" method="_on_pants_list_item_selected"]
-[connection signal="pressed" from="InventoryManager/PantsContainer/Texture/MarginContainer/HBoxContainer/EquipsPants" to="InventoryManager" method="_on_equips_pants_pressed"]
-[connection signal="pressed" from="InventoryManager/PantsContainer/Texture/MarginContainer/HBoxContainer/DeletePants" to="InventoryManager" method="_on_delete_pants_pressed"]
+[connection signal="pressed" from="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/EquipsPants" to="InventoryManager" method="_on_equips_pants_pressed"]
+[connection signal="pressed" from="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/DeletePants" to="InventoryManager" method="_on_delete_pants_pressed"]
 [connection signal="gui_input" from="InventoryManager/BootsContainer/Control" to="InventoryManager/BootsContainer/Control" method="_on_gui_input"]
 [connection signal="item_selected" from="InventoryManager/BootsContainer/Texture/MarginContainer/ScrollContainer/BootsList" to="InventoryManager" method="_on_boots_list_item_selected"]
-[connection signal="pressed" from="InventoryManager/BootsContainer/Texture/MarginContainer/HBoxContainer/EquipsBoots" to="InventoryManager" method="_on_equips_boots_pressed"]
-[connection signal="pressed" from="InventoryManager/BootsContainer/Texture/MarginContainer/HBoxContainer/DeleteBoots" to="InventoryManager" method="_on_delete_boots_pressed"]
+[connection signal="pressed" from="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/EquipsBoots" to="InventoryManager" method="_on_equips_boots_pressed"]
+[connection signal="pressed" from="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/DeleteBoots" to="InventoryManager" method="_on_delete_boots_pressed"]
 [connection signal="timeout" from="PlayerProfileTimer" to="." method="_on_card_timer_timeout"]
 [connection signal="animation_finished" from="PlayerManagerAnimationPlayer" to="." method="_on_player_manager_animation_player_animation_finished"]
