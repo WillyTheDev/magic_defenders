@@ -6,7 +6,7 @@ func _abstract_turret_ready():
 	%TimerShoot.wait_time = Global.getDefenseFireRate() * 1.5
 	
 func shoot():
-	if target == null:
+	if target != null:
 		%FireAudio.play()
 		const FROST_BOLT = preload("res://GameElements/Spells/frost_bolt.tscn")
 		var new_bolt = FROST_BOLT.instantiate()

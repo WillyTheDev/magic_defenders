@@ -50,44 +50,60 @@ static var accumulated_gold = 0
 #======================
 # Player Stats
 #======================
-static var player_base_damage = 0.5
-static var player_stat_damage = clamp(0, 0.5, 50)
-static var player_divider_damage = 3.0
+# Quick note about how stat is working
+# @{player | defense}_base_$STAT :
+# correspond to the initial value of the stat
+# @{player | defense}_stat_$STAT :
+# correspond to the stats point added to the stats
+# @{player | defense}_divider_$STAT :
+# correspond to the divider used to adapt the stat to usable value in games
+# Exempe : player damage is between 05 and 50. you can have 100 points per stats
 
 func getPlayerDamage():
 	return (player_base_damage + (player_base_damage / player_divider_damage) * (player_stat_damage + inventory.equiped_player_damage))
 
-static var defense_base_range = 1.0
-static var defense_stat_range = clamp(0, 1.0, 1000.0)
-static var defense_divider_range = 25.0
+static var player_base_damage = 0.5
+static var player_stat_damage = 0
+static var player_divider_damage = 4.0
 
 func getDefenseRange():
 	return (defense_base_range + (defense_base_range / defense_divider_range) * defense_stat_range)
 
-static var defense_base_damage = 1.0
-static var defense_stat_damage = clamp(0, 1.0, 1000.0)
-static var defense_divider_damage = 5.0
+static var defense_base_range = 1.0
+static var defense_stat_range = 0
+static var defense_divider_range = 15.0
 
 func getDefenseDamage():
 	return (defense_base_damage + (defense_base_damage / defense_divider_damage) * (defense_stat_damage + inventory.equiped_defense_damage))
 
-static var defense_base_health = 10.0
-static var turret_base_health = 2.0
-static var defense_stat_health = clamp(0, 1.0, 1000.0)
-static var defense_divider_health = 3.0
+
+static var defense_base_damage = 1.0
+static var defense_stat_damage = 0
+static var defense_divider_damage = 10.0
+
 
 func getDefenseHealth():
+	print("Defense stat = %s" % defense_stat_health)
+	print("equiped Defense stat = %s" % Global.inventory.equiped_defense_health)
+	print("Calculated Defense = %s " % (defense_base_health + (defense_base_health / defense_divider_health) * (defense_stat_health + inventory.equiped_defense_health)))
 	return  (defense_base_health + (defense_base_health / defense_divider_health) * (defense_stat_health + inventory.equiped_defense_health))
-	
-func getTurretHealth():
-	return (turret_base_health + (turret_base_health / defense_divider_health) * (defense_stat_health + inventory.equiped_defense_health))
 
-static var defense_base_fire_rate = 2.0
-static var defense_stat_fire_rate = clamp(0, 1.0, 1000.0)
-static var defense_divider_fire_rate = -200.0
+func getTurretHealth():
+	return (turret_base_health + (turret_base_health / defense_divider_health) * ((defense_stat_health + inventory.equiped_defense_health)/10))
+
+static var defense_base_health = 1
+static var turret_base_health = 1
+static var defense_stat_health = 0
+static var defense_divider_health = 1.1
+
 
 func getDefenseFireRate():
 	return (defense_base_fire_rate +(defense_base_fire_rate / defense_divider_fire_rate) * (defense_stat_fire_rate + inventory.equiped_defense_fire_rate))
+
+
+static var defense_base_fire_rate = 2.0
+static var defense_stat_fire_rate = 0
+static var defense_divider_fire_rate = -300.0
 
 static var player_avail_pts = 0
 #Player equipped hat ( number represent index of hat )
@@ -153,6 +169,7 @@ func getTotalStatFromIndex(index: int) -> int:
 			return 0
 			
 func setStatFromIndex(index: int, value: int):
+	print(value)
 	match index:
 		1:
 			player_stat_damage += value
@@ -244,6 +261,7 @@ func new_save():
 	}
 	print("CLEAR INVENTORY")
 	var inv = Inventory.new()
+	inventory = inv
 	print(inv.loots)
 	var status = ResourceSaver.save(inv, "user://inventory.tres")
 	print("Saving inventory status : %s" % status)

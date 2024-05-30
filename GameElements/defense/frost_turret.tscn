@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://br105dt7k8lmw"]
+[gd_scene load_steps=12 format=3 uid="uid://cp3fmhe3mvoy"]
 
-[ext_resource type="Script" path="res://GameElements/defense/aoe_turret.gd" id="1_82ndi"]
+[ext_resource type="Script" path="res://GameElements/defense/frost_turret.gd" id="1_0omog"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_fd2so"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="3_jo5vw"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_xcukv"]
@@ -19,7 +19,7 @@ shader_parameter/flowMap = ExtResource("4_xcukv")
 size = Vector2(21, 26)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dmua3"]
-radius = 131.244
+radius = 97.0824
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ejl3"]
 size = Vector2(26, 31)
@@ -27,7 +27,7 @@ size = Vector2(26, 31)
 [node name="Turret" type="Node2D"]
 modulate = Color(0.223529, 0.745098, 1, 0.545098)
 position = Vector2(386, 196)
-script = ExtResource("1_82ndi")
+script = ExtResource("1_0omog")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -63,7 +63,7 @@ unique_name_in_owner = true
 modulate = Color(0, 0.796078, 0.290196, 0.784314)
 position = Vector2(-2.24316, 0.189178)
 rotation = -1.57079
-scale = Vector2(0.647915, 0.653937)
+scale = Vector2(0.489388, 0.493937)
 texture = ExtResource("6_rv850")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShootZone"]
@@ -76,7 +76,6 @@ scale = Vector2(1.09297, 1)
 
 [node name="TimerShoot" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 6.0
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]

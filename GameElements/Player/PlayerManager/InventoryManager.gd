@@ -19,6 +19,8 @@ func _ready():
 	if Global.inventory.equiped_boots != null:
 		%SelectedBootsTexture.texture = Global.inventory.equiped_boots.texture
 		%SelectedBootsTexture.modulate = Global.inventory.equiped_boots.modulate
+	
+
 func _reset_hat_effect():
 	var game = get_node("/root/Game/")
 	var lambdas = game.wave_is_over.get_connections()
@@ -43,7 +45,7 @@ var hats : Array[Hat] = [
 		func():
 			print("Frost Crown effect applied !")
 			Player.magic_bolt = preload("res://GameElements/Spells/frost_bolt.tscn"),
-			"Projectiles slow down enemies.",
+			"Projectiles slow down enemies but the damages are divide by 2",
 			preload("res://Assets/hats/hat_0.png")
 		),
 	Hat.new(
@@ -95,8 +97,9 @@ var hats : Array[Hat] = [
 ]
 
 func _on_hat_button_pressed():
-	load_hat_list()
-	%PlayerManagerAnimationPlayer.play("show_hat_list")
+	if Game.is_idle:
+		load_hat_list()
+		%PlayerManagerAnimationPlayer.play("show_hat_list")
 
 func _on_hat_list_item_selected(index):
 	Global.player_equipped_hat = index
@@ -113,19 +116,20 @@ func load_hat_list():
 
 func apply_loot(previous_loot: Loot, loot:Loot):
 	#Removing effect of previous equiped loot
-	print("Previous loot = %s" % previous_loot)
-	if previous_loot != null:
-		Global.inventory.update_equiped_stat(previous_loot.primary_stat, previous_loot.primary_stat_value)
-		Global.inventory.update_equiped_stat(previous_loot.secondary_stat, previous_loot.secondary_stat_value)
-		playerManager.update_stat(previous_loot.primary_stat, 0, true)
-		playerManager.update_stat(previous_loot.secondary_stat, 0, true)
-		
-	#Apply effect of new equiped loot
-	print(loot.primary_stat)
-	Global.inventory.update_equiped_stat(loot.primary_stat, loot.primary_stat_value)
-	Global.inventory.update_equiped_stat(loot.secondary_stat, loot.secondary_stat_value)
-	playerManager.update_stat(loot.primary_stat, 0, true)
-	playerManager.update_stat(loot.secondary_stat, 0, true)
+	if previous_loot != loot:
+		print("Previous loot = %s" % previous_loot)
+		if previous_loot != null:
+			Global.inventory.update_equiped_stat(previous_loot.primary_stat, -previous_loot.primary_stat_value)
+			Global.inventory.update_equiped_stat(previous_loot.secondary_stat, -previous_loot.secondary_stat_value)
+			playerManager.update_stat(previous_loot.primary_stat, 0, true)
+			playerManager.update_stat(previous_loot.secondary_stat, 0, true)
+			
+		#Apply effect of new equiped loot
+		print(loot.primary_stat)
+		Global.inventory.update_equiped_stat(loot.primary_stat, loot.primary_stat_value)
+		Global.inventory.update_equiped_stat(loot.secondary_stat, loot.secondary_stat_value)
+		playerManager.update_stat(loot.primary_stat, 0, true)
+		playerManager.update_stat(loot.secondary_stat, 0, true)
 
 #========================================
 # NECKLACES
@@ -141,21 +145,26 @@ func load_necklace_list():
 		%NecklaceList.set_item_icon_modulate(index, loot.modulate)
 		if Global.inventory.equiped_necklaces == loot:
 			%NecklaceList.set_item_disabled(index, true)
+	Global.inventory.new_loots["necklaces"] = false
+	%NecklacesNotification.visible = false
 		
 func _on_necklace_list_item_selected(index):
 	selected_necklaces_index = index
 	
 func _on_equips_necklaces_pressed():
-	print("Equip selected Necklace : %s" % selected_necklaces_index)
-	var previous_loot = Global.inventory.equiped_necklaces
-	apply_loot(previous_loot, Global.inventory.loots["necklaces"][selected_necklaces_index])
-	Global.inventory.equiped_necklaces = Global.inventory.loots["necklaces"][selected_necklaces_index]
-	%PlayerManagerAnimationPlayer.play("hide_necklace_list")
-	%SelectedNecklaceTexture.texture = Global.inventory.equiped_necklaces.texture
-	%SelectedNecklaceTexture.modulate = Global.inventory.equiped_necklaces.modulate
+	if Global.inventory.loots["necklaces"].size() > 0:
+		print("Equip selected Necklace : %s" % selected_necklaces_index)
+		var previous_loot = Global.inventory.equiped_necklaces
+		apply_loot(previous_loot, Global.inventory.loots["necklaces"][selected_necklaces_index])
+		Global.inventory.equiped_necklaces = Global.inventory.loots["necklaces"][selected_necklaces_index]
+		%PlayerManagerAnimationPlayer.play("hide_necklace_list")
+		%SelectedNecklaceTexture.texture = Global.inventory.equiped_necklaces.texture
+		%SelectedNecklaceTexture.modulate = Global.inventory.equiped_necklaces.modulate
 
 func _on_delete_necklaces_pressed():
 	Global.inventory.loots["necklaces"].remove_at(selected_necklaces_index)
+	if Global.inventory.loots["necklaces"].size() > 0:
+		selected_necklaces_index = 0
 	load_necklace_list()
 
 #========================================
@@ -173,27 +182,32 @@ func load_ring_list():
 		%RingList.set_item_icon_modulate(index, loot.modulate)
 		if Global.inventory.equiped_rings == loot:
 			%RingList.set_item_disabled(index, true)
+	Global.inventory.new_loots["rings"] = false
+	%RingsNotification.visible = false
 			
 func _on_ring_list_item_selected(index):
 	selected_rings_index = index
 	
 func _on_equips_rings_pressed():
-	var previous_loot = Global.inventory.equiped_rings
-	apply_loot(previous_loot, Global.inventory.loots["rings"][selected_rings_index])
-	Global.inventory.equiped_rings = Global.inventory.loots["rings"][selected_rings_index]
-	%PlayerManagerAnimationPlayer.play("hide_ring_list")
-	%SelectedRingTexture.texture = Global.inventory.loots["rings"][selected_rings_index].texture
-	%SelectedRingTexture.modulate = Global.inventory.loots["rings"][selected_rings_index].modulate
+	if Global.inventory.loots["rings"].size() > 0:
+		print(selected_rings_index)
+		var previous_loot = Global.inventory.equiped_rings
+		apply_loot(previous_loot, Global.inventory.loots["rings"][selected_rings_index])
+		Global.inventory.equiped_rings = Global.inventory.loots["rings"][selected_rings_index]
+		%PlayerManagerAnimationPlayer.play("hide_ring_list")
+		%SelectedRingTexture.texture = Global.inventory.loots["rings"][selected_rings_index].texture
+		%SelectedRingTexture.modulate = Global.inventory.loots["rings"][selected_rings_index].modulate
 
 func _on_delete_rings_pressed():
 	Global.inventory.loots["rings"].remove_at(selected_rings_index)
+	if Global.inventory.loots["rings"].size() > 0:
+		selected_rings_index = 0
 	load_ring_list()
 	
 #========================================
 # PANTS
 #========================================
 func _on_pants_button_pressed():
-	
 	load_pants_list()
 	%PlayerManagerAnimationPlayer.play("show_pants_list")
 
@@ -204,22 +218,26 @@ func load_pants_list():
 		%PantsList.set_item_icon_modulate(index, loot.modulate)
 		if Global.inventory.equiped_pants == loot:
 			%PantsList.set_item_disabled(index, true)
-			
+	Global.inventory.new_loots["pants"] = false
+	%PantsNotification.visible = false
 	
 func _on_pants_list_item_selected(index):
 	selected_pants_index = index
 	
 
 func _on_equips_pants_pressed():
-	var previous_loot = Global.inventory.equiped_pants
-	apply_loot(previous_loot, Global.inventory.loots["pants"][selected_pants_index])
-	Global.inventory.equiped_pants = Global.inventory.loots["pants"][selected_pants_index]
-	%PlayerManagerAnimationPlayer.play("hide_pants_list")
-	%SelectedPantsTexture.texture = Global.inventory.loots["pants"][selected_pants_index].texture
-	%SelectedPantsTexture.modulate = Global.inventory.loots["pants"][selected_pants_index].modulate
+	if Global.inventory.loots["pants"].size() > 0:
+		var previous_loot = Global.inventory.equiped_pants
+		apply_loot(previous_loot, Global.inventory.loots["pants"][selected_pants_index])
+		Global.inventory.equiped_pants = Global.inventory.loots["pants"][selected_pants_index]
+		%PlayerManagerAnimationPlayer.play("hide_pants_list")
+		%SelectedPantsTexture.texture = Global.inventory.loots["pants"][selected_pants_index].texture
+		%SelectedPantsTexture.modulate = Global.inventory.loots["pants"][selected_pants_index].modulate
 
 func _on_delete_pants_pressed():
 	Global.inventory.loots["pants"].remove_at(selected_pants_index)
+	if Global.inventory.loots["pants"].size() > 0:
+		selected_pants_index = 0
 	load_pants_list()
 	
 #========================================
@@ -238,20 +256,26 @@ func load_boots_list():
 		%BootsList.set_item_icon_modulate(index, loot.modulate)
 		if Global.inventory.equiped_boots == loot:
 			%BootsList.set_item_disabled(index, true)
+	Global.inventory.new_loots["boots"] = false
+	%BootsNotification.visible = false
+	
 	
 func _on_boots_list_item_selected(index):
 	selected_boots_index = index
 	
 func _on_equips_boots_pressed():
-	var previous_loot = Global.inventory.equiped_boots
-	apply_loot(previous_loot, Global.inventory.loots["boots"][selected_boots_index])
-	Global.inventory.equiped_boots = Global.inventory.loots["boots"][selected_boots_index]
-	%PlayerManagerAnimationPlayer.play("hide_boots_list")
-	%SelectedBootsTexture.texture = Global.inventory.loots["boots"][selected_boots_index].texture
-	%SelectedBootsTexture.modulate = Global.inventory.loots["boots"][selected_boots_index].modulate
+	if Global.inventory.loots["boots"].size() > 0:
+		var previous_loot = Global.inventory.equiped_boots
+		apply_loot(previous_loot, Global.inventory.loots["boots"][selected_boots_index])
+		Global.inventory.equiped_boots = Global.inventory.loots["boots"][selected_boots_index]
+		%PlayerManagerAnimationPlayer.play("hide_boots_list")
+		%SelectedBootsTexture.texture = Global.inventory.loots["boots"][selected_boots_index].texture
+		%SelectedBootsTexture.modulate = Global.inventory.loots["boots"][selected_boots_index].modulate
 
 func _on_delete_boots_pressed():
 	Global.inventory.loots["boots"].remove_at(selected_boots_index)
+	if Global.inventory.loots["boots"].size() > 0:
+		selected_boots_index = 0
 	load_boots_list()
 
 func get_stat_string(value: int):
@@ -268,7 +292,15 @@ func get_stat_string(value: int):
 		5:
 			return "defense Attack speed"
 
-
+func show_notifications():
+	if Global.inventory.new_loots["necklaces"]:
+		%NecklacesNotification.visible = true
+	if Global.inventory.new_loots["rings"]:
+		%RingsNotification.visible = true
+	if Global.inventory.new_loots["pants"]:
+		%PantsNotification.visible = true
+	if Global.inventory.new_loots["boots"]:
+		%BootsNotification.visible = true
 
 
 

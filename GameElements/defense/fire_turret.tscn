@@ -52,7 +52,8 @@ shape = SubResource("RectangleShape2D_eyh6e")
 [node name="ShootZone" type="Area2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(3, 0)
-collision_mask = 2
+scale = Vector2(0.56, 0.56)
+collision_mask = 3
 monitorable = false
 
 [node name="ShootingZoneSprite" type="Sprite2D" parent="ShootZone"]
@@ -75,7 +76,6 @@ scale = Vector2(1.09297, 1)
 
 [node name="TimerShoot" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 6.0
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]

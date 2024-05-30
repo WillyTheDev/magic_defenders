@@ -102,8 +102,8 @@ platform_floor_layers = 4294967040
 script = ExtResource("1_anbsf")
 speed_increment = 50
 MANA_AMOUNT = 15
-health_increment = 50
-enemy_damage = 5
+health_increment = 40
+enemy_damage = 3
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)

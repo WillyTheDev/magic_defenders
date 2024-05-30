@@ -42,7 +42,6 @@ func update_progress_bar():
 	var index = 0
 	for skill in selected_skills:
 		if skill != null:
-			print("Updating Progress Bar ! %s" % current_mana)
 			get_node("VBoxContainer/HBoxContainer/SkillButton_%s/ProgressBarBackground" % (index + 1)).value = selected_skills[index].mana_cost - current_mana
 		index += 1
 
@@ -115,23 +114,23 @@ static var skills : Array[Skill] = [
 	 preload("res://Assets/UI/Skills_button/aoe_turret_hover.png"),
 	 preload("res://GameElements/defense/aoe_turret.tscn"),
 	"A turret making aoe damage",
-	"defense",3),
+	"defense",5),
 	Skill.new(30,
 	 preload("res://Assets/UI/Skills_button/frost_turret_normal.png"),
 	 preload("res://Assets/UI/Skills_button/frost_turret_hover.png"),
 	 preload("res://GameElements/defense/frost_turret.tscn"),
 	"A frost turret",
-	"defense",5),
+	"defense",10),
 	Skill.new(40,
 	 preload("res://Assets/UI/Skills_button/fire_turret_normal.png"),
 	 preload("res://Assets/UI/Skills_button/fire_turret_hover.png"),
 	 preload("res://GameElements/defense/fire_turret.tscn"),
 	"A fire turret",
-	"defense",10),
+	"defense",15),
 	Skill.new(60,
 	 preload("res://Assets/UI/Skills_button/meteor_normal.png"),
 	 preload("res://Assets/UI/Skills_button/meteor_hover.png"),
 	 preload("res://GameElements/Spells/meteor_bolt.tscn"),
 	"A meteor",
-	"spell", 15),
+	"spell", 20),
 ]

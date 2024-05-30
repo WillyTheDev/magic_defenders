@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://c2o1lsmd80cnp"]
+[gd_scene load_steps=55 format=3 uid="uid://c2o1lsmd80cnp"]
 
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/PlayerManager.gd" id="1_ctqjo"]
 [ext_resource type="Texture2D" uid="uid://7ldxtyg31ar8" path="res://Assets/UI/player_profile_background/background.png" id="2_3il38"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://4y33cmdxh8ao" path="res://Assets/UI/player_profile_background/necklace_placeholder.png" id="16_oqu4o"]
 [ext_resource type="Texture2D" uid="uid://bbww30wt2hq3g" path="res://Assets/UI/player_profile_background/ring_placeholder.png" id="17_85sj4"]
 [ext_resource type="Texture2D" uid="uid://5xdbr5y0ldo4" path="res://Assets/UI/player_profile_background/pants_placeholder.png" id="18_wcvkc"]
+[ext_resource type="Texture2D" uid="uid://dtbokljp08n5w" path="res://Assets/UI/notification_bullet.png" id="18_x5gsd"]
 [ext_resource type="Texture2D" uid="uid://bp3rdxmpwjiyi" path="res://Assets/UI/player_profile_background/boots_placeholder.png" id="19_bng3d"]
 [ext_resource type="Script" path="res://GameElements/Skills/outside_click_control.gd" id="24_bvpje"]
 
@@ -1303,17 +1304,26 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("16_oqu4o")
 
+[node name="NecklacesNotification" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer2/NecklaceButton"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.640001, 0.640001)
+texture = ExtResource("18_x5gsd")
+
 [node name="HBoxContainer3" type="HBoxContainer" parent="InventoryManager/EquipmentContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="RingButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3"]
+[node name="RingsButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 texture_normal = ExtResource("5_upd7b")
 texture_hover = ExtResource("6_x1x4c")
 metadata/_edit_use_anchors_ = true
 
-[node name="SelectedRingTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3/RingButton"]
+[node name="SelectedRingTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3/RingsButton"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -1328,6 +1338,15 @@ offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("17_85sj4")
+
+[node name="RingsNotification" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3/RingsButton"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.640001, 0.640001)
+texture = ExtResource("18_x5gsd")
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="InventoryManager/EquipmentContainer/VBoxContainer"]
 layout_mode = 2
@@ -1355,6 +1374,15 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("18_wcvkc")
 
+[node name="PantsNotification" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer4/PantsButton"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.640001, 0.640001)
+texture = ExtResource("18_x5gsd")
+
 [node name="HBoxContainer5" type="HBoxContainer" parent="InventoryManager/EquipmentContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
@@ -1380,6 +1408,15 @@ offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("19_bng3d")
+
+[node name="BootsNotification" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer5/BootsButton"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.640001, 0.640001)
+texture = ExtResource("18_x5gsd")
 
 [node name="HatsContainer" type="Control" parent="InventoryManager"]
 unique_name_in_owner = true
@@ -1926,7 +1963,7 @@ libraries = {
 [connection signal="resized" from="InventoryManager" to="." method="_on_background_resized"]
 [connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton" to="InventoryManager" method="_on_hat_button_pressed"]
 [connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer2/NecklaceButton" to="InventoryManager" method="_on_necklace_button_pressed"]
-[connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3/RingButton" to="InventoryManager" method="_on_ring_button_pressed"]
+[connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3/RingsButton" to="InventoryManager" method="_on_ring_button_pressed"]
 [connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer4/PantsButton" to="InventoryManager" method="_on_pants_button_pressed"]
 [connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer5/BootsButton" to="InventoryManager" method="_on_boots_button_pressed"]
 [connection signal="gui_input" from="InventoryManager/HatsContainer/Control" to="InventoryManager/HatsContainer/Control" method="_on_gui_input"]

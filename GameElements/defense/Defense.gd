@@ -21,6 +21,7 @@ func _ready():
 	add_to_group("has_static_properties")
 	var DefenseTimer = get_node("/root/Game/DefenseTimer")
 	DefenseTimer.timeout.connect(_on_timer_timeout)
+	print("Defense health = %s" % Global.getDefenseHealth())
 	current_health = Global.getDefenseHealth()
 	
 func _apply_modification(args: Callable):

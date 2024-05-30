@@ -125,13 +125,13 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Slime" type="CharacterBody2D"]
+[node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 1
 scale = Vector2(0.4, 0.4)
 platform_floor_layers = 4294967040
 script = ExtResource("1_pg2k5")
-speed_increment = 60
-MANA_AMOUNT = 4
+speed_increment = 65
+MANA_AMOUNT = 3
 health_increment = 3
 
 [node name="Shadow" type="Sprite2D" parent="."]

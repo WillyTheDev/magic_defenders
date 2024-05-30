@@ -4,8 +4,10 @@ extends Turret
 func _abstract_turret_ready():
 	print(Global.getDefenseFireRate() * 3)
 	%TimerShoot.wait_time = Global.getDefenseFireRate() * 3
-	
+		
 func shoot():
+	print("Fire Turret shooting !")
+	print("Fire target = %s" % target)
 	if target != null:
 		%FireAudio.play()
 		get_node("/root/Game/Player/Camera2D").apply_shake(1)

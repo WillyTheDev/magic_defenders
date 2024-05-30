@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6trwwhbeffbp"]
+[gd_scene load_steps=12 format=3 uid="uid://d4hu1w4c701tm"]
 
 [ext_resource type="Script" path="res://GameElements/defense/aoe_turret.gd" id="1_inwqh"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_cq56x"]
@@ -19,7 +19,7 @@ shader_parameter/flowMap = ExtResource("4_bwm1s")
 size = Vector2(21, 26)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dmua3"]
-radius = 131.244
+radius = 90.05
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ejl3"]
 size = Vector2(26, 31)
@@ -69,7 +69,7 @@ unique_name_in_owner = true
 modulate = Color(0, 0.796078, 0.290196, 0.784314)
 position = Vector2(-2.24316, 0.189178)
 rotation = -1.57079
-scale = Vector2(0.647915, 0.653937)
+scale = Vector2(0.449757, 0.453937)
 texture = ExtResource("6_1pxjd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShootZone"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=53 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Texture2D" uid="uid://ispx11saoeqv" path="res://Assets/UI/map_selection_button/star_locked.png" id="3_kmwdb"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://0lc8krsnc1y2" path="res://Assets/audio/The Verdant Grove.ogg" id="9_1qta1"]
 [ext_resource type="Script" path="res://GameElements/Game/UI.gd" id="10_c0pl3"]
 [ext_resource type="PackedScene" uid="uid://dk18yh7kobthq" path="res://GameElements/Skills/skill_container.tscn" id="10_wf8js"]
+[ext_resource type="Texture2D" uid="uid://mbb4wx3vmk6q" path="res://Assets/UI/Skills_button/new_skill.png" id="12_uc5h4"]
 [ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="13_buvah"]
 [ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="13_ester"]
 [ext_resource type="Script" path="res://GameElements/Game/GameOverScreen.gd" id="13_f2lkj"]
@@ -116,6 +117,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(1e-05, 1e-05)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%AvailableSkill:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
 
 [sub_resource type="Animation" id="Animation_hvb5b"]
 resource_name = "showWaveLabel"
@@ -161,6 +174,22 @@ tracks/0/keys = {
 "values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_a63v6"]
+resource_name = "show_available_skill"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%AvailableSkill:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.25, 0.25),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_tp1m4"]
 resource_name = "show_new_hat"
 length = 3.0
@@ -182,6 +211,7 @@ _data = {
 "RESET": SubResource("Animation_5xlgv"),
 "showWaveLabel": SubResource("Animation_hvb5b"),
 "show_available_point": SubResource("Animation_lmsc6"),
+"show_available_skill": SubResource("Animation_a63v6"),
 "show_new_hat": SubResource("Animation_tp1m4")
 }
 
@@ -625,6 +655,26 @@ theme_override_constants/margin_bottom = 32
 [node name="TextureRect" type="TextureRect" parent="UI/AvailablePoints"]
 layout_mode = 2
 texture = ExtResource("14_j7wpw")
+
+[node name="AvailableSkill" type="MarginContainer" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -166.0
+offset_top = -106.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(80, 60)
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 146
+
+[node name="TextureRect" type="TextureRect" parent="UI/AvailableSkill"]
+layout_mode = 2
+texture = ExtResource("12_uc5h4")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 11

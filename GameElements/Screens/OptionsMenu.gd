@@ -65,7 +65,6 @@ func _on_erase_save_button_pressed():
 	print("ERASING DATA")
 	%ClickPlayer.play()
 	Global.new_save()
-	Global.load_game()
 	get_tree().paused = false
 	if is_on_welcome_screen:
 		closeOptionsMenu()

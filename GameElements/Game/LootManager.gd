@@ -12,9 +12,8 @@ const pants_texture = preload("res://Assets/loots/pants.png")
 func add_loot_to_enemy(enemy: Node2D):
 	#best chance is 0.005
 	var hat_chance = 0.005
-	var loot_chance = 0.05
+	var loot_chance = 0.02
 	var value = randf()
-	print(Global.unlocked_hats.values().all(func(value):return value==true))
 	if value <= hat_chance && !(Global.unlocked_hats.values().all(func(value):return value==true)):
 		enemy.add_hat(get_index_of_random_available_hat())
 		return

@@ -1,8 +1,16 @@
 extends CanvasLayer
 
 
+	
 func show_next_wave_label():
 	%UIAnimationPlayer.queue("showWaveLabel")
+	
+func show_available_skill():
+	%AvailableSkill.visible = true
+	%UIAnimationPlayer.queue("show_available_skill")
+
+func hide_available_skill():
+	%AvailableSkill.visible = false
 
 func show_available_point():
 	%AvailablePoints.visible = true

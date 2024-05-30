@@ -58,14 +58,14 @@ monitorable = false
 [node name="ShootingZoneSprite" type="Sprite2D" parent="ShootZone"]
 unique_name_in_owner = true
 modulate = Color(0, 0.796078, 0.290196, 0.784314)
-position = Vector2(61, -1)
+position = Vector2(31, 3.8147e-06)
 rotation = -1.57079
-scale = Vector2(0.26737, 0.448721)
+scale = Vector2(0.194433, 0.326313)
 texture = ExtResource("2_26sh2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShootZone"]
-position = Vector2(-66, -7.27177e-06)
-scale = Vector2(18.5771, 2.96205)
+position = Vector2(-65, 0.999994)
+scale = Vector2(13.8499, 2.20832)
 polygon = PackedVector2Array(12.9191, 22.2819, 12.9191, -23.2947, 0.861275, -0.337601)
 
 [node name="ShootingPoint" type="Marker2D" parent="."]

@@ -11,6 +11,7 @@ func _on_quit_to_menu_pressed():
 
 		
 func _on_restart_button_pressed():
+	Global.save_game()
 	get_tree().reload_current_scene()
 	
 func game_completed(wave:int, difficulty : int, map_of_game: Node):
@@ -52,6 +53,7 @@ func game_over(wave:int):
 
 
 func _on_infinity_button_pressed():
+	Global.save_game()
 	Global.selected_difficulty = 4
 	Global.starting_wave = self.wave
 	visible = false

@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 var starting_mana_amount = 30
+@export var player_last_skill_level = 20
 @export var points_per_level = 1
 var mana_amount = 0
 @export var screen_size = Vector2i(0,0)
@@ -53,6 +54,8 @@ func update_mana_amount(mana: int, acquire: bool):
 			Global.accumulated_mana -= (offset_accumulated_mana_value + ( Global.player_level * 10 ))
 			Global.player_level += 1
 			Global.player_avail_pts += points_per_level
+			if Global.player_level <= player_last_skill_level && int(Global.player_level) % 5 == 0:
+				$/root/Game/UI.show_available_skill()
 			player_has_level_up.emit()
 			var confetti = get_node("/root/Game/Confetti") 
 			var player_manager : PlayerManager = get_node("/root/Game/PlayerManager")
@@ -126,9 +129,11 @@ func _shoot():
 	player_has_shoot.emit(ammo)
 
 func _place_defense():
-	if defense_to_be_placed.can_be_placed:
+	if defense_to_be_placed != null && defense_to_be_placed.can_be_placed:
 		%PlaceDefenseAudio.play()
 		is_building = false	
+	else:
+		is_building = false
 		
 func _on_skill_pressed(index : int):
 	if SkillManager.selected_skills[index] != null:
@@ -167,3 +172,4 @@ func get_new_hat(index : int):
 	
 func add_new_loot(loot: Loot):
 	Global.inventory.loots[loot.type].append(loot)
+	Global.inventory.new_loots[loot.type] = true

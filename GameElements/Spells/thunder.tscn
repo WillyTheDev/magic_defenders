@@ -76,6 +76,7 @@ process_material = SubResource("ParticleProcessMaterial_vf21j")
 lifetime = 0.5
 
 [node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 5.0
 autostart = true
 

@@ -40,15 +40,18 @@ func _ready():
 	var player = preload("res://GameElements/Player/player.tscn").instantiate()
 	player.player_update_mana_amount.connect(_on_player_player_update_mana_amount)
 	player.player_got_new_hat.connect(_show_new_hat_animation)
+	player.player_has_shoot.connect(%UI.update_ammo_bar)
 	player.starting_mana_amount = map_of_game.player_starting_mana
 	%UI.set_ammo_progress_max_value(player.base_ammo)
-	player.player_has_shoot.connect(%UI.update_ammo_bar)
 	player.global_position = map_of_game.get_node("PlayerSpawnPoint").global_position
 	add_child(player)
 	%TransitionLayer.open_transition()
 	%BackgroundAudioPlayer.volume_db = Global.audio_volume
 	if map_of_game.is_hub :
 		%EnemiesProgressBar.visible = false
+	Enemy.base_health = 1.0
+	Enemy.base_speed = 5
+	Enemy.base_damage = 1
 	
 	
 
@@ -105,6 +108,8 @@ func start_new_wave():
 	if current_wave >= 5 && Global.selected_difficulty > 1:
 		Enemy.base_health += map_of_game.enemy_health_increment
 		Enemy.base_speed += map_of_game.enemy_speed_increment
+		if Global.selected_difficulty > 2:
+			Enemy.base_damage += map_of_game.enemy_damage_increment
 
 func end_of_wave():
 	%Enemy_1.visible = false
@@ -167,7 +172,7 @@ func spawn_mob():
 			var medium_enemy_spawn_chance: float = (current_wave)/(30)
 			var hard_enemy_spawn_chance :float =  current_wave/(150)
 			var mana_enemy_spawn_chance : float = 0.005
-			if (enemy_spawn_chance < hard_enemy_spawn_chance) && current_wave > 15:
+			if (enemy_spawn_chance < hard_enemy_spawn_chance) && current_wave > 7:
 				enemy = preload("res://GameElements/Enemies/Slime/slime_hard.tscn").instantiate()
 			elif (enemy_spawn_chance < medium_enemy_spawn_chance) && current_wave > 3:
 				enemy = preload("res://GameElements/Enemies/Slime/slime_medium.tscn").instantiate()
@@ -228,6 +233,7 @@ func on_enemy_has_been_killed():
 	# When there is no more enemy to spawn & the player just kille the last enemy then :
 	# @enemies_left is decremented each time the player is killing an ennemy
 	if enemies_left <= 0 && is_spawning == false:
+		print("Scene still have enemies %s" % get_tree().get_nodes_in_group("Enemy").size())
 		end_of_wave()
 
 func _input(event):
@@ -259,7 +265,8 @@ func _on_audio_stream_player_finished():
 
 
 func _on_options_menu_audio_value_changed():
-	%BackgroundAudioPlayer.volume_db = Global.audio_volume
+	%BackgroundAudioPlayer.volume_db = Global.audio_volume * 100.0
+	
 
 func _show_new_hat_animation(hat_index : int):
 	%NewHatTexture.texture = load("res://Assets/hats/hat_%s.png" % hat_index)

@@ -71,11 +71,12 @@ func _on_timer_shoot_timeout():
 	shoot()
 
 func _on_shoot_zone_body_exited(_body):
-	if %ShootZone != null || target == null:
+	target = null
+	if %ShootZone != null:
 		for body in %ShootZone.get_overlapping_bodies():
-				if body is Enemy:
-					target = body
-					break;
+			if body is Enemy:
+				target = body
+				break;
 
 func _on_shoot_zone_body_entered(body):
 	if target == null && body is Enemy:

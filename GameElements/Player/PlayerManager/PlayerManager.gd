@@ -10,8 +10,8 @@ func _ready():
 	for index in range(1,6):
 		var label = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [index,index])
 		var progress = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [index,index])
-		label.text = "%s" % Global.getStatFromIndex(index)
-		progress.value = Global.getStatFromIndex(index)
+		label.text = "%s" % Global.getTotalStatFromIndex(index)
+		progress.value = Global.getTotalStatFromIndex(index)
 	
 func show_player_profile():
 	%LevelLabel.text = "Level : %s" % Global.player_level
@@ -20,8 +20,10 @@ func show_player_profile():
 	playerhasLeveledUp = true
 	%PlayerProfileTimer.start()
 	%PlayerManagerAnimationPlayer.play("show_player_profile")
+	$/root/Game/UI.hide_available_skill()
 	visible = true
 	is_open = true
+	%InventoryManager.show_notifications()
 	
 func hide_player_profile():
 	%PlayerManagerAnimationPlayer.play("hide_player_profile")
@@ -50,7 +52,7 @@ func update_stat(stat_index : int, increment_value : int, loot_change : bool):
 			progress.value = Global.getTotalStatFromIndex(stat_index)
 			if loot_change == false:
 				Global.player_avail_pts += 1
-	elif Global.player_avail_pts > 0 || loot_change:
+	elif (Global.player_avail_pts > 0 && Global.getTotalStatFromIndex(stat_index) < 100) || loot_change:
 		var label = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [stat_index,stat_index])
 		var progress = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [stat_index,stat_index])
 		Global.setStatFromIndex(stat_index, increment_value)
