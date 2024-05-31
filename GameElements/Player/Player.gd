@@ -87,6 +87,8 @@ func _input(event):
 				_reload()
 	if event.is_action_released("left_click"):
 			%AutoShootTimer.stop()
+	if event.is_action_pressed("interact"):
+		pass
 	#====================
 	#Skills Input
 	#====================

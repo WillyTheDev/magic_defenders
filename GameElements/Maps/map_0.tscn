@@ -144,7 +144,6 @@ script = ExtResource("16_ro2ui")
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-8.10046, -2.52637)
-scale = Vector2(1.1, 1.1)
 npc_index = 2
 npc_texture = ExtResource("16_juuof")
 starting_animation = "walk"
