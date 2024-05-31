@@ -33,22 +33,17 @@ func show_select_map():
 		var star_1 = get_node("GridContainer/map_%s/HBoxContainer/star_1" % map)
 		var star_2 = get_node("GridContainer/map_%s/HBoxContainer/star_2" % map)
 		var star_3 = get_node("GridContainer/map_%s/HBoxContainer/star_3" % map)
-		print(Global.map_progression["map_%s_%s" % [actual_chapter , map]])
 		match Global.map_progression["map_%s_%s" % [actual_chapter , map]]:
 			3.0:
-				print("Loading 3 new texture...")
 				star_3.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")
 				star_2.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")
 				star_1.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")
 			2.0:
-				print("Loading 2 new texture...")
 				star_2.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")
 				star_1.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")
 			1.0:
-				print("Loading 1 new texture...")
 				star_1.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")
 			4.0:
-				print("Loading 3 new texture...")
 				star_3.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")
 				star_2.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")
 				star_1.texture = load("res://Assets/UI/map_selection_button/star_unlocked.png")

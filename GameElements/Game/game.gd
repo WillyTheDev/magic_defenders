@@ -124,7 +124,6 @@ func end_of_wave():
 	%SpawnFlyingEnemyTimer.stop()
 	%EnemiesLabel.text = ""
 	%WaveActionLabel.visible = true
-	Global.accumulated_gold += 1
 	# Give stars base on the current_wave
 	match Global.selected_difficulty:
 		1:

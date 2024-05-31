@@ -16,6 +16,7 @@ var big_shoot_price = 60
 var defense_to_be_placed : Node2D = null
 var applying_skill_index : int = 0
 var is_building = false
+var is_interacting_with_npc : int = 0
 
 signal player_has_level_up
 signal player_update_mana_amount
@@ -90,13 +91,13 @@ func _input(event):
 	#Skills Input
 	#====================
 	if event.is_action_pressed("skill_1"):
-		_on_skill_pressed(0)
+		on_skill_pressed(0)
 	if event.is_action_pressed("skill_2"):
-		_on_skill_pressed(1)
+		on_skill_pressed(1)
 	if event.is_action_pressed("skill_3"):
-		_on_skill_pressed(2)
+		on_skill_pressed(2)
 	if event.is_action_pressed("skill_4"):
-		_on_skill_pressed(3)
+		on_skill_pressed(3)
 	
 	
 	if event.is_action_pressed("show_options"):
@@ -135,7 +136,7 @@ func _place_defense():
 	else:
 		is_building = false
 		
-func _on_skill_pressed(index : int):
+func on_skill_pressed(index : int):
 	if SkillManager.selected_skills[index] != null:
 		var price = SkillManager.selected_skills[index].mana_cost
 		if mana_amount >= price && is_building == false:
@@ -166,7 +167,6 @@ func _on_auto_shoot_timer_timeout():
 		_reload()
 		
 func get_new_hat(index : int):
-	print("Player unlocked a new hat ! %s" % index)
 	Global.unlocked_hats["hat_%s" % index] = true
 	player_got_new_hat.emit(index)
 	

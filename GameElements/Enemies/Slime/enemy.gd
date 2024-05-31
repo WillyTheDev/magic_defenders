@@ -74,14 +74,12 @@ func take_damage(damage=1):
 				$/root/Game.call_deferred("add_child", new_mana)
 			if has_hat:
 				var hat = preload("res://GameElements/hat/hat.tscn").instantiate()
-				print(hat_index)
 				hat.hat_index = hat_index
 				hat.get_node("Mana").texture = %Hat.texture
 				hat.rotation = rotation
 				hat.global_position = global_position + Vector2(randi() % 30, randi() % 30)
 				$/root/Game.call_deferred("add_child", hat)
 			if has_loot:
-				print("🐲Slime spawning some loots !🐲")
 				var loot_to_spawn = preload("res://GameElements/misc/loot.tscn").instantiate()
 				loot_to_spawn.is_loot = true
 				loot_to_spawn.loot = loot
@@ -89,7 +87,6 @@ func take_damage(damage=1):
 				loot_to_spawn.global_position = global_position + Vector2(randi() % 30, randi() % 30)
 				loot_to_spawn.get_node("LootSprite").modulate = loot.modulate
 				$/root/Game.call_deferred("add_child", loot_to_spawn)
-				print("Loot location = %s" % loot_to_spawn.global_position)
 			slime_has_been_killed.emit()
 			get_parent().queue_free()
 	

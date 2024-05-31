@@ -22,8 +22,6 @@ func _init_selected_skill():
 	selected_skills[0] = skills[0]
 	selected_skills[1] = skills[1]
 	for skill in skills:
-		print(Global.player_level)
-		print("Player has the required level to get the skill ? %s" % (Global.player_level >= skill.level_required))
 		var index = %SkillList.add_item(skill.information,skill.texture_normal, Global.player_level >= skill.level_required)
 		%SkillList.set_item_disabled(index, Global.player_level < skill.level_required)
 	
@@ -37,7 +35,6 @@ func update_skills_button_ui():
 		index += 1
 	
 func update_progress_bar():
-	print("Update Progress bar !")
 	var current_mana = $/root/Game/Player.mana_amount
 	var index = 0
 	for skill in selected_skills:
@@ -47,7 +44,6 @@ func update_progress_bar():
 
 func toggle_skill_list():
 	if Game.is_idle && PlayerManager.is_open:
-		print("Skill selection is visible : %s" % %SkillSelection.visible )
 		if %SkillSelection.visible:
 			%SkillAnimationPlayer.play("hide_list")
 		else:
@@ -64,23 +60,35 @@ func update_skill_list():
 		index += 1
 
 func _on_skill_button_1_pressed():
-	skill_to_update = 0
-	toggle_skill_list()
+	if PlayerManager.is_open:
+		skill_to_update = 0
+		toggle_skill_list()
+	else:
+		$/root/Game/Player.on_skill_pressed(0)
 
 
 func _on_skill_button_2_pressed():
-	skill_to_update = 1
-	toggle_skill_list()
+	if PlayerManager.is_open:
+		skill_to_update = 1
+		toggle_skill_list()
+	else:
+		$/root/Game/Player.on_skill_pressed(1)
 
 
 func _on_skill_button_3_pressed():
-	skill_to_update = 2
-	toggle_skill_list()
+	if PlayerManager.is_open:
+		skill_to_update = 2
+		toggle_skill_list()
+	else:
+		$/root/Game/Player.on_skill_pressed(2)
 
 
 func _on_skill_button_4_pressed():
-	skill_to_update = 3
-	toggle_skill_list()
+	if PlayerManager.is_open:
+		skill_to_update = 3
+		toggle_skill_list()
+	else:
+		$/root/Game/Player.on_skill_pressed(3)
 
 
 func _on_player_manager_apply_change():
@@ -88,7 +96,6 @@ func _on_player_manager_apply_change():
 
 
 func _on_skill_list_item_selected(index):
-	print("Item Selected !")
 	selected_skills[skill_to_update] = skills[index]
 	update_skills_button_ui()
 	toggle_skill_list()

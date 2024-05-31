@@ -34,7 +34,6 @@ func shoot():
 		const FIRE_BOLT = preload("res://GameElements/Spells/magic_bolt.tscn")
 		var new_fire_bolt = FIRE_BOLT.instantiate()
 		new_fire_bolt.damage = Global.getDefenseDamage()
-		print(new_fire_bolt.damage)
 		new_fire_bolt.global_position = %ShootingPoint.global_position
 		new_fire_bolt.global_rotation = %ShootingPoint.global_rotation
 		new_fire_bolt.direction = (global_position - target.global_position).normalized() * -1

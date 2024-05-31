@@ -17,6 +17,5 @@ func shoot():
 		var bodies = %ShootZone.get_overlapping_bodies()
 		for bodyInZone in bodies:
 			if bodyInZone is Enemy:
-				print()
 				bodyInZone.take_damage(clampf(Global.getDefenseDamage()/4, 0.1, 4))
 		target = null

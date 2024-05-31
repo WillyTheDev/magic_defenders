@@ -6,7 +6,7 @@ static var defense_price = 10
 @export var has_been_build = false
 @export var can_be_placed = true
 
-var current_health = 4.0
+@export var current_health = 10.0
 var cumulated_damage = 0
 
 func _reinitialize_static_properties():
@@ -21,8 +21,7 @@ func _ready():
 	add_to_group("has_static_properties")
 	var DefenseTimer = get_node("/root/Game/DefenseTimer")
 	DefenseTimer.timeout.connect(_on_timer_timeout)
-	print("Defense health = %s" % Global.getDefenseHealth())
-	current_health = Global.getDefenseHealth()
+	current_health += Global.getDefenseHealth()
 	
 func _apply_modification(args: Callable):
 	args.call(self)
@@ -82,10 +81,8 @@ func _input(event):
 
 func take_damage():
 	if cumulated_damage > 0:
-		
 		abstract_defense_take_damage()
 		current_health -= cumulated_damage
-		print("Defense Damage taken : %s Defense health left : %s" % [cumulated_damage, current_health])
 		if current_health <= 0:
 			abstract_final_action()
 			const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
@@ -94,7 +91,7 @@ func take_damage():
 			get_parent().add_child(new_smoke)
 			queue_free()
 		else:
-			var values = (255 * (current_health/Global.getDefenseHealth()))
+			var values = (255 * (current_health/(10+Global.getDefenseHealth())))
 			modulate = "ff%x%xff" % [values, values]
 
 func _on_area_2d_body_entered(body):

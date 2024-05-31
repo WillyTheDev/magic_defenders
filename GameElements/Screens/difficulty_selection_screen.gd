@@ -21,7 +21,6 @@ func openDifficultySelectionScreen():
 			%MediumStar.texture = preload("res://Assets/UI/map_selection_button/star_locked.png")
 			%HardStar.texture = preload("res://Assets/UI/map_selection_button/star_locked.png")
 	visible = true
-	%Reward.texture = load("res://Assets/hats/hat_%s.png" % Global.selected_map)
 	is_open = true
 	
 func _launch_game():

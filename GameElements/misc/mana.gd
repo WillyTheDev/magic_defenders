@@ -21,7 +21,6 @@ func _on_mana_body_body_entered(body):
 		if is_hat:
 			body.get_new_hat(hat_index)
 		elif is_loot:
-			print("Player won a new LOOT 💰💰")
 			body.add_new_loot(loot)
 		else:
 			body.update_mana_amount(mana_value, true)

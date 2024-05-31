@@ -8,7 +8,6 @@ func _ready():
 	var DefenseTimer = get_node("/root/Game/DefenseTimer")
 	DefenseTimer.timeout.connect(_on_timer_timeout)
 	current_health = 10
-	print("Core current health : %s" % current_health)
 	%CoreAttackedPlayer.volume_db = Global.sound_volume
 
 func abstract_final_action():
@@ -17,7 +16,6 @@ func abstract_final_action():
 
 func abstract_defense_take_damage():
 	if cumulated_damage > 0:
-		print("Timer Initialized !") 
 		var vignette = get_node("/root/Game/UI/CoreAttackedRect")
 		vignette.visible = true
 		%CoreAttackedPlayer.play()

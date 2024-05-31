@@ -83,9 +83,6 @@ static var defense_divider_damage = 10.0
 
 
 func getDefenseHealth():
-	print("Defense stat = %s" % defense_stat_health)
-	print("equiped Defense stat = %s" % Global.inventory.equiped_defense_health)
-	print("Calculated Defense = %s " % (defense_base_health + (defense_base_health / defense_divider_health) * (defense_stat_health + inventory.equiped_defense_health)))
 	return  (defense_base_health + (defense_base_health / defense_divider_health) * (defense_stat_health + inventory.equiped_defense_health))
 
 func getTurretHealth():
@@ -169,7 +166,6 @@ func getTotalStatFromIndex(index: int) -> int:
 			return 0
 			
 func setStatFromIndex(index: int, value: int):
-	print(value)
 	match index:
 		1:
 			player_stat_damage += value

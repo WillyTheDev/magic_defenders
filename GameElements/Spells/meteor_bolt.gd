@@ -25,7 +25,6 @@ func _explode():
 	new_smoke.global_position = global_position
 	get_parent().add_child(new_smoke)
 	queue_free()
-	print("Explode")
 
 		
 

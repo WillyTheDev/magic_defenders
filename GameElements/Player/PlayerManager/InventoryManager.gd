@@ -19,6 +19,7 @@ func _ready():
 	if Global.inventory.equiped_boots != null:
 		%SelectedBootsTexture.texture = Global.inventory.equiped_boots.texture
 		%SelectedBootsTexture.modulate = Global.inventory.equiped_boots.modulate
+	%GoldLabel.text = "%s" % Global.accumulated_gold
 	
 
 func _reset_hat_effect():
@@ -43,7 +44,6 @@ func apply_hat():
 var hats : Array[Hat] = [
 	Hat.new(
 		func():
-			print("Frost Crown effect applied !")
 			Player.magic_bolt = preload("res://GameElements/Spells/frost_bolt.tscn"),
 			"Projectiles slow down enemies but the damages are divide by 2",
 			preload("res://Assets/hats/hat_0.png")
@@ -117,7 +117,6 @@ func load_hat_list():
 func apply_loot(previous_loot: Loot, loot:Loot):
 	#Removing effect of previous equiped loot
 	if previous_loot != loot:
-		print("Previous loot = %s" % previous_loot)
 		if previous_loot != null:
 			Global.inventory.update_equiped_stat(previous_loot.primary_stat, -previous_loot.primary_stat_value)
 			Global.inventory.update_equiped_stat(previous_loot.secondary_stat, -previous_loot.secondary_stat_value)
@@ -125,7 +124,6 @@ func apply_loot(previous_loot: Loot, loot:Loot):
 			playerManager.update_stat(previous_loot.secondary_stat, 0, true)
 			
 		#Apply effect of new equiped loot
-		print(loot.primary_stat)
 		Global.inventory.update_equiped_stat(loot.primary_stat, loot.primary_stat_value)
 		Global.inventory.update_equiped_stat(loot.secondary_stat, loot.secondary_stat_value)
 		playerManager.update_stat(loot.primary_stat, 0, true)
@@ -150,10 +148,10 @@ func load_necklace_list():
 		
 func _on_necklace_list_item_selected(index):
 	selected_necklaces_index = index
+	%SellNecklaces.text = "Sell: %s" % (1+Global.inventory.loots["necklaces"][selected_necklaces_index].rarity)
 	
 func _on_equips_necklaces_pressed():
 	if Global.inventory.loots["necklaces"].size() > 0:
-		print("Equip selected Necklace : %s" % selected_necklaces_index)
 		var previous_loot = Global.inventory.equiped_necklaces
 		apply_loot(previous_loot, Global.inventory.loots["necklaces"][selected_necklaces_index])
 		Global.inventory.equiped_necklaces = Global.inventory.loots["necklaces"][selected_necklaces_index]
@@ -162,9 +160,11 @@ func _on_equips_necklaces_pressed():
 		%SelectedNecklaceTexture.modulate = Global.inventory.equiped_necklaces.modulate
 
 func _on_delete_necklaces_pressed():
+	Global.accumulated_gold += (1+Global.inventory.loots["necklaces"][selected_necklaces_index].rarity)
 	Global.inventory.loots["necklaces"].remove_at(selected_necklaces_index)
 	if Global.inventory.loots["necklaces"].size() > 0:
 		selected_necklaces_index = 0
+	%GoldLabel.text = "%s" % Global.accumulated_gold
 	load_necklace_list()
 
 #========================================
@@ -187,10 +187,10 @@ func load_ring_list():
 			
 func _on_ring_list_item_selected(index):
 	selected_rings_index = index
+	%SellRings.text = "Sell: %s" % (1 + Global.inventory.loots["rings"][selected_rings_index].rarity)
 	
 func _on_equips_rings_pressed():
 	if Global.inventory.loots["rings"].size() > 0:
-		print(selected_rings_index)
 		var previous_loot = Global.inventory.equiped_rings
 		apply_loot(previous_loot, Global.inventory.loots["rings"][selected_rings_index])
 		Global.inventory.equiped_rings = Global.inventory.loots["rings"][selected_rings_index]
@@ -199,10 +199,12 @@ func _on_equips_rings_pressed():
 		%SelectedRingTexture.modulate = Global.inventory.loots["rings"][selected_rings_index].modulate
 
 func _on_delete_rings_pressed():
+	Global.accumulated_gold += (1+Global.inventory.loots["rings"][selected_rings_index].rarity)
 	Global.inventory.loots["rings"].remove_at(selected_rings_index)
 	if Global.inventory.loots["rings"].size() > 0:
 		selected_rings_index = 0
 	load_ring_list()
+	%GoldLabel.text = "%s" % Global.accumulated_gold
 	
 #========================================
 # PANTS
@@ -223,6 +225,7 @@ func load_pants_list():
 	
 func _on_pants_list_item_selected(index):
 	selected_pants_index = index
+	%SellPants.text = "Sell: %s" % (1+Global.inventory.loots["pants"][selected_pants_index].rarity)
 	
 
 func _on_equips_pants_pressed():
@@ -235,17 +238,18 @@ func _on_equips_pants_pressed():
 		%SelectedPantsTexture.modulate = Global.inventory.loots["pants"][selected_pants_index].modulate
 
 func _on_delete_pants_pressed():
+	Global.accumulated_gold += (1+Global.inventory.loots["pants"][selected_pants_index].rarity)
 	Global.inventory.loots["pants"].remove_at(selected_pants_index)
 	if Global.inventory.loots["pants"].size() > 0:
 		selected_pants_index = 0
 	load_pants_list()
+	%GoldLabel.text = "%s" % Global.accumulated_gold
 	
 #========================================
 # PANTS
 #========================================
 
 func _on_boots_button_pressed():
-	print("boots buttons pressed !")
 	load_boots_list()
 	%PlayerManagerAnimationPlayer.play("show_boots_list")
 	
@@ -262,8 +266,10 @@ func load_boots_list():
 	
 func _on_boots_list_item_selected(index):
 	selected_boots_index = index
+	%SellBoots.text = "Sell it : %s" % (1+Global.inventory.loots["boots"][selected_boots_index].rarity)
 	
 func _on_equips_boots_pressed():
+	Global.accumulated_gold += (1+Global.inventory.loots["boots"][selected_boots_index].rarity)
 	if Global.inventory.loots["boots"].size() > 0:
 		var previous_loot = Global.inventory.equiped_boots
 		apply_loot(previous_loot, Global.inventory.loots["boots"][selected_boots_index])
@@ -277,9 +283,9 @@ func _on_delete_boots_pressed():
 	if Global.inventory.loots["boots"].size() > 0:
 		selected_boots_index = 0
 	load_boots_list()
+	%GoldLabel.text = "%s" % Global.accumulated_gold
 
 func get_stat_string(value: int):
-	print("Stat value = %s" % value)
 	match value:
 		1:
 			return "player damage"
