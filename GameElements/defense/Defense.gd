@@ -22,6 +22,7 @@ func _ready():
 	var DefenseTimer = get_node("/root/Game/DefenseTimer")
 	DefenseTimer.timeout.connect(_on_timer_timeout)
 	current_health += Global.getDefenseHealth()
+	print("Defense initial health = %s" % current_health)
 	
 func _apply_modification(args: Callable):
 	args.call(self)
@@ -82,6 +83,7 @@ func _input(event):
 func take_damage():
 	if cumulated_damage > 0:
 		abstract_defense_take_damage()
+		print("Defense is taking damge : %s" % cumulated_damage)
 		current_health -= cumulated_damage
 		if current_health <= 0:
 			abstract_final_action()

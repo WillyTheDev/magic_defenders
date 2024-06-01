@@ -131,8 +131,9 @@ scale = Vector2(0.4, 0.4)
 platform_floor_layers = 4294967040
 script = ExtResource("1_pg2k5")
 speed_increment = 65
-MANA_AMOUNT = 3
+MANA_AMOUNT = 4
 health_increment = 3
+enemy_damage = 0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)

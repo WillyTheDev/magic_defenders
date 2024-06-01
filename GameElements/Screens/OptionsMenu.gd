@@ -42,9 +42,8 @@ func _on_quit_to_menu_pressed():
 	Global.save_game()
 	get_tree().call_group("has_static_properties", "_reinitialize_static_properties")
 	get_tree().paused = false
-	get_node("/root/Game/TransitionLayer").close_transition()
+	get_tree().change_scene_to_file("res://GameElements/Screens/welcome_screen.tscn")
 	
-
 
 func _on_restart_button_pressed():
 	%ClickPlayer.play()
@@ -69,7 +68,7 @@ func _on_erase_save_button_pressed():
 	if is_on_welcome_screen:
 		closeOptionsMenu()
 	else:
-		get_node("/root/Game/TransitionLayer").close_transition()
+		get_tree().change_scene_to_file("res://GameElements/Screens/welcome_screen.tscn")
 
 
 func _on_resume_button_pressed():
@@ -82,3 +81,4 @@ func _on_hub_button_pressed():
 	Global.selected_difficulty = 0
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://GameElements/Game/game.tscn")
+

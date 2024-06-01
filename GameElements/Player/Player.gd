@@ -16,7 +16,7 @@ var big_shoot_price = 60
 var defense_to_be_placed : Node2D = null
 var applying_skill_index : int = 0
 var is_building = false
-var is_interacting_with_npc : int = 0
+var nearest_npc_index : int = 0
 
 signal player_has_level_up
 signal player_update_mana_amount
@@ -88,7 +88,7 @@ func _input(event):
 	if event.is_action_released("left_click"):
 			%AutoShootTimer.stop()
 	if event.is_action_pressed("interact"):
-		pass
+		$/root/Game/NPCManager.interact_with_npc(nearest_npc_index)
 	#====================
 	#Skills Input
 	#====================

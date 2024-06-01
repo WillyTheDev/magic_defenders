@@ -13,11 +13,11 @@ func _ready():
 
 func _on_area_2d_body_entered(body):
 	if body is Player:
-		body.is_interacting_with_npc = npc_index
+		body.nearest_npc_index = npc_index
 		%AnimationDialog.play("show_dialog")
 
 
 func _on_area_2d_body_exited(body):
 	if body is Player:
-		body.is_interacting_with_npc = 0
+		body.nearest_npc_index = 0
 		%AnimationDialog.play("hide_dialog")

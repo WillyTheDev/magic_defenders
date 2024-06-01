@@ -18,28 +18,7 @@ func game_completed(wave:int, difficulty : int, map_of_game: Node):
 	visible = true
 	%GameOverAnimation.play("show_game_over")
 	self.wave = wave
-	match difficulty:
-		1:
-				%GameOverAnimation.queue("show_first_star")
-				if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 1:
-					Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 1
-					Global.get_accumulated_stars()
-				
-		2:
-				%GameOverAnimation.queue("show_second_star")
-				if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 2:
-					Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 2
-					Global.get_accumulated_stars()
-		3:
-				%GameOverAnimation.queue("show_third_star")
-				if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 3:
-					Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 3
-					Global.get_accumulated_stars()
-		4:
-				if Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] < 4:
-					Global.map_progression["map_%s_%s" % [map_of_game.chapter_index, map_of_game.map_index]] = 4
-					Global.unlocked_hats[map_of_game.win_hat_index] = true
-					Global.get_accumulated_stars()
+	Global.accumulated_gold += Global.gold_reward
 	%GameOverTitle.text = "Success !"
 	%ScoreLabel.text = "You've completed this map and survided :\n %s" % wave
 	$/root/Game/Confetti.play_confetti()
@@ -57,3 +36,12 @@ func _on_infinity_button_pressed():
 	Global.selected_difficulty = 4
 	Global.starting_wave = self.wave
 	visible = false
+
+
+func _on_transition_layer_transition_is_finished(anim_name):
+	print("Game over is visible ? %s" % visible)
+	if anim_name == "close_transition" && visible == true:
+		Global.selected_map = 0
+		Global.selected_difficulty = 0
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://GameElements/Game/game.tscn")

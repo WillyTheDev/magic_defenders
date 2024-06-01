@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxtd3cw0bgjm5"
-path="res://.godot/imported/map_1_3_cliqued.png-93af0c646adb1a0da557f07a3bae5609.ctex"
+uid="uid://vvr12fc6s7x7"
+path="res://.godot/imported/reward_box.png-32eaa76c2dc7e628d9eb86f2b4c7729b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/map_selection_button/map_1_3_cliqued.png"
-dest_files=["res://.godot/imported/map_1_3_cliqued.png-93af0c646adb1a0da557f07a3bae5609.ctex"]
+source_file="res://Assets/UI/map_selection_button/reward_box.png"
+dest_files=["res://.godot/imported/reward_box.png-32eaa76c2dc7e628d9eb86f2b4c7729b.ctex"]
 
 [params]
 

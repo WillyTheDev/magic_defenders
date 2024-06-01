@@ -1,0 +1,157 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8b48nstdxayq"]
+
+[ext_resource type="Texture2D" uid="uid://c6sywob65b1c2" path="res://Assets/UI/map_selection_button/map_1_1.png" id="1_dpcpy"]
+[ext_resource type="Texture2D" uid="uid://di53kgyj5ricx" path="res://Assets/UI/map_selection_button/map_1_1_hover.png" id="3_3sakl"]
+[ext_resource type="Script" path="res://GameElements/misc/quest.gd" id="4_myv7q"]
+[ext_resource type="Texture2D" uid="uid://xkoltphde8w1" path="res://Assets/UI/map_selection_button/difficulty_indicator_empty.png" id="5_q4mby"]
+[ext_resource type="Texture2D" uid="uid://vvr12fc6s7x7" path="res://Assets/UI/map_selection_button/reward_box.png" id="6_i64og"]
+[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="7_lpjun"]
+[ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="7_onwf5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ruhct"]
+load_path = "res://.godot/imported/map_1_1_cliqued.png-fbe93bb5118e190a56f7b9527129e0ce.ctex"
+
+[node name="map_1" type="TextureButton"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_dpcpy")
+texture_pressed = SubResource("CompressedTexture2D_ruhct")
+texture_hover = ExtResource("3_3sakl")
+stretch_mode = 0
+script = ExtResource("4_myv7q")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 85
+
+[node name="DifficultyContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.5
+offset_right = 130.5
+offset_bottom = 35.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 50
+
+[node name="Difficulty" type="HBoxContainer" parent="DifficultyContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="difficulty_1" type="TextureRect" parent="DifficultyContainer/Difficulty"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("5_q4mby")
+
+[node name="difficulty_2" type="TextureRect" parent="DifficultyContainer/Difficulty"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("5_q4mby")
+
+[node name="difficulty_3" type="TextureRect" parent="DifficultyContainer/Difficulty"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("5_q4mby")
+
+[node name="difficulty_4" type="TextureRect" parent="DifficultyContainer/Difficulty"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("5_q4mby")
+
+[node name="difficulty_5" type="TextureRect" parent="DifficultyContainer/Difficulty"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("5_q4mby")
+
+[node name="RewardContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 20
+
+[node name="RewardBox" type="TextureRect" parent="RewardContainer"]
+layout_mode = 2
+texture = ExtResource("6_i64og")
+
+[node name="MarginContainer" type="MarginContainer" parent="RewardContainer/RewardBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="RewardTexture" type="TextureRect" parent="RewardContainer/RewardBox/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RewardLabel" type="Label" parent="RewardContainer/RewardBox/MarginContainer/RewardTexture"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_lpjun")
+theme_override_font_sizes/font_size = 24
+text = "10
+"
+horizontal_alignment = 1
+
+[node name="ConditionContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 330
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 20
+
+[node name="ConditionLabel" type="Label" parent="ConditionContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.2, 0.180392, 0.164706, 1)
+theme_override_fonts/font = ExtResource("7_lpjun")
+theme_override_font_sizes/font_size = 16
+text = "Coucou"
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_onwf5")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

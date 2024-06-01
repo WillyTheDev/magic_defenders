@@ -17,7 +17,10 @@ static var selected_difficulty = 1
 static var starting_wave = 0
 static var has_save = false
 static var player_equipped_hat = 99
-static var map_progression = {
+static var sequences : Array[String] = [""]
+static var gold_reward = 0
+
+static var quest_progression = {
 	"map_1_1" : 0,
 	"map_1_2" : 0,
 	"map_1_3" : 0,
@@ -25,8 +28,6 @@ static var map_progression = {
 	"map_1_5" : 0,
 	"map_1_6" : 0
 }
-
-static var accumulated_stars = 0
 
 static var unlocked_hats:  = {
 	"hat_0" : false,
@@ -46,6 +47,7 @@ static var inventory : Inventory = null
 static var player_level = 0
 static var accumulated_mana = 0
 static var accumulated_gold = 0
+static var urgent_quests_completed = 0
 
 #======================
 # Player Stats
@@ -103,8 +105,6 @@ static var defense_stat_fire_rate = 0
 static var defense_divider_fire_rate = -300.0
 
 static var player_avail_pts = 0
-#Player equipped hat ( number represent index of hat )
-
 
 #======================
 # Player Skills
@@ -128,13 +128,6 @@ static var selected_skills = {
 # Game Progression
 #======================
 
-
-
-func get_accumulated_stars():
-	accumulated_stars = 0
-	for map in map_progression:
-		accumulated_stars += map_progression[map]
-		
 func getStatFromIndex(index: int) -> int:
 	match index:
 		1:
@@ -212,8 +205,7 @@ func _save():
 		"player_avail_pts": player_avail_pts,
 		"player_equipped_hat" : player_equipped_hat,
 		"accumulated_gold" : accumulated_gold,
-		"accumulated_stars" : accumulated_stars,
-		"map_progression" : map_progression,
+		"urgent_quests_completed" : urgent_quests_completed,
 		"audio_volume": audio_volume,
 		"sound_volume": sound_volume,
 		"unlocked_hats": unlocked_hats,
@@ -234,15 +226,7 @@ func new_save():
 		"player_avail_pts": 0,
 		"player_equipped_hat" : 99,
 		"accumulated_gold" : 0,
-		"accumulated_stars" : 0,
-		"map_progression" : {
-							"map_1_1" : 0,
-							"map_1_2" : 0,
-							"map_1_3" : 0,
-							"map_1_4" : 0,
-							"map_1_5" : 0,
-							"map_1_6" : 0
-							},
+		"urgent_quests_completed" : 0,
 		"audio_volume": 0,
 		"sound_volume": 0,
 		"unlocked_hats": {

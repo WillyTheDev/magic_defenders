@@ -126,7 +126,7 @@ position = Vector2(1349, 654)
 position = Vector2(1116, 826)
 
 [node name="NPC" parent="." instance=ExtResource("10_2ary5")]
-position = Vector2(1206, 481)
+position = Vector2(1667, 445)
 npc_texture = ExtResource("14_6rcgg")
 
 [node name="Path2D" type="Path2D" parent="."]

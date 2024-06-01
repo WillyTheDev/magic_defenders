@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b41vvim3sm8fa"
-path="res://.godot/imported/map_1_1_cliqued.png-fbe93bb5118e190a56f7b9527129e0ce.ctex"
+uid="uid://xkoltphde8w1"
+path="res://.godot/imported/difficulty_indicator_empty.png-d12bc9ec082fa9b67a7243edf10b93fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/map_selection_button/map_1_1_cliqued.png"
-dest_files=["res://.godot/imported/map_1_1_cliqued.png-fbe93bb5118e190a56f7b9527129e0ce.ctex"]
+source_file="res://Assets/UI/map_selection_button/difficulty_indicator_empty.png"
+dest_files=["res://.godot/imported/difficulty_indicator_empty.png-d12bc9ec082fa9b67a7243edf10b93fe.ctex"]
 
 [params]
 

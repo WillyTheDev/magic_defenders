@@ -5,7 +5,7 @@ var total_enemies = 0
 var increments_nb_enemies_per_wave = 8
 var enemies_spawn = 0
 var enemies_left = 0
-var spawn_rates = 2.5
+var spawn_rates = 2
 var spawn_flying_enemy_rates = 20
 
 static var is_idle = true
@@ -21,6 +21,7 @@ var spawn_index : int = 0
 var number_of_time : int = 0
 var type_of_enemy : int = 0
 var is_spawning = true
+static var game_is_over = true
 signal wave_is_over
 var sequence_enemies = {
 	"slime_normale" : 0,
@@ -35,7 +36,6 @@ func _ready():
 	current_wave = Global.starting_wave
 	is_idle = true
 	map_of_game = load("res://GameElements/Maps/map_%s.tscn" % Global.selected_map).instantiate()
-	spawn_rates = map_of_game.starting_spawn_rate
 	add_child(map_of_game)
 	var player = preload("res://GameElements/Player/player.tscn").instantiate()
 	player.player_update_mana_amount.connect(_on_player_player_update_mana_amount)
@@ -106,10 +106,10 @@ func start_new_wave():
 	%SpawnFlyingEnemyTimer.start()
 
 	if current_wave >= 5 && Global.selected_difficulty > 1:
-		Enemy.base_health += map_of_game.enemy_health_increment
-		Enemy.base_speed += map_of_game.enemy_speed_increment
+		Enemy.base_health += Global.difficulty
+		Enemy.base_speed += Global.difficulty
 		if Global.selected_difficulty > 2:
-			Enemy.base_damage += map_of_game.enemy_damage_increment
+			Enemy.base_damage += Global.difficulty / 2
 
 func end_of_wave():
 	%Enemy_1.visible = false
@@ -270,10 +270,5 @@ func _on_options_menu_audio_value_changed():
 func _show_new_hat_animation(hat_index : int):
 	%NewHatTexture.texture = load("res://Assets/hats/hat_%s.png" % hat_index)
 	%UI/UIAnimationPlayer.queue("show_new_hat")
-	
-		
-func _on_transition_layer_transition_is_finished(anim_name):
-	if anim_name == "close_transition":
-		get_tree().change_scene_to_file("res://GameElements/Screens/welcome_screen.tscn")
 
 
