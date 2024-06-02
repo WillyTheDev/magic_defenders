@@ -98,6 +98,6 @@ func add_hat(index: int):
 	hat_index = index
 	%Hat.texture = load("res://Assets/hats/hat_%s.png" % index)
 
-func add_loot(loot:Loot):
+func add_loot(loot_to_add:Loot):
 	has_loot = true
-	self.loot = loot
+	self.loot = loot_to_add

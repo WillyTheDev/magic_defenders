@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dxicxia2vogwh"]
+[gd_scene load_steps=27 format=3 uid="uid://dxicxia2vogwh"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_dvt7e"]
 [ext_resource type="Material" uid="uid://cpw1r3dhb6b27" path="res://Shaders/water.tres" id="2_05s70"]
@@ -11,12 +11,16 @@
 [ext_resource type="Shader" path="res://Shaders/weedShader.gdshader" id="9_ep887"]
 [ext_resource type="PackedScene" uid="uid://cpcue3hnu2600" path="res://GameElements/NPC/npc.tscn" id="10_2ary5"]
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="10_wko30"]
-[ext_resource type="Texture2D" uid="uid://bqnvxqkjk66ec" path="res://Assets/envirronment/arbre.png" id="11_3xu13"]
+[ext_resource type="Texture2D" uid="uid://chb5q50fjrkre" path="res://Assets/NPC/Merchant.png" id="12_08xgd"]
 [ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/core.tscn" id="12_jfn2e"]
 [ext_resource type="Texture2D" uid="uid://3ljah6c2too0" path="res://Assets/envirronment/board.png" id="13_4t8s1"]
 [ext_resource type="Texture2D" uid="uid://bxy75davaj2n4" path="res://Assets/NPC/Harold.png" id="14_6rcgg"]
 [ext_resource type="Texture2D" uid="uid://cpt1ydyjanjlx" path="res://Assets/NPC/Gulrot.png" id="16_juuof"]
 [ext_resource type="Script" path="res://GameElements/Maps/NpcPathFollow.gd" id="16_ro2ui"]
+[ext_resource type="PackedScene" uid="uid://bfdwcf1jvgjvh" path="res://GameElements/Maps/env/arbre.tscn" id="18_12uxl"]
+[ext_resource type="Script" path="res://GameElements/NPC/NPCManager.gd" id="19_1v4xt"]
+[ext_resource type="PackedScene" uid="uid://dmb5cs8occw40" path="res://GameElements/Screens/select_map_screen.tscn" id="20_33c25"]
+[ext_resource type="PackedScene" uid="uid://n1k4yurwg55o" path="res://GameElements/Screens/shop.tscn" id="21_0pxgc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfba4"]
 shader = ExtResource("3_1i6ag")
@@ -49,13 +53,6 @@ point_count = 12
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u3f6o"]
 shader = ExtResource("9_ep887")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_abvb5"]
-shader = ExtResource("3_1i6ag")
-shader_parameter/strength = 0.015
-shader_parameter/speed = 6.0
-shader_parameter/frames = 6
-shader_parameter/flowMap = ExtResource("4_2vnnh")
 
 [node name="Map" type="Node2D"]
 z_as_relative = false
@@ -125,9 +122,15 @@ position = Vector2(1349, 654)
 [node name="Core" parent="." instance=ExtResource("12_jfn2e")]
 position = Vector2(1116, 826)
 
-[node name="NPC" parent="." instance=ExtResource("10_2ary5")]
+[node name="QuestGiver" parent="." instance=ExtResource("10_2ary5")]
 position = Vector2(1667, 445)
 npc_texture = ExtResource("14_6rcgg")
+
+[node name="Merchant" parent="." instance=ExtResource("10_2ary5")]
+unique_name_in_owner = true
+position = Vector2(1061, 596)
+npc_index = 2
+npc_texture = ExtResource("12_08xgd")
 
 [node name="Path2D" type="Path2D" parent="."]
 y_sort_enabled = true
@@ -144,7 +147,7 @@ script = ExtResource("16_ro2ui")
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-8.10046, -2.52637)
-npc_index = 2
+npc_index = 0
 npc_texture = ExtResource("16_juuof")
 starting_animation = "walk"
 
@@ -1210,296 +1213,61 @@ texture = ExtResource("10_wko30")
 centered = false
 offset = Vector2(0, 30)
 
-[node name="Arbre" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(1847, 32)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
+[node name="Arbre21" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(602, 458)
 
-[node name="Shadow" type="Sprite2D" parent="env/Arbre"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
+[node name="Arbre22" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(639, 673)
 
-[node name="Arbre2" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(1091, 1190)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
+[node name="Arbre23" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(1141, 238)
 
-[node name="Shadow" type="Sprite2D" parent="env/Arbre2"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
+[node name="Arbre24" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(1524, 230)
 
-[node name="Arbre3" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(-13, 308)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
+[node name="Arbre25" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(1974, 566)
 
-[node name="Shadow" type="Sprite2D" parent="env/Arbre3"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
+[node name="Arbre26" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(1665, 1019)
 
-[node name="Arbre4" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(595, 16)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
+[node name="Arbre27" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(40, 785)
 
-[node name="Shadow" type="Sprite2D" parent="env/Arbre4"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
+[node name="Arbre28" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(10, 462)
 
-[node name="Arbre5" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(1455, 908)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
+[node name="Arbre29" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(253, 324)
 
-[node name="Shadow" type="Sprite2D" parent="env/Arbre5"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
+[node name="Arbre30" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(130, -27)
 
-[node name="Arbre6" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(643, 616)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
+[node name="Arbre31" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(1838, 1316)
 
-[node name="Shadow" type="Sprite2D" parent="env/Arbre6"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-2.72517, 220.733)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
+[node name="Arbre32" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(2342, 585)
 
-[node name="Arbre7" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(289, 971)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
+[node name="Arbre33" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(2114, 0)
 
-[node name="Shadow" type="Sprite2D" parent="env/Arbre7"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
+[node name="Arbre34" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(358, 1259)
 
-[node name="Arbre8" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(1191, 328)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
+[node name="Arbre35" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(2537, 992)
 
-[node name="Shadow" type="Sprite2D" parent="env/Arbre8"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
+[node name="Arbre36" parent="env" instance=ExtResource("18_12uxl")]
+position = Vector2(828, -30)
 
-[node name="Arbre9" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(2251, 608)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
+[node name="NPCManager" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 10
+script = ExtResource("19_1v4xt")
 
-[node name="Shadow" type="Sprite2D" parent="env/Arbre9"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
+[node name="SelectMapScreen" parent="NPCManager" instance=ExtResource("20_33c25")]
+unique_name_in_owner = true
 
-[node name="Arbre10" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(1859, 1244)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre10"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
-
-[node name="Arbre11" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(2473, 1172)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre11"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
-
-[node name="Arbre12" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(2380, 121)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre12"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
-
-[node name="Arbre13" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(1143, -125)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre13"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
-
-[node name="Arbre14" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(156, -66)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre14"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
-
-[node name="Arbre15" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(-47, 1316)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre15"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
-
-[node name="Arbre16" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(-113, 856)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre16"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
-
-[node name="Arbre17" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(-161, 172)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre17"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
-
-[node name="Arbre18" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(-110, 11)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre18"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
-
-[node name="Arbre19" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(-216, -133)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre19"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
-
-[node name="Arbre20" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(-42, -150)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre20"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
-
-[node name="Arbre21" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_abvb5")
-position = Vector2(301, -175)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("11_3xu13")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre21"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_dra0s")
+[node name="Shop" parent="NPCManager" instance=ExtResource("21_0pxgc")]
+unique_name_in_owner = true

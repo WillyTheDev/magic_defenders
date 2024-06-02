@@ -2,14 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://c6sywob65b1c2" path="res://Assets/UI/map_selection_button/map_1_1.png" id="1_dpcpy"]
 [ext_resource type="Texture2D" uid="uid://di53kgyj5ricx" path="res://Assets/UI/map_selection_button/map_1_1_hover.png" id="3_3sakl"]
-[ext_resource type="Script" path="res://GameElements/misc/quest.gd" id="4_myv7q"]
+[ext_resource type="Script" path="res://GameElements/misc/quest_button.gd" id="4_myv7q"]
 [ext_resource type="Texture2D" uid="uid://xkoltphde8w1" path="res://Assets/UI/map_selection_button/difficulty_indicator_empty.png" id="5_q4mby"]
 [ext_resource type="Texture2D" uid="uid://vvr12fc6s7x7" path="res://Assets/UI/map_selection_button/reward_box.png" id="6_i64og"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="7_lpjun"]
 [ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="7_onwf5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ruhct"]
-load_path = "res://.godot/imported/map_1_1_cliqued.png-fbe93bb5118e190a56f7b9527129e0ce.ctex"
 
 [node name="map_1" type="TextureButton"]
 size_flags_horizontal = 4

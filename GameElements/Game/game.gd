@@ -106,10 +106,10 @@ func start_new_wave():
 	%SpawnFlyingEnemyTimer.start()
 
 	if current_wave >= 5 && Global.selected_difficulty > 1:
-		Enemy.base_health += Global.difficulty
-		Enemy.base_speed += Global.difficulty
+		Enemy.base_health += Global.selected_difficulty
+		Enemy.base_speed += Global.selected_difficulty
 		if Global.selected_difficulty > 2:
-			Enemy.base_damage += Global.difficulty / 2
+			Enemy.base_damage += Global.selected_difficulty / 2
 
 func end_of_wave():
 	%Enemy_1.visible = false
@@ -125,19 +125,8 @@ func end_of_wave():
 	%EnemiesLabel.text = ""
 	%WaveActionLabel.visible = true
 	# Give stars base on the current_wave
-	match Global.selected_difficulty:
-		1:
-			if current_wave == map_of_game.sequences.size():
-				%GameOverScreen.game_completed(current_wave, 1, map_of_game)
-		2:
-			if current_wave == map_of_game.sequences.size():
-				%GameOverScreen.game_completed(current_wave, 2, map_of_game)
-		3:
-			if current_wave == map_of_game.sequences.size():
-				%GameOverScreen.game_completed(current_wave, 3, map_of_game)
-		4:
-			if current_wave == 30:
-				%GameOverScreen.game_completed(current_wave, 4, map_of_game)
+	if current_wave == map_of_game.sequences.size():
+		%GameOverScreen.game_completed(current_wave, 3, map_of_game)
 	is_idle = true
 	wave_is_over.emit()
 

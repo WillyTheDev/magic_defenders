@@ -60,6 +60,7 @@ y_sort_enabled = true
 script = ExtResource("1_jrvlj")
 paths = [NodePath("Arrière-plan/Paths/Path2D")]
 flyingSpawnPoint = NodePath("Arrière-plan/Paths/Path_flying/FlyingSpawnPoint")
+player_starting_mana = 50
 
 [node name="MapLimit" type="Marker2D" parent="."]
 unique_name_in_owner = true
@@ -80,6 +81,7 @@ offset_top = -905.075
 offset_right = 557.485
 offset_bottom = 174.925
 scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
 
 [node name="Paths" type="Node2D" parent="Arrière-plan"]
 position = Vector2(-799.365, -439.199)

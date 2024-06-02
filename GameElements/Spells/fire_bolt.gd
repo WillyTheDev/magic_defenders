@@ -2,7 +2,7 @@ class_name FireBolt
 extends MagicBolt
 
 func abstrat_bolt_effect_on_body(body: Node2D):
-	body.modulate.r = 300
+	body.modulate.r = 2
 	if body.is_in_group("Burning") == false:
 		var timer = Timer.new()
 		timer.autostart = true

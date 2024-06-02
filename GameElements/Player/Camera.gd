@@ -14,7 +14,6 @@ func random_offset() -> Vector2:
 	return Vector2(randf_range(-shake_strength, shake_strength), randf_range(-shake_strength, shake_strength))
 	
 func _process(delta):
-	
 	if shake_strength > 0:
 		shake_strength = lerpf(shake_strength, 0, shakeFade * delta)
 	

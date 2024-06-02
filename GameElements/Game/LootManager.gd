@@ -1,3 +1,4 @@
+class_name LootManager
 extends Node
 
 
@@ -11,7 +12,7 @@ const pants_texture = preload("res://Assets/loots/pants.png")
 
 func add_loot_to_enemy(enemy: Node2D):
 	#best chance is 0.005
-	var hat_chance = 0.005
+	var hat_chance = 0.002
 	var loot_chance = 0.02
 	var value = randf()
 	if value <= hat_chance && !(Global.unlocked_hats.values().all(func(value):return value==true)):
@@ -29,12 +30,19 @@ func get_index_of_random_available_hat() -> int:
 	else:
 		return rand_index
 		
-func generate_random_loot() -> Loot:
+static func generate_random_loot() -> Loot:
 	var rand_type = randi_range(0,loot_types.size() - 1)
 	var rand_primary_stat = randi_range(1,5)
-	var rand_primary_stat_value = randi_range(0,5) * Global.selected_difficulty
 	var rand_secondary_stat = randi_range(1,5)
-	var rand_secondary_stat_value = randi_range(0,4) * Global.selected_difficulty
+	var rand_primary_stat_value = 0
+	var rand_secondary_stat_value = 0
+	if Shop.is_open :
+		rand_type = Shop.selected_type
+		rand_primary_stat_value = randi_range(0,5) * Global.urgent_quests_completed
+		rand_secondary_stat_value = randi_range(0,4) * Global.urgent_quests_completed
+	else:
+		rand_primary_stat_value = randi_range(0,5) * Global.selected_difficulty
+		rand_secondary_stat_value = randi_range(0,4) * Global.selected_difficulty
 	var rarity: int = (rand_primary_stat_value + rand_secondary_stat_value) / 7
 	var modulate = get_modulate_color(rarity)
 	while rand_primary_stat == rand_secondary_stat:
@@ -51,7 +59,7 @@ func generate_random_loot() -> Loot:
 	print("loot added = %s" % loot_to_return)
 	return loot_to_return
 	
-func get_modulate_color(rarity: int) -> Color:
+static func get_modulate_color(rarity: int) -> Color:
 	print("Rarity = %s" % rarity)
 	var color = Color.ALICE_BLUE
 	match rarity:

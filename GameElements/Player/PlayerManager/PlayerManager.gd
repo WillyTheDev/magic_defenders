@@ -24,9 +24,11 @@ func show_player_profile():
 	visible = true
 	is_open = true
 	%InventoryManager.show_notifications()
+	%GoldLabel.text = "%s" % Global.accumulated_gold
 	
 func hide_player_profile():
-	%PlayerManagerAnimationPlayer.play("hide_player_profile")
+	%SkillContainer.hide_skill_list()
+	%PlayerManagerAnimationPlayer.queue("hide_player_profile")
 	get_tree().paused = false
 	playerhasLeveledUp = false
 	

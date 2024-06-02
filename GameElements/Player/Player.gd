@@ -55,13 +55,9 @@ func update_mana_amount(mana: int, acquire: bool):
 			Global.accumulated_mana -= (offset_accumulated_mana_value + ( Global.player_level * 10 ))
 			Global.player_level += 1
 			Global.player_avail_pts += points_per_level
-			if Global.player_level <= player_last_skill_level && int(Global.player_level) % 5 == 0:
-				$/root/Game/UI.show_available_skill()
 			player_has_level_up.emit()
-			var confetti = get_node("/root/Game/Confetti") 
-			var player_manager : PlayerManager = get_node("/root/Game/PlayerManager")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	position.x = clamp(position.x, 0, screen_size.x)
 	position.y = clamp(position.y, 0, screen_size.y)
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -88,7 +84,7 @@ func _input(event):
 	if event.is_action_released("left_click"):
 			%AutoShootTimer.stop()
 	if event.is_action_pressed("interact"):
-		$/root/Game/NPCManager.interact_with_npc(nearest_npc_index)
+		$/root/Game/Map/NPCManager.interact_with_npc(nearest_npc_index)
 	#====================
 	#Skills Input
 	#====================
@@ -154,7 +150,7 @@ func on_skill_pressed(index : int):
 				get_parent().add_child(new_object)
 			else:
 				var skill = SkillManager.selected_skills[index].scene.instantiate()
-				var explosion = preload("res://GameElements/misc/explosion_sound.tscn").instantiate()
+				
 				skill.global_position = get_global_mouse_position()
 				get_parent().add_child(skill)
 

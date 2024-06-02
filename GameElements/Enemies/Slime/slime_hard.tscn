@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmo608hicdlq5"]
+[gd_scene load_steps=15 format=3 uid="uid://cmo608hicdlq5"]
 
 [ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_1dq6v"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_oowi8"]
@@ -94,6 +94,9 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cihw5"]
+polygon = PackedVector2Array(-44.2857, -45.7143, -77.1429, -15.7143, -91.4286, 45.7143, -77.1429, 58.5714, -42.8571, 72.8571, 35.7143, 72.8571, 74.2857, 62.8571, 94.2857, 47.1429, 81.4286, -10, 47.5, -42.5, 0, -57.5)
+
 [node name="Slime" type="CharacterBody2D"]
 z_index = 1
 material = SubResource("ShaderMaterial_jyd47")
@@ -146,3 +149,6 @@ show_percentage = false
 [node name="Hat" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -40)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_cihw5")

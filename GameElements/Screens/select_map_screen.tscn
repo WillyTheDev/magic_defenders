@@ -1,27 +1,16 @@
-[gd_scene load_steps=34 format=3 uid="uid://dmb5cs8occw40"]
+[gd_scene load_steps=26 format=3 uid="uid://dmb5cs8occw40"]
 
 [ext_resource type="Script" path="res://GameElements/Screens/QuestManager.gd" id="1_cbipq"]
-[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_oylf7"]
 [ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="2_vhosp"]
 [ext_resource type="Script" path="res://GameElements/Skills/outside_click_control.gd" id="3_08fxp"]
-[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_x2faw"]
-[ext_resource type="Texture2D" uid="uid://ct73cjbbcufdq" path="res://Assets/UI/screen_background.png" id="4_0jndw"]
-[ext_resource type="Texture2D" uid="uid://ispx11saoeqv" path="res://Assets/UI/map_selection_button/star_locked.png" id="8_t1y7u"]
-[ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="13_mn7lt"]
+[ext_resource type="Script" path="res://GameElements/Screens/SkillSelection.gd" id="10_de7lh"]
+[ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="11_mpb0v"]
+[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="11_ysofo"]
+[ext_resource type="PackedScene" uid="uid://dk18yh7kobthq" path="res://GameElements/Skills/skill_container.tscn" id="12_64xiy"]
+[ext_resource type="Texture2D" uid="uid://djy8a7ycwr56x" path="res://Assets/UI/player_profile_background/apply.png" id="13_eq0rv"]
+[ext_resource type="Texture2D" uid="uid://bykke8w4lv8ba" path="res://Assets/UI/player_profile_background/apply_clicked.png" id="14_6ex3d"]
 [ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="14_l6oou"]
-[ext_resource type="Script" path="res://GameElements/Screens/difficulty_selection_screen.gd" id="14_mljd0"]
-[ext_resource type="Texture2D" uid="uid://cehi8kawggg86" path="res://Assets/UI/challenge_selection/easy.png" id="15_c4h71"]
-[ext_resource type="Texture2D" uid="uid://dqm25tjavdpqs" path="res://Assets/UI/challenge_selection/easy_click.png" id="16_g20c2"]
-[ext_resource type="Texture2D" uid="uid://crupdevsepf26" path="res://Assets/UI/challenge_selection/easy_hover.png" id="17_aqhoc"]
-[ext_resource type="Texture2D" uid="uid://bkdgvasc5icja" path="res://Assets/UI/challenge_selection/medium.png" id="18_jw0wd"]
-[ext_resource type="Texture2D" uid="uid://bm2418lrjknrn" path="res://Assets/UI/challenge_selection/medium_click.png" id="19_1gmvo"]
-[ext_resource type="Texture2D" uid="uid://lto2xqiw38uq" path="res://Assets/UI/challenge_selection/medium_hover.png" id="20_s6tpx"]
-[ext_resource type="Texture2D" uid="uid://cluijtu07rhch" path="res://Assets/UI/challenge_selection/hard.png" id="21_0sfas"]
-[ext_resource type="Texture2D" uid="uid://xtm4qtmg4b6x" path="res://Assets/UI/challenge_selection/hard_click.png" id="22_dwjka"]
-[ext_resource type="Texture2D" uid="uid://cqfjrd2ecasj0" path="res://Assets/UI/challenge_selection/hard_hover.png" id="23_w8i7k"]
-[ext_resource type="Texture2D" uid="uid://bf8en5nqacd3n" path="res://Assets/UI/challenge_selection/infinity.png" id="24_ydng7"]
-[ext_resource type="Texture2D" uid="uid://qdjoufhbmbwu" path="res://Assets/UI/challenge_selection/infinity_click.png" id="25_6f3jd"]
-[ext_resource type="Texture2D" uid="uid://ccpguq742vhrn" path="res://Assets/UI/challenge_selection/infinity_hover.png" id="26_ftmqe"]
+[ext_resource type="Texture2D" uid="uid://im3s6ag6e4n" path="res://Assets/UI/player_profile_background/apply_hover.png" id="15_lpjqq"]
 [ext_resource type="Texture2D" uid="uid://cfqfijc5h8pqy" path="res://Assets/UI/map_selection_button/quest_background.png" id="26_ik3b4"]
 [ext_resource type="Texture2D" uid="uid://bxy75davaj2n4" path="res://Assets/NPC/Harold.png" id="28_xqvrq"]
 [ext_resource type="Texture2D" uid="uid://cahuuxwk45jot" path="res://Assets/UI/challenge_selection/back.png" id="29_0jbdu"]
@@ -31,52 +20,6 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cwhr8"]
 shader = ExtResource("2_vhosp")
 shader_parameter/lod = 1.5
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ygnxb"]
-shader = ExtResource("2_oylf7")
-shader_parameter/strength = 0.002
-shader_parameter/speed = 6.0
-shader_parameter/frames = 6
-shader_parameter/flowMap = ExtResource("3_x2faw")
-
-[sub_resource type="Animation" id="Animation_6u30e"]
-resource_name = "show_quests_lists"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Harold:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.287175, 0.287175),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 1),
-"transitions": PackedFloat32Array(1, 0.287175, 0.287175),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1e-05, 1e-05), Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_7i47a"]
 length = 0.001
@@ -119,7 +62,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_keiu3"]
 resource_name = "hide_quests_lists"
-length = 0.9
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -127,7 +70,7 @@ tracks/0/path = NodePath("TextureRect:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
+"times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(0.225312, 0.225312),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
@@ -139,7 +82,7 @@ tracks/1/path = NodePath("Harold:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 0.9),
+"times": PackedFloat32Array(0.2, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -151,10 +94,50 @@ tracks/2/path = NodePath(".:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.9),
+"times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6u30e"]
+resource_name = "show_quests_lists"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Harold:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.287175, 0.287175),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 0.287175, 0.287175),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gnqic"]
@@ -162,6 +145,96 @@ _data = {
 "RESET": SubResource("Animation_7i47a"),
 "hide_quests_lists": SubResource("Animation_keiu3"),
 "show_quests_lists": SubResource("Animation_6u30e")
+}
+
+[sub_resource type="Animation" id="Animation_bskfh"]
+resource_name = "hide_skill_selection"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.241484, 0.241484),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qcvl1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wmp2k"]
+resource_name = "show_skill_selection"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.258816, 0.258816),
+"update": 0,
+"values": [Vector2(1, 1.00136e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgpd4"]
+_data = {
+"RESET": SubResource("Animation_qcvl1"),
+"hide_skill_selection": SubResource("Animation_bskfh"),
+"show_skill_selection": SubResource("Animation_wmp2k")
 }
 
 [node name="SelectMapScreen" type="CanvasLayer"]
@@ -194,145 +267,6 @@ texture = ExtResource("28_xqvrq")
 unique_name_in_owner = true
 stream = ExtResource("14_l6oou")
 volume_db = -5.0
-
-[node name="SelectDifficultyScreen" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-layer = 3
-visible = false
-script = ExtResource("14_mljd0")
-
-[node name="TextureRect" type="TextureRect" parent="SelectDifficultyScreen"]
-material = SubResource("ShaderMaterial_ygnxb")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -84.0
-offset_top = -72.0
-offset_right = 215.0
-offset_bottom = 96.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_0jndw")
-expand_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SelectDifficultyScreen"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-
-[node name="EasyButton" type="TextureButton" parent="SelectDifficultyScreen/VBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("15_c4h71")
-texture_pressed = ExtResource("16_g20c2")
-texture_hover = ExtResource("17_aqhoc")
-
-[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen/VBoxContainer/EasyButton"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -114.0
-offset_top = -49.0
-offset_bottom = 31.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 30
-
-[node name="EasyStar" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/EasyButton/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("8_t1y7u")
-
-[node name="MediumButton" type="TextureButton" parent="SelectDifficultyScreen/VBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("18_jw0wd")
-texture_pressed = ExtResource("19_1gmvo")
-texture_hover = ExtResource("20_s6tpx")
-
-[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen/VBoxContainer/MediumButton"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -114.0
-offset_top = -49.0
-offset_bottom = 31.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 30
-
-[node name="MediumStar" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/MediumButton/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("8_t1y7u")
-
-[node name="HardButton" type="TextureButton" parent="SelectDifficultyScreen/VBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("21_0sfas")
-texture_pressed = ExtResource("22_dwjka")
-texture_hover = ExtResource("23_w8i7k")
-
-[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen/VBoxContainer/HardButton"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -114.0
-offset_top = -49.0
-offset_bottom = 31.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 30
-
-[node name="HardStar" type="TextureRect" parent="SelectDifficultyScreen/VBoxContainer/HardButton/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("8_t1y7u")
-
-[node name="InfinityButton" type="TextureButton" parent="SelectDifficultyScreen/VBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("24_ydng7")
-texture_pressed = ExtResource("25_6f3jd")
-texture_hover = ExtResource("26_ftmqe")
-
-[node name="TransitionLayer" parent="SelectDifficultyScreen" instance=ExtResource("13_mn7lt")]
-unique_name_in_owner = true
-layer = 20
-
-[node name="MarginContainer" type="MarginContainer" parent="SelectDifficultyScreen"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
-grow_vertical = 0
-theme_override_constants/margin_left = 64
-theme_override_constants/margin_bottom = 32
-
-[node name="BackButton" type="TextureButton" parent="SelectDifficultyScreen/MarginContainer"]
-layout_mode = 2
-texture_normal = ExtResource("29_0jbdu")
-texture_pressed = ExtResource("30_lxh2v")
-texture_hover = ExtResource("31_c2vk1")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 98.0
@@ -389,11 +323,86 @@ libraries = {
 "": SubResource("AnimationLibrary_gnqic")
 }
 
+[node name="SkillSelection" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 3
+visible = false
+script = ExtResource("10_de7lh")
+
+[node name="Control" type="ColorRect" parent="SkillSelection" node_paths=PackedStringArray("player")]
+material = SubResource("ShaderMaterial_cwhr8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("3_08fxp")
+player = NodePath("../SkillSelectionPlayer")
+animation_name = "hide_skill_selection"
+
+[node name="TextureRect" type="TextureRect" parent="SkillSelection"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -377.5
+offset_top = -371.0
+offset_right = 377.5
+offset_bottom = 371.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_mpb0v")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="SkillSelection/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -302.5
+offset_top = -181.5
+offset_right = 302.5
+offset_bottom = 181.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="SkillSelection/TextureRect/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 50
+
+[node name="Label" type="Label" parent="SkillSelection/TextureRect/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_ysofo")
+theme_override_font_sizes/font_size = 40
+text = "Select the skills 
+for this quest :"
+
+[node name="SkillContainer" parent="SkillSelection/TextureRect/HBoxContainer" instance=ExtResource("12_64xiy")]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="SkillSelection/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("13_eq0rv")
+texture_pressed = ExtResource("14_6ex3d")
+texture_hover = ExtResource("15_lpjqq")
+
+[node name="SkillSelectionPlayer" type="AnimationPlayer" parent="SkillSelection"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_hgpd4")
+}
+
 [connection signal="gui_input" from="Control" to="Control" method="_on_gui_input"]
-[connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/EasyButton" to="SelectDifficultyScreen" method="_on_easy_button_pressed"]
-[connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/MediumButton" to="SelectDifficultyScreen" method="_on_medium_button_pressed"]
-[connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/HardButton" to="SelectDifficultyScreen" method="_on_hard_button_pressed"]
-[connection signal="pressed" from="SelectDifficultyScreen/VBoxContainer/InfinityButton" to="SelectDifficultyScreen" method="_on_infinity_button_pressed"]
-[connection signal="transition_is_finished" from="SelectDifficultyScreen/TransitionLayer" to="SelectDifficultyScreen" method="_on_transition_layer_transition_is_finished"]
-[connection signal="pressed" from="SelectDifficultyScreen/MarginContainer/BackButton" to="SelectDifficultyScreen" method="_on_back_button_pressed"]
 [connection signal="pressed" from="TextureRect/MarginContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="game_launched" from="SkillSelection" to="." method="_on_skill_selection_game_launched"]
+[connection signal="gui_input" from="SkillSelection/Control" to="SkillSelection/Control" method="_on_gui_input"]
+[connection signal="pressed" from="SkillSelection/TextureRect/HBoxContainer/TextureButton" to="SkillSelection" method="_on_texture_button_pressed"]

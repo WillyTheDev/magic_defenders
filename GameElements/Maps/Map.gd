@@ -16,7 +16,7 @@ func _ready():
 		sequences = _parse_sequence(Global.sequences)
 			
 
-func _parse_sequence(sequences: Array[String]):
+func _parse_sequence(sequences: Array):
 	var parsed_sequences : Array[Array]
 	for i in range(sequences.size()):
 		# "2x2,3x1" => ["2x2","3x1"]

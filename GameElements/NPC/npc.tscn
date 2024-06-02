@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cpcue3hnu2600"]
+[gd_scene load_steps=20 format=3 uid="uid://cpcue3hnu2600"]
 
 [ext_resource type="Script" path="res://GameElements/NPC/NPC.gd" id="1_gdcjq"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_olmom"]
@@ -178,6 +178,16 @@ radius = 78.0064
 [sub_resource type="CircleShape2D" id="CircleShape2D_ujj8i"]
 radius = 10.1639
 
+[sub_resource type="Gradient" id="Gradient_m8qfe"]
+offsets = PackedFloat32Array(0, 0.935484, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0604839, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xyj7e"]
+gradient = SubResource("Gradient_m8qfe")
+fill = 1
+fill_from = Vector2(0.517094, 0.491453)
+fill_to = Vector2(0.846154, 0.153846)
+
 [node name="NPC" type="Node2D"]
 z_index = 1
 position = Vector2(1442, 507)
@@ -228,6 +238,16 @@ unique_name_in_owner = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(3.63636, 22.7273)
 shape = SubResource("CircleShape2D_ujj8i")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(5.45457, -2.72727)
+scale = Vector2(2.90913, 2.78249)
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 14.5
+texture = SubResource("GradientTexture2D_xyj7e")
+height = 1.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

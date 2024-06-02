@@ -1,0 +1,500 @@
+[gd_scene load_steps=25 format=3 uid="uid://n1k4yurwg55o"]
+
+[ext_resource type="Script" path="res://GameElements/Screens/shop.gd" id="1_i8fb1"]
+[ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="2_23wed"]
+[ext_resource type="Script" path="res://GameElements/Skills/outside_click_control.gd" id="3_4uj2f"]
+[ext_resource type="Texture2D" uid="uid://chb5q50fjrkre" path="res://Assets/NPC/Merchant.png" id="4_x2osm"]
+[ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="5_ut6uw"]
+[ext_resource type="Texture2D" uid="uid://bixhhgsu5ryad" path="res://Assets/UI/NPC/shop_background.png" id="6_nr1oj"]
+[ext_resource type="Texture2D" uid="uid://01428w3x0we2" path="res://Assets/UI/NPC/shop_item_normal.png" id="7_ilrix"]
+[ext_resource type="Texture2D" uid="uid://bd4fapqa7ra2a" path="res://Assets/UI/NPC/shop_item_click.png" id="8_x71vx"]
+[ext_resource type="Texture2D" uid="uid://drsk0vr8ddiev" path="res://Assets/UI/NPC/shop_item_hover.png" id="9_ebys3"]
+[ext_resource type="Texture2D" uid="uid://chncb2xt2biv3" path="res://Assets/UI/NPC/necklaces.png" id="10_kgwm3"]
+[ext_resource type="Texture2D" uid="uid://bnaju2gceer5l" path="res://Assets/UI/NPC/bourse_reduced.png" id="11_2njre"]
+[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="12_qbnvi"]
+[ext_resource type="Texture2D" uid="uid://dcnj4vb0yrxex" path="res://Assets/UI/NPC/rings.png" id="13_kla0q"]
+[ext_resource type="Texture2D" uid="uid://d2t7ivienixv0" path="res://Assets/UI/NPC/pants.png" id="14_0wpdw"]
+[ext_resource type="Texture2D" uid="uid://cl4eq00nq25ts" path="res://Assets/UI/NPC/boots.png" id="15_5kswg"]
+[ext_resource type="Texture2D" uid="uid://cesp6j7dg40c0" path="res://Assets/loots/bourse.png" id="19_4e61o"]
+[ext_resource type="Texture2D" uid="uid://cahuuxwk45jot" path="res://Assets/UI/challenge_selection/back.png" id="24_p52uh"]
+[ext_resource type="Texture2D" uid="uid://lrqcr411i8sd" path="res://Assets/UI/challenge_selection/back_click.png" id="25_iv4im"]
+[ext_resource type="Texture2D" uid="uid://bkqv2ykx8m0a0" path="res://Assets/UI/challenge_selection/back_hover.png" id="26_0nd4m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cwhr8"]
+shader = ExtResource("2_23wed")
+shader_parameter/lod = 1.5
+
+[sub_resource type="Animation" id="Animation_7i47a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Merchant:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_keiu3"]
+resource_name = "hide_shop"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.225312, 0.225312),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Merchant:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6u30e"]
+resource_name = "show_shop"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Merchant:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.287175, 0.287175),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 0.287175, 0.287175),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gnqic"]
+_data = {
+"RESET": SubResource("Animation_7i47a"),
+"hide_shop": SubResource("Animation_keiu3"),
+"show_shop": SubResource("Animation_6u30e")
+}
+
+[node name="Shop" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+visible = false
+script = ExtResource("1_i8fb1")
+
+[node name="Control" type="ColorRect" parent="." node_paths=PackedStringArray("player")]
+material = SubResource("ShaderMaterial_cwhr8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("3_4uj2f")
+player = NodePath("../AnimationPlayer")
+animation_name = "hide_shop"
+
+[node name="Merchant" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1718.25, 878.25)
+scale = Vector2(0.937647, 1.01567)
+texture = ExtResource("4_x2osm")
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_ut6uw")
+volume_db = -5.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 98.0
+offset_top = 69.0
+offset_right = 1659.0
+offset_bottom = 830.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(1550, 740)
+size_flags_horizontal = 4
+texture = ExtResource("6_nr1oj")
+
+[node name="MarginContainer2" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 567.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 90
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_right = 200
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect/MarginContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_qbnvi")
+theme_override_font_sizes/font_size = 30
+text = "Loots :"
+
+[node name="LootsContainer" type="HBoxContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="item_1_1" type="TextureButton" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("7_ilrix")
+texture_pressed = ExtResource("8_x71vx")
+texture_hover = ExtResource("9_ebys3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_1/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 20
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_1/VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("10_kgwm3")
+
+[node name="MarginContainer2" type="MarginContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_1/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_1/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("11_2njre")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_1/VBoxContainer/MarginContainer2/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="Amount" type="Label" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_1/VBoxContainer/MarginContainer2/TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_qbnvi")
+theme_override_font_sizes/font_size = 20
+text = "10
+"
+
+[node name="item_1_2" type="TextureButton" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_ilrix")
+texture_pressed = ExtResource("8_x71vx")
+texture_hover = ExtResource("9_ebys3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 20
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("13_kla0q")
+
+[node name="MarginContainer2" type="MarginContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_2/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("11_2njre")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_2/VBoxContainer/MarginContainer2/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="Amount" type="Label" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_2/VBoxContainer/MarginContainer2/TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_qbnvi")
+theme_override_font_sizes/font_size = 20
+text = "10
+"
+
+[node name="item_1_3" type="TextureButton" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_ilrix")
+texture_pressed = ExtResource("8_x71vx")
+texture_hover = ExtResource("9_ebys3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 20
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_3/VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("14_0wpdw")
+
+[node name="MarginContainer2" type="MarginContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_3/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("11_2njre")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_3/VBoxContainer/MarginContainer2/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="Amount" type="Label" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_3/VBoxContainer/MarginContainer2/TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_qbnvi")
+theme_override_font_sizes/font_size = 20
+text = "10
+"
+
+[node name="item_1_4" type="TextureButton" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_ilrix")
+texture_pressed = ExtResource("8_x71vx")
+texture_hover = ExtResource("9_ebys3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_4/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 20
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_4/VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("15_5kswg")
+
+[node name="MarginContainer2" type="MarginContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_4/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_4/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("11_2njre")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_4/VBoxContainer/MarginContainer2/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="Amount" type="Label" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_4/VBoxContainer/MarginContainer2/TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_qbnvi")
+theme_override_font_sizes/font_size = 20
+text = "10
+"
+
+[node name="Skills" type="Label" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_qbnvi")
+theme_override_font_sizes/font_size = 30
+text = "Skills :"
+
+[node name="SkillsContainer" type="GridContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 30
+columns = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -144.0
+offset_right = 386.0
+grow_vertical = 0
+theme_override_constants/margin_left = 82
+theme_override_constants/margin_bottom = 64
+
+[node name="BackButton" type="TextureButton" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+texture_normal = ExtResource("24_p52uh")
+texture_pressed = ExtResource("25_iv4im")
+texture_hover = ExtResource("26_0nd4m")
+
+[node name="MarginContainer3" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_bottom = 100.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 250
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/MarginContainer3"]
+layout_mode = 2
+texture = ExtResource("19_4e61o")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer3/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="PlayerGold" type="Label" parent="TextureRect/MarginContainer3/TextureRect/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_qbnvi")
+theme_override_font_sizes/font_size = 26
+text = "20
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_gnqic")
+}
+
+[connection signal="gui_input" from="Control" to="Control" method="_on_gui_input"]
+[connection signal="pressed" from="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_1" to="." method="_on_item_1_1_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_2" to="." method="_on_item_1_2_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_3" to="." method="_on_item_1_3_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_4" to="." method="_on_item_1_4_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/BackButton" to="." method="_on_back_button_pressed"]

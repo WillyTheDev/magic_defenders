@@ -10,24 +10,15 @@ static var sound_volume = 0
 #======================
 # Player Map selected
 #======================
-
+static var is_urgent_quest = false
 static var selected_chapter = 1
 static var selected_map = 1
 static var selected_difficulty = 1
 static var starting_wave = 0
 static var has_save = false
 static var player_equipped_hat = 99
-static var sequences : Array[String] = [""]
+static var sequences : Array = [""]
 static var gold_reward = 0
-
-static var quest_progression = {
-	"map_1_1" : 0,
-	"map_1_2" : 0,
-	"map_1_3" : 0,
-	"map_1_4" : 0,
-	"map_1_5" : 0,
-	"map_1_6" : 0
-}
 
 static var unlocked_hats:  = {
 	"hat_0" : false,
@@ -65,14 +56,14 @@ func getPlayerDamage():
 	return (player_base_damage + (player_base_damage / player_divider_damage) * (player_stat_damage + inventory.equiped_player_damage))
 
 static var player_base_damage = 0.5
-static var player_stat_damage = 0
+static var player_stat_damage = 0.0
 static var player_divider_damage = 4.0
 
 func getDefenseRange():
 	return (defense_base_range + (defense_base_range / defense_divider_range) * defense_stat_range)
 
 static var defense_base_range = 1.0
-static var defense_stat_range = 0
+static var defense_stat_range = 0.0
 static var defense_divider_range = 15.0
 
 func getDefenseDamage():
@@ -80,7 +71,7 @@ func getDefenseDamage():
 
 
 static var defense_base_damage = 1.0
-static var defense_stat_damage = 0
+static var defense_stat_damage = 0.0
 static var defense_divider_damage = 10.0
 
 
@@ -90,19 +81,18 @@ func getDefenseHealth():
 func getTurretHealth():
 	return (turret_base_health + (turret_base_health / defense_divider_health) * ((defense_stat_health + inventory.equiped_defense_health)/10))
 
-static var defense_base_health = 1
-static var turret_base_health = 1
-static var defense_stat_health = 0
+static var defense_base_health = 1.0
+static var turret_base_health = 1.0
+static var defense_stat_health = 0.0
 static var defense_divider_health = 1.1
 
 
 func getDefenseFireRate():
-	return (defense_base_fire_rate +(defense_base_fire_rate / defense_divider_fire_rate) * (defense_stat_fire_rate + inventory.equiped_defense_fire_rate))
-
+	return defense_base_fire_rate - (defense_base_fire_rate +(defense_base_fire_rate / defense_divider_fire_rate) * (defense_stat_fire_rate + inventory.equiped_defense_fire_rate))
 
 static var defense_base_fire_rate = 2.0
-static var defense_stat_fire_rate = 0
-static var defense_divider_fire_rate = -300.0
+static var defense_stat_fire_rate = 0.0
+static var defense_divider_fire_rate = -1000.0
 
 static var player_avail_pts = 0
 
@@ -111,10 +101,12 @@ static var player_avail_pts = 0
 #======================
 
 static var unlocked_skills = {
-	"skill_0": true,
 	"skill_1": true,
 	"skill_2": true,
-	"skill_3": true
+	"skill_3": false,
+	"skill_4": false,
+	"skill_5": false,
+	"skill_6": false,
 }
 
 static var selected_skills = {
@@ -209,6 +201,7 @@ func _save():
 		"audio_volume": audio_volume,
 		"sound_volume": sound_volume,
 		"unlocked_hats": unlocked_hats,
+		"unlocked_skills": unlocked_skills,
 	}
 	return save_dict
 	
@@ -237,6 +230,14 @@ func new_save():
 							"hat_4" : false,
 							"hat_5" : false,
 							"hat_6" : false
+						},
+		"unlocked_skills": {
+							"skill_1": true,
+							"skill_2": true,
+							"skill_3": false,
+							"skill_4": false,
+							"skill_5": false,
+							"skill_6": false,
 						},
 	}
 	print("CLEAR INVENTORY")

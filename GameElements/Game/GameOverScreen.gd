@@ -17,8 +17,11 @@ func _on_restart_button_pressed():
 func game_completed(wave:int, difficulty : int, map_of_game: Node):
 	visible = true
 	%GameOverAnimation.play("show_game_over")
+	%GameOverAnimation.queue("show_third_star")
 	self.wave = wave
 	Global.accumulated_gold += Global.gold_reward
+	if Global.is_urgent_quest:
+		Global.urgent_quests_completed += 1
 	%GameOverTitle.text = "Success !"
 	%ScoreLabel.text = "You've completed this map and survided :\n %s" % wave
 	$/root/Game/Confetti.play_confetti()

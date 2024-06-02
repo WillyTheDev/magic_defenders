@@ -1,5 +1,9 @@
 extends Node
 
+func _ready():
+	if Global.urgent_quests_completed > 0:
+		get_node("/root/Game/Map/Merchant").visible = true
+
 func interact_with_npc(npc_index):
 	match npc_index:
 		0:
@@ -9,6 +13,7 @@ func interact_with_npc(npc_index):
 			%SelectMapScreen.show_quests()
 		2:
 			print("Merchant interactions")
+			%Shop.show_shop()
 			pass
 		var _other:
 			print("Player is interacting with an useless NPC")

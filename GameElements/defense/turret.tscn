@@ -91,6 +91,7 @@ pitch_scale = 2.24
 
 [node name="TimerShoot" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 0.001
 autostart = true
 
 [connection signal="body_entered" from="ShootZone" to="." method="_on_shoot_zone_body_entered"]

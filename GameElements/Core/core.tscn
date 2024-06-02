@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cak6x4mhllisu"]
+[gd_scene load_steps=12 format=3 uid="uid://cak6x4mhllisu"]
 
 [ext_resource type="Script" path="res://GameElements/Core/core.gd" id="1_10bn3"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_4pd6a"]
@@ -19,6 +19,16 @@ size = Vector2(58.5, 59)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ejl3"]
 size = Vector2(69, 65)
+
+[sub_resource type="Gradient" id="Gradient_2cg2w"]
+offsets = PackedFloat32Array(0, 0.935484, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0604839, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ygrs3"]
+gradient = SubResource("Gradient_2cg2w")
+fill = 1
+fill_from = Vector2(0.517094, 0.491453)
+fill_to = Vector2(0.846154, 0.153846)
 
 [node name="Core" type="Node2D"]
 position = Vector2(386, 196)
@@ -63,6 +73,18 @@ autostart = true
 unique_name_in_owner = true
 stream = ExtResource("6_s72xd")
 pitch_scale = 1.14
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-2.5034e-06, 0.499985)
+rotation = 0.213683
+scale = Vector2(2.97791, 3.21807)
+color = Color(0.752433, 0.640905, 0.865558, 1)
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 14.5
+texture = SubResource("GradientTexture2D_ygrs3")
+height = 1.0
 
 [connection signal="body_entered" from="StaticBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="StaticBody2D/Area2D" to="." method="_on_area_2d_body_exited"]

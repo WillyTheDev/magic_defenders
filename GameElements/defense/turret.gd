@@ -13,6 +13,7 @@ func _ready():
 	DefenseTimer.timeout.connect(_on_timer_timeout)
 	current_health = Global.getTurretHealth()
 	add_to_group("has_static_properties")
+	print("Turret fire rate : %s " % Global.getDefenseFireRate())
 	%TimerShoot.wait_time = Global.getDefenseFireRate()
 	%ShootZone.scale.x = Global.getDefenseRange()
 	%ShootZone.scale.y = Global.getDefenseRange()

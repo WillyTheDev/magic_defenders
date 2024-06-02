@@ -7,6 +7,9 @@ var travelled_distance = 0
 
 func _ready():
 	%AnimationPlayer.play("spawn")
+	var explosion = preload("res://GameElements/misc/explosion_sound.tscn").instantiate()
+	add_child(explosion)
+	
 	
 func _explode():
 	for body in %Area2D.get_overlapping_bodies():
