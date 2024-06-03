@@ -30,6 +30,7 @@ func hide_player_profile():
 	%SkillContainer.hide_skill_list()
 	%PlayerManagerAnimationPlayer.queue("hide_player_profile")
 	get_tree().paused = false
+	is_open = false
 	playerhasLeveledUp = false
 	
 

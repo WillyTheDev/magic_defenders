@@ -2,7 +2,6 @@ extends Node2D
 
 func _ready():
 	Global.load_game()
-	%BackgroundAudioPlayer.volume_db = Global.audio_volume
 	if Global.has_save :
 		%ContinueButton.visible = true
 	else :
@@ -31,11 +30,7 @@ func _on_continue_button_pressed():
 	Global.selected_difficulty = 0
 	get_tree().paused = false
 	%TransitionLayer.close_transition()
-	
 
-
-func _on_options_menu_audio_value_changed():
-	%BackgroundAudioPlayer.volume_db = Global.audio_volume
 
 
 func _on_settings_button_pressed():

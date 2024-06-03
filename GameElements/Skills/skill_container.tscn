@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dk18yh7kobthq"]
+[gd_scene load_steps=21 format=3 uid="uid://dk18yh7kobthq"]
 
 [ext_resource type="Script" path="res://GameElements/Skills/SkillManager.gd" id="1_qmdoi"]
 [ext_resource type="Texture2D" uid="uid://33a4fljdofkd" path="res://Assets/UI/Skills_button/defense_normal.png" id="2_kcxfs"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="4_r3bw3"]
 [ext_resource type="Texture2D" uid="uid://dhguypk40lbjg" path="res://Assets/UI/Skills_button/empty_normal.png" id="4_uv5xn"]
 [ext_resource type="Texture2D" uid="uid://blgbcbhvlvfax" path="res://Assets/UI/Skills_button/empty_hover.png" id="5_newcm"]
+[ext_resource type="Texture2D" uid="uid://dpv6xqmm5jm1q" path="res://Assets/UI/Skills_button/locked_skill.png" id="6_7vv01"]
 [ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="6_nuyxt"]
 [ext_resource type="Script" path="res://GameElements/Skills/outside_click_control.gd" id="6_o7o7e"]
 
@@ -134,25 +135,28 @@ _data = {
 
 [node name="SkillContainer" type="MarginContainer"]
 size_flags_horizontal = 4
-theme_override_constants/margin_top = 16
 script = ExtResource("1_qmdoi")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 16
 
-[node name="SkillButton_1" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+[node name="SkillButton_1" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 texture_normal = ExtResource("2_kcxfs")
 stretch_mode = 0
 
-[node name="ProgressBarBackground" type="ProgressBar" parent="VBoxContainer/HBoxContainer/SkillButton_1"]
+[node name="ProgressBarBackground" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -167,7 +171,7 @@ step = 2.0
 fill_mode = 2
 show_percentage = false
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SkillButton_1"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_1"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -187,14 +191,14 @@ text = "[1]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SkillButton_2" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+[node name="SkillButton_2" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 texture_normal = ExtResource("2_kcxfs")
 stretch_mode = 0
 
-[node name="ProgressBarBackground" type="ProgressBar" parent="VBoxContainer/HBoxContainer/SkillButton_2"]
+[node name="ProgressBarBackground" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -209,7 +213,7 @@ step = 2.0
 fill_mode = 2
 show_percentage = false
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SkillButton_2"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_2"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -229,7 +233,7 @@ text = "[2]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SkillButton_3" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+[node name="SkillButton_3" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
@@ -237,7 +241,7 @@ texture_normal = ExtResource("4_uv5xn")
 texture_hover = ExtResource("5_newcm")
 stretch_mode = 0
 
-[node name="ProgressBarBackground" type="ProgressBar" parent="VBoxContainer/HBoxContainer/SkillButton_3"]
+[node name="ProgressBarBackground" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -252,7 +256,7 @@ step = 5.0
 fill_mode = 2
 show_percentage = false
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SkillButton_3"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_3"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -272,7 +276,7 @@ text = "[3]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SkillButton_4" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+[node name="SkillButton_4" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
@@ -280,7 +284,7 @@ texture_normal = ExtResource("4_uv5xn")
 texture_hover = ExtResource("5_newcm")
 stretch_mode = 0
 
-[node name="ProgressBarBackground" type="ProgressBar" parent="VBoxContainer/HBoxContainer/SkillButton_4"]
+[node name="ProgressBarBackground" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_4"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -295,7 +299,7 @@ step = 5.0
 fill_mode = 2
 show_percentage = false
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SkillButton_4"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_4"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -314,6 +318,14 @@ theme_override_font_sizes/font_size = 24
 text = "[4]"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LockSkillTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_7vv01")
 
 [node name="SkillSelection" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -394,10 +406,11 @@ libraries = {
 "": SubResource("AnimationLibrary_l7apm")
 }
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_1" to="." method="_on_skill_button_1_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_2" to="." method="_on_skill_button_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_3" to="." method="_on_skill_button_3_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/SkillButton_4" to="." method="_on_skill_button_4_pressed"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_1" to="." method="_on_skill_button_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_2" to="." method="_on_skill_button_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_3" to="." method="_on_skill_button_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_4" to="." method="_on_skill_button_4_pressed"]
 [connection signal="gui_input" from="SkillSelection/Control" to="SkillSelection/Control" method="_on_gui_input"]
 [connection signal="item_selected" from="SkillSelection/TextureRect/MarginContainer/ScrollContainer/SkillList" to="." method="_on_skill_list_item_selected"]
 [connection signal="animation_finished" from="SkillSelection/SkillAnimationPlayer" to="." method="_on_skill_animation_player_animation_finished"]

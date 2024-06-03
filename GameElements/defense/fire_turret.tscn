@@ -93,6 +93,7 @@ unique_name_in_owner = true
 stream = ExtResource("7_l6emt")
 volume_db = 0.8
 pitch_scale = 2.24
+bus = &"SFX"
 
 [connection signal="body_exited" from="ShootZone" to="." method="_on_shoot_zone_body_exited"]
 [connection signal="timeout" from="TimerShoot" to="." method="_on_timer_shoot_timeout"]

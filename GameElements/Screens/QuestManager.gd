@@ -57,7 +57,7 @@ func _create_urgent_quests(questData: UrgentQuest):
 	quest.map_of_quest_index = questData.map_of_quest_index
 	quest.is_day = questData.is_day
 	quest.reward = Quest_Button.reward_type.GOLD
-	quest.gold_amount = 0
+	quest.gold_amount = (Global.urgent_quests_completed + 1) * 10
 	quest.is_urgent = questData.is_urgent
 	quest.enemy_sequence = questData.enemy_sequence
 	quest.required_quests_completed = 0
@@ -132,25 +132,25 @@ func add_mana_slime(_difficulty):
 
 static var urgent_quests = [
 	UrgentQuest.new("quest_1", 1, 9, 1, true,
-		["7x1","10x1","15x1","1x4","15x1,2x4","15x1,2x4,3x1","17x1,2x4,7x1", "20x1,2x4,5x1", "10x4", "30x1,1x5"],
+		["7x1","10x1","15x1","1x4","15x1,1x4","15x1,1x4,3x1","17x1,1x4,7x1", "20x1,1x4,5x1", "7x4", "30x1,1x5"],
 		0,
 		preload("res://Assets/UI/map_selection_button/reduced_merchant.png")),
 	UrgentQuest.new("quest_2", 2, 9, 1, true,
-		["7x1","10x1","15x1","1x4","15x1,2x4","15x1,2x4,3x1","17x1,2x4,7x1", "20x1,2x4,5x1", "10x4", "30x1,1x5"],
+		["10x1","15x1","15x1,1x2","15x1,1x2,1x4","15x1,1x2,1x4,5x1","15x1,2x2,3x4,5x1","18x1,3x2,5x4,5x1", "18x1,3x2,5x4,5x1", "30x4", "22x1,3x2,5x4,3x2,5x1,1x5"],
 		0,
-		preload("res://Assets/UI/map_selection_button/reduced_merchant.png")),
+		preload("res://Assets/loots/bourse.png")),
 	UrgentQuest.new("quest_3", 3, 9, 1, true,
-		["7x1","10x1","15x1","1x4","15x1,2x4","15x1,2x4,3x1","17x1,2x4,7x1", "20x1,2x4,5x1", "10x4", "30x1,1x5"],
+		["10x1","15x1","15x1,1x2","15x1,1x2,1x4","15x1,1x2,1x4,5x1","15x1,2x2,3x4,5x1","18x1,3x2,5x4,5x1", "18x1,3x2,5x4,5x1", "30x4", "22x1,3x2,5x4,3x2,5x1,1x5"],
 		0,
-		preload("res://Assets/UI/map_selection_button/reduced_merchant.png")),
+		preload("res://Assets/loots/bourse.png")),
 	UrgentQuest.new("quest_4", 4, 9, 1, true,
-		["7x1","10x1","15x1","1x4","15x1,2x4","15x1,2x4,3x1","17x1,2x4,7x1", "20x1,2x4,5x1", "10x4", "30x1,1x5"],
+		["10x1","15x1","15x1,1x2","15x1,1x2,1x4","15x1,1x2,1x4,5x1","15x1,2x2,3x4,5x1","18x1,3x2,5x4,5x1", "18x1,3x2,5x4,5x1", "30x4", "22x1,3x2,5x4,3x2,5x1,1x5"],
 		0,
-		preload("res://Assets/UI/map_selection_button/reduced_merchant.png")),
+		preload("res://Assets/loots/bourse.png")),
 	UrgentQuest.new("quest_4", 5, 9, 1, true,
-		["7x1","10x1","15x1","1x4","15x1,2x4","15x1,2x4,3x1","17x1,2x4,7x1", "20x1,2x4,5x1", "10x4", "30x1,1x5"],
+		["10x1","15x1","15x1,1x2","15x1,1x2,1x4","15x1,1x2,1x4,5x1","15x1,2x2,3x4,5x1","18x1,3x2,5x4,5x1", "18x1,3x2,5x4,5x1", "30x4", "22x1,3x2,5x4,3x2,5x1,1x5"],
 		0,
-		preload("res://Assets/UI/map_selection_button/reduced_merchant.png")),
+		preload("res://Assets/loots/bourse.png")),
 ]
 
 

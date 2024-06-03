@@ -423,10 +423,8 @@ _data = {
 background_mode = 3
 glow_enabled = true
 glow_normalized = true
-glow_intensity = 1.0
-glow_strength = 1.24
 glow_blend_mode = 0
-glow_hdr_threshold = 1.5
+glow_hdr_threshold = 1.1
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -916,6 +914,7 @@ unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("9_1qta1")
 autoplay = true
+bus = &"Music"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qdm87")
@@ -929,7 +928,6 @@ script = ExtResource("32_tfl22")
 [connection signal="pressed" from="GameOverScreen/TextureRect/VBoxContainer/MarginContainer/VBoxContainer/RestartButton" to="GameOverScreen" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameOverScreen/TextureRect/VBoxContainer/MarginContainer/VBoxContainer/InfinityButton" to="GameOverScreen" method="_on_infinity_button_pressed"]
 [connection signal="pressed" from="GameOverScreen/TextureRect/VBoxContainer/MarginContainer/VBoxContainer/QuitToMenu" to="GameOverScreen" method="_on_quit_to_menu_pressed"]
-[connection signal="audio_value_changed" from="OptionsMenu" to="." method="_on_options_menu_audio_value_changed"]
 [connection signal="apply_change" from="PlayerManager" to="UI/SkillsContainer/VBoxContainer/SkillContainer" method="_on_player_manager_apply_change"]
 [connection signal="player_has_available_point" from="PlayerManager" to="UI" method="_on_player_manager_player_has_available_point"]
 [connection signal="transition_is_finished" from="TransitionLayer" to="GameOverScreen" method="_on_transition_layer_transition_is_finished"]

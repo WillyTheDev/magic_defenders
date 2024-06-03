@@ -13,22 +13,22 @@ shader_parameter/frames = 6
 shader_parameter/flowMap = ExtResource("2_2hmsa")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ramaw"]
-polygon = PackedVector2Array(-51.7769, 218.008, 38.1514, 223.458, 24.5259, 111.729, 57.2271, 27.251, -79.0279, 32.7012, -46.3267, 87.2032)
+polygon = PackedVector2Array(-84.4781, 27.2509, -51.7769, 70.8525, -49.0518, 147.155, -57.2271, 220.733, 46.3267, 218.008, 29.9761, 141.705, 32.7012, 73.5776, 49.0518, 46.3266, 87.2032, 35.4262, 111.729, 16.3505, 174.406, -0.000106812, 204.382, -24.526, 204.382, -46.3268, 190.757, -65.4025, 196.207, -89.9284, 179.857, -114.454, 130.805, -125.355, 106.279, -147.155, 98.1036, -152.606, 100.829, -185.307, 89.9283, -212.558, 59.9522, -239.809, 32.7012, -242.534, 8.1753, -231.634, -29.9761, -247.984, -65.4024, -228.908, -84.4781, -193.482, -87.2032, -166.231, -114.454, -158.056, -130.805, -147.155, -166.231, -144.43, -188.032, -122.63, -190.757, -92.6535, -201.657, -68.1276, -204.382, -43.6017, -190.757, -19.0758, -158.056, -5.4503, -138.98, 21.8007, -103.554, 32.7011)
 
 [node name="Arbre21" type="Sprite2D"]
 z_index = 1
 material = SubResource("ShaderMaterial_abvb5")
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("3_pg4hd")
-offset = Vector2(0, -150)
+offset = Vector2(0, -120)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2(2.38419e-07, -138.98)
+position = Vector2(2.7251, -106.279)
 occluder = SubResource("OccluderPolygon2D_ramaw")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 z_index = -1
-position = Vector2(-2.7251, 76.3028)
+position = Vector2(2.38419e-07, 98.1036)
 scale = Vector2(1.38806, 1.38806)
 texture = ExtResource("4_m3iw4")

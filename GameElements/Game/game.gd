@@ -9,7 +9,7 @@ var spawn_rates = 2
 var spawn_flying_enemy_rates = 20
 
 static var is_idle = true
-
+static var is_on_hub = false
 var map_of_game = Map
 var paths: Array[Path2D] = []
 var options_menu_open = false
@@ -48,7 +48,10 @@ func _ready():
 	%TransitionLayer.open_transition()
 	%BackgroundAudioPlayer.volume_db = Global.audio_volume
 	if map_of_game.is_hub :
+		is_on_hub = true
 		%EnemiesProgressBar.visible = false
+	else :
+		is_on_hub = false
 	Enemy.base_health = 1.0
 	Enemy.base_speed = 5
 	Enemy.base_damage = 1

@@ -88,11 +88,11 @@ static var defense_divider_health = 1.1
 
 
 func getDefenseFireRate():
-	return defense_base_fire_rate - (defense_base_fire_rate +(defense_base_fire_rate / defense_divider_fire_rate) * (defense_stat_fire_rate + inventory.equiped_defense_fire_rate))
+	return (defense_base_fire_rate - (defense_base_fire_rate / defense_divider_fire_rate) * (defense_stat_fire_rate + inventory.equiped_defense_fire_rate))
 
 static var defense_base_fire_rate = 2.0
 static var defense_stat_fire_rate = 0.0
-static var defense_divider_fire_rate = -1000.0
+static var defense_divider_fire_rate = 130.0
 
 static var player_avail_pts = 0
 

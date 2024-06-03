@@ -317,6 +317,7 @@ text = "Level Up !"
 [node name="LevelUpAudio" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("7_14how")
+bus = &"SFX"
 
 [node name="ConfettiLeft" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true

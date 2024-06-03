@@ -180,6 +180,7 @@ texture = ExtResource("4_x2osm")
 unique_name_in_owner = true
 stream = ExtResource("5_ut6uw")
 volume_db = -5.0
+bus = &"SFX"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 98.0

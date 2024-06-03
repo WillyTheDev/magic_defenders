@@ -17,6 +17,7 @@ func _ready():
 	update_skill_list()
 	update_skills_button_ui()
 	
+	
 
 func _init_selected_skill():
 	selected_skills[0] = skills[0]
@@ -32,9 +33,9 @@ func update_skills_button_ui():
 	for skill in selected_skills:
 		print("Update Skill on action bar ! %s" % skill)
 		if skill != null:
-			get_node("VBoxContainer/HBoxContainer/SkillButton_%s" % (index + 1)).texture_normal = selected_skills[index].texture_normal
-			get_node("VBoxContainer/HBoxContainer/SkillButton_%s" % (index + 1)).texture_hover = selected_skills[index].texture_hover
-			get_node("VBoxContainer/HBoxContainer/SkillButton_%s/ProgressBarBackground" % (index + 1)).max_value = selected_skills[index].mana_cost
+			get_node("MarginContainer/VBoxContainer/HBoxContainer/SkillButton_%s" % (index + 1)).texture_normal = selected_skills[index].texture_normal
+			get_node("MarginContainer/VBoxContainer/HBoxContainer/SkillButton_%s" % (index + 1)).texture_hover = selected_skills[index].texture_hover
+			get_node("MarginContainer/VBoxContainer/HBoxContainer/SkillButton_%s/ProgressBarBackground" % (index + 1)).max_value = selected_skills[index].mana_cost
 		index += 1
 	
 func update_progress_bar():
@@ -42,7 +43,7 @@ func update_progress_bar():
 	var index = 0
 	for skill in selected_skills:
 		if skill != null:
-			get_node("VBoxContainer/HBoxContainer/SkillButton_%s/ProgressBarBackground" % (index + 1)).value = selected_skills[index].mana_cost - current_mana
+			get_node("MarginContainer/VBoxContainer/HBoxContainer/SkillButton_%s/ProgressBarBackground" % (index + 1)).value = selected_skills[index].mana_cost - current_mana
 		index += 1
 
 func show_skill_list():
@@ -157,3 +158,13 @@ static var skills : Array[Skill] = [
 	"A meteor",
 	"spell", false),
 ]
+
+
+
+func _on_mouse_entered():
+	print("Mouse entered !")
+	print("Player Manager is open ? %s" % PlayerManager.is_open)
+	if Game.is_on_hub == false && PlayerManager.is_open:
+		%LockSkillTexture.visible = true
+	else :
+		%LockSkillTexture.visible = false

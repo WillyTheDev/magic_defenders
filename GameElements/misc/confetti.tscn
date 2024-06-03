@@ -84,5 +84,6 @@ hue_variation_curve = SubResource("Curve_b22e5")
 unique_name_in_owner = true
 stream = ExtResource("2_m4div")
 volume_db = 1.0
+bus = &"SFX"
 
 [connection signal="resized" from="Control" to="." method="_on_control_resized"]

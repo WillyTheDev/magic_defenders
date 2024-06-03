@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dxicxia2vogwh"]
+[gd_scene load_steps=28 format=3 uid="uid://dxicxia2vogwh"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_dvt7e"]
 [ext_resource type="Material" uid="uid://cpw1r3dhb6b27" path="res://Shaders/water.tres" id="2_05s70"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://GameElements/NPC/NPCManager.gd" id="19_1v4xt"]
 [ext_resource type="PackedScene" uid="uid://dmb5cs8occw40" path="res://GameElements/Screens/select_map_screen.tscn" id="20_33c25"]
 [ext_resource type="PackedScene" uid="uid://n1k4yurwg55o" path="res://GameElements/Screens/shop.tscn" id="21_0pxgc"]
+[ext_resource type="PackedScene" uid="uid://clhu7ht04c7da" path="res://GameElements/Maps/env/torch.tscn" id="22_r834d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfba4"]
 shader = ExtResource("3_1i6ag")
@@ -128,6 +129,7 @@ npc_texture = ExtResource("14_6rcgg")
 
 [node name="Merchant" parent="." instance=ExtResource("10_2ary5")]
 unique_name_in_owner = true
+visible = false
 position = Vector2(1061, 596)
 npc_index = 2
 npc_texture = ExtResource("12_08xgd")
@@ -1271,3 +1273,20 @@ unique_name_in_owner = true
 
 [node name="Shop" parent="NPCManager" instance=ExtResource("21_0pxgc")]
 unique_name_in_owner = true
+
+[node name="Torch2" parent="." instance=ExtResource("22_r834d")]
+
+[node name="Torch3" parent="." instance=ExtResource("22_r834d")]
+position = Vector2(890, 722)
+
+[node name="Torch4" parent="." instance=ExtResource("22_r834d")]
+position = Vector2(1270, 996)
+
+[node name="Torch5" parent="." instance=ExtResource("22_r834d")]
+position = Vector2(1723, 896)
+
+[node name="Torch6" parent="." instance=ExtResource("22_r834d")]
+position = Vector2(1846, 467)
+
+[node name="Torch7" parent="." instance=ExtResource("22_r834d")]
+position = Vector2(1477, 313)

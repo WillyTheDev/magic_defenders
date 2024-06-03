@@ -9,6 +9,7 @@ volume_db = 5.0
 pitch_scale = 0.79
 autoplay = true
 attenuation = 0.707106
+bus = &"SFX"
 script = ExtResource("2_r20k7")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

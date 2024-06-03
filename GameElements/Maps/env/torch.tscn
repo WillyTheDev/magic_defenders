@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://clhu7ht04c7da"]
+
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="1_abn7a"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="2_2r58m"]
+[ext_resource type="Texture2D" uid="uid://bn851wplorsgo" path="res://Assets/envirronment/torch.png" id="3_mf4fj"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="4_tyoi1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fi2sw"]
+shader = ExtResource("1_abn7a")
+shader_parameter/strength = 0.03
+shader_parameter/speed = 6.0
+shader_parameter/frames = 6
+shader_parameter/flowMap = ExtResource("2_2r58m")
+
+[sub_resource type="Gradient" id="Gradient_m0sw6"]
+offsets = PackedFloat32Array(0, 0.935484, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0604839, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5jdy3"]
+gradient = SubResource("Gradient_m0sw6")
+fill = 1
+fill_from = Vector2(0.517094, 0.491453)
+fill_to = Vector2(0.846154, 0.153846)
+
+[node name="Torch" type="Sprite2D"]
+modulate = Color(1.2, 1, 1, 1)
+z_index = 1
+material = SubResource("ShaderMaterial_fi2sw")
+position = Vector2(1046, 347)
+scale = Vector2(0.208536, 0.208536)
+texture = ExtResource("3_mf4fj")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(61.6441, -168.314)
+rotation = -0.00693274
+scale = Vector2(32.9875, 30.6532)
+blend_mode = 2
+shadow_enabled = true
+shadow_filter_smooth = 14.5
+texture = SubResource("GradientTexture2D_5jdy3")
+height = 1.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_as_relative = false
+position = Vector2(-0.000225067, 215.79)
+scale = Vector2(0.599417, 0.599417)
+texture = ExtResource("4_tyoi1")

@@ -152,5 +152,6 @@ text = "Coucou"
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("7_onwf5")
+bus = &"SFX"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

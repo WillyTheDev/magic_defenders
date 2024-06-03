@@ -73,6 +73,7 @@ autostart = true
 unique_name_in_owner = true
 stream = ExtResource("6_s72xd")
 pitch_scale = 1.14
+bus = &"SFX"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-2.5034e-06, 0.499985)

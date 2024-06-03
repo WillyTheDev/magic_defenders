@@ -68,6 +68,7 @@ unique_name_in_owner = true
 stream = ExtResource("5_ghwvl")
 volume_db = 0.8
 pitch_scale = 2.24
+bus = &"SFX"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

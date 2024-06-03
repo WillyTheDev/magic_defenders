@@ -122,6 +122,7 @@ process_mode = 3
 stream = ExtResource("18_t63y0")
 volume_db = -10.0
 autoplay = true
+bus = &"Music"
 script = ExtResource("17_eywxx")
 
 [node name="OptionsMenu" parent="." instance=ExtResource("18_uk2s8")]
@@ -134,6 +135,7 @@ is_on_welcome_screen = true
 unique_name_in_owner = true
 stream = ExtResource("19_26kxm")
 volume_db = -5.0
+bus = &"SFX"
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
@@ -141,4 +143,3 @@ volume_db = -5.0
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="transition_is_finished" from="TransitionLayer" to="." method="_on_transition_layer_transition_is_finished"]
 [connection signal="finished" from="BackgroundAudioPlayer" to="BackgroundAudioPlayer" method="_on_finished"]
-[connection signal="audio_value_changed" from="OptionsMenu" to="." method="_on_options_menu_audio_value_changed"]

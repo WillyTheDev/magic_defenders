@@ -3,12 +3,14 @@ extends CanvasLayer
 var options_menu_open = false
 var game_was_paused = false
 @export var is_on_welcome_screen = false
-
-signal sound_value_changed()
-signal audio_value_changed()
+@onready var SFX_BUS_ID = AudioServer.get_bus_index("SFX")
+@onready var MUSIC_BUS_ID = AudioServer.get_bus_index("Music")
 
 func _ready():
+	AudioServer.set_bus_volume_db(SFX_BUS_ID,linear_to_db(Global.sound_volume))
+	AudioServer.set_bus_volume_db(MUSIC_BUS_ID,linear_to_db(Global.audio_volume))
 	%AudioSlider.value = Global.audio_volume
+	%SoundSlider.value = Global.sound_volume
 	if is_on_welcome_screen == true:
 		%RestartButton.visible = false
 		%QuitToMenu.visible = false
@@ -53,12 +55,12 @@ func _on_restart_button_pressed():
 
 
 func _on_h_slider_value_changed(value):
+	AudioServer.set_bus_volume_db(MUSIC_BUS_ID,linear_to_db(value))
 	Global.audio_volume = value
-	audio_value_changed.emit()
 
 func _on_sound_slider_value_changed(value):
 	Global.sound_volume = value
-	sound_value_changed.emit()
+	AudioServer.set_bus_volume_db(SFX_BUS_ID,linear_to_db(value))
 
 func _on_erase_save_button_pressed():
 	print("ERASING DATA")

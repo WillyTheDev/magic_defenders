@@ -164,6 +164,7 @@ libraries = {
 unique_name_in_owner = true
 stream = ExtResource("7_nj8hl")
 volume_db = 1.0
+bus = &"SFX"
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true

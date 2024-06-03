@@ -29,7 +29,6 @@ static var magic_bolt = null
 func _ready():
 	var inventoryManager = get_node("/root/Game/PlayerManager/InventoryManager")
 	var optionMenu = get_node("/root/Game/OptionsMenu")
-	optionMenu.sound_value_changed.connect(_update_sound_volume)
 	var uiMenu = get_node("/root/Game/UI")
 	player_has_level_up.connect(uiMenu.show_available_point)
 	screen_size = get_node("/root/Game/Map/MapLimit").global_position

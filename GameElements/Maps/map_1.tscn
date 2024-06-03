@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://buxfj316qobc3"]
+[gd_scene load_steps=19 format=3 uid="uid://buxfj316qobc3"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_jrvlj"]
 [ext_resource type="Texture2D" uid="uid://5ua06b2sb6jr" path="res://Assets/Map/map_1.png" id="2_hod1y"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="8_ksp42"]
 [ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/core.tscn" id="9_4uokl"]
 [ext_resource type="Texture2D" uid="uid://d1v07087ptaua" path="res://Assets/envirronment/buisson.png" id="11_75abc"]
+[ext_resource type="PackedScene" uid="uid://clhu7ht04c7da" path="res://GameElements/Maps/env/torch.tscn" id="12_upevy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfba4"]
 shader = ExtResource("5_lbfrp")
@@ -1647,3 +1648,21 @@ scale = Vector2(1.5, 1.5)
 [node name="PlayerSpawnPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(2005, 570)
+
+[node name="Torch" parent="." instance=ExtResource("12_upevy")]
+position = Vector2(174, 794)
+
+[node name="Torch2" parent="." instance=ExtResource("12_upevy")]
+position = Vector2(408, 430)
+
+[node name="Torch3" parent="." instance=ExtResource("12_upevy")]
+position = Vector2(764, 828)
+
+[node name="Torch4" parent="." instance=ExtResource("12_upevy")]
+position = Vector2(1392, 438)
+
+[node name="Torch5" parent="." instance=ExtResource("12_upevy")]
+position = Vector2(2248, 524)
+
+[node name="Torch6" parent="." instance=ExtResource("12_upevy")]
+position = Vector2(2236, 770)
