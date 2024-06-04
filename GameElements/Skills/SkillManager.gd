@@ -20,8 +20,8 @@ func _ready():
 	
 
 func _init_selected_skill():
-	selected_skills[0] = skills[0]
-	selected_skills[1] = skills[1]
+	for index in range(0,4):
+		selected_skills[index] = skills[Global.selected_skills["skill_%s" % index]]
 	for skill in skills:
 		if Global.unlocked_skills[skill.identifier]:
 			skill.unlocked = true
@@ -104,6 +104,7 @@ func _on_player_manager_apply_change():
 
 func _on_skill_list_item_selected(index):
 	selected_skills[skill_to_update] = skills[index]
+	Global.selected_skills["skill_%s" % skill_to_update] = index
 	update_skills_button_ui()
 	hide_skill_list()
 

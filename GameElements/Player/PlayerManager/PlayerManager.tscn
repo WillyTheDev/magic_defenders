@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://c2o1lsmd80cnp"]
+[gd_scene load_steps=62 format=3 uid="uid://c2o1lsmd80cnp"]
 
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/PlayerManager.gd" id="1_ctqjo"]
 [ext_resource type="Texture2D" uid="uid://7ldxtyg31ar8" path="res://Assets/UI/player_profile_background/background.png" id="2_3il38"]
@@ -27,7 +27,7 @@
 [ext_resource type="Script" path="res://GameElements/Skills/outside_click_control.gd" id="24_bvpje"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdv3k"]
-bg_color = Color(0.244776, 0.244776, 0.244776, 1)
+bg_color = Color(0.140447, 0.140447, 0.140447, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -39,7 +39,7 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00jmx"]
-bg_color = Color(0.962888, 0.3777, 0.392169, 1)
+bg_color = Color(0.964706, 0.376471, 0.392157, 0.517647)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -50,8 +50,11 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnpgj"]
-bg_color = Color(0.205584, 0.660621, 0.784564, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6p7ol"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_koxka"]
+bg_color = Color(0.960784, 0.376471, 0.392157, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -62,8 +65,8 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4brp"]
-bg_color = Color(0.23017, 0.708015, 0.335578, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21qbl"]
+bg_color = Color(0.140447, 0.140447, 0.140447, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -74,8 +77,68 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dht5s"]
-bg_color = Color(0.871058, 0.744029, 0.135508, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osmrx"]
+bg_color = Color(0.346641, 0.630164, 0.841753, 0.517647)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_el5ub"]
+bg_color = Color(0.409471, 0.613617, 0.843784, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_alk6x"]
+bg_color = Color(0.363245, 0.686292, 0.396793, 0.517647)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhgmo"]
+bg_color = Color(0.418312, 0.674421, 0.377573, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rgyl"]
+bg_color = Color(0.718788, 0.586858, 0.0539737, 0.517647)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cj3uj"]
+bg_color = Color(0.913887, 0.704099, 3.85046e-07, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -896,7 +959,7 @@ size_flags_vertical = 3
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_bottom = 32
 
-[node name="Progress_stat_1" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_1/VBoxContainer2/MarginContainer"]
+[node name="Progress_loot" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_1/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
@@ -905,7 +968,19 @@ theme_override_constants/outline_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
 theme_override_styles/fill = SubResource("StyleBoxFlat_00jmx")
 step = 1.0
-value = 100.0
+value = 80.0
+show_percentage = false
+
+[node name="Progress_stat" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_1/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_6p7ol")
+theme_override_styles/fill = SubResource("StyleBoxFlat_koxka")
+step = 1.0
+value = 50.0
 show_percentage = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_1"]
@@ -925,12 +1000,14 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
 theme_override_font_sizes/font_size = 24
 text = "0
 "
 
 [node name="remove_stat_1" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_1/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 texture_normal = ExtResource("5_yh11t")
 texture_pressed = ExtResource("6_f3uvs")
 
@@ -959,16 +1036,28 @@ size_flags_vertical = 3
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_bottom = 32
 
-[node name="Progress_stat_2" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_2/VBoxContainer2/MarginContainer"]
+[node name="Progress_loot" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_2/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
-theme_override_styles/fill = SubResource("StyleBoxFlat_qnpgj")
+theme_override_styles/background = SubResource("StyleBoxFlat_21qbl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_osmrx")
 step = 1.0
-value = 100.0
+value = 80.0
+show_percentage = false
+
+[node name="Progress_stat" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_2/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_6p7ol")
+theme_override_styles/fill = SubResource("StyleBoxFlat_el5ub")
+step = 1.0
+value = 50.0
 show_percentage = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_2"]
@@ -988,6 +1077,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
 theme_override_font_sizes/font_size = 24
 text = "0
 "
@@ -1022,7 +1112,7 @@ size_flags_vertical = 3
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_bottom = 32
 
-[node name="Progress_stat_3" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_3/VBoxContainer2/MarginContainer"]
+[node name="Progress_loot" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_3/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
@@ -1031,7 +1121,19 @@ theme_override_constants/outline_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
 theme_override_styles/fill = SubResource("StyleBoxFlat_00jmx")
 step = 1.0
-value = 100.0
+value = 80.0
+show_percentage = false
+
+[node name="Progress_stat" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_3/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_6p7ol")
+theme_override_styles/fill = SubResource("StyleBoxFlat_koxka")
+step = 1.0
+value = 50.0
 show_percentage = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_3"]
@@ -1051,6 +1153,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
 theme_override_font_sizes/font_size = 24
 text = "0
 "
@@ -1085,16 +1188,28 @@ size_flags_vertical = 3
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_bottom = 32
 
-[node name="Progress_stat_4" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_4/VBoxContainer2/MarginContainer"]
+[node name="Progress_loot" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_4/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
-theme_override_styles/fill = SubResource("StyleBoxFlat_j4brp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_alk6x")
 step = 1.0
-value = 100.0
+value = 80.0
+show_percentage = false
+
+[node name="Progress_stat" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_4/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_6p7ol")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rhgmo")
+step = 1.0
+value = 50.0
 show_percentage = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer/VBoxContainer/stat_4"]
@@ -1114,6 +1229,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
 theme_override_font_sizes/font_size = 24
 text = "0
 "
@@ -1148,14 +1264,26 @@ size_flags_vertical = 3
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_bottom = 32
 
-[node name="Progress_stat_5" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_5/VBoxContainer2/MarginContainer"]
+[node name="Progress_loot" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_5/VBoxContainer2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_styles/background = SubResource("StyleBoxFlat_vdv3k")
-theme_override_styles/fill = SubResource("StyleBoxFlat_dht5s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7rgyl")
+step = 1.0
+value = 80.0
+show_percentage = false
+
+[node name="Progress_stat" type="ProgressBar" parent="StatsContainer/VBoxContainer/stat_5/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_6p7ol")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cj3uj")
 step = 1.0
 value = 50.0
 show_percentage = false
@@ -1177,6 +1305,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
 theme_override_font_sizes/font_size = 24
 text = "0
 "
@@ -2006,8 +2135,8 @@ libraries = {
 [connection signal="pressed" from="StatsContainer/VBoxContainer/stat_4/VBoxContainer/remove_stat_4" to="." method="_on_remove_stat_4_pressed"]
 [connection signal="pressed" from="StatsContainer/VBoxContainer/stat_5/VBoxContainer/add_stat_5" to="." method="_on_add_stat_5_pressed"]
 [connection signal="pressed" from="StatsContainer/VBoxContainer/stat_5/VBoxContainer/remove_stat_5" to="." method="_on_remove_stat_5_pressed"]
-[connection signal="pressed" from="StatsContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="StatsContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_apply_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_button_pressed"]
 [connection signal="resized" from="InventoryManager" to="." method="_on_background_resized"]
 [connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton" to="InventoryManager" method="_on_hat_button_pressed"]
 [connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer2/NecklaceButton" to="InventoryManager" method="_on_necklace_button_pressed"]

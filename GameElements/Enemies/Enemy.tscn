@@ -1,10 +1,15 @@
 [gd_scene load_steps=2 format=3 uid="uid://bkg3sywh2nxxl"]
 
-[ext_resource type="Script" path="res://GameElements/Enemies/Follower.gd" id="1_njvkb"]
+[sub_resource type="GDScript" id="GDScript_j7j1r"]
+script/source = "class_name Follower
+extends PathFollow2D
+
+var child : Node2D = null
+"
 
 [node name="Follower" type="PathFollow2D"]
 rotates = false
-script = ExtResource("1_njvkb")
+script = SubResource("GDScript_j7j1r")
 
 [node name="_Timer_152834" type="Timer" parent="."]
 wait_time = 0.2

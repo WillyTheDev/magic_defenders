@@ -108,8 +108,8 @@ func start_new_wave():
 	%SpawnFlyingEnemyTimer.wait_time = clamp(spawn_flying_enemy_rates, 0.5, 2.5)
 	%SpawnFlyingEnemyTimer.start()
 
-	if current_wave >= 5 && Global.selected_difficulty > 1:
-		Enemy.base_health += Global.selected_difficulty
+	if current_wave > 5 && Global.selected_difficulty > 1:
+		Enemy.base_health += Global.selected_difficulty - 1
 		Enemy.base_speed += Global.selected_difficulty
 		if Global.selected_difficulty > 2:
 			Enemy.base_damage += Global.selected_difficulty / 2

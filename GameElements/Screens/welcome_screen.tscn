@@ -134,7 +134,6 @@ is_on_welcome_screen = true
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("19_26kxm")
-volume_db = -5.0
 bus = &"SFX"
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]

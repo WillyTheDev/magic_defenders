@@ -12,15 +12,15 @@ shader_parameter/speed = 6.0
 shader_parameter/frames = 6
 shader_parameter/flowMap = ExtResource("2_2r58m")
 
-[sub_resource type="Gradient" id="Gradient_m0sw6"]
-offsets = PackedFloat32Array(0, 0.935484, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0604839, 1, 1, 1, 0)
+[sub_resource type="Gradient" id="Gradient_47oci"]
+offsets = PackedFloat32Array(0, 0.407258, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.391129, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_5jdy3"]
-gradient = SubResource("Gradient_m0sw6")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kscab"]
+gradient = SubResource("Gradient_47oci")
 fill = 1
-fill_from = Vector2(0.517094, 0.491453)
-fill_to = Vector2(0.846154, 0.153846)
+fill_from = Vector2(0.542735, 0.5)
+fill_to = Vector2(0.816239, 0.226496)
 
 [node name="Torch" type="Sprite2D"]
 modulate = Color(1.2, 1, 1, 1)
@@ -30,14 +30,24 @@ position = Vector2(1046, 347)
 scale = Vector2(0.208536, 0.208536)
 texture = ExtResource("3_mf4fj")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(61.6441, -168.314)
-rotation = -0.00693274
-scale = Vector2(32.9875, 30.6532)
+[node name="PointLightShadow" type="PointLight2D" parent="."]
+position = Vector2(-23.9768, -158.246)
+scale = Vector2(58.863, 56.3006)
 blend_mode = 2
 shadow_enabled = true
+shadow_filter = 1
 shadow_filter_smooth = 14.5
-texture = SubResource("GradientTexture2D_5jdy3")
+texture = SubResource("GradientTexture2D_kscab")
+height = 1.0
+
+[node name="PointLightSprite" type="PointLight2D" parent="."]
+position = Vector2(-23.9768, -158.246)
+scale = Vector2(58.863, 56.3006)
+blend_mode = 2
+range_item_cull_mask = 2
+shadow_filter = 1
+shadow_filter_smooth = 14.5
+texture = SubResource("GradientTexture2D_kscab")
 height = 1.0
 
 [node name="Shadow" type="Sprite2D" parent="."]

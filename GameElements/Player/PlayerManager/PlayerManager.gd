@@ -9,9 +9,11 @@ signal apply_change
 func _ready():
 	for index in range(1,6):
 		var label = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [index,index])
-		var progress = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [index,index])
+		var progress = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat" % index)
+		var progress_loot = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_loot" % index)
 		label.text = "%s" % Global.getTotalStatFromIndex(index)
-		progress.value = Global.getTotalStatFromIndex(index)
+		progress.value = Global.getStatFromIndex(index)
+		progress_loot.value = Global.getTotalStatFromIndex(index)
 	
 func show_player_profile():
 	%LevelLabel.text = "Level : %s" % Global.player_level
@@ -49,18 +51,22 @@ func update_stat(stat_index : int, increment_value : int, loot_change : bool):
 	if increment_value < 0:
 		if Global.getStatFromIndex(stat_index) > 0:
 			var label = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [stat_index,stat_index])
-			var progress = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [stat_index,stat_index])
+			var progress = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat" % stat_index)
+			var progress_loot = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_loot" % stat_index)
 			Global.setStatFromIndex(stat_index, increment_value)
 			label.text = "%s" % Global.getTotalStatFromIndex(stat_index)
-			progress.value = Global.getTotalStatFromIndex(stat_index)
+			progress.value = Global.getStatFromIndex(stat_index)
+			progress_loot.value = Global.getTotalStatFromIndex(stat_index)
 			if loot_change == false:
 				Global.player_avail_pts += 1
 	elif (Global.player_avail_pts > 0 && Global.getTotalStatFromIndex(stat_index) < 100) || loot_change:
 		var label = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer/label_stat_%s" % [stat_index,stat_index])
-		var progress = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat_%s" % [stat_index,stat_index])
+		var progress = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_stat" % stat_index)
+		var progress_loot = get_node("StatsContainer/VBoxContainer/stat_%s/VBoxContainer2/MarginContainer/Progress_loot" % stat_index)
 		Global.setStatFromIndex(stat_index, increment_value)
 		label.text = "%s" % Global.getTotalStatFromIndex(stat_index)
-		progress.value = Global.getTotalStatFromIndex(stat_index)
+		progress.value = Global.getStatFromIndex(stat_index)
+		progress_loot.value = Global.getTotalStatFromIndex(stat_index)
 		if loot_change == false:
 			Global.player_avail_pts -= 1
 			if Global.player_avail_pts == 0:

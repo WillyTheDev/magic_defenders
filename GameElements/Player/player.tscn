@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bcw643o4voapk"]
+[gd_scene load_steps=22 format=3 uid="uid://dwwaq45lsy17j"]
 
 [ext_resource type="Script" path="res://GameElements/Player/Player.gd" id="1_h1uax"]
 [ext_resource type="PackedScene" uid="uid://kbm12vsaf3ev" path="res://GameElements/Player/player_animation.tscn" id="2_m3wv4"]
@@ -149,12 +149,24 @@ position = Vector2(-2.74643, -81.1097)
 rotation = 0.554302
 scale = Vector2(1.48387, 1.48387)
 
-[node name="PointLight2D" type="PointLight2D" parent="WandPivot/Arm/Wand"]
+[node name="PointLightshadow" type="PointLight2D" parent="WandPivot/Arm/Wand"]
 position = Vector2(1.0935, -90.7889)
 rotation = 0.213683
 scale = Vector2(32.7508, 30.4332)
 blend_mode = 2
 shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 14.5
+texture = SubResource("GradientTexture2D_ua7si")
+height = 1.0
+
+[node name="PointLightsprite" type="PointLight2D" parent="WandPivot/Arm/Wand"]
+position = Vector2(1.0935, -90.7889)
+rotation = 0.213683
+scale = Vector2(32.7508, 30.4332)
+blend_mode = 2
+range_item_cull_mask = 2
+shadow_filter = 1
 shadow_filter_smooth = 14.5
 texture = SubResource("GradientTexture2D_ua7si")
 height = 1.0

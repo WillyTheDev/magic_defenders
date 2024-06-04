@@ -12,6 +12,9 @@
 radius = 54.9969
 height = 160.256
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_btthd"]
+polygon = PackedVector2Array(-40, -45, -70, -15, -80, 30, -67.5, 47.5, -37.5, 55, 37.5, 52.5, 62.5, 47.5, 77.5, 32.5, 70, -12.5, 47.5, -42.5, 0, -57.5)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pg4ob"]
 shader = ExtResource("3_gojkd")
 shader_parameter/strength = 0.015
@@ -23,7 +26,7 @@ shader_parameter/flowMap = ExtResource("4_0qrut")
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Shadow:scale")
+tracks/0/path = NodePath("Node2D/Shadow:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -35,7 +38,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Slime:texture")
+tracks/1/path = NodePath("Node2D/Slime:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -47,7 +50,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Slime:scale")
+tracks/2/path = NodePath("Node2D/Slime:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -63,7 +66,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Slime:texture")
+tracks/0/path = NodePath("Node2D/Slime:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -80,7 +83,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Shadow:scale")
+tracks/0/path = NodePath("Node2D/Shadow:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -92,7 +95,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Slime:scale")
+tracks/1/path = NodePath("Node2D/Slime:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -125,10 +128,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_btthd"]
-polygon = PackedVector2Array(-40, -45, -70, -15, -80, 30, -67.5, 47.5, -37.5, 55, 37.5, 52.5, 62.5, 47.5, 77.5, 32.5, 70, -12.5, 47.5, -42.5, 0, -57.5)
-
 [node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
+light_mask = 2
 z_index = 1
 scale = Vector2(0.4, 0.4)
 platform_floor_layers = 4294967040
@@ -138,37 +139,51 @@ MANA_AMOUNT = 3
 health_increment = 2
 enemy_damage = 0
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.56018
+shape = SubResource("CapsuleShape2D_8r5an")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Node2D"]
+scale = Vector2(1, 1)
+occluder = SubResource("OccluderPolygon2D_btthd")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Node2D"]
+position = Vector2(-3.8147e-06, -1.25)
+scale = Vector2(8, 5.625)
+
+[node name="Shadow" type="Sprite2D" parent="Node2D"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(4.19806, 45.6023)
 scale = Vector2(0.706, 0.665)
 texture = ExtResource("2_dhwrf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = -1.56018
-shape = SubResource("CapsuleShape2D_8r5an")
-
-[node name="Slime" type="Sprite2D" parent="."]
+[node name="Slime" type="Sprite2D" parent="Node2D"]
+light_mask = 2
 material = SubResource("ShaderMaterial_pg4ob")
 position = Vector2(-0.702384, 0.500003)
 scale = Vector2(0.34, 0.34)
 texture = ExtResource("5_q6xfj")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
 unique_name_in_owner = true
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_w3qrp")
 }
 
-[node name="HitAudio" type="AudioStreamPlayer2D" parent="."]
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="Node2D"]
 unique_name_in_owner = true
+scale = Vector2(1, 1)
 stream = ExtResource("7_nj8hl")
 volume_db = 1.0
 bus = &"SFX"
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="Node2D"]
 unique_name_in_owner = true
-z_index = 1
+z_index = 20
+z_as_relative = false
 offset_left = -72.5
 offset_top = -85.0
 offset_right = 74.5
@@ -180,9 +195,7 @@ step = 0.5
 value = 5.0
 show_percentage = false
 
-[node name="Hat" type="Sprite2D" parent="."]
+[node name="Hat" type="Sprite2D" parent="Node2D"]
 unique_name_in_owner = true
 position = Vector2(0, -62.5)
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource("OccluderPolygon2D_btthd")
+scale = Vector2(1, 1)

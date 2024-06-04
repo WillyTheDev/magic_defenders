@@ -18,6 +18,9 @@ var has_loot = false
 var loot : Loot = null
 var can_take_damage = true
 var hat_index = 0
+const RECOIL = 10
+var took_damage = false
+var damage_init_position = 0
 
 signal slime_has_been_killed
 
@@ -45,7 +48,12 @@ func _on_enemy_modification(args: Callable):
 
 func _process(delta):
 	if follow_path:
-		get_parent().progress += delta * speed
+		if took_damage:
+			get_parent().progress -= delta * (speed * 4)
+			if get_parent().progress <= damage_init_position - RECOIL:
+				took_damage = false
+		else:
+			get_parent().progress += delta * speed
 		
 
 func take_damage(damage=1):
@@ -53,6 +61,8 @@ func take_damage(damage=1):
 		play_animation_hit()
 		%HitAudio.play()
 		health -= damage
+		took_damage = true
+		damage_init_position = get_parent().progress
 		%HealthBar.value = health
 		var dmg_indicator = preload("res://GameElements/misc/damage_indicator.tscn").instantiate()
 		dmg_indicator.set_value(int(damage * 10))

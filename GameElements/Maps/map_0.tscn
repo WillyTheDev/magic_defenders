@@ -1290,3 +1290,9 @@ position = Vector2(1846, 467)
 
 [node name="Torch7" parent="." instance=ExtResource("22_r834d")]
 position = Vector2(1477, 313)
+
+[node name="Torch8" parent="." instance=ExtResource("22_r834d")]
+position = Vector2(1244, 607)
+
+[node name="Torch9" parent="." instance=ExtResource("22_r834d")]
+position = Vector2(1506, 710)

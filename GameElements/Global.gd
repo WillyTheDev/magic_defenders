@@ -112,8 +112,8 @@ static var unlocked_skills = {
 static var selected_skills = {
 	"skill_0": 0,
 	"skill_1": 1,
-	"skill_2": 2,
-	"skill_3": 3,
+	"skill_2": 0,
+	"skill_3": 1,
 }
 
 #======================
@@ -202,6 +202,7 @@ func _save():
 		"sound_volume": sound_volume,
 		"unlocked_hats": unlocked_hats,
 		"unlocked_skills": unlocked_skills,
+		"selected_skills": selected_skills,
 	}
 	return save_dict
 	

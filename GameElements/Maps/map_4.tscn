@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://3frlqpkjon2p"]
+[gd_scene load_steps=23 format=3 uid="uid://3frlqpkjon2p"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_ysl11"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_4hn8b"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bqnvxqkjk66ec" path="res://Assets/envirronment/arbre.png" id="8_cklcg"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="9_a0lps"]
 [ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/core.tscn" id="10_xhhym"]
+[ext_resource type="PackedScene" uid="uid://clhu7ht04c7da" path="res://GameElements/Maps/env/torch.tscn" id="12_xr0vq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfba4"]
 shader = ExtResource("2_4hn8b")
@@ -86,19 +87,6 @@ paths = [NodePath("Arrière-plan/Paths/Path2D"), NodePath("Arrière-plan/Paths/P
 flyingSpawnPoint = NodePath("Arrière-plan/Paths/Path_flying/FlyingSpawnPoint")
 player_starting_mana = 120
 map_index = 4
-
-[node name="River" type="ColorRect" parent="."]
-z_index = -2
-offset_left = 436.0
-offset_top = 990.0
-offset_right = 2801.0
-offset_bottom = 1511.0
-color = Color(0.682353, 0.886275, 1, 1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="River"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="River/StaticBody2D"]
-polygon = PackedVector2Array(331, 521, 399, 284, 528, 74, 856, 46, 1113, 61, 1237, 325, 1294, 529)
 
 [node name="Arrière-plan" type="Sprite2D" parent="."]
 z_index = -1
@@ -1697,3 +1685,27 @@ z_index = -1
 position = Vector2(-8.00006, 220)
 scale = Vector2(1.38806, 1.38806)
 texture = ExtResource("9_a0lps")
+
+[node name="Torch" parent="." instance=ExtResource("12_xr0vq")]
+position = Vector2(2037, 1277)
+
+[node name="Torch2" parent="." instance=ExtResource("12_xr0vq")]
+position = Vector2(508, 1363)
+
+[node name="Torch3" parent="." instance=ExtResource("12_xr0vq")]
+position = Vector2(1834, 828)
+
+[node name="Torch4" parent="." instance=ExtResource("12_xr0vq")]
+position = Vector2(1795, 454)
+
+[node name="Torch5" parent="." instance=ExtResource("12_xr0vq")]
+position = Vector2(530, 368)
+
+[node name="Torch6" parent="." instance=ExtResource("12_xr0vq")]
+position = Vector2(1250, 457)
+
+[node name="Torch7" parent="." instance=ExtResource("12_xr0vq")]
+position = Vector2(2120, 65)
+
+[node name="Torch8" parent="." instance=ExtResource("12_xr0vq")]
+position = Vector2(2177, 824)

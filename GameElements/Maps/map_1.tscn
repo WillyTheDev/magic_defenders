@@ -1650,13 +1650,13 @@ unique_name_in_owner = true
 position = Vector2(2005, 570)
 
 [node name="Torch" parent="." instance=ExtResource("12_upevy")]
-position = Vector2(174, 794)
+position = Vector2(35, 805)
 
 [node name="Torch2" parent="." instance=ExtResource("12_upevy")]
 position = Vector2(408, 430)
 
 [node name="Torch3" parent="." instance=ExtResource("12_upevy")]
-position = Vector2(764, 828)
+position = Vector2(852, 823)
 
 [node name="Torch4" parent="." instance=ExtResource("12_upevy")]
 position = Vector2(1392, 438)

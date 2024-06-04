@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b4xtx2i10xge1"]
+[gd_scene load_steps=22 format=3 uid="uid://b4xtx2i10xge1"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_vpqgu"]
 [ext_resource type="Material" uid="uid://cpw1r3dhb6b27" path="res://Shaders/water.tres" id="2_i7vxa"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="8_hatjj"]
 [ext_resource type="Texture2D" uid="uid://d1v07087ptaua" path="res://Assets/envirronment/buisson.png" id="8_sc1lr"]
 [ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/core.tscn" id="9_3kjds"]
+[ext_resource type="PackedScene" uid="uid://clhu7ht04c7da" path="res://GameElements/Maps/env/torch.tscn" id="13_5ehet"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfba4"]
 shader = ExtResource("5_hhm7y")
@@ -1682,3 +1683,27 @@ z_index = -1
 position = Vector2(-8.00006, 220)
 scale = Vector2(1.38806, 1.38806)
 texture = ExtResource("8_hatjj")
+
+[node name="Torch" parent="." instance=ExtResource("13_5ehet")]
+position = Vector2(1040, 726)
+
+[node name="Torch2" parent="." instance=ExtResource("13_5ehet")]
+position = Vector2(234, 129)
+
+[node name="Torch3" parent="." instance=ExtResource("13_5ehet")]
+position = Vector2(1933, 516)
+
+[node name="Torch4" parent="." instance=ExtResource("13_5ehet")]
+position = Vector2(1393, 503)
+
+[node name="Torch5" parent="." instance=ExtResource("13_5ehet")]
+position = Vector2(2403, 506)
+
+[node name="Torch6" parent="." instance=ExtResource("13_5ehet")]
+position = Vector2(1762, 862)
+
+[node name="Torch7" parent="." instance=ExtResource("13_5ehet")]
+position = Vector2(365, 525)
+
+[node name="Torch8" parent="." instance=ExtResource("13_5ehet")]
+position = Vector2(1505, 176)

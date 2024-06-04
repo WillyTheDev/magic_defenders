@@ -67,12 +67,12 @@ func _create_urgent_quests(questData: UrgentQuest):
 func _generate_quests():
 	var quest = preload("res://GameElements/Screens/map_button.tscn").instantiate()
 	var difficulty = randi_range(1, Global.urgent_quests_completed)
-	var max_waves = randi_range(5,10)
+	var max_waves = randi_range(6,10)
 	var map_select = randi_range(1, nb_map_implemented)
 	var sequences : Array[String] = []
 	for wave in range(max_waves):
 		var sequence = add_normal_slime(difficulty, wave)
-		if wave < 3 && wave > 1:
+		if  wave > 0:
 			sequence += add_normal_slime(difficulty, wave)
 		if wave >= 3 && wave < 6:
 			sequence += add_medium_slime(difficulty, wave)
@@ -83,7 +83,7 @@ func _generate_quests():
 			sequence += add_bat(difficulty, wave)
 			sequence += add_medium_slime(difficulty, wave)
 			sequence += add_hard_slime(difficulty, wave)
-		if wave == max_waves:
+		if wave == max_waves - 1:
 			sequence += add_mana_slime(difficulty)
 		sequence = sequence.erase(0)
 		print("Sequence = %s " % sequence)
@@ -108,13 +108,13 @@ func _generate_quests():
 	return quest
 	
 func add_normal_slime(difficulty, wave):
-		return ",%sx%s" % [randi_range(3,7 * difficulty) + wave, 1]
+		return ",%sx%s" % [randi_range(6,10 * difficulty) + wave, 1]
 
 func add_medium_slime(difficulty, wave):
 	if difficulty < 2:
 		return add_normal_slime(difficulty, wave)
 	else:
-		return ",%sx%s" % [randi_range(0,1 * difficulty + wave), 2]
+		return ",%sx%s" % [randi_range(1,1 * difficulty + wave), 2]
 	
 func add_hard_slime(difficulty, wave):
 	if difficulty < 2:
@@ -122,7 +122,7 @@ func add_hard_slime(difficulty, wave):
 	elif difficulty < 4:
 		return add_medium_slime(difficulty, wave)
 	else:
-		return ",%sx%s" % [randi_range(0, 1 * (difficulty)), 3]
+		return ",%sx%s" % [randi_range(1, 1 * (difficulty)), 3]
 	
 func add_bat(difficulty, _wave):
 	return ",%sx%s" % [randi_range(1,2 * difficulty), 4]
@@ -135,19 +135,19 @@ static var urgent_quests = [
 		["7x1","10x1","15x1","1x4","15x1,1x4","15x1,1x4,3x1","17x1,1x4,7x1", "20x1,1x4,5x1", "7x4", "30x1,1x5"],
 		0,
 		preload("res://Assets/UI/map_selection_button/reduced_merchant.png")),
-	UrgentQuest.new("quest_2", 2, 9, 1, true,
+	UrgentQuest.new("quest_2", 2, 9, 2, true,
+		["10x1","15x1","15x1,1x2","15x1,1x2,1x4","15x1,1x2,1x4,5x1","15x1,1x2,3x4,5x1","18x1,2x2,5x4,5x1", "18x1,2x2,5x4,5x1", "30x4", "22x1,5x4,2x2,5x1,1x5"],
+		0,
+		preload("res://Assets/loots/bourse.png")),
+	UrgentQuest.new("quest_3", 3, 9, 3, true,
 		["10x1","15x1","15x1,1x2","15x1,1x2,1x4","15x1,1x2,1x4,5x1","15x1,2x2,3x4,5x1","18x1,3x2,5x4,5x1", "18x1,3x2,5x4,5x1", "30x4", "22x1,3x2,5x4,3x2,5x1,1x5"],
 		0,
 		preload("res://Assets/loots/bourse.png")),
-	UrgentQuest.new("quest_3", 3, 9, 1, true,
+	UrgentQuest.new("quest_4", 4, 9, 4, true,
 		["10x1","15x1","15x1,1x2","15x1,1x2,1x4","15x1,1x2,1x4,5x1","15x1,2x2,3x4,5x1","18x1,3x2,5x4,5x1", "18x1,3x2,5x4,5x1", "30x4", "22x1,3x2,5x4,3x2,5x1,1x5"],
 		0,
 		preload("res://Assets/loots/bourse.png")),
-	UrgentQuest.new("quest_4", 4, 9, 1, true,
-		["10x1","15x1","15x1,1x2","15x1,1x2,1x4","15x1,1x2,1x4,5x1","15x1,2x2,3x4,5x1","18x1,3x2,5x4,5x1", "18x1,3x2,5x4,5x1", "30x4", "22x1,3x2,5x4,3x2,5x1,1x5"],
-		0,
-		preload("res://Assets/loots/bourse.png")),
-	UrgentQuest.new("quest_4", 5, 9, 1, true,
+	UrgentQuest.new("quest_4", 5, 9, 5, true,
 		["10x1","15x1","15x1,1x2","15x1,1x2,1x4","15x1,1x2,1x4,5x1","15x1,2x2,3x4,5x1","18x1,3x2,5x4,5x1", "18x1,3x2,5x4,5x1", "30x4", "22x1,3x2,5x4,3x2,5x1,1x5"],
 		0,
 		preload("res://Assets/loots/bourse.png")),
