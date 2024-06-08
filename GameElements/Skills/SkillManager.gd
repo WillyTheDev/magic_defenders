@@ -158,6 +158,22 @@ static var skills : Array[Skill] = [
 	 preload("res://GameElements/Spells/meteor_bolt.tscn"),
 	"A meteor",
 	"spell", false),
+	Skill.new(
+		"skill_7",
+		15,
+	 preload("res://Assets/UI/Skills_button/spiked_defense_normal.png"),
+	 preload("res://Assets/UI/Skills_button/spiked_defense_hover.png"),
+	 preload("res://GameElements/defense/spiked_defense.tscn"),
+	"A defense that inflicts damage to nearby ennemies",
+	"defense", false),
+	Skill.new(
+		"skill_8",
+		30,
+	 preload("res://Assets/UI/Skills_button/vision_turret_normal.png"),
+	 preload("res://Assets/UI/Skills_button/vision_turret_hover.png"),
+	 preload("res://GameElements/defense/vision_turret.tscn"),
+	"A turret that reveals untargetable ennemies and reduce the ennemy damageawd",
+	"defense", false),
 ]
 
 

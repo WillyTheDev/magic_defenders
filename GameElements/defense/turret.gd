@@ -7,7 +7,6 @@ func _abstract_turret_ready():
 	pass
 
 func _ready():
-	_abstract_turret_ready()
 	%FireAudio.volume_db = Global.sound_volume
 	var DefenseTimer = get_node("/root/Game/DefenseTimer")
 	DefenseTimer.timeout.connect(_on_timer_timeout)

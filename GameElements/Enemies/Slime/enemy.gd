@@ -18,7 +18,7 @@ var has_loot = false
 var loot : Loot = null
 var can_take_damage = true
 var hat_index = 0
-const RECOIL = 10
+const RECOIL = 5
 var took_damage = false
 var damage_init_position = 0
 
@@ -111,3 +111,23 @@ func add_hat(index: int):
 func add_loot(loot_to_add:Loot):
 	has_loot = true
 	self.loot = loot_to_add
+
+
+func _on_area_2d_body_entered(body):
+	print("body in range !")
+	print(body)
+	if body is StaticBody2D:
+		print("body is defense !")
+		body.get_parent().cumulated_damage += base_damage
+		%WaterRay.rotation = %WaterRay.get_angle_to(body.global_position)
+		%WaterRay.visible = true
+		speed = 0
+
+
+func _on_area_2d_body_exited(body):
+	if body is StaticBody2D:
+		%WaterRay.visible = false
+		%WaterRay.rotation = 0
+		speed = base_speed + speed_increment
+		if body != null:
+			body.get_parent().cumulated_damage -= base_damage

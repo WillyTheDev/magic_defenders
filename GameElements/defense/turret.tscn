@@ -23,6 +23,7 @@ size = Vector2(26, 31)
 
 [node name="Turret" type="Node2D"]
 modulate = Color(0.223529, 0.745098, 1, 0.545098)
+z_index = 1
 position = Vector2(386, 196)
 script = ExtResource("1_c4q16")
 
@@ -52,6 +53,7 @@ shape = SubResource("RectangleShape2D_eyh6e")
 [node name="ShootZone" type="Area2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(3, 0)
+collision_layer = 3
 collision_mask = 2
 monitorable = false
 

@@ -218,6 +218,7 @@ text = "Loots :"
 
 [node name="LootsContainer" type="HBoxContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_override_constants/separation = 30
 

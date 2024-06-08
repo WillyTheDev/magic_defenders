@@ -189,6 +189,7 @@ fill_from = Vector2(0.517094, 0.491453)
 fill_to = Vector2(0.850427, 0.175214)
 
 [node name="NPC" type="Node2D"]
+visible = false
 z_index = 1
 position = Vector2(1442, 507)
 scale = Vector2(1.1, 1.1)
@@ -226,18 +227,20 @@ libraries = {
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="InteractingZone" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(4, 4)
 shape = SubResource("CircleShape2D_0qv7m")
+disabled = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionBody" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(3.63636, 22.7273)
 shape = SubResource("CircleShape2D_ujj8i")
+disabled = true
 
 [node name="PointLightShadow" type="PointLight2D" parent="."]
 position = Vector2(5.45457, -2.72727)

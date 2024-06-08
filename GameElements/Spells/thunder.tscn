@@ -24,7 +24,8 @@ spread = 112.5
 angular_velocity_min = -194.05
 angular_velocity_max = -74.05
 gravity = Vector3(0, 300, 0)
-scale_max = 2.15
+scale_min = 2.0
+scale_max = 3.0
 color = Color(0.92549, 0.92549, 0.917647, 1)
 sub_emitter_mode = 2
 sub_emitter_amount_at_end = 3
@@ -60,11 +61,11 @@ scale = Vector2(0.84, 0.84)
 texture = ExtResource("2_tuupf")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Area2D"]
-position = Vector2(4, -517)
-amount = 150
+position = Vector2(-1, -450.25)
+amount = 200
 sub_emitter = NodePath("../GPUParticles2D2")
 process_material = SubResource("ParticleProcessMaterial_b6s31")
-lifetime = 2.1
+lifetime = 4.0
 explosiveness = 0.08
 randomness = 0.45
 collision_base_size = 0.0

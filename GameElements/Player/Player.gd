@@ -83,7 +83,8 @@ func _input(event):
 	if event.is_action_released("left_click"):
 			%AutoShootTimer.stop()
 	if event.is_action_pressed("interact"):
-		$/root/Game/Map/NPCManager.interact_with_npc(nearest_npc_index)
+		if get_node_or_null("/root/Game/Map/NPCManager") != null:
+			$/root/Game/Map/NPCManager.interact_with_npc(nearest_npc_index)
 	#====================
 	#Skills Input
 	#====================
@@ -115,6 +116,7 @@ func _reload():
 
 func _shoot():
 	%FireAudio.play()
+	%Camera2D.apply_shake(0.5)
 	var new_magic_bolt = magic_bolt.instantiate()
 	new_magic_bolt.global_position = %ShootingPoint.global_position
 	new_magic_bolt.global_rotation = %ShootingPoint.global_rotation

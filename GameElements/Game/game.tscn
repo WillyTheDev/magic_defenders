@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=56 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Script" path="res://GameElements/Maps/day&night.gd" id="2_gxe6o"]
@@ -12,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://d0ig6hkyys31f" path="res://Assets/Ennemies/Slime_v2_gold.png" id="8_qctxw"]
 [ext_resource type="AudioStream" uid="uid://0lc8krsnc1y2" path="res://Assets/audio/The Verdant Grove.ogg" id="9_1qta1"]
 [ext_resource type="Script" path="res://GameElements/Game/UI.gd" id="10_c0pl3"]
+[ext_resource type="Texture2D" uid="uid://bs7by5uuox23b" path="res://Assets/Ennemies/Slime_v2_ghost.png" id="10_oj7xj"]
 [ext_resource type="PackedScene" uid="uid://dk18yh7kobthq" path="res://GameElements/Skills/skill_container.tscn" id="10_wf8js"]
+[ext_resource type="Texture2D" uid="uid://cskmx4hq83i1q" path="res://Assets/Ennemies/fishmen.png" id="11_7wub0"]
 [ext_resource type="Texture2D" uid="uid://mbb4wx3vmk6q" path="res://Assets/UI/Skills_button/new_skill.png" id="12_uc5h4"]
 [ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="13_buvah"]
 [ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="13_ester"]
@@ -563,6 +565,20 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 texture = ExtResource("8_qctxw")
+expand_mode = 3
+
+[node name="Enemy_6" type="TextureRect" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("10_oj7xj")
+expand_mode = 3
+
+[node name="Enemy_7" type="TextureRect" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("11_7wub0")
 expand_mode = 3
 
 [node name="CoreAttackedRect" type="ColorRect" parent="UI"]

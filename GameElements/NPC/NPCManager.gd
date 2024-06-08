@@ -1,9 +1,5 @@
 extends Node
 
-func _ready():
-	if Global.urgent_quests_completed > 0:
-		get_node("/root/Game/Map/Merchant").visible = true
-
 func interact_with_npc(npc_index):
 	match npc_index:
 		0:

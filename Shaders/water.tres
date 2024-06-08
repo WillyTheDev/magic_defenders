@@ -1,16 +1,8 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cpw1r3dhb6b27"]
 
-[ext_resource type="Shader" path="res://Shaders/cloud.gdshader" id="1_rg75g"]
+[ext_resource type="Shader" path="res://Shaders/water_v2.gdshader" id="1_b6hea"]
 
 [resource]
-shader = ExtResource("1_rg75g")
-shader_parameter/OCTAVE = 6
-shader_parameter/mulscale = 5.0
-shader_parameter/height = 1.0
-shader_parameter/tide = 0.5
-shader_parameter/foamthickness = 0.1
-shader_parameter/timescale = 0.5
-shader_parameter/waterdeep = 1.0
-shader_parameter/WATER_COL = Color(0.04, 0.38, 0.88, 1)
-shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
-shader_parameter/FOAM_COL = Color(0.0957179, 0.521142, 0.784955, 1)
+shader = ExtResource("1_b6hea")
+shader_parameter/uv_scale = 7.5
+shader_parameter/color_alpha = 0.8

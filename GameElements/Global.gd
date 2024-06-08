@@ -107,6 +107,8 @@ static var unlocked_skills = {
 	"skill_4": false,
 	"skill_5": false,
 	"skill_6": false,
+	"skill_7": false,
+	"skill_8": true,
 }
 
 static var selected_skills = {
@@ -221,8 +223,8 @@ func new_save():
 		"player_equipped_hat" : 99,
 		"accumulated_gold" : 0,
 		"urgent_quests_completed" : 0,
-		"audio_volume": 0,
-		"sound_volume": 0,
+		"audio_volume": 1,
+		"sound_volume": 1,
 		"unlocked_hats": {
 							"hat_0" : false,
 							"hat_1" : false,
@@ -239,6 +241,8 @@ func new_save():
 							"skill_4": false,
 							"skill_5": false,
 							"skill_6": false,
+							"skill_7": false,
+							"skill_8": true
 						},
 	}
 	print("CLEAR INVENTORY")

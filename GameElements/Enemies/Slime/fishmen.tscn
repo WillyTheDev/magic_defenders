@@ -1,0 +1,342 @@
+[gd_scene load_steps=20 format=3 uid="uid://lm2wm3wbftyy"]
+
+[ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_wieju"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_ldjw8"]
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="3_vfvox"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_np3oo"]
+[ext_resource type="Texture2D" uid="uid://cskmx4hq83i1q" path="res://Assets/Ennemies/fishmen.png" id="5_grhyb"]
+[ext_resource type="Texture2D" uid="uid://dvy4dchjw1iri" path="res://Assets/Ennemies/fishmen_hit.png" id="6_uox2o"]
+[ext_resource type="AudioStream" uid="uid://bdpsn8a3ki0cf" path="res://Assets/audio/fishmen_hit.wav" id="7_41lio"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r5an"]
+radius = 70.049
+height = 140.098
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bej7o"]
+radius = 199.918
+
+[sub_resource type="Shader" id="Shader_65bxj"]
+code = "shader_type canvas_item;
+
+#define iResolution 1.0/SCREEN_PIXEL_SIZE
+#define iTime TIME
+#define fragColor COLOR
+
+uniform float uv_scale : hint_range(0.0, 10.0, 0.1) = 1.0;
+uniform float color_alpha : hint_range(0.0, 1.0, 0.1) = 1.0;
+
+vec2 hash( vec2 p ) // replace this by something better
+{
+    p = vec2( dot(p,vec2(127.1,311.7)), dot(p,vec2(269.5,183.3)) );
+    return -1.0 + 2.0*fract(sin(p)*43758.5453123);
+}
+
+float noise( in vec2 p )
+{
+    const float K1 = 0.366025404; // (sqrt(3)-1)/2;
+    const float K2 = 0.211324865; // (3-sqrt(3))/6;
+
+    vec2  i = floor( p + (p.x+p.y)*K1 );
+    vec2  a = p - i + (i.x+i.y)*K2;
+    float m = step(a.y,a.x); 
+    vec2  o = vec2(m,1.0-m);
+    vec2  b = a - o + K2;
+    vec2  c = a - 1.0 + 2.0*K2;
+    vec3  h = max( 0.5-vec3(dot(a,a), dot(b,b), dot(c,c) ), 0.0 );
+    vec3  n = h*h*h*h*vec3( dot(a,hash(i+0.0)), dot(b,hash(i+o)), dot(c,hash(i+1.0)));
+    return dot( n, vec3(70.0) );
+}
+
+#define MAX_WAVES 4
+#define SUPERPOSITION 4
+#define TAU 6.28318
+#define PHI 1.618
+
+// closed form normal would increase performance a lot
+float height(vec2 p, float t) {
+    float acc = 0.0;
+    for (int i = 0; i < MAX_WAVES; i++) {
+    for (int j = 0; j < SUPERPOSITION; j++) {
+        int seed = i + 5*j;
+        //float theta = TAU * noise(vec2(0.01 * t, 10.0*float(i)));
+        float theta = TAU * PHI * 10.0*float(seed);
+        float up = cos(theta) * p.x - sin(theta) * p.y;
+        float vp = sin(theta) * p.x + cos(theta) * p.y;
+        //float initial_phase = TAU * noise(vec2(0.0, 2.0*float(i))) + cos(vp);
+        float initial_phase = TAU * PHI * float(seed);
+        //float k = pow(2.0, float(i)*0.1) + 0.5;
+        //float k = pow(2.0, 1.0 + 0.4*float(i));
+        float k = pow(2.0, float(i));
+        //float k = float(i+1);
+        float phase = initial_phase + up*k + cos(vp) + 3.0*t + 0.5*k*t;
+        // its kinda like choose your artifacts, probably use noise for vp
+        float A = cos(phase)/(k*k);
+        acc += A;
+    }}
+    return acc;
+}
+vec4 hn_fdm(vec2 p, float t) {
+  float h = height(p, t);
+  vec2 vx = vec2(0.1, 0.0);
+  vec2 vy = vec2(0.0, 0.1);
+  float hx = height(p+vx, t);
+  float hy = height(p+vy, t);
+  float dx = (hx - h);
+  float dy = (hy - h);
+  // vec3 norm = normalize(vec3(-dx, -dy, dx+dy));
+  // vec3 norm = normalize(vec3(-dx/vx.x, -dy/vy.y, 1.0));
+
+  vec3 v1 = normalize(vec3(vx.x, 0.0, dx));
+  vec3 v2 = normalize(vec3(0.0, vy.y, dy));
+  vec3 norm = cross(v1, v2);
+
+  return vec4(norm, h);
+}
+
+void fragment()
+{
+    vec2 uv = UV;
+    vec2 uv_screen = (uv - 0.5) * uv_scale;
+
+    vec4 nh = hn_fdm(uv_screen* 10.0, iTime * 1.0);
+    float h = nh.w;
+    vec3 norm = nh.xyz;
+    vec3 sun_dir = normalize(vec3(-0.2, 0.4, 1.0));
+
+    vec4 water_colour = vec4(0.2, 0.4, 0.6, 1.0);
+    vec4 foam_colour = vec4(0.8, 0.9, 1.0, 1.0);
+    vec4 sky_colour = vec4(0.2, 0.6, 0.8, 1.0);
+    vec4 specular_colour = vec4(1.0, 1.0, 1.0, 1.0);
+
+    //fragColor = vec4(norm.xyz, 1.0); return;
+    
+    if (dot(sun_dir, norm) > 0.98) {
+        fragColor = specular_colour;
+    } else {
+        fragColor = mix(water_colour, sky_colour, dot(norm, normalize(vec3(0.0, 0.2, 1.0))));
+    }
+	fragColor.a = color_alpha;
+}
+
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jqouo"]
+shader = SubResource("Shader_65bxj")
+shader_parameter/uv_scale = 0.5
+shader_parameter/color_alpha = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_srani"]
+lifetime_randomness = 0.24
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 2, 0)
+emission_shape_scale = Vector3(1, 20, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_max = 360.0
+inherit_velocity_ratio = 0.1
+spread = 180.0
+radial_velocity_max = 50.0
+gravity = Vector3(50, 0, 0)
+scale_min = 3.0
+scale_max = 5.0
+turbulence_enabled = true
+turbulence_noise_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pg4ob"]
+shader = ExtResource("3_vfvox")
+shader_parameter/strength = 0.015
+shader_parameter/speed = 6.0
+shader_parameter/frames = 6
+shader_parameter/flowMap = ExtResource("4_np3oo")
+
+[sub_resource type="Animation" id="Animation_53ke7"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Slime:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12.5, -30)]
+}
+
+[sub_resource type="Animation" id="Animation_av0o2"]
+resource_name = "hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Slime:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_grhyb"), ExtResource("6_uox2o"), ExtResource("5_grhyb")]
+}
+
+[sub_resource type="Animation" id="Animation_vlpra"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Slime:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(3.4822, 3.4822),
+"update": 0,
+"values": [-0.174533, 0.174533]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Slime:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
+"transitions": PackedFloat32Array(3.4822, 3.4822, 3.4822, 3.4822),
+"update": 0,
+"values": [Vector2(12.5, -30), Vector2(12.5, -40), Vector2(12.5, -30), Vector2(12.5, -40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w3qrp"]
+_data = {
+"RESET": SubResource("Animation_53ke7"),
+"hit": SubResource("Animation_av0o2"),
+"idle": SubResource("Animation_vlpra")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdw2u"]
+bg_color = Color(0.136826, 0.136826, 0.136826, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cu4tc"]
+bg_color = Color(0.974545, 0.360152, 0.408545, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Fishmen" type="CharacterBody2D" groups=["Enemy"]]
+light_mask = 2
+z_index = 1
+scale = Vector2(0.5, 0.5)
+platform_floor_layers = 4294967040
+script = ExtResource("1_wieju")
+speed_increment = 65
+MANA_AMOUNT = 3
+health_increment = 2
+enemy_damage = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.56018
+shape = SubResource("CapsuleShape2D_8r5an")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Node2D"]
+position = Vector2(12.5, -30)
+scale = Vector2(9, 8.5)
+
+[node name="Shadow" type="Sprite2D" parent="Node2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(4.19806, 45.6023)
+scale = Vector2(0.74765, 0.665)
+texture = ExtResource("2_ldjw8")
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+position = Vector2(-0.00298309, 0.661018)
+scale = Vector2(1.00024, 1.02203)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+position = Vector2(78.0211, -46.4893)
+shape = SubResource("CircleShape2D_bej7o")
+
+[node name="WaterRay" type="Node2D" parent="Node2D"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(77.9592, -50.7822)
+scale = Vector2(0.18, 0.3)
+
+[node name="Ray" type="ColorRect" parent="Node2D/WaterRay"]
+unique_name_in_owner = true
+z_index = -1
+material = SubResource("ShaderMaterial_jqouo")
+offset_left = 11.3378
+offset_top = -24.0593
+offset_right = 51.3378
+offset_bottom = 5.94067
+scale = Vector2(32, 3.228)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Node2D/WaterRay/Ray"]
+position = Vector2(38.1641, 12.9428)
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_srani")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Node2D/WaterRay/Ray"]
+position = Vector2(0.366463, 10.1214)
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_srani")
+
+[node name="Slime" type="Sprite2D" parent="Node2D"]
+light_mask = 2
+material = SubResource("ShaderMaterial_pg4ob")
+position = Vector2(12.5, -30)
+rotation = 0.0840123
+scale = Vector2(0.34029, 0.325183)
+texture = ExtResource("5_grhyb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_w3qrp")
+}
+
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="Node2D"]
+unique_name_in_owner = true
+stream = ExtResource("7_41lio")
+volume_db = -5.0
+pitch_scale = 1.1
+bus = &"SFX"
+
+[node name="HealthBar" type="ProgressBar" parent="Node2D"]
+unique_name_in_owner = true
+z_index = 20
+z_as_relative = false
+offset_left = -72.5
+offset_top = -140.0
+offset_right = 74.5
+offset_bottom = -125.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hdw2u")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cu4tc")
+max_value = 5.0
+step = 0.5
+value = 5.0
+show_percentage = false
+
+[node name="Hat" type="Sprite2D" parent="Node2D"]
+unique_name_in_owner = true
+position = Vector2(0, -62.5)
+
+[connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Node2D/Area2D" to="." method="_on_area_2d_body_exited"]

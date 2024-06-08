@@ -91,10 +91,10 @@ texture = ExtResource("5_xndun")
 [node name="Cloud" type="ColorRect" parent="Arrière-plan"]
 z_index = 5
 material = SubResource("ShaderMaterial_2jags")
-offset_left = -1315.27
-offset_top = -923.293
-offset_right = 604.729
-offset_bottom = 156.707
+offset_left = -1367.55
+offset_top = -972.093
+offset_right = 552.449
+offset_bottom = 107.907
 scale = Vector2(1.5, 1.5)
 
 [node name="Board" type="Sprite2D" parent="."]
@@ -126,16 +126,18 @@ position = Vector2(1116, 826)
 [node name="QuestGiver" parent="." instance=ExtResource("10_2ary5")]
 position = Vector2(1667, 445)
 npc_texture = ExtResource("14_6rcgg")
+is_unlock = true
 
 [node name="Merchant" parent="." instance=ExtResource("10_2ary5")]
 unique_name_in_owner = true
-visible = false
 position = Vector2(1061, 596)
 npc_index = 2
 npc_texture = ExtResource("12_08xgd")
+urgent_quest_to_unlock = 1
 
 [node name="Path2D" type="Path2D" parent="."]
 y_sort_enabled = true
+position = Vector2(-1073, -67)
 curve = SubResource("Curve2D_qlgs1")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]

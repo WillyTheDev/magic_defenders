@@ -31,12 +31,12 @@ shader_parameter/speed = 6.0
 shader_parameter/frames = 6
 shader_parameter/flowMap = ExtResource("5_wdent")
 
-[sub_resource type="Gradient" id="Gradient_r581c"]
+[sub_resource type="Gradient" id="Gradient_hfwoi"]
 offsets = PackedFloat32Array(0, 0.935484, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0604839, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ua7si"]
-gradient = SubResource("Gradient_r581c")
+gradient = SubResource("Gradient_hfwoi")
 fill = 1
 fill_from = Vector2(0.517094, 0.491453)
 fill_to = Vector2(0.846154, 0.153846)
@@ -106,6 +106,10 @@ z_index = 1
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_h1uax")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 80)
+shape = SubResource("CircleShape2D_jbsop")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
 zoom = Vector2(2, 2)
@@ -116,13 +120,8 @@ limit_right = 2776
 limit_bottom = 1500
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 7.0
 editor_draw_limits = true
 script = ExtResource("6_8a3rv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 80)
-shape = SubResource("CircleShape2D_jbsop")
 
 [node name="WandPivot" type="Marker2D" parent="."]
 rotation = -2.80191
@@ -149,23 +148,12 @@ position = Vector2(-2.74643, -81.1097)
 rotation = 0.554302
 scale = Vector2(1.48387, 1.48387)
 
-[node name="PointLightshadow" type="PointLight2D" parent="WandPivot/Arm/Wand"]
-position = Vector2(1.0935, -90.7889)
-rotation = 0.213683
-scale = Vector2(32.7508, 30.4332)
-blend_mode = 2
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 14.5
-texture = SubResource("GradientTexture2D_ua7si")
-height = 1.0
-
 [node name="PointLightsprite" type="PointLight2D" parent="WandPivot/Arm/Wand"]
 position = Vector2(1.0935, -90.7889)
 rotation = 0.213683
 scale = Vector2(32.7508, 30.4332)
 blend_mode = 2
-range_item_cull_mask = 2
+range_item_cull_mask = 3
 shadow_filter = 1
 shadow_filter_smooth = 14.5
 texture = SubResource("GradientTexture2D_ua7si")
@@ -205,6 +193,7 @@ bus = &"SFX"
 stream = ExtResource("13_43w34")
 volume_db = -5.0
 pitch_scale = 1.5
+bus = &"SFX"
 
 [node name="ReloadAnimation" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmo608hicdlq5"]
+[gd_scene load_steps=14 format=3 uid="uid://cmo608hicdlq5"]
 
 [ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_1dq6v"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_oowi8"]
@@ -11,9 +11,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r5an"]
 radius = 53.9999
 height = 191.989
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cihw5"]
-polygon = PackedVector2Array(-44.2857, -45.7143, -77.1429, -15.7143, -91.4286, 45.7143, -77.1429, 58.5714, -42.8571, 72.8571, 35.7143, 72.8571, 74.2857, 62.8571, 94.2857, 47.1429, 81.4286, -10, 47.5, -42.5, 0, -57.5)
 
 [sub_resource type="Animation" id="Animation_53ke7"]
 tracks/0/type = "value"
@@ -112,7 +109,6 @@ enemy_damage = 10
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.38419e-07, 12)
 rotation = -1.56018
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_8r5an")
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -120,10 +116,6 @@ shape = SubResource("CapsuleShape2D_8r5an")
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Node2D"]
 position = Vector2(-0.714291, -5.71429)
 scale = Vector2(9.5, 8)
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Node2D"]
-scale = Vector2(1, 1)
-occluder = SubResource("OccluderPolygon2D_cihw5")
 
 [node name="Shadow" type="Sprite2D" parent="Node2D"]
 modulate = Color(0, 0, 0, 1)
@@ -146,7 +138,6 @@ libraries = {
 
 [node name="HitAudio" parent="Node2D" instance=ExtResource("5_2ss8j")]
 unique_name_in_owner = true
-scale = Vector2(1, 1)
 
 [node name="HealthBar" type="ProgressBar" parent="Node2D"]
 unique_name_in_owner = true
@@ -164,4 +155,3 @@ show_percentage = false
 [node name="Hat" type="Sprite2D" parent="Node2D"]
 unique_name_in_owner = true
 position = Vector2(0, -40)
-scale = Vector2(1, 1)

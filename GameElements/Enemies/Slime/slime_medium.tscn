@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://yuors4jcwmwr"]
+[gd_scene load_steps=14 format=3 uid="uid://yuors4jcwmwr"]
 
 [ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_anbsf"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_8muj1"]
@@ -11,9 +11,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r5an"]
 radius = 53.9999
 height = 191.989
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jy30c"]
-polygon = PackedVector2Array(-50, -46, -78, -14, -92, 38, -72, 60, -38, 68, 38, 68, 70, 58, 92, 40, 80, -18, 50, -48, -2, -62)
 
 [sub_resource type="Animation" id="Animation_53ke7"]
 tracks/0/type = "value"
@@ -119,9 +116,6 @@ shape = SubResource("CapsuleShape2D_8r5an")
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Node2D"]
 position = Vector2(-7.62939e-06, -7)
 scale = Vector2(9.6, 7.9)
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Node2D"]
-occluder = SubResource("OccluderPolygon2D_jy30c")
 
 [node name="Shadow" type="Sprite2D" parent="Node2D"]
 modulate = Color(0, 0, 0, 1)

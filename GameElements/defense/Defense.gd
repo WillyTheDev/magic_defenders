@@ -1,12 +1,11 @@
 class_name Defense
 extends Node2D
 
-
 static var defense_price = 10
-@export var has_been_build = false
-@export var can_be_placed = true
+var has_been_build = false
+var can_be_placed = true
 
-@export var current_health = 10.0
+var current_health = 10.0
 var cumulated_damage = 0
 
 func _reinitialize_static_properties():
@@ -21,6 +20,8 @@ func _ready():
 	add_to_group("has_static_properties")
 	var DefenseTimer = get_node("/root/Game/DefenseTimer")
 	DefenseTimer.timeout.connect(_on_timer_timeout)
+	print("DEFENSE Health stat %s" % Global.getDefenseHealth())
+	print("DEFENSE CURRENT HEALTH = %s" % current_health)
 	current_health += Global.getDefenseHealth()
 	print("Defense initial health = %s" % current_health)
 	
@@ -85,6 +86,11 @@ func take_damage():
 		abstract_defense_take_damage()
 		print("Defense is taking damge : %s" % cumulated_damage)
 		current_health -= cumulated_damage
+		var dmg_indicator = preload("res://GameElements/misc/damage_indicator.tscn").instantiate()
+		dmg_indicator.set_value(int(cumulated_damage * 10))
+		dmg_indicator.scale = Vector2(0.4, 0.4)
+		dmg_indicator.global_position = global_position
+		get_node("/root/Game").add_child(dmg_indicator)
 		if current_health <= 0:
 			abstract_final_action()
 			const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")

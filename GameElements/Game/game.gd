@@ -59,11 +59,8 @@ func _ready():
 	
 
 func start_new_wave():
-	%Enemy_1.visible = false
-	%Enemy_2.visible = false
-	%Enemy_3.visible = false
-	%Enemy_4.visible = false
-	%Enemy_5.visible = false
+	for i in range(1, 8):
+		get_node("UI/Progress Bar/VBoxContainer/EnemiesProgressBar/MarginContainer/HBoxContainer/Enemy_%s" % i).visible = false
 	is_idle = false
 	is_spawning = true
 	spawn_rates -= 0.2
@@ -87,6 +84,10 @@ func start_new_wave():
 					%Enemy_4.visible = true
 				5:
 					%Enemy_5.visible = true
+				6: 
+					%Enemy_6.visible = true
+				7:
+					%Enemy_7.visible = true
 			total_enemies += value
 			index += 2
 		spawn_index = 0
@@ -193,6 +194,10 @@ func spawn_mob():
 				return
 			5: 
 				enemy = preload("res://GameElements/Enemies/Slime/slime_mana.tscn").instantiate()
+			6:
+				enemy = preload("res://GameElements/Enemies/Slime/slime_ghost.tscn").instantiate()
+			7:
+				enemy = preload("res://GameElements/Enemies/Slime/fishmen.tscn").instantiate()
 		number_of_time -= 1
 	# Connect a signal to track when an enemy has been killed
 	enemy.slime_has_been_killed.connect(on_enemy_has_been_killed)

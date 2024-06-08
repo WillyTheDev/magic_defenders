@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d0h5viffh6xrj"]
+[gd_scene load_steps=16 format=3 uid="uid://bnoobqanpnt5j"]
 
 [ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_pg2k5"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_dhwrf"]
@@ -11,9 +11,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r5an"]
 radius = 54.9969
 height = 160.256
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_btthd"]
-polygon = PackedVector2Array(-40, -45, -70, -15, -80, 30, -67.5, 47.5, -37.5, 55, 37.5, 52.5, 62.5, 47.5, 77.5, 32.5, 70, -12.5, 47.5, -42.5, 0, -57.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pg4ob"]
 shader = ExtResource("3_gojkd")
@@ -145,10 +142,6 @@ shape = SubResource("CapsuleShape2D_8r5an")
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Node2D"]
-scale = Vector2(1, 1)
-occluder = SubResource("OccluderPolygon2D_btthd")
-
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Node2D"]
 position = Vector2(-3.8147e-06, -1.25)
 scale = Vector2(8, 5.625)
@@ -175,7 +168,6 @@ libraries = {
 
 [node name="HitAudio" type="AudioStreamPlayer2D" parent="Node2D"]
 unique_name_in_owner = true
-scale = Vector2(1, 1)
 stream = ExtResource("7_nj8hl")
 volume_db = 1.0
 bus = &"SFX"
@@ -198,4 +190,3 @@ show_percentage = false
 [node name="Hat" type="Sprite2D" parent="Node2D"]
 unique_name_in_owner = true
 position = Vector2(0, -62.5)
-scale = Vector2(1, 1)

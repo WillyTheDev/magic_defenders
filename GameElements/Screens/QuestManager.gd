@@ -80,7 +80,9 @@ func _generate_quests():
 			sequence += add_medium_slime(difficulty, wave)
 		if wave >= 6:
 			sequence += add_medium_slime(difficulty, wave)
+			sequence += add_fishmen(difficulty)
 			sequence += add_bat(difficulty, wave)
+			sequence += add_ghost_slime(difficulty)
 			sequence += add_medium_slime(difficulty, wave)
 			sequence += add_hard_slime(difficulty, wave)
 		if wave == max_waves - 1:
@@ -129,10 +131,16 @@ func add_bat(difficulty, _wave):
 	
 func add_mana_slime(_difficulty):
 	return ",%sx%s" % [1, 5]
+	
+func add_ghost_slime(_difficulty):
+	return ",%sx%s" % [randi_range(1,2 * _difficulty), 6]
+	
+func add_fishmen(_difficulty):
+	return ",%sx%s" % [randi_range(1,1 * _difficulty), 7]
 
 static var urgent_quests = [
 	UrgentQuest.new("quest_1", 1, 9, 1, true,
-		["7x1","10x1","15x1","1x4","15x1,1x4","15x1,1x4,3x1","17x1,1x4,7x1", "20x1,1x4,5x1", "7x4", "30x1,1x5"],
+		["7x1","10x1","15x1","1x4","2x6","15x1,1x4","15x1,1x4,3x1","17x1,1x4,7x1", "10x1,1x7,1x4,5x1", "7x4", "30x1,1x5"],
 		0,
 		preload("res://Assets/UI/map_selection_button/reduced_merchant.png")),
 	UrgentQuest.new("quest_2", 2, 9, 2, true,
