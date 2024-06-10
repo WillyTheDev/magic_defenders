@@ -243,8 +243,7 @@ platform_floor_layers = 4294967040
 script = ExtResource("1_wieju")
 speed_increment = 65
 MANA_AMOUNT = 3
-health_increment = 2
-enemy_damage = 0
+health_increment = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.56018

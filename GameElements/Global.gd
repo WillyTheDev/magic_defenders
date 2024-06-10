@@ -108,7 +108,8 @@ static var unlocked_skills = {
 	"skill_5": false,
 	"skill_6": false,
 	"skill_7": false,
-	"skill_8": true,
+	"skill_8": false,
+	"skill_9": false,
 }
 
 static var selected_skills = {
@@ -242,8 +243,15 @@ func new_save():
 							"skill_5": false,
 							"skill_6": false,
 							"skill_7": false,
-							"skill_8": true
+							"skill_8": false,
+							"skill_9": true,
 						},
+		"selected_skills" : {
+		"skill_0": 0,
+		"skill_1": 1,
+		"skill_2": 0,
+		"skill_3": 1,
+		}
 	}
 	print("CLEAR INVENTORY")
 	var inv = Inventory.new()

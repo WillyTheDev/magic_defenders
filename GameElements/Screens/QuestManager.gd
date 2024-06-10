@@ -140,7 +140,7 @@ func add_fishmen(_difficulty):
 
 static var urgent_quests = [
 	UrgentQuest.new("quest_1", 1, 9, 1, true,
-		["7x1","10x1","15x1","1x4","2x6","15x1,1x4","15x1,1x4,3x1","17x1,1x4,7x1", "10x1,1x7,1x4,5x1", "7x4", "30x1,1x5"],
+		["7x1","10x1","15x1","1x4","2x6","15x1,1x4","15x1,1x4,3x1","17x1,1x4,7x1", "1x7", "20x1,1x4", "1x2,1x5"],
 		0,
 		preload("res://Assets/UI/map_selection_button/reduced_merchant.png")),
 	UrgentQuest.new("quest_2", 2, 9, 2, true,

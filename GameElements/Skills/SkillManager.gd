@@ -172,7 +172,15 @@ static var skills : Array[Skill] = [
 	 preload("res://Assets/UI/Skills_button/vision_turret_normal.png"),
 	 preload("res://Assets/UI/Skills_button/vision_turret_hover.png"),
 	 preload("res://GameElements/defense/vision_turret.tscn"),
-	"A turret that reveals untargetable ennemies and reduce the ennemy damageawd",
+	"A turret that reveals untargetable ennemies and reduce the ennemy damage",
+	"defense", false),
+	Skill.new(
+		"skill_9",
+		30,
+	 preload("res://Assets/UI/Skills_button/baliste_normal.png"),
+	 preload("res://Assets/UI/Skills_button/baliste_hover.png"),
+	 preload("res://GameElements/defense/baliste.tscn"),
+	"A turret that shot piercing arrow",
 	"defense", false),
 ]
 

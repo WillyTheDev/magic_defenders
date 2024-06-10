@@ -7,7 +7,7 @@ var damage = 1.0
 var travelled_distance = 0
 var direction
 
-var bolt_range = 1600
+@export var bolt_range = 1600
 @export var is_passing_through = false
 var has_touch_enemy = false
 var target : Enemy = null
@@ -29,7 +29,6 @@ func _ready():
 func _physics_process(delta):
 	if target != null:
 		direction = (global_position - target.global_position).normalized() * -1
-	rotate(6 * delta)
 	position += direction * SPEED * delta
 	travelled_distance += delta * SPEED
 	if travelled_distance >= bolt_range :
@@ -40,7 +39,7 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	if body is Enemy && has_touch_enemy == false:
-		has_touch_enemy = true
+		# has_touch_enemy = true
 		abstrat_bolt_effect_on_body(body)
 		body.take_damage(damage)
 		# Effect of the magic bolt if you have is passing_through or auto_target_on
