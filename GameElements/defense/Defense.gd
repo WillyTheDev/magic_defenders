@@ -106,6 +106,7 @@ func _on_area_2d_body_entered(body):
 	if body is Enemy:
 		body.speed = 0
 		cumulated_damage += body.enemy_damage
+		take_damage()
 	
 func _on_area_2d_body_exited(body):
 	if body is Enemy:

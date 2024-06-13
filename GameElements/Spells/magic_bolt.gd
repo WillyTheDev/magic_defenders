@@ -2,13 +2,13 @@ class_name MagicBolt
 extends Area2D
 
 const SPEED = 700
-
-var damage = 1.0
+@export var bolt_range = 1600
+@export var is_passing_through = false
+@export var damage = 1.0
 var travelled_distance = 0
 var direction
 
-@export var bolt_range = 1600
-@export var is_passing_through = false
+
 var has_touch_enemy = false
 var target : Enemy = null
 

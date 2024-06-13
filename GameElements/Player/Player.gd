@@ -66,9 +66,12 @@ func _physics_process(_delta):
 		if %WalkAudio.playing == false:
 			%WalkAudio.playing = true
 		%PlayerAnimation.play_animation_walk();
+		%DustParticle.emitting = true
+		%DustParticle.process_material.gravity = Vector3(direction.x*10, direction.y*10, 0) * -1
 	else:
 		%PlayerAnimation.play_animation_idle();
 		%WalkAudio.playing = false
+		%DustParticle.emitting = false
 
 func _input(event):
 	if event.is_action_pressed("left_click"):

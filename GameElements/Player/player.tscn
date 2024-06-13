@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dwwaq45lsy17j"]
+[gd_scene load_steps=28 format=3 uid="uid://dwwaq45lsy17j"]
 
 [ext_resource type="Script" path="res://GameElements/Player/Player.gd" id="1_h1uax"]
 [ext_resource type="PackedScene" uid="uid://kbm12vsaf3ev" path="res://GameElements/Player/player_animation.tscn" id="2_m3wv4"]
@@ -7,12 +7,13 @@
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="4_a1136"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="5_wdent"]
 [ext_resource type="Script" path="res://GameElements/Player/Camera.gd" id="6_8a3rv"]
-[ext_resource type="AudioStream" uid="uid://b86q5bm48poyj" path="res://Assets/audio/walk.ogg" id="6_u8c0g"]
 [ext_resource type="AudioStream" uid="uid://dq10lwer6ug24" path="res://Assets/audio/drop.ogg" id="7_3y2qv"]
 [ext_resource type="Texture2D" uid="uid://dmyfaxb37b1ps" path="res://Assets/Player/wand_1.png" id="7_kjg7k"]
-[ext_resource type="AudioStream" uid="uid://bdb7radgqx0js" path="res://Assets/audio/fire.wav" id="8_1vlqa"]
+[ext_resource type="AudioStream" uid="uid://bhtspsgpdraha" path="res://Assets/audio/randomWalk.tres" id="9_0juik"]
 [ext_resource type="AudioStream" uid="uid://bvo2n5b8vi5gw" path="res://Assets/audio/mana.ogg" id="9_cuy5d"]
+[ext_resource type="AudioStream" uid="uid://dv443nca3ianr" path="res://Assets/audio/randomFire.tres" id="11_g1dor"]
 [ext_resource type="AudioStream" uid="uid://ca7kq2f0qovbl" path="res://Assets/audio/reload.ogg" id="13_43w34"]
+[ext_resource type="Texture2D" uid="uid://cvmbm3sxj85fm" path="res://smoke_explosion/circle_32.png" id="14_pncug"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jbsop"]
 radius = 112.0
@@ -101,6 +102,32 @@ _data = {
 "reload": SubResource("Animation_yn2c8")
 }
 
+[sub_resource type="Gradient" id="Gradient_7f4vt"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.27451)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wnwvj"]
+gradient = SubResource("Gradient_7f4vt")
+
+[sub_resource type="Curve" id="Curve_yluip"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ctpel"]
+curve = SubResource("Curve_yluip")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u782x"]
+angular_velocity_min = 95.29
+angular_velocity_max = 222.35
+orbit_velocity_max = 2.0
+radial_velocity_max = 20.0
+gravity = Vector3(50, 0, 0)
+radial_accel_max = 1.0
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_ctpel")
+color_ramp = SubResource("GradientTexture1D_wnwvj")
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 scale = Vector2(0.25, 0.25)
@@ -120,6 +147,7 @@ limit_right = 2776
 limit_bottom = 1500
 limit_smoothed = true
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 editor_draw_limits = true
 script = ExtResource("6_8a3rv")
 
@@ -149,7 +177,7 @@ rotation = 0.554302
 scale = Vector2(1.48387, 1.48387)
 
 [node name="PointLightsprite" type="PointLight2D" parent="WandPivot/Arm/Wand"]
-position = Vector2(1.0935, -90.7889)
+position = Vector2(24.3166, -85.8526)
 rotation = 0.213683
 scale = Vector2(32.7508, 30.4332)
 blend_mode = 2
@@ -169,7 +197,7 @@ one_shot = true
 
 [node name="WalkAudio" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("6_u8c0g")
+stream = ExtResource("9_0juik")
 volume_db = 2.0
 bus = &"SFX"
 
@@ -180,8 +208,8 @@ bus = &"SFX"
 
 [node name="FireAudio" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("8_1vlqa")
-pitch_scale = 2.24
+stream = ExtResource("11_g1dor")
+pitch_scale = 2.0
 bus = &"SFX"
 
 [node name="ManaAudio" type="AudioStreamPlayer2D" parent="."]
@@ -204,6 +232,17 @@ libraries = {
 [node name="AutoShootTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.3
+
+[node name="DustParticle" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+z_index = -1
+position = Vector2(8, 184)
+emitting = false
+amount = 10
+amount_ratio = 0.5
+process_material = SubResource("ParticleProcessMaterial_u782x")
+texture = ExtResource("14_pncug")
+lifetime = 0.3
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="AutoShootTimer" to="." method="_on_auto_shoot_timer_timeout"]

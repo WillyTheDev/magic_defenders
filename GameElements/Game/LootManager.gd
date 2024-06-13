@@ -10,7 +10,7 @@ const rings_texture = preload("res://Assets/loots/rings.png")
 const necklace_texture = preload("res://Assets/loots/necklaces.png")
 const pants_texture = preload("res://Assets/loots/pants.png")
 
-func add_loot_to_enemy(enemy: Node2D):
+static func add_loot_to_enemy(enemy: Node2D):
 	#best chance is 0.005
 	var hat_chance = 0.002
 	var loot_chance = 0.02
@@ -23,7 +23,7 @@ func add_loot_to_enemy(enemy: Node2D):
 		enemy.add_loot(generate_random_loot())
 	
 		
-func get_index_of_random_available_hat() -> int:
+static func get_index_of_random_available_hat() -> int:
 	var rand_index = randi_range(0, Global.unlocked_hats.size() -1)
 	if Global.unlocked_hats.values()[rand_index]:
 		return get_index_of_random_available_hat()

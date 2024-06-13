@@ -31,7 +31,6 @@ func _init_selected_skill():
 func update_skills_button_ui():
 	var index = 0
 	for skill in selected_skills:
-		print("Update Skill on action bar ! %s" % skill)
 		if skill != null:
 			get_node("MarginContainer/VBoxContainer/HBoxContainer/SkillButton_%s" % (index + 1)).texture_normal = selected_skills[index].texture_normal
 			get_node("MarginContainer/VBoxContainer/HBoxContainer/SkillButton_%s" % (index + 1)).texture_hover = selected_skills[index].texture_hover

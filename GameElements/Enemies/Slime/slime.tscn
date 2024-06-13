@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_0qrut"]
 [ext_resource type="Texture2D" uid="uid://cpdlu2y0t1ie7" path="res://Assets/Ennemies/Slime_v2.png" id="5_q6xfj"]
 [ext_resource type="Texture2D" uid="uid://baacy614v8gmy" path="res://Assets/Ennemies/Slime_v2_hit.png" id="6_4rqn5"]
-[ext_resource type="AudioStream" uid="uid://dxg0xvfddgc4g" path="res://Assets/audio/slimejump-6913.mp3" id="7_nj8hl"]
+[ext_resource type="AudioStream" uid="uid://b5a47xvby350n" path="res://Assets/audio/randomSlimeHit.tres" id="7_8k67m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r5an"]
 radius = 54.9969
@@ -168,7 +168,7 @@ libraries = {
 
 [node name="HitAudio" type="AudioStreamPlayer2D" parent="Node2D"]
 unique_name_in_owner = true
-stream = ExtResource("7_nj8hl")
+stream = ExtResource("7_8k67m")
 volume_db = 1.0
 bus = &"SFX"
 

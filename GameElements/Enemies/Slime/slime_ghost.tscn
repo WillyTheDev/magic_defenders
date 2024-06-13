@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_o3tdt"]
 [ext_resource type="Texture2D" uid="uid://bs7by5uuox23b" path="res://Assets/Ennemies/Slime_v2_ghost.png" id="5_ahcvx"]
 [ext_resource type="Texture2D" uid="uid://baacy614v8gmy" path="res://Assets/Ennemies/Slime_v2_hit.png" id="6_jncq8"]
-[ext_resource type="AudioStream" uid="uid://dxg0xvfddgc4g" path="res://Assets/audio/slimejump-6913.mp3" id="7_1bq1p"]
+[ext_resource type="AudioStream" uid="uid://b5a47xvby350n" path="res://Assets/audio/randomSlimeHit.tres" id="7_68cbx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r5an"]
 radius = 54.9969
@@ -145,6 +145,7 @@ collision_layer = 2
 collision_mask = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_nv6le")
+health_increment = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.38419e-07, -62.5)
@@ -181,7 +182,7 @@ libraries = {
 [node name="HitAudio" type="AudioStreamPlayer2D" parent="Node2D"]
 unique_name_in_owner = true
 position = Vector2(0, 2.5)
-stream = ExtResource("7_1bq1p")
+stream = ExtResource("7_68cbx")
 volume_db = 1.0
 bus = &"SFX"
 

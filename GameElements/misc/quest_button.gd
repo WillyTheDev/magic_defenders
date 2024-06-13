@@ -35,8 +35,7 @@ func _ready():
 	texture_pressed = map_texture_clicked
 	
 func _on_transition_layer_transition_is_finished(_anim_name):
-	if has_been_pressed :
-		pass
+	if has_been_pressed && is_inside_tree():
 		get_tree().reload_current_scene()
 
 func _on_pressed():

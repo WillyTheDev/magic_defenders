@@ -11,7 +11,6 @@ scale = Vector2(0.75, 0.75)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_ao2ey")
-bolt_range = 1000
 is_passing_through = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

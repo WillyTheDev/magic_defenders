@@ -18,18 +18,18 @@ radius = 481.001
 [sub_resource type="CircleShape2D" id="CircleShape2D_m8608"]
 
 [node name="Mana" type="Node2D"]
+z_as_relative = false
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_s6pfg")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.0430392, 0.0430392, 0.0430392, 1)
-position = Vector2(0, 24)
+position = Vector2(0, 48)
 scale = Vector2(0.30364, 0.315763)
 texture = ExtResource("2_tf6ev")
 
 [node name="Mana" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_v836v")
-position = Vector2(0, -24)
 texture = ExtResource("3_yjx7x")
 
 [node name="AttractZone" type="Area2D" parent="."]

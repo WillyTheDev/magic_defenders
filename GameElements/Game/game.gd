@@ -152,7 +152,6 @@ func spawn_flying_mob():
 
 func spawn_mob():
 	#Load a new Enemy ( Path2DFollower ) and attach the relevent monster ( e.g slime, slimeMedium, archer...)
-	var follower = preload("res://GameElements/Enemies/Enemy.tscn").instantiate()
 	var enemy = null
 	# if infinity mode, ennemies spawner don't foller any sequence
 	if Global.selected_difficulty == 4:
@@ -199,26 +198,22 @@ func spawn_mob():
 			7:
 				enemy = preload("res://GameElements/Enemies/Slime/fishmen.tscn").instantiate()
 		number_of_time -= 1
-	# Connect a signal to track when an enemy has been killed
-	enemy.slime_has_been_killed.connect(on_enemy_has_been_killed)
-	# Add potential loot to enemy
-	%LootManager.add_loot_to_enemy(enemy)
-	
-	# Add the enemy on a FollowerPath2D
-	follower.add_child(enemy)
-	follower.child = enemy
-	# Add the Enemy on a random path
-	var indexSpawnPoints = floor(randf() * map_of_game.paths.size())
+	var follower = preload("res://GameElements/Enemies/Follower.tscn").instantiate()
+	var indexSpawnPoints = randi_range(0,map_of_game.paths.size() - 1)
 	map_of_game.paths[indexSpawnPoints].add_child(follower)
-	spawn_visual_indicator(follower.child)
+	follower.progress = 100
+	follower.add_child(enemy)
+	spawn_visual_indicator(follower)
 	enemies_spawn += 1
+	
+	
 	
 func spawn_visual_indicator(target):
 	# Add a visual indicator for each Enemy spawned
 	var indicator = preload("res://GameElements/misc/enemy_indicator.tscn").instantiate()
+	get_node("Player").add_child(indicator)
 	indicator.target = target
 	indicator.global_position = get_node("Player").global_position
-	get_node("Player").add_child(indicator)
 	
 
 func on_enemy_has_been_killed():

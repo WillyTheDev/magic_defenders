@@ -446,7 +446,7 @@ wait_time = 2.0
 
 [node name="DefenseTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 2.0
+wait_time = 3.0
 autostart = true
 
 [node name="UI" type="CanvasLayer" parent="."]

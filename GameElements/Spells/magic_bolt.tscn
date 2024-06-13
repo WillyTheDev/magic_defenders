@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cv2s61kx652j"]
+[gd_scene load_steps=4 format=3 uid="uid://cof61uqiya1d7"]
 
 [ext_resource type="Script" path="res://GameElements/Spells/magic_bolt.gd" id="1_8s2fa"]
 [ext_resource type="Texture2D" uid="uid://dglif25oljcne" path="res://Assets/Player/water_bolt.png" id="2_d8y60"]
