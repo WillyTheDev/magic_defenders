@@ -30,7 +30,6 @@ position = Vector2(2.7251, -106.279)
 occluder = SubResource("OccluderPolygon2D_ramaw")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(0, 0, 0, 1)
 z_index = -1
 position = Vector2(2.38419e-07, 98.1036)

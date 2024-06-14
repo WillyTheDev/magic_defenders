@@ -15,7 +15,7 @@ func random_offset() -> Vector2:
 	
 func _process(delta):
 	var mouse_offset = get_viewport().get_mouse_position() - Vector2(get_viewport().size / 2)
-	position = lerp(Vector2(), mouse_offset.normalized() * 500, mouse_offset.length() / 1000)
+	position = lerp(Vector2(), mouse_offset.normalized() * 300, mouse_offset.length() / 1000)
 	if shake_strength > 0:
 		shake_strength = lerpf(shake_strength, 0, shakeFade * delta)
 	

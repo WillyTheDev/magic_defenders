@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://u8vqrvabc232"]
+[gd_scene load_steps=25 format=3 uid="uid://u8vqrvabc232"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_0yut5"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_daclq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_6bnjo"]
 [ext_resource type="Texture2D" uid="uid://dg24mol7dqq2q" path="res://Assets/Map/map_3.png" id="4_0vdo6"]
 [ext_resource type="Shader" path="res://Shaders/cloud.gdshader" id="5_8ciyw"]
+[ext_resource type="PackedScene" uid="uid://b3kskbiuwqikh" path="res://path_indicator.tscn" id="6_geu1j"]
 [ext_resource type="Shader" path="res://Shaders/weedShader.gdshader" id="6_nm5uo"]
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="7_8lwxc"]
 [ext_resource type="Texture2D" uid="uid://d1v07087ptaua" path="res://Assets/envirronment/buisson.png" id="8_ake1t"]
@@ -135,19 +136,34 @@ one_shot = true
 [node name="Path2D" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_ha56q")
 
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D" instance=ExtResource("6_geu1j")]
+position = Vector2(1196, -172.999)
+
 [node name="Path2D2" type="Path2D" parent="Arrière-plan/Paths"]
 position = Vector2(-8.00013, 8.00055)
 curve = SubResource("Curve2D_ad5fk")
 
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D2" instance=ExtResource("6_geu1j")]
+position = Vector2(687, -196)
+
 [node name="Path2D3" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_nu0hw")
+
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D3" instance=ExtResource("6_geu1j")]
+position = Vector2(1794, -186.999)
 
 [node name="Path2D4" type="Path2D" parent="Arrière-plan/Paths"]
 position = Vector2(-25.0001, 46.0005)
 curve = SubResource("Curve2D_gwha7")
 
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D4" instance=ExtResource("6_geu1j")]
+position = Vector2(446, 1507)
+
 [node name="Path2D5" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_kri2g")
+
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D5" instance=ExtResource("6_geu1j")]
+position = Vector2(1940, 1547)
 
 [node name="Cloud" type="ColorRect" parent="Arrière-plan"]
 z_index = 5

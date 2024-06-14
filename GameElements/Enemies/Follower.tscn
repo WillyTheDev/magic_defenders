@@ -3,3 +3,4 @@
 [node name="Follower" type="PathFollow2D"]
 z_index = 1
 rotates = false
+loop = false

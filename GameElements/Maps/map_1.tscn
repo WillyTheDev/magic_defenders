@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://buxfj316qobc3"]
+[gd_scene load_steps=19 format=3 uid="uid://buxfj316qobc3"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_jrvlj"]
 [ext_resource type="Texture2D" uid="uid://5ua06b2sb6jr" path="res://Assets/Map/map_1.png" id="2_hod1y"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" path="res://Shaders/weedShader.gdshader" id="3_bc2ce"]
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="4_5icl4"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="5_lbfrp"]
+[ext_resource type="PackedScene" uid="uid://b3kskbiuwqikh" path="res://path_indicator.tscn" id="6_c4ye0"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="6_f7sma"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="8_ksp42"]
 [ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/core.tscn" id="9_4uokl"]
@@ -84,6 +85,9 @@ scale = Vector2(0.629917, 0.650665)
 [node name="Path2D" type="Path2D" parent="Arrière-plan/Paths"]
 position = Vector2(21.0001, 3.00006)
 curve = SubResource("Curve2D_ro73k")
+
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D" instance=ExtResource("6_c4ye0")]
+unique_name_in_owner = true
 
 [node name="Path_flying" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_wb7bk")

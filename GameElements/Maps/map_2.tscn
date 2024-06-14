@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b4xtx2i10xge1"]
+[gd_scene load_steps=23 format=3 uid="uid://b4xtx2i10xge1"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_vpqgu"]
 [ext_resource type="Material" uid="uid://cpw1r3dhb6b27" path="res://Shaders/water.tres" id="2_i7vxa"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="4_drvo3"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="5_hhm7y"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="6_6m2yq"]
+[ext_resource type="PackedScene" uid="uid://b3kskbiuwqikh" path="res://path_indicator.tscn" id="6_hqis6"]
 [ext_resource type="Texture2D" uid="uid://bqnvxqkjk66ec" path="res://Assets/envirronment/arbre.png" id="7_2adyu"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="8_hatjj"]
 [ext_resource type="Texture2D" uid="uid://d1v07087ptaua" path="res://Assets/envirronment/buisson.png" id="8_sc1lr"]
@@ -122,12 +123,21 @@ one_shot = true
 position = Vector2(-8.00013, 5.00055)
 curve = SubResource("Curve2D_ak25k")
 
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D" instance=ExtResource("6_hqis6")]
+position = Vector2(-322, 809)
+
 [node name="Path2D2" type="Path2D" parent="Arrière-plan/Paths"]
 position = Vector2(-0.000121593, -6.99945)
 curve = SubResource("Curve2D_wfim6")
 
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D2" instance=ExtResource("6_hqis6")]
+position = Vector2(1339, -196.999)
+
 [node name="Path2D3" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_trq67")
+
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D3" instance=ExtResource("6_hqis6")]
+position = Vector2(2837, 731)
 
 [node name="Cloud" type="ColorRect" parent="Arrière-plan"]
 z_index = 5

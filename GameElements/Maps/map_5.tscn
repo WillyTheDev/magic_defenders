@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://dk4h3e4krmdw7"]
+[gd_scene load_steps=24 format=3 uid="uid://dk4h3e4krmdw7"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_1n138"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_j37t5"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_7tsfv"]
 [ext_resource type="Texture2D" uid="uid://damyitp44j3ao" path="res://Assets/Map/map_5.png" id="4_ogacj"]
+[ext_resource type="PackedScene" uid="uid://b3kskbiuwqikh" path="res://path_indicator.tscn" id="5_7tx54"]
 [ext_resource type="Shader" path="res://Shaders/cloud.gdshader" id="5_sypa7"]
 [ext_resource type="Shader" path="res://Shaders/weedShader.gdshader" id="6_iyw6g"]
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="7_3ire5"]
@@ -131,17 +132,32 @@ one_shot = true
 [node name="Path2D" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_8w055")
 
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D" instance=ExtResource("5_7tx54")]
+position = Vector2(337, -187.999)
+
 [node name="Path2D2" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_t6n6t")
+
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D2" instance=ExtResource("5_7tx54")]
+position = Vector2(1066, -194.999)
 
 [node name="Path2D3" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_1wu7b")
 
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D3" instance=ExtResource("5_7tx54")]
+position = Vector2(2382, -177.999)
+
 [node name="Path2D4" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_ofbcn")
 
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D4" instance=ExtResource("5_7tx54")]
+position = Vector2(2862, 722)
+
 [node name="Path2D5" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_dngv7")
+
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D5" instance=ExtResource("5_7tx54")]
+position = Vector2(2850, 1022)
 
 [node name="Cloud" type="ColorRect" parent="Arrière-plan"]
 z_index = 5
