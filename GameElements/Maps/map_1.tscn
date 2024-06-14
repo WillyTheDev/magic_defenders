@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://buxfj316qobc3"]
+[gd_scene load_steps=18 format=3 uid="uid://buxfj316qobc3"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_jrvlj"]
 [ext_resource type="Texture2D" uid="uid://5ua06b2sb6jr" path="res://Assets/Map/map_1.png" id="2_hod1y"]
@@ -7,10 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="4_5icl4"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="5_lbfrp"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="6_f7sma"]
-[ext_resource type="Texture2D" uid="uid://bqnvxqkjk66ec" path="res://Assets/envirronment/arbre.png" id="7_my30t"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="8_ksp42"]
 [ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/core.tscn" id="9_4uokl"]
 [ext_resource type="Texture2D" uid="uid://d1v07087ptaua" path="res://Assets/envirronment/buisson.png" id="11_75abc"]
+[ext_resource type="PackedScene" uid="uid://buq541w6c0c63" path="res://GameElements/Maps/env/arbre.tscn" id="12_psipp"]
 [ext_resource type="PackedScene" uid="uid://clhu7ht04c7da" path="res://GameElements/Maps/env/torch.tscn" id="12_upevy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfba4"]
@@ -47,13 +47,6 @@ point_count = 7
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4adnp"]
 shader = ExtResource("3_bc2ce")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hy7rq"]
-shader = ExtResource("5_lbfrp")
-shader_parameter/strength = 0.015
-shader_parameter/speed = 6.0
-shader_parameter/frames = 6
-shader_parameter/flowMap = ExtResource("6_f7sma")
 
 [node name="Map" type="Node2D" node_paths=PackedStringArray("paths", "flyingSpawnPoint")]
 z_as_relative = false
@@ -1346,300 +1339,6 @@ texture = ExtResource("4_5icl4")
 centered = false
 offset = Vector2(0, 30)
 
-[node name="Arbre" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(1847, 32)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre2" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(975, 1268)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre2"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre3" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(-13, 308)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre3"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre4" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(595, 16)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre4"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre5" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(1455, 908)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre5"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre6" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(643, 616)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre6"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-2.72517, 220.733)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre7" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(183, 1024)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre7"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre8" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(1191, 328)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre8"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre9" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(2251, 608)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre9"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre10" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(1859, 1244)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre10"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre11" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(2473, 1172)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre11"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre12" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(2380, 121)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre12"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre13" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(1143, -125)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre13"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre14" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(156, -66)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre14"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre15" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(-47, 1316)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre15"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre16" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(-161, 922)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre16"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre17" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(-161, 172)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre17"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre18" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(-110, 11)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre18"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre19" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(-216, -133)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre19"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre20" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(-42, -150)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre20"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
-[node name="Arbre21" type="Sprite2D" parent="env"]
-z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(301, -175)
-scale = Vector2(0.366959, 0.366959)
-texture = ExtResource("7_my30t")
-
-[node name="Shadow" type="Sprite2D" parent="env/Arbre21"]
-modulate = Color(0, 0, 0, 1)
-z_index = -1
-position = Vector2(-8.00006, 220)
-scale = Vector2(1.38806, 1.38806)
-texture = ExtResource("8_ksp42")
-
 [node name="Core" parent="." instance=ExtResource("9_4uokl")]
 z_index = 1
 position = Vector2(2111, 628)
@@ -1666,3 +1365,45 @@ position = Vector2(2248, 524)
 
 [node name="Torch6" parent="." instance=ExtResource("12_upevy")]
 position = Vector2(2236, 770)
+
+[node name="Arbre" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(209, 606)
+
+[node name="Arbre2" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(145, 1274)
+
+[node name="Arbre3" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(404, 967)
+
+[node name="Arbre4" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(328, 250)
+
+[node name="Arbre5" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(2239, 642)
+
+[node name="Arbre6" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(668, 484)
+
+[node name="Arbre7" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(789, 1277)
+
+[node name="Arbre8" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(1189, 880)
+
+[node name="Arbre9" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(1084, 201)
+
+[node name="Arbre10" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(1642, 1277)
+
+[node name="Arbre11" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(1733, 130)
+
+[node name="Arbre12" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(2566, 1294)
+
+[node name="Arbre13" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(1834, 968)
+
+[node name="Arbre14" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(2310, 236)

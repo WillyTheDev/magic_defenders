@@ -117,10 +117,9 @@ point_count = 2
 curve = SubResource("Curve_yluip")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u782x"]
-angular_velocity_min = 95.29
-angular_velocity_max = 222.35
+angular_velocity_max = 100.0
 orbit_velocity_max = 2.0
-radial_velocity_max = 20.0
+radial_velocity_max = 50.0
 gravity = Vector3(50, 0, 0)
 radial_accel_max = 1.0
 scale_min = 0.2
@@ -152,12 +151,13 @@ editor_draw_limits = true
 script = ExtResource("6_8a3rv")
 
 [node name="WandPivot" type="Marker2D" parent="."]
+position = Vector2(-16, -36)
 rotation = -2.80191
 script = ExtResource("2_xip2f")
 
 [node name="Arm" type="Sprite2D" parent="WandPivot"]
 material = SubResource("ShaderMaterial_law7m")
-position = Vector2(99.3902, -30.8801)
+position = Vector2(110.931, -22.2313)
 rotation = 2.80191
 scale = Vector2(0.769663, 0.769663)
 texture = ExtResource("4_6y3n2")
@@ -189,7 +189,6 @@ height = 1.0
 
 [node name="PlayerAnimation" parent="." instance=ExtResource("2_m3wv4")]
 unique_name_in_owner = true
-position = Vector2(16, 56)
 
 [node name="ReloadTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -236,13 +235,12 @@ wait_time = 0.3
 [node name="DustParticle" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
 z_index = -1
-position = Vector2(8, 184)
-emitting = false
-amount = 10
+position = Vector2(0, 80)
+amount = 20
 amount_ratio = 0.5
 process_material = SubResource("ParticleProcessMaterial_u782x")
 texture = ExtResource("14_pncug")
-lifetime = 0.3
+speed_scale = 2.0
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="AutoShootTimer" to="." method="_on_auto_shoot_timer_timeout"]

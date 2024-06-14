@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bxy75davaj2n4" path="res://Assets/NPC/Harold.png" id="14_6rcgg"]
 [ext_resource type="Texture2D" uid="uid://cpt1ydyjanjlx" path="res://Assets/NPC/Gulrot.png" id="16_juuof"]
 [ext_resource type="Script" path="res://GameElements/Maps/NpcPathFollow.gd" id="16_ro2ui"]
-[ext_resource type="PackedScene" uid="uid://bfdwcf1jvgjvh" path="res://GameElements/Maps/env/arbre.tscn" id="18_12uxl"]
+[ext_resource type="PackedScene" uid="uid://buq541w6c0c63" path="res://GameElements/Maps/env/arbre.tscn" id="18_12uxl"]
 [ext_resource type="Script" path="res://GameElements/NPC/NPCManager.gd" id="19_1v4xt"]
 [ext_resource type="PackedScene" uid="uid://dmb5cs8occw40" path="res://GameElements/Screens/select_map_screen.tscn" id="20_33c25"]
 [ext_resource type="PackedScene" uid="uid://n1k4yurwg55o" path="res://GameElements/Screens/shop.tscn" id="21_0pxgc"]
@@ -58,6 +58,7 @@ shader = ExtResource("9_ep887")
 [node name="Map" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
+position = Vector2(-44, -17)
 script = ExtResource("1_dvt7e")
 player_starting_mana = 200
 is_hub = true

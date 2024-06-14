@@ -244,7 +244,7 @@ func new_save():
 							"skill_6": false,
 							"skill_7": false,
 							"skill_8": false,
-							"skill_9": true,
+							"skill_9": false,
 						},
 		"selected_skills" : {
 		"skill_0": 0,

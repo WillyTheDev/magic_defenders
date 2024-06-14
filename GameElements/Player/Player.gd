@@ -67,7 +67,7 @@ func _physics_process(_delta):
 			%WalkAudio.playing = true
 		%PlayerAnimation.play_animation_walk();
 		%DustParticle.emitting = true
-		%DustParticle.process_material.gravity = Vector3(direction.x*10, direction.y*10, 0) * -1
+		%DustParticle.process_material.gravity = Vector3(direction.x, direction.y, 0) * -1
 	else:
 		%PlayerAnimation.play_animation_idle();
 		%WalkAudio.playing = false
@@ -154,7 +154,6 @@ func on_skill_pressed(index : int):
 				get_parent().add_child(new_object)
 			else:
 				var skill = SkillManager.selected_skills[index].scene.instantiate()
-				
 				skill.global_position = get_global_mouse_position()
 				get_parent().add_child(skill)
 

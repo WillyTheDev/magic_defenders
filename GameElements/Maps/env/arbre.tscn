@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfdwcf1jvgjvh"]
+[gd_scene load_steps=8 format=3 uid="uid://buq541w6c0c63"]
 
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="1_j508w"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="2_2hmsa"]
 [ext_resource type="Texture2D" uid="uid://bqnvxqkjk66ec" path="res://Assets/envirronment/arbre.png" id="3_pg4hd"]
+[ext_resource type="Script" path="res://GameElements/Maps/env/arbre.gd" id="4_dpick"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="4_m3iw4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_abvb5"]
@@ -22,6 +23,7 @@ material = SubResource("ShaderMaterial_abvb5")
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("3_pg4hd")
 offset = Vector2(0, -120)
+script = ExtResource("4_dpick")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2(2.7251, -106.279)

@@ -118,5 +118,6 @@ func _on_remove_stat_1_pressed():
 func _on_player_manager_animation_player_animation_finished(anim_name):
 	if anim_name == "hide_player_profile":
 		visible = false
+		is_open = false
 
 
