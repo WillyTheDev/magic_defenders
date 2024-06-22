@@ -24,6 +24,7 @@ func _ready():
 
 func _reset_hat_effect():
 	var game = get_node("/root/Game/")
+	Player.magic_bolt = preload("res://GameElements/Spells/magic_bolt.tscn")
 	var lambdas = game.wave_is_over.get_connections()
 	for lambda in lambdas:
 		game.wave_is_over.disconnect(lambda.callable)
@@ -139,6 +140,7 @@ func _on_necklace_button_pressed():
 func load_necklace_list():
 	%NecklaceList.clear()
 	for loot in Global.inventory.loots["necklaces"]:
+		print(loot)
 		var index = %NecklaceList.add_item("%s : %s\n%s: %s" % [get_stat_string(loot.primary_stat), loot.primary_stat_value ,get_stat_string(loot.secondary_stat), loot.secondary_stat_value],loot.texture, true)
 		%NecklaceList.set_item_icon_modulate(index, loot.modulate)
 		if Global.inventory.equiped_necklaces == loot:

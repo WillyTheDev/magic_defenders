@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://c082ftweuwu2l"]
+
+[ext_resource type="Texture2D" uid="uid://bw61ae2r5brvy" path="res://Assets/UI/item/background.png" id="1_kfyap"]
+[ext_resource type="Script" path="res://loot_item.gd" id="1_mw5rj"]
+[ext_resource type="Texture2D" uid="uid://j014cmoau1ir" path="res://Assets/loots/boots.png" id="2_thysp"]
+[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="3_ufc1j"]
+
+[node name="LootItem" type="Control"]
+layout_mode = 3
+anchor_right = 0.226
+anchor_bottom = 0.191
+offset_right = 4.08002
+offset_bottom = -37.28
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_mw5rj")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 433.0
+offset_bottom = 170.0
+texture_normal = ExtResource("1_kfyap")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemContainer" type="MarginContainer" parent="TextureButton/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 50
+
+[node name="ItemTexture" type="TextureRect" parent="TextureButton/HBoxContainer/ItemContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_thysp")
+
+[node name="DescriptionContainer" type="MarginContainer" parent="TextureButton/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureButton/HBoxContainer/DescriptionContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_ufc1j")
+bbcode_enabled = true
+text = "- [color=green] Rarity [/color] -
+Primary-stat : value
+Secondary-stat : value
+
+price : [color=yellow] price [/color]"

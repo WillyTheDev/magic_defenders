@@ -7,10 +7,11 @@ static var base_damage = 1
 @export var speed_increment = 100
 @export var MANA_AMOUNT = 2
 @export var health_increment = 0
-var health = 0
-var speed = 0
 @export var enemy_damage = 1
 @export var follow_path = true
+var health = 0
+var speed = 0
+
 
 var total_health = base_health + health_increment
 var has_hat = false

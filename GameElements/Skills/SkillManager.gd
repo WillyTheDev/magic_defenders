@@ -38,7 +38,7 @@ func update_skills_button_ui():
 		index += 1
 	
 func update_progress_bar():
-	var current_mana = $/root/Game/Player.mana_amount
+	var current_mana = Player.mana_amount
 	var index = 0
 	for skill in selected_skills:
 		if skill != null:
@@ -127,7 +127,7 @@ static var skills : Array[Skill] = [
 	"defense", true),
 	Skill.new(
 		"skill_3",
-		30,
+		40,
 	 preload("res://Assets/UI/Skills_button/aoe_turret_normal.png"),
 	 preload("res://Assets/UI/Skills_button/aoe_turret_hover.png"),
 	 preload("res://GameElements/defense/aoe_turret.tscn"),

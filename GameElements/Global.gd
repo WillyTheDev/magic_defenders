@@ -20,25 +20,6 @@ static var player_equipped_hat = 99
 static var sequences : Array = [""]
 static var gold_reward = 0
 
-static var unlocked_hats:  = {
-	"hat_0" : false,
-	"hat_1" : false,
-	"hat_2" : false,
-	"hat_3" : false,
-	"hat_4" : false,
-	"hat_5" : false,
-	"hat_6" : false
-}
-
-static var inventory : Inventory = null
-
-#======================
-# Player Data
-#======================
-static var player_level = 0
-static var accumulated_mana = 0
-static var accumulated_gold = 0
-static var urgent_quests_completed = 0
 
 #======================
 # Player Stats
@@ -119,10 +100,6 @@ static var selected_skills = {
 	"skill_3": 1,
 }
 
-#======================
-# Game Progression
-#======================
-
 func getStatFromIndex(index: int) -> int:
 	match index:
 		1:
@@ -167,6 +144,37 @@ func setStatFromIndex(index: int, value: int):
 			defense_stat_fire_rate += value
 		_:
 			return 0
+
+#======================
+# Game Progression
+#======================
+
+static var tutorial_steps = 0
+static var player_level = 0
+static var accumulated_mana = 0
+static var accumulated_gold = 0
+static var urgent_quests_completed = 0
+
+static var unlocked_hats = {
+	"hat_0" : false,
+	"hat_1" : false,
+	"hat_2" : false,
+	"hat_3" : false,
+	"hat_4" : false,
+	"hat_5" : false,
+	"hat_6" : false
+}
+
+static var inventory : Inventory = null
+
+static var map_challenge_score = {
+	"map_1" : 0,
+	"map_2" : 0,
+	"map_3" : 0,
+	"map_4" : 0,
+	"map_5" : 0,
+}
+
 			
 			
 #======================
@@ -206,6 +214,8 @@ func _save():
 		"unlocked_hats": unlocked_hats,
 		"unlocked_skills": unlocked_skills,
 		"selected_skills": selected_skills,
+		"tutorial_steps": tutorial_steps,
+		"map_challenge_score": map_challenge_score
 	}
 	return save_dict
 	
@@ -251,8 +261,10 @@ func new_save():
 		"skill_1": 1,
 		"skill_2": 0,
 		"skill_3": 1,
-		}
-	}
+		},
+		"tutorial_steps": 0
+		#TODO ADD map challenge score
+}
 	print("CLEAR INVENTORY")
 	var inv = Inventory.new()
 	inventory = inv

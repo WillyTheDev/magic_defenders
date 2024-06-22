@@ -138,6 +138,7 @@ shape = SubResource("CircleShape2D_jbsop")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 zoom = Vector2(2, 2)
 process_callback = 0
 limit_left = 0

@@ -31,6 +31,7 @@ scale = Vector2(0.208536, 0.208536)
 texture = ExtResource("3_mf4fj")
 
 [node name="PointLightSprite" type="PointLight2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-23.9768, -158.246)
 scale = Vector2(58.863, 56.3006)
 blend_mode = 2

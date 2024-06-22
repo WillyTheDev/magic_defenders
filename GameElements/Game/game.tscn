@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=57 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Script" path="res://GameElements/Maps/day&night.gd" id="2_gxe6o"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://ny4aky6krl1f" path="res://Assets/UI/game_over/try_again_hover.png" id="16_ndx5k"]
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="16_yatl6"]
 [ext_resource type="Texture2D" uid="uid://cwun1vfp81jij" path="res://Assets/UI/game_over/infinity.png" id="17_ba1vo"]
+[ext_resource type="PackedScene" uid="uid://rnuo7fqinifx" path="res://GameElements/tutorial/tutorial_container.tscn" id="17_n1sfa"]
 [ext_resource type="Texture2D" uid="uid://b4qi7x6vt50c1" path="res://Assets/UI/game_over/infinity_click.png" id="18_607go"]
 [ext_resource type="PackedScene" uid="uid://dfk2ty751jcp5" path="res://GameElements/Screens/options_menu.tscn" id="19_c68rg"]
 [ext_resource type="Texture2D" uid="uid://y87oitxabwmv" path="res://Assets/UI/game_over/infinity_hover.png" id="19_escsq"]
@@ -227,7 +228,7 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqj0w"]
-bg_color = Color(0.933874, 0.50916, 0.222206, 1)
+bg_color = Color(0.745098, 0.678431, 0.980392, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
@@ -783,6 +784,8 @@ theme_override_font_sizes/font_size = 36
 text = "New Hat unlocked
 "
 uppercase = true
+
+[node name="TutorialContainer" parent="UI" instance=ExtResource("17_n1sfa")]
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

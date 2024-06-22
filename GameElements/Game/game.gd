@@ -15,7 +15,7 @@ var paths: Array[Path2D] = []
 var options_menu_open = false
 var max_wave : float = 30.0
 #Those variables are used to know which ennemy to spawn
-var current_wave : float = 0.0
+static var current_wave : float = 0.0
 var sequence_index : int = -1
 var spawn_index : int = 0
 var number_of_time : int = 0
@@ -33,6 +33,7 @@ var sequence_enemies = {
 
 # Use the _ready methode to reinitialize static properties from various classes
 func _ready():
+	Player.mana_amount = 0
 	current_wave = Global.starting_wave
 	is_idle = true
 	map_of_game = load("res://GameElements/Maps/map_%s.tscn" % Global.selected_map).instantiate()
@@ -109,11 +110,11 @@ func start_new_wave():
 	%SpawnFlyingEnemyTimer.wait_time = clamp(spawn_flying_enemy_rates, 0.5, 2.5)
 	%SpawnFlyingEnemyTimer.start()
 
-	if current_wave > 5 && Global.selected_difficulty > 1:
-		Enemy.base_health += Global.selected_difficulty - 1
-		Enemy.base_speed += Global.selected_difficulty
+	if (current_wave > 5 && Global.selected_difficulty > 1) || Global.selected_difficulty == 99:
+		Enemy.base_health += clamp(Global.selected_difficulty - 1, 0, 5)
+		Enemy.base_speed += clamp(Global.selected_difficulty, 0, 5)
 		if Global.selected_difficulty > 2:
-			Enemy.base_damage += Global.selected_difficulty / 2
+			Enemy.base_damage += clamp(Global.selected_difficulty / 2, 0, 3)
 
 func end_of_wave():
 	%Enemy_1.visible = false
@@ -121,6 +122,8 @@ func end_of_wave():
 	%Enemy_3.visible = false
 	%Enemy_4.visible = false
 	%Enemy_5.visible = false
+	%Enemy_6.visible = false
+	%Enemy_7.visible = false
 	%WaveLAbel.text = "Wave : %s Cleared !" % current_wave
 	%UI.show_next_wave_label()
 	%Confetti.play_confetti()
@@ -154,17 +157,23 @@ func spawn_mob():
 	#Load a new Enemy ( Path2DFollower ) and attach the relevent monster ( e.g slime, slimeMedium, archer...)
 	var enemy = null
 	# if infinity mode, ennemies spawner don't foller any sequence
-	if Global.selected_difficulty == 4:
+	if Global.selected_difficulty == 99:
 		if enemies_spawn >= total_enemies:
 			is_spawning = false
 			return
 		else:
 			var enemy_spawn_chance : float = randf()
 			var medium_enemy_spawn_chance: float = (current_wave)/(30)
+			var fishmen_enemy_spawn_chance: float = (current_wave)/80
 			var hard_enemy_spawn_chance :float =  current_wave/(150)
+			var ghost_enemy_spawn_chance: float = (current_wave)/200
 			var mana_enemy_spawn_chance : float = 0.005
-			if (enemy_spawn_chance < hard_enemy_spawn_chance) && current_wave > 7:
+			if (enemy_spawn_chance < ghost_enemy_spawn_chance) && current_wave > 9:
+				enemy = preload("res://GameElements/Enemies/Slime/slime_ghost.tscn").instantiate()
+			elif (enemy_spawn_chance < hard_enemy_spawn_chance) && current_wave > 8:
 				enemy = preload("res://GameElements/Enemies/Slime/slime_hard.tscn").instantiate()
+			elif (enemy_spawn_chance < fishmen_enemy_spawn_chance) && current_wave > 7:
+				enemy = preload("res://GameElements/Enemies/Slime/fishmen.tscn").instantiate()
 			elif (enemy_spawn_chance < medium_enemy_spawn_chance) && current_wave > 3:
 				enemy = preload("res://GameElements/Enemies/Slime/slime_medium.tscn").instantiate()
 			elif enemy_spawn_chance > 1 - mana_enemy_spawn_chance:
@@ -244,7 +253,7 @@ func _on_spawn_enemy_timer_timeout():
 		spawn_mob()
 
 func _on_spawn_flying_enemy_timer_timeout():
-	if Global.selected_difficulty == 4:
+	if Global.selected_difficulty == 99 && current_wave > 6:
 		spawn_flying_mob()
 
 func _on_core_core_destroyed():

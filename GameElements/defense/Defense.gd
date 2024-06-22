@@ -5,7 +5,7 @@ static var defense_price = 10
 var has_been_build = false
 var can_be_placed = true
 
-var current_health = 10.0
+var current_health = 20.0
 var cumulated_damage = 0
 
 func _reinitialize_static_properties():
@@ -24,6 +24,7 @@ func _ready():
 	print("DEFENSE CURRENT HEALTH = %s" % current_health)
 	current_health += Global.getDefenseHealth()
 	print("Defense initial health = %s" % current_health)
+	
 	
 func _apply_modification(args: Callable):
 	args.call(self)
@@ -81,13 +82,12 @@ func _input(event):
 
 
 
-func take_damage():
+func take_damage(damage):
 	if cumulated_damage > 0:
 		abstract_defense_take_damage()
-		print("Defense is taking damge : %s" % cumulated_damage)
-		current_health -= cumulated_damage
+		current_health -= damage
 		var dmg_indicator = preload("res://GameElements/misc/damage_indicator.tscn").instantiate()
-		dmg_indicator.set_value(int(cumulated_damage * 10))
+		dmg_indicator.set_value(int(damage * 10))
 		dmg_indicator.scale = Vector2(0.4, 0.4)
 		dmg_indicator.global_position = global_position
 		get_node("/root/Game").add_child(dmg_indicator)
@@ -99,14 +99,14 @@ func take_damage():
 			get_parent().add_child(new_smoke)
 			queue_free()
 		else:
-			var values = (255 * (current_health/(10+Global.getDefenseHealth())))
+			var values = (255 * (current_health/(20.0+Global.getDefenseHealth())))
 			modulate = "ff%x%xff" % [values, values]
 
 func _on_area_2d_body_entered(body):
-	if body is Enemy:
+	if has_been_build && body is Enemy:
 		body.speed = 0
 		cumulated_damage += body.enemy_damage
-		take_damage()
+		take_damage(body.enemy_damage)
 	
 func _on_area_2d_body_exited(body):
 	if body is Enemy:
@@ -115,4 +115,4 @@ func _on_area_2d_body_exited(body):
 		abstract_on_body_exited_defense_zone()
 
 func _on_timer_timeout():
-	take_damage()
+	take_damage(cumulated_damage)

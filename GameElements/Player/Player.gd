@@ -4,7 +4,7 @@ extends CharacterBody2D
 var starting_mana_amount = 30
 @export var player_last_skill_level = 20
 @export var points_per_level = 1
-var mana_amount = 0
+static var mana_amount = 0
 @export var screen_size = Vector2i(0,0)
 static var accumulated_mana = 0
 static var offset_accumulated_mana_value = 10
@@ -24,7 +24,7 @@ signal show_cards
 signal player_has_shoot
 signal player_got_new_hat
 
-static var magic_bolt = null
+static var magic_bolt = preload("res://GameElements/Spells/magic_bolt.tscn")
 
 func _ready():
 	var inventoryManager = get_node("/root/Game/PlayerManager/InventoryManager")
@@ -34,7 +34,6 @@ func _ready():
 	screen_size = get_node("/root/Game/Map/MapLimit").global_position
 	_update_sound_volume()
 	update_mana_amount(starting_mana_amount, false)
-	magic_bolt = preload("res://GameElements/Spells/magic_bolt.tscn")
 	inventoryManager.apply_hat()
 
 func _update_sound_volume():
@@ -88,6 +87,7 @@ func _input(event):
 	if event.is_action_pressed("interact"):
 		if get_node_or_null("/root/Game/Map/NPCManager") != null:
 			$/root/Game/Map/NPCManager.interact_with_npc(nearest_npc_index)
+			
 	#====================
 	#Skills Input
 	#====================

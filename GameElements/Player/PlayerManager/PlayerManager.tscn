@@ -195,44 +195,12 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prgbg"]
-bg_color = Color(0.802032, 0.68109, 0.293656, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.0962047, 0.0962048, 0.0962046, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-expand_margin_left = 16.0
-expand_margin_top = 8.0
-expand_margin_right = 16.0
-expand_margin_bottom = 8.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kiv38"]
-bg_color = Color(0.425524, 0.338242, 0.15331, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.0962047, 0.0962048, 0.0962046, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-expand_margin_left = 16.0
-expand_margin_top = 8.0
-expand_margin_right = 16.0
-expand_margin_bottom = 8.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olm0r"]
 bg_color = Color(0.533333, 0.776471, 0.913725, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
@@ -261,15 +229,42 @@ expand_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yow2v"]
 bg_color = Color(0.580392, 0.819608, 1, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+expand_margin_left = 16.0
+expand_margin_top = 8.0
+expand_margin_right = 16.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prgbg"]
+bg_color = Color(0.533333, 0.776471, 0.913725, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 16.0
+expand_margin_top = 8.0
+expand_margin_right = 16.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kiv38"]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.0962047, 0.0962048, 0.0962046, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 expand_margin_left = 16.0
 expand_margin_top = 8.0
 expand_margin_right = 16.0
@@ -1317,6 +1312,7 @@ texture_pressed = ExtResource("6_f3uvs")
 
 [node name="SkillContainer Label" type="Label" parent="StatsContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1328,6 +1324,7 @@ text = "Choose your skills :
 
 [node name="SkillContainer" parent="StatsContainer/VBoxContainer" instance=ExtResource("8_pjo68")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="StatsContainer/VBoxContainer"]
@@ -1743,9 +1740,11 @@ allow_rmb_select = true
 allow_search = false
 max_text_lines = 2
 auto_height = true
+item_count = 1
 same_column_width = true
 fixed_column_width = 400
 icon_mode = 0
+item_0/text = ""
 
 [node name="MarginContainer" type="MarginContainer" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer"]
 layout_mode = 2
@@ -1759,6 +1758,16 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_constants/separation = 40
 
+[node name="EquipsNecklaces" type="Button" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
+text = "Equip"
+
 [node name="SellNecklaces" type="Button" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -1769,16 +1778,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_prgbg")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kiv38")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_prgbg")
 text = "Sell"
-
-[node name="EquipsNecklaces" type="Button" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
-theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
-text = "Equip"
 
 [node name="RingContainer" type="Control" parent="InventoryManager"]
 unique_name_in_owner = true
@@ -1831,10 +1830,14 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 160
 theme_override_constants/margin_bottom = 40
 
-[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/RingContainer/Texture/MarginContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="InventoryManager/RingContainer/Texture/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 80
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="RingList" type="ItemList" parent="InventoryManager/RingContainer/Texture/MarginContainer/ScrollContainer"]
+[node name="RingList" type="ItemList" parent="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer2/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1870,6 +1873,16 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_constants/separation = 40
 
+[node name="EquipsRings" type="Button" parent="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
+text = "Equip"
+
 [node name="SellRings" type="Button" parent="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -1880,16 +1893,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_prgbg")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kiv38")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_prgbg")
 text = "Sell"
-
-[node name="EquipsRings" type="Button" parent="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
-theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
-text = "Equip"
 
 [node name="PantsContainer" type="Control" parent="InventoryManager"]
 unique_name_in_owner = true
@@ -1942,10 +1945,14 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 160
 theme_override_constants/margin_bottom = 40
 
-[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/PantsContainer/Texture/MarginContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="InventoryManager/PantsContainer/Texture/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 80
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="PantsList" type="ItemList" parent="InventoryManager/PantsContainer/Texture/MarginContainer/ScrollContainer"]
+[node name="PantsList" type="ItemList" parent="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer2/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1981,6 +1988,16 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_constants/separation = 40
 
+[node name="EquipsPants" type="Button" parent="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
+text = "Equip"
+
 [node name="SellPants" type="Button" parent="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -1991,16 +2008,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_prgbg")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kiv38")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_prgbg")
 text = "Sell"
-
-[node name="EquipsPants" type="Button" parent="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
-theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
-text = "Equip"
 
 [node name="BootsContainer" type="Control" parent="InventoryManager"]
 unique_name_in_owner = true
@@ -2053,10 +2060,14 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 160
 theme_override_constants/margin_bottom = 40
 
-[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/BootsContainer/Texture/MarginContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="InventoryManager/BootsContainer/Texture/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 80
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="BootsList" type="ItemList" parent="InventoryManager/BootsContainer/Texture/MarginContainer/ScrollContainer"]
+[node name="BootsList" type="ItemList" parent="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer2/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -2092,6 +2103,16 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_constants/separation = 40
 
+[node name="EquipsBoots" type="Button" parent="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_gyvey")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
+text = "Equip"
+
 [node name="SellBoots" type="Button" parent="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -2102,16 +2123,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_prgbg")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kiv38")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_prgbg")
 text = "Sell it"
-
-[node name="EquipsBoots" type="Button" parent="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
-theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
-text = "Equip"
 
 [node name="PlayerProfileTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -2147,19 +2158,19 @@ libraries = {
 [connection signal="item_selected" from="InventoryManager/HatsContainer/Texture/MarginContainer/ScrollContainer/HatList" to="InventoryManager" method="_on_hat_list_item_selected"]
 [connection signal="gui_input" from="InventoryManager/NecklaceContainer/Control" to="InventoryManager/NecklaceContainer/Control" method="_on_gui_input"]
 [connection signal="item_selected" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/ScrollContainer/NecklaceList" to="InventoryManager" method="_on_necklace_list_item_selected"]
-[connection signal="pressed" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/SellNecklaces" to="InventoryManager" method="_on_delete_necklaces_pressed"]
 [connection signal="pressed" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/EquipsNecklaces" to="InventoryManager" method="_on_equips_necklaces_pressed"]
+[connection signal="pressed" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/SellNecklaces" to="InventoryManager" method="_on_delete_necklaces_pressed"]
 [connection signal="gui_input" from="InventoryManager/RingContainer/Control" to="InventoryManager/RingContainer/Control" method="_on_gui_input"]
-[connection signal="item_selected" from="InventoryManager/RingContainer/Texture/MarginContainer/ScrollContainer/RingList" to="InventoryManager" method="_on_ring_list_item_selected"]
-[connection signal="pressed" from="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/SellRings" to="InventoryManager" method="_on_delete_rings_pressed"]
+[connection signal="item_selected" from="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer2/ScrollContainer/RingList" to="InventoryManager" method="_on_ring_list_item_selected"]
 [connection signal="pressed" from="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/EquipsRings" to="InventoryManager" method="_on_equips_rings_pressed"]
+[connection signal="pressed" from="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/SellRings" to="InventoryManager" method="_on_delete_rings_pressed"]
 [connection signal="gui_input" from="InventoryManager/PantsContainer/Control" to="InventoryManager/PantsContainer/Control" method="_on_gui_input"]
-[connection signal="item_selected" from="InventoryManager/PantsContainer/Texture/MarginContainer/ScrollContainer/PantsList" to="InventoryManager" method="_on_pants_list_item_selected"]
-[connection signal="pressed" from="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/SellPants" to="InventoryManager" method="_on_delete_pants_pressed"]
+[connection signal="item_selected" from="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer2/ScrollContainer/PantsList" to="InventoryManager" method="_on_pants_list_item_selected"]
 [connection signal="pressed" from="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/EquipsPants" to="InventoryManager" method="_on_equips_pants_pressed"]
+[connection signal="pressed" from="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/SellPants" to="InventoryManager" method="_on_delete_pants_pressed"]
 [connection signal="gui_input" from="InventoryManager/BootsContainer/Control" to="InventoryManager/BootsContainer/Control" method="_on_gui_input"]
-[connection signal="item_selected" from="InventoryManager/BootsContainer/Texture/MarginContainer/ScrollContainer/BootsList" to="InventoryManager" method="_on_boots_list_item_selected"]
-[connection signal="pressed" from="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/SellBoots" to="InventoryManager" method="_on_delete_boots_pressed"]
+[connection signal="item_selected" from="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer2/ScrollContainer/BootsList" to="InventoryManager" method="_on_boots_list_item_selected"]
 [connection signal="pressed" from="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/EquipsBoots" to="InventoryManager" method="_on_equips_boots_pressed"]
+[connection signal="pressed" from="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/SellBoots" to="InventoryManager" method="_on_delete_boots_pressed"]
 [connection signal="timeout" from="PlayerProfileTimer" to="." method="_on_card_timer_timeout"]
 [connection signal="animation_finished" from="PlayerManagerAnimationPlayer" to="." method="_on_player_manager_animation_player_animation_finished"]

@@ -5,7 +5,6 @@ extends Node2D
 @export var flyingSpawnPoint: PathFollow2D = null
 ## Set the difficulty of the map lower the difficulty value is, higher the real difficulty
 @export var player_starting_mana = 30
-
 @export var map_index = 1
 @export var chapter_index = 1
 @export var is_hub = false

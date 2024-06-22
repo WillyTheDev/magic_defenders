@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dxicxia2vogwh"]
+[gd_scene load_steps=43 format=3 uid="uid://dxicxia2vogwh"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_dvt7e"]
 [ext_resource type="Material" uid="uid://cpw1r3dhb6b27" path="res://Shaders/water.tres" id="2_05s70"]
@@ -14,14 +14,26 @@
 [ext_resource type="Texture2D" uid="uid://chb5q50fjrkre" path="res://Assets/NPC/Merchant.png" id="12_08xgd"]
 [ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/core.tscn" id="12_jfn2e"]
 [ext_resource type="Texture2D" uid="uid://3ljah6c2too0" path="res://Assets/envirronment/board.png" id="13_4t8s1"]
+[ext_resource type="AudioStream" uid="uid://cfe0vvi8ecmh4" path="res://Assets/audio/voice/merchant_short_1.wav" id="13_c2xuc"]
+[ext_resource type="Texture2D" uid="uid://08ilg3mfxyot" path="res://Assets/NPC/pandanus.png" id="13_e0x1k"]
 [ext_resource type="Texture2D" uid="uid://bxy75davaj2n4" path="res://Assets/NPC/Harold.png" id="14_6rcgg"]
+[ext_resource type="AudioStream" uid="uid://b5eqdjgm6hpby" path="res://Assets/audio/voice/merchant_short_2.wav" id="14_ft7ta"]
+[ext_resource type="AudioStream" uid="uid://lkov2mb337gi" path="res://Assets/audio/voice/merchant_short_3.wav" id="15_ijy5i"]
 [ext_resource type="Texture2D" uid="uid://cpt1ydyjanjlx" path="res://Assets/NPC/Gulrot.png" id="16_juuof"]
 [ext_resource type="Script" path="res://GameElements/Maps/NpcPathFollow.gd" id="16_ro2ui"]
+[ext_resource type="AudioStream" uid="uid://oqkrpqoi0bp3" path="res://Assets/audio/voice/panda_short_1.wav" id="17_2gghk"]
 [ext_resource type="PackedScene" uid="uid://buq541w6c0c63" path="res://GameElements/Maps/env/arbre.tscn" id="18_12uxl"]
+[ext_resource type="AudioStream" uid="uid://b0xb2bwqkjqym" path="res://Assets/audio/voice/panda_short_2.wav" id="18_64o0m"]
 [ext_resource type="Script" path="res://GameElements/NPC/NPCManager.gd" id="19_1v4xt"]
+[ext_resource type="PackedScene" uid="uid://bfkd0xrery8g2" path="res://GameElements/Maps/env/mushroom.tscn" id="19_gpyyt"]
+[ext_resource type="AudioStream" uid="uid://cv0r26n4nuwy6" path="res://Assets/audio/voice/panda_short_3.wav" id="19_mvdgl"]
+[ext_resource type="AudioStream" uid="uid://djya3c8au86gv" path="res://Assets/audio/voice/gulrot_short_1.wav" id="19_rvvjk"]
 [ext_resource type="PackedScene" uid="uid://dmb5cs8occw40" path="res://GameElements/Screens/select_map_screen.tscn" id="20_33c25"]
+[ext_resource type="AudioStream" uid="uid://b877uruq2315a" path="res://Assets/audio/voice/gulrot_short_2.wav" id="20_x26sr"]
 [ext_resource type="PackedScene" uid="uid://n1k4yurwg55o" path="res://GameElements/Screens/shop.tscn" id="21_0pxgc"]
+[ext_resource type="AudioStream" uid="uid://cdvnwib7h27jv" path="res://Assets/audio/voice/gulrot_short_3.wav" id="21_2aorq"]
 [ext_resource type="PackedScene" uid="uid://clhu7ht04c7da" path="res://GameElements/Maps/env/torch.tscn" id="22_r834d"]
+[ext_resource type="PackedScene" uid="uid://c565udxf2c2r4" path="res://GameElements/Screens/Challenge.tscn" id="24_n8nrg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfba4"]
 shader = ExtResource("3_1i6ag")
@@ -46,11 +58,38 @@ shader_parameter/FOAM_COL = Color(0.0196078, 0.101961, 0.105882, 0.156863)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8a0eo"]
 size = Vector2(454.885, 69.5708)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_302fx"]
+streams_count = 3
+stream_0/stream = ExtResource("13_c2xuc")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("14_ft7ta")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("15_ijy5i")
+stream_2/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tjl11"]
+streams_count = 3
+stream_0/stream = ExtResource("17_2gghk")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("18_64o0m")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("19_mvdgl")
+stream_2/weight = 1.0
+
 [sub_resource type="Curve2D" id="Curve2D_qlgs1"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 792, 374, 0, 0, 0, 0, 1118, 545, 0, 0, 0, 0, 1492, 280, 0, 0, 0, 0, 2144, 475, 0, 0, 0, 0, 2524, 808, 0, 0, 0, 0, 2265, 1272, 0, 0, 0, 0, 1700, 1359, 0, 0, 0, 0, 1192, 1252, 0, 0, 0, 0, 631, 1043, 0, 0, 0, 0, 62, 835, 0, 0, 0, 0, -69, 619, 0, 0, 0, 0, 785, 377)
 }
 point_count = 12
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_n1mdl"]
+streams_count = 3
+stream_0/stream = ExtResource("19_rvvjk")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("20_x26sr")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("21_2aorq")
+stream_2/weight = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u3f6o"]
 shader = ExtResource("9_ep887")
@@ -85,17 +124,17 @@ position = Vector2(2746, 1470)
 [node name="Arrière-plan" type="Sprite2D" parent="."]
 z_index = -1
 material = SubResource("ShaderMaterial_lfba4")
-position = Vector2(1269, 675)
+position = Vector2(1262, 685)
 scale = Vector2(1.58751, 1.53689)
 texture = ExtResource("5_xndun")
 
 [node name="Cloud" type="ColorRect" parent="Arrière-plan"]
 z_index = 5
 material = SubResource("ShaderMaterial_2jags")
-offset_left = -1367.55
-offset_top = -972.093
-offset_right = 552.449
-offset_bottom = 107.907
+offset_left = -1359.36
+offset_top = -959.08
+offset_right = 560.637
+offset_bottom = 120.92
 scale = Vector2(1.5, 1.5)
 
 [node name="Board" type="Sprite2D" parent="."]
@@ -128,13 +167,22 @@ position = Vector2(1116, 826)
 position = Vector2(1667, 445)
 npc_texture = ExtResource("14_6rcgg")
 is_unlock = true
+has_notification = true
 
 [node name="Merchant" parent="." instance=ExtResource("10_2ary5")]
 unique_name_in_owner = true
 position = Vector2(1061, 596)
 npc_index = 2
 npc_texture = ExtResource("12_08xgd")
+voice = SubResource("AudioStreamRandomizer_302fx")
 urgent_quest_to_unlock = 1
+
+[node name="ChallengeNpc" parent="." instance=ExtResource("10_2ary5")]
+position = Vector2(1779, 805)
+npc_index = 3
+npc_texture = ExtResource("13_e0x1k")
+voice = SubResource("AudioStreamRandomizer_tjl11")
+urgent_quest_to_unlock = 2
 
 [node name="Path2D" type="Path2D" parent="."]
 y_sort_enabled = true
@@ -154,6 +202,7 @@ y_sort_enabled = true
 position = Vector2(-8.10046, -2.52637)
 npc_index = 0
 npc_texture = ExtResource("16_juuof")
+voice = SubResource("AudioStreamRandomizer_n1mdl")
 starting_animation = "walk"
 
 [node name="env" type="Node2D" parent="."]
@@ -1266,6 +1315,27 @@ position = Vector2(2537, 992)
 [node name="Arbre36" parent="env" instance=ExtResource("18_12uxl")]
 position = Vector2(828, -30)
 
+[node name="Mushroom" parent="env" instance=ExtResource("19_gpyyt")]
+position = Vector2(1263, 279)
+
+[node name="Mushroom2" parent="env" instance=ExtResource("19_gpyyt")]
+position = Vector2(2170, 141)
+
+[node name="Mushroom3" parent="env" instance=ExtResource("19_gpyyt")]
+position = Vector2(2117, 855)
+
+[node name="Mushroom4" parent="env" instance=ExtResource("19_gpyyt")]
+position = Vector2(602, 802)
+
+[node name="Mushroom5" parent="env" instance=ExtResource("19_gpyyt")]
+position = Vector2(167, 78.0001)
+
+[node name="Mushroom6" parent="env" instance=ExtResource("19_gpyyt")]
+position = Vector2(2300, 1161)
+
+[node name="Mushroom7" parent="env" instance=ExtResource("19_gpyyt")]
+position = Vector2(1208, 1256)
+
 [node name="NPCManager" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 10
@@ -1275,6 +1345,9 @@ script = ExtResource("19_1v4xt")
 unique_name_in_owner = true
 
 [node name="Shop" parent="NPCManager" instance=ExtResource("21_0pxgc")]
+unique_name_in_owner = true
+
+[node name="Challenge" parent="NPCManager" instance=ExtResource("24_n8nrg")]
 unique_name_in_owner = true
 
 [node name="Torch2" parent="." instance=ExtResource("22_r834d")]

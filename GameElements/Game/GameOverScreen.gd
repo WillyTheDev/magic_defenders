@@ -26,12 +26,16 @@ func game_completed(wave:int, difficulty : int, map_of_game: Node):
 	%ScoreLabel.text = "You've completed this map and survided :\n %s" % wave
 	$/root/Game/Confetti.play_confetti()
 	
-func game_over(wave:int):
+func game_over(value):
+	print("GAME IS OVER : Core has been destroyed !")
 	visible = true
 	%GameOverAnimation.play("show_game_over")
 	%GameOverPlayer.play()
-	self.wave = wave
-	%ScoreLabel.text = "The lotus has been destroyed\n %s waves" % wave
+	self.wave = Game.current_wave
+	if Global.selected_difficulty == 99 && wave > Global.map_challenge_score["map_%s" % Global.selected_map]:
+		Global.map_challenge_score["map_%s" % Global.selected_map] = self.wave
+		print(Global.map_challenge_score["map_%s" % Global.selected_map])
+	%ScoreLabel.text = "The lotus has been destroyed\n You survived : %s waves" % wave
 
 
 func _on_infinity_button_pressed():

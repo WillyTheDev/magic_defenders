@@ -125,6 +125,7 @@ curve = SubResource("Curve2D_ak25k")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D" instance=ExtResource("6_hqis6")]
 position = Vector2(-322, 809)
+rotation = -0.48004
 
 [node name="Path2D2" type="Path2D" parent="Arrière-plan/Paths"]
 position = Vector2(-0.000121593, -6.99945)
@@ -132,12 +133,14 @@ curve = SubResource("Curve2D_wfim6")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D2" instance=ExtResource("6_hqis6")]
 position = Vector2(1339, -196.999)
+rotation = 1.20446
 
 [node name="Path2D3" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_trq67")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D3" instance=ExtResource("6_hqis6")]
 position = Vector2(2837, 731)
+rotation = -2.87065
 
 [node name="Cloud" type="ColorRect" parent="Arrière-plan"]
 z_index = 5

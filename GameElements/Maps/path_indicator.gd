@@ -4,5 +4,7 @@ const SPEED = 200
 
 func _process(delta):
 	if Game.is_idle == false:
-		queue_free()
+		visible = false
+	elif visible == false :
+		visible = true
 	progress += delta * SPEED

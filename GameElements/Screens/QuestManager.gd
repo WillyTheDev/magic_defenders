@@ -4,10 +4,8 @@ extends CanvasLayer
 var actual_chapter = 1
 var gold_texture = preload("res://Assets/loots/bourse.png")
 var nb_map_implemented = 5
-static var selected_quest = 0
 static var proposed_quest = []
 static var isOpen = false
-
 
 func clear_proposed_quest():
 	print("Quests has been cleared !")
@@ -21,18 +19,18 @@ func show_quests():
 	isOpen = true
 	get_tree().paused = true
 	print("Proposed quests : %s" % proposed_quest.size())
-	if proposed_quest.size() < 1:
-		var urgent_quest = _create_urgent_quests(urgent_quests[Global.urgent_quests_completed])
-		urgent_quest.quest_button_pressed.connect(show_skill_selection)
-		%QuestContainer.add_child(urgent_quest)
-		proposed_quest.append(urgent_quest)
+	if %QuestContainer.get_child_count() < 1:
+		if Global.urgent_quests_completed < 3:
+			var urgent_quest = _create_urgent_quests(urgent_quests[Global.urgent_quests_completed])
+			urgent_quest.quest_button_pressed.connect(show_skill_selection)
+			%QuestContainer.add_child(urgent_quest)
+			proposed_quest.append(urgent_quest)
 		if Global.urgent_quests_completed > 0:
-			for index in range(2,5):
+			for index in range(1,5):
 				var quest = _generate_quests()
 				quest.quest_button_pressed.connect(show_skill_selection)
 				%QuestContainer.add_child(quest)
 				proposed_quest.append(quest)
-			
 	%AnimationPlayer.play("show_quests_lists")
 
 func show_skill_selection():
@@ -139,26 +137,14 @@ func add_fishmen(_difficulty):
 	return ",%sx%s" % [randi_range(1,1 * _difficulty), 7]
 
 static var urgent_quests = [
-	UrgentQuest.new("quest_1", 1, 9, 1, true,
-		["7x1","10x1","15x1","1x4","2x6","15x1,1x4","15x1,1x4,3x1","17x1,1x4,7x1", "1x7", "20x1,1x4", "1x2,1x5"],
+	UrgentQuest.new("quest_1", 1, 10, 1, true,
+		["7x1","10x1","15x1","1x4","2x6","15x1,1x4","15x1,3x1", "1x7", "20x1,1x4", "1x2,1x5"],
 		0,
 		preload("res://Assets/UI/map_selection_button/reduced_merchant.png")),
 	UrgentQuest.new("quest_2", 2, 9, 2, true,
 		["10x1","15x1","15x1,1x2","15x1,1x2,1x4","15x1,1x2,1x4,5x1","15x1,1x2,3x4,5x1","18x1,2x2,5x4,5x1", "18x1,2x2,5x4,5x1", "30x4", "22x1,5x4,2x2,5x1,1x5"],
 		0,
-		preload("res://Assets/loots/bourse.png")),
-	UrgentQuest.new("quest_3", 3, 9, 3, true,
-		["10x1","15x1","15x1,1x2","15x1,1x2,1x4","15x1,1x2,1x4,5x1","15x1,2x2,3x4,5x1","18x1,3x2,5x4,5x1", "18x1,3x2,5x4,5x1", "30x4", "22x1,3x2,5x4,3x2,5x1,1x5"],
-		0,
-		preload("res://Assets/loots/bourse.png")),
-	UrgentQuest.new("quest_4", 4, 9, 4, true,
-		["10x1","15x1","15x1,1x2","15x1,1x2,1x4","15x1,1x2,1x4,5x1","15x1,2x2,3x4,5x1","18x1,3x2,5x4,5x1", "18x1,3x2,5x4,5x1", "30x4", "22x1,3x2,5x4,3x2,5x1,1x5"],
-		0,
-		preload("res://Assets/loots/bourse.png")),
-	UrgentQuest.new("quest_4", 5, 9, 5, true,
-		["10x1","15x1","15x1,1x2","15x1,1x2,1x4","15x1,1x2,1x4,5x1","15x1,2x2,3x4,5x1","18x1,3x2,5x4,5x1", "18x1,3x2,5x4,5x1", "30x4", "22x1,3x2,5x4,3x2,5x1,1x5"],
-		0,
-		preload("res://Assets/loots/bourse.png")),
+		preload("res://Assets/UI/map_selection_button/pandanus.png")),
 ]
 
 

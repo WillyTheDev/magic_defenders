@@ -88,6 +88,7 @@ curve = SubResource("Curve2D_ro73k")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D" instance=ExtResource("6_c4ye0")]
 unique_name_in_owner = true
+position = Vector2(-283, 731)
 
 [node name="Path_flying" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_wb7bk")
@@ -1411,3 +1412,12 @@ position = Vector2(1834, 968)
 
 [node name="Arbre14" parent="." instance=ExtResource("12_psipp")]
 position = Vector2(2310, 236)
+
+[node name="Arbre15" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(157, 841)
+
+[node name="Arbre16" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(704, 877)
+
+[node name="Arbre17" parent="." instance=ExtResource("12_psipp")]
+position = Vector2(945, 628)

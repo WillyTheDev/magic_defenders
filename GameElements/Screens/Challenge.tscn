@@ -1,0 +1,423 @@
+[gd_scene load_steps=27 format=3 uid="uid://c565udxf2c2r4"]
+
+[ext_resource type="Script" path="res://GameElements/Screens/ChallengeScreen.gd" id="1_kyc1v"]
+[ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="2_wgffh"]
+[ext_resource type="Script" path="res://GameElements/Skills/outside_click_control.gd" id="3_je6ft"]
+[ext_resource type="Texture2D" uid="uid://08ilg3mfxyot" path="res://Assets/NPC/pandanus.png" id="3_mlo5t"]
+[ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="5_plhmq"]
+[ext_resource type="Texture2D" uid="uid://bnv3iqjdhefug" path="res://Assets/UI/challenge_selection/background.png" id="5_xwwrn"]
+[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="7_rwlbt"]
+[ext_resource type="Script" path="res://GameElements/Screens/SkillSelection.gd" id="11_j0v5f"]
+[ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="12_awcmy"]
+[ext_resource type="PackedScene" uid="uid://dk18yh7kobthq" path="res://GameElements/Skills/skill_container.tscn" id="13_fcsk6"]
+[ext_resource type="Texture2D" uid="uid://bppitmq715mp1" path="res://Assets/UI/map_selection_button/start.png" id="14_58t3u"]
+[ext_resource type="Texture2D" uid="uid://cpa60h2mi2ymv" path="res://Assets/UI/map_selection_button/start_clicked.png" id="15_i52di"]
+[ext_resource type="Texture2D" uid="uid://cahuuxwk45jot" path="res://Assets/UI/challenge_selection/back.png" id="16_o0wxj"]
+[ext_resource type="Texture2D" uid="uid://dx0c42bnp4ped" path="res://Assets/UI/map_selection_button/start_hover.png" id="16_uux7m"]
+[ext_resource type="Texture2D" uid="uid://lrqcr411i8sd" path="res://Assets/UI/challenge_selection/back_click.png" id="17_g66vo"]
+[ext_resource type="Texture2D" uid="uid://bkqv2ykx8m0a0" path="res://Assets/UI/challenge_selection/back_hover.png" id="18_syo1e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cwhr8"]
+shader = ExtResource("2_wgffh")
+shader_parameter/lod = 1.5
+
+[sub_resource type="Animation" id="Animation_7i47a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Merchant:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_keiu3"]
+resource_name = "hide_challenge"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.225312, 0.225312),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Merchant:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6u30e"]
+resource_name = "show_challenge"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Merchant:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.287175, 0.287175),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 0.287175, 0.287175),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gnqic"]
+_data = {
+"RESET": SubResource("Animation_7i47a"),
+"hide_challenge": SubResource("Animation_keiu3"),
+"show_challenge": SubResource("Animation_6u30e")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_moenr"]
+shader = ExtResource("2_wgffh")
+shader_parameter/lod = 1.5
+
+[sub_resource type="Animation" id="Animation_qcvl1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_bskfh"]
+resource_name = "hide_skill_selection"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.241484, 0.241484),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wmp2k"]
+resource_name = "show_skill_selection"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.258816, 0.258816),
+"update": 0,
+"values": [Vector2(1, 1.00136e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgpd4"]
+_data = {
+"RESET": SubResource("Animation_qcvl1"),
+"hide_skill_selection": SubResource("Animation_bskfh"),
+"show_skill_selection": SubResource("Animation_wmp2k")
+}
+
+[node name="Challenge" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+visible = false
+script = ExtResource("1_kyc1v")
+
+[node name="Control" type="ColorRect" parent="." node_paths=PackedStringArray("player")]
+material = SubResource("ShaderMaterial_cwhr8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("3_je6ft")
+player = NodePath("../AnimationPlayer")
+animation_name = "hide_challenge"
+
+[node name="Merchant" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1718.25, 878.25)
+scale = Vector2(0.937647, 1.01567)
+texture = ExtResource("3_mlo5t")
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_plhmq")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 112.0
+offset_top = 167.0
+offset_right = 1685.0
+offset_bottom = 855.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(1550, 740)
+size_flags_horizontal = 4
+texture = ExtResource("5_xwwrn")
+
+[node name="MarginContainer2" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 90
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_rwlbt")
+theme_override_font_sizes/font_size = 45
+text = "Challenge Mode"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 0
+
+[node name="MapList" type="HBoxContainer" parent="TextureRect/MarginContainer2/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -144.0
+offset_right = 386.0
+grow_vertical = 0
+theme_override_constants/margin_left = 82
+theme_override_constants/margin_bottom = 64
+
+[node name="BackButton" type="TextureButton" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+texture_normal = ExtResource("16_o0wxj")
+texture_pressed = ExtResource("17_g66vo")
+texture_hover = ExtResource("18_syo1e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_gnqic")
+}
+
+[node name="SkillSelection" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 3
+visible = false
+script = ExtResource("11_j0v5f")
+
+[node name="Control" type="ColorRect" parent="SkillSelection"]
+material = SubResource("ShaderMaterial_moenr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("3_je6ft")
+animation_name = "hide_skill_selection"
+
+[node name="TextureRect" type="TextureRect" parent="SkillSelection"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -377.5
+offset_top = -371.0
+offset_right = 377.5
+offset_bottom = 371.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_awcmy")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="SkillSelection/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -302.5
+offset_top = -181.5
+offset_right = 302.5
+offset_bottom = 181.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="SkillSelection/TextureRect/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 50
+
+[node name="Label" type="Label" parent="SkillSelection/TextureRect/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_rwlbt")
+theme_override_font_sizes/font_size = 40
+text = "Select the skills 
+for this quest :"
+
+[node name="SkillContainer" parent="SkillSelection/TextureRect/HBoxContainer" instance=ExtResource("13_fcsk6")]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="SkillSelection/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("14_58t3u")
+texture_pressed = ExtResource("15_i52di")
+texture_hover = ExtResource("16_uux7m")
+
+[node name="SkillSelectionPlayer" type="AnimationPlayer" parent="SkillSelection"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_hgpd4")
+}
+
+[connection signal="gui_input" from="Control" to="Control" method="_on_gui_input"]
+[connection signal="pressed" from="TextureRect/MarginContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="gui_input" from="SkillSelection/Control" to="SkillSelection/Control" method="_on_gui_input"]
+[connection signal="pressed" from="SkillSelection/TextureRect/HBoxContainer/TextureButton" to="SkillSelection" method="_on_texture_button_pressed"]

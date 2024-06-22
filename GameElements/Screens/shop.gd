@@ -40,7 +40,6 @@ func show_shop():
 	get_tree().paused = true
 	%AnimationPlayer.play("show_shop")
 	
-	
 func close_shop():
 	is_open = false
 	get_tree().paused = false

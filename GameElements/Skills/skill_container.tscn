@@ -167,7 +167,7 @@ mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_211iv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gkffb")
 max_value = 10.0
-step = 2.0
+step = 1.0
 fill_mode = 2
 show_percentage = false
 
@@ -209,7 +209,7 @@ mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_211iv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gkffb")
 max_value = 20.0
-step = 2.0
+step = 1.0
 fill_mode = 2
 show_percentage = false
 
@@ -252,7 +252,7 @@ mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_211iv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gkffb")
 max_value = 60.0
-step = 5.0
+step = 1.0
 fill_mode = 2
 show_percentage = false
 
@@ -295,7 +295,7 @@ mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_211iv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gkffb")
 max_value = 60.0
-step = 5.0
+step = 1.0
 fill_mode = 2
 show_percentage = false
 

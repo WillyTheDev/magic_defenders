@@ -40,10 +40,10 @@ func shoot():
 		get_parent().add_child(new_fire_bolt)
 
 
-func take_damage():
+func take_damage(damage):
 	if cumulated_damage > 0:
 		abstract_defense_take_damage()
-		current_health -= cumulated_damage
+		current_health -= damage
 		if current_health <= 0:
 			abstract_final_action()
 			const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
@@ -72,7 +72,9 @@ func _on_timer_shoot_timeout():
 func _on_shoot_zone_body_exited(_body):
 	target = null
 	if %ShootZone != null:
+		print("An enemy has exited the shoot zone !")
 		for body in %ShootZone.get_overlapping_bodies():
+			print("here is a enemy still on the shoot zone : %s " % body)
 			if body is Enemy:
 				target = body
 				break;
