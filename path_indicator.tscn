@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3kskbiuwqikh"]
+
+[ext_resource type="Script" path="res://GameElements/Maps/path_indicator.gd" id="1_itwg7"]
+[ext_resource type="Texture2D" uid="uid://b43fco58pc8p4" path="res://Assets/Ennemies/path_indicator.png" id="2_40tws"]
+
+[node name="PathIndicator" type="PathFollow2D"]
+script = ExtResource("1_itwg7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.269186, 0.62467, 0.31376, 0.737255)
+scale = Vector2(0.3, 0.2)
+texture = ExtResource("2_40tws")
+
+[node name="_Timer_160269" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true

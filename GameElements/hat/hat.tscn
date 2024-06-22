@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://crt6kvg5gbie"]
+
+[ext_resource type="Script" path="res://GameElements/misc/mana.gd" id="1_fdjbp"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_j6arf"]
+[ext_resource type="Texture2D" uid="uid://cp2jr7wt7sntm" path="res://Assets/mana.png" id="3_r36fo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ik1sc"]
+radius = 481.001
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m8608"]
+
+[node name="Hat" type="Node2D"]
+modulate = Color(4, 4, 1, 1)
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_fdjbp")
+mana_value = 0
+is_hat = true
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.0430392, 0.0430392, 0.0430392, 1)
+position = Vector2(0, 24)
+scale = Vector2(0.30364, 0.315763)
+texture = ExtResource("2_j6arf")
+
+[node name="Mana" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("3_r36fo")
+
+[node name="AttractZone" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttractZone"]
+shape = SubResource("CircleShape2D_ik1sc")
+
+[node name="ManaBody" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ManaBody"]
+shape = SubResource("CircleShape2D_m8608")
+
+[connection signal="body_entered" from="AttractZone" to="." method="_on_attract_zone_body_entered"]
+[connection signal="body_entered" from="ManaBody" to="." method="_on_mana_body_body_entered"]

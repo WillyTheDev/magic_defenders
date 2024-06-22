@@ -69,6 +69,7 @@ _data = {
 }
 
 [node name="TransitionLayer" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_gh3ci")
 
 [node name="Transition" type="ColorRect" parent="."]

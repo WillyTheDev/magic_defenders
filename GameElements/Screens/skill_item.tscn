@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2fduvvryqji5"]
+
+[ext_resource type="Texture2D" uid="uid://01428w3x0we2" path="res://Assets/UI/NPC/shop_item_normal.png" id="1_mrcxv"]
+[ext_resource type="Texture2D" uid="uid://bd4fapqa7ra2a" path="res://Assets/UI/NPC/shop_item_click.png" id="2_pwmw7"]
+[ext_resource type="Texture2D" uid="uid://drsk0vr8ddiev" path="res://Assets/UI/NPC/shop_item_hover.png" id="3_m18r3"]
+[ext_resource type="Texture2D" uid="uid://chncb2xt2biv3" path="res://Assets/UI/NPC/necklaces.png" id="4_km7fh"]
+[ext_resource type="Script" path="res://GameElements/Screens/skill_item.gd" id="4_ky2cs"]
+[ext_resource type="Texture2D" uid="uid://bnaju2gceer5l" path="res://Assets/UI/NPC/bourse_reduced.png" id="5_rttml"]
+[ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="6_x6keu"]
+
+[node name="skill_item" type="TextureButton"]
+size_flags_horizontal = 0
+texture_normal = ExtResource("1_mrcxv")
+texture_pressed = ExtResource("2_pwmw7")
+texture_hover = ExtResource("3_m18r3")
+script = ExtResource("4_ky2cs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 20
+
+[node name="item" type="TextureRect" parent="VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_km7fh")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("5_rttml")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="Amount" type="Label" parent="VBoxContainer/MarginContainer2/TextureRect/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_x6keu")
+theme_override_font_sizes/font_size = 20
+text = "10
+"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

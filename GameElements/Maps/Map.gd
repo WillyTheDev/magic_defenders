@@ -4,29 +4,18 @@ extends Node2D
 @export var paths : Array[Path2D] = []
 @export var flyingSpawnPoint: PathFollow2D = null
 ## Set the difficulty of the map lower the difficulty value is, higher the real difficulty
-@export var enemy_health_increment : int = 1
-@export var enemy_speed_increment : int = 20
-@export var unparsed_easy_sequences : Array[String]
-@export var unparsed_medium_sequences : Array[String]
-@export var unparsed_hard_sequences : Array[String]
-@export var win_hat_index : int = 1
-
+@export var player_starting_mana = 30
 @export var map_index = 1
 @export var chapter_index = 1
+@export var is_hub = false
 
 var sequences : Array[Array]
 
 func _ready():
-	match Global.selected_difficulty:
-		1:
-			sequences = _parse_sequence(unparsed_easy_sequences)
-		2:
-			sequences = _parse_sequence(unparsed_medium_sequences)
-		3:
-			sequences = _parse_sequence(unparsed_hard_sequences)
+		sequences = _parse_sequence(Global.sequences)
 			
 
-func _parse_sequence(sequences: Array[String]):
+func _parse_sequence(sequences: Array):
 	var parsed_sequences : Array[Array]
 	for i in range(sequences.size()):
 		# "2x2,3x1" => ["2x2","3x1"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://buq541w6c0c63"]
+
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="1_j508w"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="2_2hmsa"]
+[ext_resource type="Texture2D" uid="uid://bqnvxqkjk66ec" path="res://Assets/envirronment/arbre.png" id="3_pg4hd"]
+[ext_resource type="Script" path="res://GameElements/Maps/env/arbre.gd" id="4_dpick"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="4_m3iw4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abvb5"]
+shader = ExtResource("1_j508w")
+shader_parameter/strength = 0.015
+shader_parameter/speed = 6.0
+shader_parameter/frames = 6
+shader_parameter/flowMap = ExtResource("2_2hmsa")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ramaw"]
+polygon = PackedVector2Array(-49.0518, 168.956, -59.9522, 215.283, 43.6016, 215.283, 35.4263, 166.231)
+
+[node name="Arbre" type="Sprite2D"]
+light_mask = 2
+z_index = 1
+material = SubResource("ShaderMaterial_abvb5")
+scale = Vector2(0.366959, 0.366959)
+texture = ExtResource("3_pg4hd")
+offset = Vector2(0, -120)
+script = ExtResource("4_dpick")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(2.7251, -106.279)
+occluder = SubResource("OccluderPolygon2D_ramaw")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(2.38419e-07, 98.1036)
+scale = Vector2(1.38806, 1.38806)
+texture = ExtResource("4_m3iw4")

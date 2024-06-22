@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://7cveug4tkn6o"]
+
+[ext_resource type="Texture2D" uid="uid://drcbbngvgbo0g" path="res://Assets/Defense/eye_debuff.png" id="1_u1tfe"]
+
+[node name="Sprite2D" type="Sprite2D"]
+modulate = Color(1, 1.2, 1.2, 1)
+z_index = 3
+z_as_relative = false
+position = Vector2(0, -100)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_u1tfe")

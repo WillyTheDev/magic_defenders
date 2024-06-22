@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://f0nvmdfvluh4"]
+[gd_scene load_steps=11 format=3 uid="uid://b5w0a6ndbipjc"]
 
 [ext_resource type="Script" path="res://GameElements/defense/turret.gd" id="1_c4q16"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_3qxle"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_62kps"]
 [ext_resource type="Texture2D" uid="uid://cqd7ep7gabify" path="res://Assets/Defense/turret.png" id="2_c3r0p"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_vsh7u"]
-[ext_resource type="AudioStream" uid="uid://bdb7radgqx0js" path="res://Assets/audio/fire.wav" id="6_8mp06"]
+[ext_resource type="AudioStream" uid="uid://dv443nca3ianr" path="res://Assets/audio/randomFire.tres" id="7_kj5ds"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_crnf5"]
 shader = ExtResource("2_3qxle")
@@ -23,6 +23,7 @@ size = Vector2(26, 31)
 
 [node name="Turret" type="Node2D"]
 modulate = Color(0.223529, 0.745098, 1, 0.545098)
+z_index = 1
 position = Vector2(386, 196)
 script = ExtResource("1_c4q16")
 
@@ -44,43 +45,36 @@ texture = ExtResource("2_c3r0p")
 unique_name_in_owner = true
 z_index = 1
 collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_eyh6e")
 
-[node name="Timer" type="Timer" parent="."]
-unique_name_in_owner = true
-autostart = true
-
 [node name="ShootZone" type="Area2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(3, 0)
+collision_layer = 3
 collision_mask = 2
 monitorable = false
 
 [node name="ShootingZoneSprite" type="Sprite2D" parent="ShootZone"]
 unique_name_in_owner = true
 modulate = Color(0, 0.796078, 0.290196, 0.784314)
-position = Vector2(61, -1)
+position = Vector2(31, 3.8147e-06)
 rotation = -1.57079
-scale = Vector2(0.26737, 0.448721)
+scale = Vector2(0.194433, 0.326313)
 texture = ExtResource("2_26sh2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShootZone"]
-position = Vector2(-66, -7.27177e-06)
-scale = Vector2(18.5771, 2.96205)
+position = Vector2(-65, 0.999994)
+scale = Vector2(13.8499, 2.20832)
 polygon = PackedVector2Array(12.9191, 22.2819, 12.9191, -23.2947, 0.861275, -0.337601)
 
 [node name="ShootingPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-5, -1)
 scale = Vector2(1.09297, 1)
-
-[node name="TimerShoot" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 1.5
-autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -94,12 +88,18 @@ debug_color = Color(0.755894, 0.189016, 1, 0.42)
 
 [node name="FireAudio" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("6_8mp06")
+stream = ExtResource("7_kj5ds")
 volume_db = 0.8
 pitch_scale = 2.24
+bus = &"SFX"
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="TimerShoot" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.001
+autostart = true
+
+[connection signal="body_entered" from="ShootZone" to="." method="_on_shoot_zone_body_entered"]
 [connection signal="body_exited" from="ShootZone" to="." method="_on_shoot_zone_body_exited"]
-[connection signal="timeout" from="TimerShoot" to="." method="_on_timer_shoot_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="TimerShoot" to="." method="_on_timer_shoot_timeout"]

@@ -1,15 +1,19 @@
-[gd_scene load_steps=21 format=3 uid="uid://u8vqrvabc232"]
+[gd_scene load_steps=25 format=3 uid="uid://u8vqrvabc232"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_0yut5"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_daclq"]
+[ext_resource type="Material" uid="uid://cpw1r3dhb6b27" path="res://Shaders/water.tres" id="2_r65vq"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="3_6bnjo"]
 [ext_resource type="Texture2D" uid="uid://dg24mol7dqq2q" path="res://Assets/Map/map_3.png" id="4_0vdo6"]
 [ext_resource type="Shader" path="res://Shaders/cloud.gdshader" id="5_8ciyw"]
+[ext_resource type="PackedScene" uid="uid://b3kskbiuwqikh" path="res://path_indicator.tscn" id="6_geu1j"]
 [ext_resource type="Shader" path="res://Shaders/weedShader.gdshader" id="6_nm5uo"]
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="7_8lwxc"]
-[ext_resource type="Texture2D" uid="uid://dtr0xi8ia5jvw" path="res://Assets/envirronment/arbre.png" id="8_b6jhf"]
+[ext_resource type="Texture2D" uid="uid://d1v07087ptaua" path="res://Assets/envirronment/buisson.png" id="8_ake1t"]
+[ext_resource type="Texture2D" uid="uid://bqnvxqkjk66ec" path="res://Assets/envirronment/arbre.png" id="8_b6jhf"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="9_ug3ll"]
-[ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/Core.tscn" id="10_euwk3"]
+[ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/core.tscn" id="10_euwk3"]
+[ext_resource type="PackedScene" uid="uid://clhu7ht04c7da" path="res://GameElements/Maps/env/torch.tscn" id="13_s8uk1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfba4"]
 shader = ExtResource("2_daclq")
@@ -17,19 +21,6 @@ shader_parameter/strength = 0.001
 shader_parameter/speed = 2.0
 shader_parameter/frames = 6
 shader_parameter/flowMap = ExtResource("3_6bnjo")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2jags"]
-shader = ExtResource("5_8ciyw")
-shader_parameter/OCTAVE = 6
-shader_parameter/mulscale = 5.0
-shader_parameter/height = 0.6
-shader_parameter/tide = 0.1
-shader_parameter/foamthickness = 1.0
-shader_parameter/timescale = 0.25
-shader_parameter/waterdeep = 0.3
-shader_parameter/WATER2_COL = Color(0.0392157, 0.34902, 0.780392, 0)
-shader_parameter/WATER_COL = Color(0.0392157, 0.380392, 0.878431, 0)
-shader_parameter/FOAM_COL = Color(0.0196078, 0.101961, 0.105882, 0.0392157)
 
 [sub_resource type="Curve2D" id="Curve2D_wb7bk"]
 _data = {
@@ -67,10 +58,23 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4adnp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0y3hh"]
+shader = ExtResource("5_8ciyw")
+shader_parameter/OCTAVE = 6
+shader_parameter/mulscale = 5.0
+shader_parameter/height = 0.6
+shader_parameter/tide = 0.1
+shader_parameter/foamthickness = 1.0
+shader_parameter/timescale = 0.1
+shader_parameter/waterdeep = 0.3
+shader_parameter/WATER_COL = Color(0.0392157, 0.380392, 0.878431, 0)
+shader_parameter/WATER2_COL = Color(0.0392157, 0.34902, 0.780392, 0)
+shader_parameter/FOAM_COL = Color(0.0196078, 0.101961, 0.105882, 0.156863)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mglk0"]
 shader = ExtResource("6_nm5uo")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hy7rq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tw2sh"]
 shader = ExtResource("2_daclq")
 shader_parameter/strength = 0.015
 shader_parameter/speed = 6.0
@@ -83,44 +87,35 @@ y_sort_enabled = true
 script = ExtResource("1_0yut5")
 paths = [NodePath("Arrière-plan/Paths/Path2D"), NodePath("Arrière-plan/Paths/Path2D2"), NodePath("Arrière-plan/Paths/Path2D3"), NodePath("Arrière-plan/Paths/Path2D4"), NodePath("Arrière-plan/Paths/Path2D5")]
 flyingSpawnPoint = NodePath("Arrière-plan/Paths/Path_flying/FlyingSpawnPoint")
-enemy_health_increment = 3
-unparsed_easy_sequences = Array[String](["5x1", "8x1", "15x1", "15x1,2x4", "15x1,2x4", "15x1,2x4,5x1", "15x1,2x4,1x2", "15x1,2x4,1x2,5x1", "20x4", "3x2,1x5"])
-unparsed_medium_sequences = Array[String](["10x1", "10x1,3x2", "10x1,3x2,1x4", "10x1,3x2,1x4", "10x1,3x2,1x4", "10x1,3x2,2x4", "10x1,3x2,2x4", "10x1,3x3,2x4", "30x4", "1x3,1x5"])
-unparsed_hard_sequences = Array[String](["10x1", "10x1,6x2", "10x1,6x2", "10x1,6x2,1x4", "10x1,6x2,1x4", "10x1,6x2,4x4,1x3", "10x1,6x2,5x4,2x3", "10x1,6x2,6x4,2x3", "40x4", "5x3,2x5"])
+player_starting_mana = 90
 map_index = 3
 
 [node name="River" type="ColorRect" parent="."]
 z_index = -2
-offset_left = 436.0
-offset_top = 990.0
-offset_right = 2801.0
-offset_bottom = 1511.0
+material = ExtResource("2_r65vq")
+offset_left = 675.0
+offset_top = 1175.0
+offset_right = 3040.0
+offset_bottom = 1696.0
 color = Color(0.682353, 0.886275, 1, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="River"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="River/StaticBody2D"]
+position = Vector2(7, -50)
 polygon = PackedVector2Array(331, 521, 399, 284, 528, 74, 856, 46, 1113, 61, 1237, 325, 1294, 529)
 
 [node name="MapLimit" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(2740, 1442)
+position = Vector2(2986, 1616)
+rotation = -0.261799
 
 [node name="Arrière-plan" type="Sprite2D" parent="."]
 z_index = -1
 material = SubResource("ShaderMaterial_lfba4")
-position = Vector2(1269, 675)
+position = Vector2(1499.01, 821.921)
 scale = Vector2(1.58751, 1.53689)
 texture = ExtResource("4_0vdo6")
-
-[node name="Cloud" type="ColorRect" parent="Arrière-plan"]
-z_index = 5
-material = SubResource("ShaderMaterial_2jags")
-offset_left = -1388.34
-offset_top = -968.84
-offset_right = 531.658
-offset_bottom = 111.16
-scale = Vector2(1.5, 1.5)
 
 [node name="Paths" type="Node2D" parent="Arrière-plan"]
 position = Vector2(-799.365, -439.199)
@@ -141,1035 +136,1299 @@ one_shot = true
 [node name="Path2D" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_ha56q")
 
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D" instance=ExtResource("6_geu1j")]
+position = Vector2(1196, -172.999)
+
 [node name="Path2D2" type="Path2D" parent="Arrière-plan/Paths"]
 position = Vector2(-8.00013, 8.00055)
 curve = SubResource("Curve2D_ad5fk")
 
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D2" instance=ExtResource("6_geu1j")]
+position = Vector2(687, -196)
+
 [node name="Path2D3" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_nu0hw")
+
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D3" instance=ExtResource("6_geu1j")]
+position = Vector2(1794, -186.999)
 
 [node name="Path2D4" type="Path2D" parent="Arrière-plan/Paths"]
 position = Vector2(-25.0001, 46.0005)
 curve = SubResource("Curve2D_gwha7")
 
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D4" instance=ExtResource("6_geu1j")]
+position = Vector2(446, 1507)
+
 [node name="Path2D5" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_kri2g")
+
+[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D5" instance=ExtResource("6_geu1j")]
+position = Vector2(1940, 1547)
+
+[node name="Cloud" type="ColorRect" parent="Arrière-plan"]
+z_index = 5
+material = SubResource("ShaderMaterial_0y3hh")
+offset_left = -1326.61
+offset_top = -878.346
+offset_right = 593.383
+offset_bottom = 201.654
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Core" parent="." instance=ExtResource("10_euwk3")]
+z_index = 1
+position = Vector2(1460, 797)
+scale = Vector2(1.5, 1.5)
+
+[node name="PlayerSpawnPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1188, 516)
 
 [node name="env" type="Node2D" parent="."]
 z_as_relative = false
 y_sort_enabled = true
 
+[node name="Buisson" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(1053, 430)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("8_ake1t")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("9_ug3ll")
+
+[node name="Buisson2" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(2135, 956)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("8_ake1t")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson2"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("9_ug3ll")
+
+[node name="Buisson3" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(2468, 414)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("8_ake1t")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson3"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("9_ug3ll")
+
+[node name="Buisson4" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(1238, 167)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("8_ake1t")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson4"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("9_ug3ll")
+
+[node name="Buisson5" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(400, 1191)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("8_ake1t")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson5"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("9_ug3ll")
+
+[node name="Buisson6" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(1894, 625)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("8_ake1t")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson6"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("9_ug3ll")
+
+[node name="Buisson7" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(951, 870)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("8_ake1t")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson7"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("9_ug3ll")
+
+[node name="Buisson8" type="Sprite2D" parent="env"]
+z_index = 1
+position = Vector2(77.9999, 125)
+scale = Vector2(0.192913, 0.192913)
+texture = ExtResource("8_ake1t")
+
+[node name="Shadow" type="Sprite2D" parent="env/Buisson8"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(10.7431, 87.0859)
+scale = Vector2(1.97676, 1.97676)
+texture = ExtResource("9_ug3ll")
+
 [node name="weed" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(930, 602)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(896, 542)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed2" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1300, 546)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1305, 506)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed3" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1042.84, 458.454)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed4" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1388, 432)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1495, 427)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed5" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(697.837, 385)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed6" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1037.84, 348)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed7" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(780.673, 260.454)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed43" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2142.16, 1156.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed44" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(2530, 1226)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(2512.16, 1100.81)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed45" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(2278, 945)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(2255, 1114)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed46" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2600.16, 986.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed47" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1910, 939.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed48" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2250, 902.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed49" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1992.84, 815.264)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed50" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1678.16, 1281.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed51" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(2048.16, 1225.81)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1989, 1366)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed52" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1729, 1093)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1712, 1111)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed53" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2136.16, 1111.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed54" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1446, 1064.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed55" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1786, 1027.81)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1812, 978)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed56" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1528.84, 940.264)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed57" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(122.163, 1107.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed58" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(492.163, 1051.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed59" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(235.003, 964.264)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed60" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(580.163, 937.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed61" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(-110, 890.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed62" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(230.003, 853.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed63" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(-27.1639, 766.264)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed64" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(205.163, 1398.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed65" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(575.163, 1342.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed66" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(318.003, 1255.26)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed67" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(663.163, 1228.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed68" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(-27, 1181.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed69" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(313.003, 1144.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed70" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(55.8361, 1057.26)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed71" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(171.163, 243.81)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(174, 181)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed72" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(541.163, 187.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed73" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(284.003, 100.264)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed74" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(629.163, 73.8098)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed75" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(-61, 26.8098)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed76" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(279.003, -10.1902)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed77" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(21.8361, -97.7362)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed78" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(949.163, 194.81)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(761, 161)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed79" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1319.16, 138.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed80" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1062, 51.2638)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1090, -6)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed81" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1407.16, 24.8098)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed82" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(717, -22.1902)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed83" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1057, -59.1902)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed84" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(799.836, -146.736)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed85" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1478.16, 247.81)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1578, 326)
+scale = Vector2(0.4016, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed86" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1848.16, 191.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed87" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1591, 104.264)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed88" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1936.16, 77.8098)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed89" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1246, 30.8098)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1225, -39)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed90" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1586, -6.19018)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1644, -64)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed91" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1328.84, -93.7362)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed92" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2154.16, 217.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed93" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2524.16, 161.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed94" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2267, 74.2638)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed95" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2612.16, 47.8098)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed96" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1922, 0.80983)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed97" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2262, -36.1902)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed98" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2004.84, -123.736)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed99" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2384.16, 183.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed100" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2754.16, 127.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed101" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2497, 40.2638)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed102" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2842.16, 13.8098)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed103" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2152, -33.1902)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed104" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2492, -70.1902)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed105" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2234.84, -157.736)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed106" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2712.16, 953.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed107" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(3082.16, 897.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed108" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2825, 810.264)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed109" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(3170.16, 783.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed110" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2480, 736.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed111" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2820, 699.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed112" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2562.84, 612.264)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed113" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2523.16, 1516.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed114" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2893.16, 1460.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed115" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2636, 1373.26)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed116" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2981.16, 1346.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed117" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2291, 1299.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed118" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2631, 1262.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed119" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2373.84, 1175.26)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed120" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1069.16, 1414.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed121" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1439.16, 1358.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed122" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1182, 1271.26)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed123" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1527.16, 1244.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed124" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(865, 1331)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(572, 1144)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed125" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1177, 1160.81)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed126" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(849, 1059)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(909, 1004)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed8" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1120.67, 223.454)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed9" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(346, 761)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed10" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(656, 690)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed11" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(361, 544)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(329, 466)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed12" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(742, 590)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed13" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(127, 561)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed14" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(494, 505)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed15" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(166.673, 438.454)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed16" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(506.673, 401.454)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed17" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1333, 925)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed18" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1673, 888)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed19" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1415.84, 800.454)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed20" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1754, 797)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed21" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1054, 816)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1137, 704)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed22" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1410.84, 690)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1309, 769)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed23" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1153.67, 602.454)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1151, 547)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed24" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1452, 601)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1526, 573)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed25" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(719, 1103)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed26" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1048, 1007)
-scale = Vector2(0.106595, 0.112528)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1084, 1216)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed27" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(801.837, 978.454)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed28" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(1141.84, 941.454)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed29" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(456.837, 905)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed30" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(796.837, 868)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed31" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(539.673, 780.454)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(507, 764)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed32" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(879.673, 743.454)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(761, 720)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed33" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2485, 451.454)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed34" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(2227.84, 363.907)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(2155, 344)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed35" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(2567.84, 326.907)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(2616, 289)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed36" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1882.84, 290.454)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1850, 364)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed37" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2222.84, 253.454)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed38" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2296, 609.454)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed39" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2077, 503)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed40" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2378.84, 484.907)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed41" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
-position = Vector2(1693.84, 448.454)
-scale = Vector2(0.106595, 0.106595)
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
+position = Vector2(1651, 459)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="weed42" type="Sprite2D" parent="env"]
-material = SubResource("ShaderMaterial_4adnp")
+z_index = 1
+material = SubResource("ShaderMaterial_mglk0")
 position = Vector2(2033.84, 411.454)
-scale = Vector2(0.106595, 0.106595)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_8lwxc")
 centered = false
-offset = Vector2(0, -40)
+offset = Vector2(0, 30)
 
 [node name="Arbre" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(1847, 32)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1183,7 +1442,7 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre2" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(975, 1268)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1197,7 +1456,7 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre3" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(-13, 308)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1211,7 +1470,7 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre4" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(595, 16)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1225,8 +1484,8 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre5" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(1455, 908)
+material = SubResource("ShaderMaterial_tw2sh")
+position = Vector2(1512, 1063)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
 
@@ -1239,21 +1498,21 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre6" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(643, 616)
+material = SubResource("ShaderMaterial_tw2sh")
+position = Vector2(595, 691)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
 
 [node name="Shadow" type="Sprite2D" parent="env/Arbre6"]
 modulate = Color(0, 0, 0, 1)
 z_index = -1
-position = Vector2(-8.00006, 220)
+position = Vector2(-2.72517, 220.733)
 scale = Vector2(1.38806, 1.38806)
 texture = ExtResource("9_ug3ll")
 
 [node name="Arbre7" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(183, 1024)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1267,8 +1526,8 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre8" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(1191, 328)
+material = SubResource("ShaderMaterial_tw2sh")
+position = Vector2(1184, 380)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
 
@@ -1281,7 +1540,7 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre9" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(2251, 608)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1295,7 +1554,7 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre10" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(1859, 1244)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1309,7 +1568,7 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre11" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(2473, 1172)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1323,7 +1582,7 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre12" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(2380, 121)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1337,8 +1596,8 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre13" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(1143, -125)
+material = SubResource("ShaderMaterial_tw2sh")
+position = Vector2(777, -21)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
 
@@ -1351,7 +1610,7 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre14" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(156, -66)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1365,8 +1624,8 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre15" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(-47, 1316)
+material = SubResource("ShaderMaterial_tw2sh")
+position = Vector2(172, 1323)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
 
@@ -1379,8 +1638,8 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre16" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
-position = Vector2(-161, 922)
+material = SubResource("ShaderMaterial_tw2sh")
+position = Vector2(179, 861)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
 
@@ -1393,7 +1652,7 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre17" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(-161, 172)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1407,7 +1666,7 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre18" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(-110, 11)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1421,7 +1680,7 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre19" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(-216, -133)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1435,7 +1694,7 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre20" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(-42, -150)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1449,7 +1708,7 @@ texture = ExtResource("9_ug3ll")
 
 [node name="Arbre21" type="Sprite2D" parent="env"]
 z_index = 1
-material = SubResource("ShaderMaterial_hy7rq")
+material = SubResource("ShaderMaterial_tw2sh")
 position = Vector2(301, -175)
 scale = Vector2(0.366959, 0.366959)
 texture = ExtResource("8_b6jhf")
@@ -1461,11 +1720,23 @@ position = Vector2(-8.00006, 220)
 scale = Vector2(1.38806, 1.38806)
 texture = ExtResource("9_ug3ll")
 
-[node name="Core" parent="." instance=ExtResource("10_euwk3")]
-z_index = 1
-position = Vector2(1211, 643)
-scale = Vector2(1.5, 1.5)
+[node name="Torch" parent="." instance=ExtResource("13_s8uk1")]
+position = Vector2(1713, 823)
 
-[node name="PlayerSpawnPoint" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(2005, 570)
+[node name="Torch2" parent="." instance=ExtResource("13_s8uk1")]
+position = Vector2(1666, 369)
+
+[node name="Torch3" parent="." instance=ExtResource("13_s8uk1")]
+position = Vector2(1108, 174)
+
+[node name="Torch4" parent="." instance=ExtResource("13_s8uk1")]
+position = Vector2(1922, 144)
+
+[node name="Torch5" parent="." instance=ExtResource("13_s8uk1")]
+position = Vector2(1249, 783)
+
+[node name="Torch6" parent="." instance=ExtResource("13_s8uk1")]
+position = Vector2(936, 1446)
+
+[node name="Torch7" parent="." instance=ExtResource("13_s8uk1")]
+position = Vector2(1985, 1422)

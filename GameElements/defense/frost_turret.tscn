@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://cp3fmhe3mvoy"]
+
+[ext_resource type="Script" path="res://GameElements/defense/frost_turret.gd" id="1_0omog"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_fd2so"]
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="3_jo5vw"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_xcukv"]
+[ext_resource type="Texture2D" uid="uid://6obnvo0y2ok1" path="res://Assets/Defense/frost_turret.png" id="5_tpe8p"]
+[ext_resource type="Texture2D" uid="uid://d1u0v24q8kdaa" path="res://Assets/ellipse.png" id="6_rv850"]
+[ext_resource type="AudioStream" uid="uid://dv443nca3ianr" path="res://Assets/audio/randomFire.tres" id="7_2o6e2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crnf5"]
+shader = ExtResource("3_jo5vw")
+shader_parameter/strength = 0.015
+shader_parameter/speed = 6.0
+shader_parameter/frames = 6
+shader_parameter/flowMap = ExtResource("4_xcukv")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyh6e"]
+size = Vector2(21, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmua3"]
+radius = 97.0824
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ejl3"]
+size = Vector2(26, 31)
+
+[node name="Turret" type="Node2D"]
+modulate = Color(0.223529, 0.745098, 1, 0.545098)
+position = Vector2(386, 196)
+script = ExtResource("1_0omog")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-5, -0.999994)
+rotation = 1.5708
+scale = Vector2(0.282802, 0.367638)
+texture = ExtResource("2_fd2so")
+
+[node name="Turret" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_crnf5")
+position = Vector2(-4, -2)
+rotation = 1.57079
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("5_tpe8p")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_eyh6e")
+
+[node name="ShootZone" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(3, 0)
+collision_mask = 2
+monitorable = false
+
+[node name="ShootingZoneSprite" type="Sprite2D" parent="ShootZone"]
+unique_name_in_owner = true
+modulate = Color(0, 0.796078, 0.290196, 0.784314)
+position = Vector2(-2.24316, 0.189178)
+rotation = -1.57079
+scale = Vector2(0.489388, 0.493937)
+texture = ExtResource("6_rv850")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootZone"]
+shape = SubResource("CircleShape2D_dmua3")
+
+[node name="ShootingPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-5, -1)
+scale = Vector2(1.09297, 1)
+
+[node name="TimerShoot" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(3, 0)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, -1)
+shape = SubResource("RectangleShape2D_1ejl3")
+debug_color = Color(0.755894, 0.189016, 1, 0.42)
+
+[node name="FireAudio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_2o6e2")
+volume_db = 0.8
+pitch_scale = 2.24
+bus = &"SFX"
+
+[connection signal="body_exited" from="ShootZone" to="." method="_on_shoot_zone_body_exited"]
+[connection signal="timeout" from="TimerShoot" to="." method="_on_timer_shoot_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

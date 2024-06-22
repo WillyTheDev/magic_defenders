@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cpw1r3dhb6b27"]
+
+[ext_resource type="Shader" path="res://Shaders/water_v2.gdshader" id="1_b6hea"]
+
+[resource]
+shader = ExtResource("1_b6hea")
+shader_parameter/uv_scale = 7.5
+shader_parameter/color_alpha = 0.8

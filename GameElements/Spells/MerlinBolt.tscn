@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgnldt5qd35ft"]
+
+[ext_resource type="Script" path="res://GameElements/Spells/MerlinBolt.gd" id="1_r66tu"]
+[ext_resource type="Texture2D" uid="uid://dglif25oljcne" path="res://Assets/Player/water_bolt.png" id="2_npq6m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oie8i"]
+radius = 16.0555
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yq5jl"]
+radius = 200.071
+
+[node name="Area2D" type="Area2D" groups=["has_static_properties"]]
+modulate = Color(2, 1, 3, 1)
+scale = Vector2(0.75, 0.75)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_r66tu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oie8i")
+
+[node name="MagicBoltSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_npq6m")
+
+[node name="DamageZone" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+shape = SubResource("CircleShape2D_yq5jl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

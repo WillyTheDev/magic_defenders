@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cak6x4mhllisu"]
+[gd_scene load_steps=15 format=3 uid="uid://cak6x4mhllisu"]
 
 [ext_resource type="Script" path="res://GameElements/Core/core.gd" id="1_10bn3"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_4pd6a"]
 [ext_resource type="Texture2D" uid="uid://bdnatjwiy327k" path="res://Assets/Core/Core.png" id="2_41oe6"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="3_d6ki2"]
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_1n7re"]
+[ext_resource type="AudioStream" uid="uid://d01k4h4qr68kj" path="res://Assets/audio/error_005.ogg" id="6_s72xd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8bcnf"]
 shader = ExtResource("3_d6ki2")
@@ -19,11 +20,58 @@ size = Vector2(58.5, 59)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ejl3"]
 size = Vector2(69, 65)
 
+[sub_resource type="Gradient" id="Gradient_2cg2w"]
+offsets = PackedFloat32Array(0, 0.935484, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0604839, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ygrs3"]
+gradient = SubResource("Gradient_2cg2w")
+fill = 1
+fill_from = Vector2(0.517094, 0.491453)
+fill_to = Vector2(0.846154, 0.153846)
+
+[sub_resource type="Animation" id="Animation_htknh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ojk65"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Core:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1.23114, 1.23114),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5r01g"]
+_data = {
+"RESET": SubResource("Animation_htknh"),
+"idle": SubResource("Animation_ojk65")
+}
+
 [node name="Core" type="Node2D"]
 position = Vector2(386, 196)
 scale = Vector2(2, 2)
 script = ExtResource("1_10bn3")
-has_been_build = true
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.111197, 0.111197, 0.111197, 1)
@@ -33,7 +81,6 @@ texture = ExtResource("2_4pd6a")
 
 [node name="Core" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_8bcnf")
-position = Vector2(2.86102e-06, -0.666662)
 scale = Vector2(0.220628, 0.220628)
 texture = ExtResource("2_41oe6")
 
@@ -46,6 +93,9 @@ position = Vector2(-0.25, -1)
 shape = SubResource("RectangleShape2D_eyh6e")
 
 [node name="Area2D" type="Area2D" parent="StaticBody2D"]
+unique_name_in_owner = true
+collision_layer = 15
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
 position = Vector2(-0.942803, 0.942814)
@@ -55,6 +105,30 @@ debug_color = Color(0.755894, 0.189016, 1, 0.42)
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 autostart = true
+
+[node name="CoreAttackedPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_s72xd")
+pitch_scale = 1.14
+bus = &"SFX"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-2.5034e-06, 0.499985)
+rotation = 0.213683
+scale = Vector2(2.97791, 3.21807)
+color = Color(0.752433, 0.640905, 0.865558, 1)
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 14.5
+texture = SubResource("GradientTexture2D_ygrs3")
+height = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_5r01g")
+}
 
 [connection signal="body_entered" from="StaticBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="StaticBody2D/Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,0 +1,205 @@
+[gd_scene load_steps=16 format=3 uid="uid://ugnriqqboiqm"]
+
+[ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_nv6le"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_rsmq6"]
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="3_o5q3p"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_o3tdt"]
+[ext_resource type="Texture2D" uid="uid://bs7by5uuox23b" path="res://Assets/Ennemies/Slime_v2_ghost.png" id="5_ahcvx"]
+[ext_resource type="Texture2D" uid="uid://baacy614v8gmy" path="res://Assets/Ennemies/Slime_v2_hit.png" id="6_jncq8"]
+[ext_resource type="AudioStream" uid="uid://b5a47xvby350n" path="res://Assets/audio/randomSlimeHit.tres" id="7_68cbx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r5an"]
+radius = 54.9969
+height = 160.256
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pg4ob"]
+shader = ExtResource("3_o5q3p")
+shader_parameter/strength = 0.015
+shader_parameter/speed = 6.0
+shader_parameter/frames = 6
+shader_parameter/flowMap = ExtResource("4_o3tdt")
+
+[sub_resource type="Animation" id="Animation_53ke7"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.706, 0.665)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Slime:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.34, 0.34)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/Slime:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_ahcvx")]
+}
+
+[sub_resource type="Animation" id="Animation_av0o2"]
+resource_name = "hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Slime:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_ahcvx"), ExtResource("6_jncq8"), ExtResource("5_ahcvx")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Slime:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.618354, 0.603997, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vlpra"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Shadow:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.706, 0.665), Vector2(0.875, 0.665)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Slime:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.287175, 0.287175),
+"update": 0,
+"values": [Vector2(0.34, 0.34), Vector2(0.4, 0.3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w3qrp"]
+_data = {
+"RESET": SubResource("Animation_53ke7"),
+"hit": SubResource("Animation_av0o2"),
+"idle": SubResource("Animation_vlpra")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdw2u"]
+bg_color = Color(0.136826, 0.136826, 0.136826, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cu4tc"]
+bg_color = Color(0.974545, 0.360152, 0.408545, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
+light_mask = 2
+scale = Vector2(0.4, 0.4)
+collision_layer = 2
+collision_mask = 2
+platform_floor_layers = 4294967040
+script = ExtResource("1_nv6le")
+health_increment = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.38419e-07, -62.5)
+rotation = -1.56018
+shape = SubResource("CapsuleShape2D_8r5an")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Node2D"]
+position = Vector2(2.5, -67.5)
+scale = Vector2(8, 5.625)
+
+[node name="Shadow" type="Sprite2D" parent="Node2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(4.19806, 45.6023)
+scale = Vector2(0.706, 0.665)
+texture = ExtResource("2_rsmq6")
+
+[node name="Slime" type="Sprite2D" parent="Node2D"]
+light_mask = 2
+z_index = 1
+material = SubResource("ShaderMaterial_pg4ob")
+position = Vector2(1.69407e-21, -65)
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("5_ahcvx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_w3qrp")
+}
+
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="Node2D"]
+unique_name_in_owner = true
+position = Vector2(0, 2.5)
+stream = ExtResource("7_68cbx")
+volume_db = 1.0
+bus = &"SFX"
+
+[node name="HealthBar" type="ProgressBar" parent="Node2D"]
+unique_name_in_owner = true
+z_index = 20
+z_as_relative = false
+offset_left = -70.0
+offset_top = -232.5
+offset_right = 77.0
+offset_bottom = -217.5
+theme_override_styles/background = SubResource("StyleBoxFlat_hdw2u")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cu4tc")
+max_value = 5.0
+step = 0.5
+value = 5.0
+show_percentage = false
+
+[node name="Hat" type="Sprite2D" parent="Node2D"]
+unique_name_in_owner = true
+position = Vector2(0, -62.5)

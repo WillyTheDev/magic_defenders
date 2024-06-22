@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cqih4gw1kjb6"]
+[gd_scene load_steps=18 format=3 uid="uid://cqih4gw1kjb6"]
 
 [ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_4j7lf"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_jb265"]
@@ -7,6 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://baacy614v8gmy" path="res://Assets/Ennemies/Slime_v2_hit.png" id="6_8gg6s"]
 [ext_resource type="Texture2D" uid="uid://d0ig6hkyys31f" path="res://Assets/Ennemies/Slime_v2_gold.png" id="6_73mid"]
 [ext_resource type="PackedScene" uid="uid://4wydwtkokgvo" path="res://GameElements/misc/hit_audio.tscn" id="7_32ij5"]
+[ext_resource type="AudioStream" uid="uid://b5a47xvby350n" path="res://Assets/audio/randomSlimeHit.tres" id="8_okipq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r5an"]
+radius = 54.9969
+height = 160.256
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pg4ob"]
 shader = ExtResource("3_x1n5x")
@@ -15,27 +20,11 @@ shader_parameter/speed = 6.0
 shader_parameter/frames = 6
 shader_parameter/flowMap = ExtResource("4_3b0vt")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r5an"]
-radius = 54.9969
-height = 160.256
-
-[sub_resource type="Gradient" id="Gradient_wvata"]
-offsets = PackedFloat32Array(0, 0.536364)
-colors = PackedColorArray(0, 0.375905, 0.647707, 0.941176, 0.435294, 0.796078, 0.894118, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_x7a8c"]
-gradient = SubResource("Gradient_wvata")
-width = 32
-height = 32
-fill = 1
-fill_from = Vector2(0.529915, 0.491453)
-fill_to = Vector2(0.25, 0)
-
 [sub_resource type="Animation" id="Animation_53ke7"]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Shadow:scale")
+tracks/0/path = NodePath("Node2D/Shadow:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -47,7 +36,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SlimeMana:scale")
+tracks/1/path = NodePath("Node2D/SlimeMana:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -59,7 +48,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("SlimeMana:texture")
+tracks/2/path = NodePath("Node2D/SlimeMana:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -75,7 +64,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SlimeMana:texture")
+tracks/0/path = NodePath("Node2D/SlimeMana:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -92,7 +81,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Shadow:scale")
+tracks/0/path = NodePath("Node2D/Shadow:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -104,7 +93,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SlimeMana:scale")
+tracks/1/path = NodePath("Node2D/SlimeMana:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -157,49 +146,53 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="Slime" type="CharacterBody2D"]
-z_index = 1
+light_mask = 2
 scale = Vector2(0.4, 0.4)
 platform_floor_layers = 4294967040
 script = ExtResource("1_4j7lf")
 MANA_AMOUNT = 60
 health_increment = 5
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.56018
+shape = SubResource("CapsuleShape2D_8r5an")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Node2D"]
+position = Vector2(3.75, -8.75)
+scale = Vector2(8.625, 7.625)
+
+[node name="Shadow" type="Sprite2D" parent="Node2D"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(4.19806, 45.6023)
 scale = Vector2(0.706, 0.665)
 texture = ExtResource("2_jb265")
 
-[node name="SlimeMana" type="Sprite2D" parent="."]
+[node name="SlimeMana" type="Sprite2D" parent="Node2D"]
+light_mask = 2
 material = SubResource("ShaderMaterial_pg4ob")
 position = Vector2(2.38419e-07, 2.5)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("6_73mid")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = -1.56018
-shape = SubResource("CapsuleShape2D_8r5an")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(2.27374e-13, -4.76837e-07)
-scale = Vector2(26.3271, 22.6543)
-texture = SubResource("GradientTexture2D_x7a8c")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
 unique_name_in_owner = true
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_w3qrp")
 }
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Node2D"]
 position = Vector2(0, -7.62939e-06)
 rotation = -1.61133
 process_material = SubResource("ParticleProcessMaterial_nh6pk")
 
-[node name="HitAudio" parent="." instance=ExtResource("7_32ij5")]
+[node name="HitAudio" parent="Node2D" instance=ExtResource("7_32ij5")]
 unique_name_in_owner = true
+stream = ExtResource("8_okipq")
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="Node2D"]
 unique_name_in_owner = true
 offset_left = -72.5
 offset_top = -85.0
@@ -211,3 +204,7 @@ max_value = 5.0
 step = 0.5
 value = 5.0
 show_percentage = false
+
+[node name="Hat" type="Sprite2D" parent="Node2D"]
+unique_name_in_owner = true
+position = Vector2(0, -40)

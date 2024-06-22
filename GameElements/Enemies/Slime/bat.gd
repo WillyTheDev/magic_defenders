@@ -14,7 +14,7 @@ func _physics_process(delta):
 		var direction = (global_position - target.global_position).normalized() * -1
 		position += delta * speed * direction
 
-func take_damage(damage):
+func take_damage(damage=1):
 	play_animation_hit()
 	health -= damage
 	if health <= 0:

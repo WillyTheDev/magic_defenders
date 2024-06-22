@@ -1,12 +1,11 @@
 class_name Defense
 extends Node2D
 
-
 static var defense_price = 10
-@export var has_been_build = false
-@export var can_be_placed = true
+var has_been_build = false
+var can_be_placed = true
 
-var current_health = 4.0
+var current_health = 20.0
 var cumulated_damage = 0
 
 func _reinitialize_static_properties():
@@ -19,30 +18,35 @@ func heal_defense(amount):
 
 func _ready():
 	add_to_group("has_static_properties")
-	current_health = Global.getDefenseHealth()
-	get_node("/root/Game/PlayerManager").defense_modified.connect(_apply_modification)
+	var DefenseTimer = get_node("/root/Game/DefenseTimer")
+	DefenseTimer.timeout.connect(_on_timer_timeout)
+	print("DEFENSE Health stat %s" % Global.getDefenseHealth())
+	print("DEFENSE CURRENT HEALTH = %s" % current_health)
+	current_health += Global.getDefenseHealth()
+	print("Defense initial health = %s" % current_health)
+	
 	
 func _apply_modification(args: Callable):
 	args.call(self)
 		
 
 func abstract_final_action():
-	assert("This class is not derived from Defense !")
+	pass
 	
 func abstract_on_body_exited_defense_zone():
-	assert("This class is not derived from Defense !")
+	pass
 	
 func abstract_on_process():
-	assert("This class is not derived from Defense !")
+	pass
 	
 func abstract_build_defense():
-	assert("This class is not derived from Defense !")
+	pass
 
 func abstract_defense_take_damage():
-	assert("This class is not derived from Defense !")
+	pass
 
-func abstract_input(event):
-	assert("This class is not derived from Defense !")
+func abstract_input(_event):
+	pass
 
 	
 func build_defense():
@@ -55,7 +59,7 @@ func build_defense():
 	abstract_build_defense()
 	has_been_build = true
 
-func _process(float):
+func _process(_float):
 	abstract_on_process()
 	if has_been_build == false:
 		global_position = get_global_mouse_position()
@@ -78,24 +82,31 @@ func _input(event):
 
 
 
-func take_damage():
-	abstract_defense_take_damage()
-	current_health -= cumulated_damage
-	if current_health <= 0:
-		abstract_final_action()
-		const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
-		var new_smoke = SMOKE.instantiate()
-		new_smoke.global_position = global_position
-		get_parent().add_child(new_smoke)
-		queue_free()
-	else:
-		var values = (255 * (current_health/Global.getDefenseHealth()))
-		modulate = "ff%x%xff" % [values, values]
+func take_damage(damage):
+	if cumulated_damage > 0:
+		abstract_defense_take_damage()
+		current_health -= damage
+		var dmg_indicator = preload("res://GameElements/misc/damage_indicator.tscn").instantiate()
+		dmg_indicator.set_value(int(damage * 10))
+		dmg_indicator.scale = Vector2(0.4, 0.4)
+		dmg_indicator.global_position = global_position
+		get_node("/root/Game").add_child(dmg_indicator)
+		if current_health <= 0:
+			abstract_final_action()
+			const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
+			var new_smoke = SMOKE.instantiate()
+			new_smoke.global_position = global_position
+			get_parent().add_child(new_smoke)
+			queue_free()
+		else:
+			var values = (255 * (current_health/(20.0+Global.getDefenseHealth())))
+			modulate = "ff%x%xff" % [values, values]
 
 func _on_area_2d_body_entered(body):
-	if body is Enemy:
+	if has_been_build && body is Enemy:
 		body.speed = 0
 		cumulated_damage += body.enemy_damage
+		take_damage(body.enemy_damage)
 	
 func _on_area_2d_body_exited(body):
 	if body is Enemy:
@@ -104,4 +115,4 @@ func _on_area_2d_body_exited(body):
 		abstract_on_body_exited_defense_zone()
 
 func _on_timer_timeout():
-	take_damage()
+	take_damage(cumulated_damage)

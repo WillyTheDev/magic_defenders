@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://yuors4jcwmwr"]
+[gd_scene load_steps=15 format=3 uid="uid://yuors4jcwmwr"]
 
 [ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_anbsf"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_8muj1"]
 [ext_resource type="Texture2D" uid="uid://b5vyv208jniqd" path="res://Assets/Ennemies/Slime_v2_medium.png" id="3_vf5au"]
 [ext_resource type="Texture2D" uid="uid://baacy614v8gmy" path="res://Assets/Ennemies/Slime_v2_hit.png" id="4_drw48"]
 [ext_resource type="PackedScene" uid="uid://4wydwtkokgvo" path="res://GameElements/misc/hit_audio.tscn" id="5_p3npd"]
+[ext_resource type="AudioStream" uid="uid://b5a47xvby350n" path="res://Assets/audio/randomSlimeHit.tres" id="6_iu6lh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyd47"]
 
@@ -16,7 +17,7 @@ height = 191.989
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SlimeV2Medium:texture")
+tracks/0/path = NodePath("Node2D/SlimeV2Medium:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,7 +29,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SlimeV2Medium:scale")
+tracks/1/path = NodePath("Node2D/SlimeV2Medium:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -44,7 +45,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SlimeV2Medium:texture")
+tracks/0/path = NodePath("Node2D/SlimeV2Medium:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -61,7 +62,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SlimeV2Medium:scale")
+tracks/0/path = NodePath("Node2D/SlimeV2Medium:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -95,41 +96,51 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="Slime" type="CharacterBody2D"]
-z_index = 1
+light_mask = 2
 material = SubResource("ShaderMaterial_jyd47")
 scale = Vector2(0.5, 0.5)
 platform_floor_layers = 4294967040
 script = ExtResource("1_anbsf")
-MANA_AMOUNT = 7
-health_increment = 30
-enemy_damage = 3
-
-[node name="Shadow" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(0, 54)
-scale = Vector2(0.7736, 0.665)
-texture = ExtResource("2_8muj1")
-
-[node name="SlimeV2Medium" type="Sprite2D" parent="."]
-position = Vector2(0, 4)
-scale = Vector2(0.393601, 0.393601)
-texture = ExtResource("3_vf5au")
+speed_increment = 50
+MANA_AMOUNT = 15
+health_increment = 20
+enemy_damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.38419e-07, 12)
 rotation = -1.56018
 shape = SubResource("CapsuleShape2D_8r5an")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Node2D"]
+position = Vector2(-7.62939e-06, -7)
+scale = Vector2(9.6, 7.9)
+
+[node name="Shadow" type="Sprite2D" parent="Node2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 54)
+scale = Vector2(0.7736, 0.665)
+texture = ExtResource("2_8muj1")
+
+[node name="SlimeV2Medium" type="Sprite2D" parent="Node2D"]
+light_mask = 2
+position = Vector2(0, 4)
+scale = Vector2(0.393601, 0.393601)
+texture = ExtResource("3_vf5au")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
 unique_name_in_owner = true
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_w3qrp")
 }
 
-[node name="HitAudio" parent="." instance=ExtResource("5_p3npd")]
+[node name="HitAudio" parent="Node2D" instance=ExtResource("5_p3npd")]
 unique_name_in_owner = true
+stream = ExtResource("6_iu6lh")
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="Node2D"]
 unique_name_in_owner = true
 offset_left = -72.5
 offset_top = -85.0
@@ -141,3 +152,7 @@ max_value = 5.0
 step = 0.5
 value = 5.0
 show_percentage = false
+
+[node name="Hat" type="Sprite2D" parent="Node2D"]
+unique_name_in_owner = true
+position = Vector2(0, -40)

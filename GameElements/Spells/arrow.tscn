@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ok4e2g57nhvq"]
+
+[ext_resource type="Script" path="res://GameElements/Spells/magic_bolt.gd" id="1_ao2ey"]
+[ext_resource type="Texture2D" uid="uid://byprhv7c3sll1" path="res://Assets/Player/arrow.png" id="2_28jcw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1udi"]
+size = Vector2(20, 42.7)
+
+[node name="Area2D" type="Area2D" groups=["has_static_properties"]]
+scale = Vector2(0.75, 0.75)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_ao2ey")
+is_passing_through = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 21.3333)
+shape = SubResource("RectangleShape2D_l1udi")
+
+[node name="MagicBoltSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-3.8147e-06, 44)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_28jcw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

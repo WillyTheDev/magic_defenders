@@ -1,0 +1,173 @@
+[gd_scene load_steps=18 format=3 uid="uid://ba22rgo8jgfuh"]
+
+[ext_resource type="Script" path="res://GameElements/defense/vision_turret.gd" id="1_8uvk1"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_y2nx6"]
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="3_3xkix"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_6634w"]
+[ext_resource type="Texture2D" uid="uid://dedlb6cp75pml" path="res://Assets/Defense/vision_turret.png" id="5_n70cn"]
+[ext_resource type="Texture2D" uid="uid://d1u0v24q8kdaa" path="res://Assets/ellipse.png" id="6_b4nnw"]
+[ext_resource type="Texture2D" uid="uid://dt5640fdm501b" path="res://Assets/Defense/pupils.png" id="6_isin8"]
+[ext_resource type="AudioStream" uid="uid://d3knxyjyvb7ul" path="res://Assets/audio/debuff.wav" id="8_k7mj4"]
+
+[sub_resource type="Gradient" id="Gradient_r581c"]
+offsets = PackedFloat32Array(0, 0.935484, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0604839, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fqwru"]
+gradient = SubResource("Gradient_r581c")
+fill = 1
+fill_from = Vector2(0.517094, 0.491453)
+fill_to = Vector2(0.846154, 0.153846)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crnf5"]
+shader = ExtResource("3_3xkix")
+shader_parameter/strength = 0.015
+shader_parameter/speed = 6.0
+shader_parameter/frames = 6
+shader_parameter/flowMap = ExtResource("4_6634w")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyh6e"]
+size = Vector2(21, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmua3"]
+radius = 90.05
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ejl3"]
+size = Vector2(26, 31)
+
+[sub_resource type="Animation" id="Animation_7ay5n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turret/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lixmg"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turret/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.90125, 0.90125),
+"update": 0,
+"values": [Vector2(-45.4545, -0.000285199), Vector2(54.5455, 0.000342239)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mrmk2"]
+_data = {
+"RESET": SubResource("Animation_7ay5n"),
+"idle": SubResource("Animation_lixmg")
+}
+
+[node name="Turret" type="Node2D"]
+position = Vector2(386, 196)
+script = ExtResource("1_8uvk1")
+
+[node name="PointLightsprite" type="PointLight2D" parent="."]
+position = Vector2(7, -6)
+rotation = 0.213683
+scale = Vector2(5, 5)
+blend_mode = 2
+shadow_filter = 1
+shadow_filter_smooth = 14.5
+texture = SubResource("GradientTexture2D_fqwru")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-5, -0.999994)
+rotation = 1.5708
+scale = Vector2(0.282802, 0.367638)
+texture = ExtResource("2_y2nx6")
+
+[node name="Shadow2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-5, -0.999994)
+rotation = 3.14159
+scale = Vector2(0.282802, 0.367638)
+texture = ExtResource("2_y2nx6")
+
+[node name="Turret" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_crnf5")
+position = Vector2(-4, -2)
+rotation = 1.57079
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("5_n70cn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Turret"]
+texture = ExtResource("6_isin8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_eyh6e")
+
+[node name="ShootZone" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(3, 0)
+collision_mask = 2
+monitorable = false
+
+[node name="ShootingZoneSprite" type="Sprite2D" parent="ShootZone"]
+unique_name_in_owner = true
+modulate = Color(0, 0.796078, 0.290196, 0.784314)
+position = Vector2(-2.24316, 0.189178)
+rotation = -1.57079
+scale = Vector2(0.449757, 0.453937)
+texture = ExtResource("6_b4nnw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootZone"]
+shape = SubResource("CircleShape2D_dmua3")
+
+[node name="ShootingPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-5, -1)
+scale = Vector2(1.09297, 1)
+
+[node name="TimerShoot" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(3, 0)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, -1)
+shape = SubResource("RectangleShape2D_1ejl3")
+debug_color = Color(0.755894, 0.189016, 1, 0.42)
+
+[node name="FireAudio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_k7mj4")
+volume_db = 0.8
+pitch_scale = 0.8
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mrmk2")
+}
+
+[connection signal="body_exited" from="ShootZone" to="." method="_on_shoot_zone_body_exited"]
+[connection signal="timeout" from="TimerShoot" to="." method="_on_timer_shoot_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

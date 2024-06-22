@@ -278,8 +278,8 @@ scale = Vector2(1.05, 1)
 [node name="Hat" type="Sprite2D" parent="Full"]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_uh2nj")
-position = Vector2(-20.3175, -202.667)
-scale = Vector2(1.2, 1.2)
+position = Vector2(-22.8571, -217.333)
+scale = Vector2(1.5, 1.5)
 
 [node name="FullV2" type="Sprite2D" parent="Full"]
 material = SubResource("ShaderMaterial_lxqha")
@@ -290,7 +290,7 @@ texture = ExtResource("4_u4lju")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(-18.6667, 161.333)
+position = Vector2(-5.33333, 156)
 scale = Vector2(1.21229, 1.21229)
 texture = ExtResource("5_jfb0f")
 
@@ -317,6 +317,7 @@ text = "Level Up !"
 [node name="LevelUpAudio" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("7_14how")
+bus = &"SFX"
 
 [node name="ConfettiLeft" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true

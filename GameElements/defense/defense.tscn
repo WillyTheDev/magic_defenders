@@ -52,10 +52,6 @@ collision_mask = 2
 position = Vector2(2.76815, 0.78591)
 shape = SubResource("RectangleShape2D_eyh6e")
 
-[node name="Timer" type="Timer" parent="."]
-unique_name_in_owner = true
-autostart = true
-
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(7, -1)
@@ -72,7 +68,7 @@ unique_name_in_owner = true
 stream = ExtResource("5_ghwvl")
 volume_db = 0.8
 pitch_scale = 2.24
+bus = &"SFX"
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

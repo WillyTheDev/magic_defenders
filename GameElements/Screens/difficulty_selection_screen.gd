@@ -21,7 +21,6 @@ func openDifficultySelectionScreen():
 			%MediumStar.texture = preload("res://Assets/UI/map_selection_button/star_locked.png")
 			%HardStar.texture = preload("res://Assets/UI/map_selection_button/star_locked.png")
 	visible = true
-	%Reward.texture = load("res://Assets/hats/hat_%s.png" % Global.selected_map)
 	is_open = true
 	
 func _launch_game():
@@ -42,7 +41,7 @@ func _on_hard_button_pressed():
 	Global.selected_difficulty = 3
 	_launch_game()
 
-func _on_transition_layer_transition_is_finished(anim_name):
+func _on_transition_layer_transition_is_finished(_anim_name):
 	get_tree().change_scene_to_file("res://GameElements/Game/game.tscn")
 
 

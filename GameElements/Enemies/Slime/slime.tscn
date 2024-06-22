@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d0h5viffh6xrj"]
+[gd_scene load_steps=16 format=3 uid="uid://bnoobqanpnt5j"]
 
 [ext_resource type="Script" path="res://GameElements/Enemies/Slime/enemy.gd" id="1_pg2k5"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_dhwrf"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="4_0qrut"]
 [ext_resource type="Texture2D" uid="uid://cpdlu2y0t1ie7" path="res://Assets/Ennemies/Slime_v2.png" id="5_q6xfj"]
 [ext_resource type="Texture2D" uid="uid://baacy614v8gmy" path="res://Assets/Ennemies/Slime_v2_hit.png" id="6_4rqn5"]
-[ext_resource type="AudioStream" uid="uid://dxg0xvfddgc4g" path="res://Assets/audio/slimejump-6913.mp3" id="7_nj8hl"]
+[ext_resource type="AudioStream" uid="uid://b5a47xvby350n" path="res://Assets/audio/randomSlimeHit.tres" id="7_8k67m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r5an"]
 radius = 54.9969
@@ -23,7 +23,7 @@ shader_parameter/flowMap = ExtResource("4_0qrut")
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Shadow:scale")
+tracks/0/path = NodePath("Node2D/Shadow:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -35,7 +35,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Slime:texture")
+tracks/1/path = NodePath("Node2D/Slime:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -47,7 +47,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Slime:scale")
+tracks/2/path = NodePath("Node2D/Slime:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -63,11 +63,11 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Slime:texture")
+tracks/0/path = NodePath("Node2D/Slime:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(-0.1, 0, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [ExtResource("5_q6xfj"), ExtResource("6_4rqn5"), ExtResource("5_q6xfj")]
@@ -80,7 +80,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Shadow:scale")
+tracks/0/path = NodePath("Node2D/Shadow:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -92,7 +92,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Slime:scale")
+tracks/1/path = NodePath("Node2D/Slime:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -125,40 +125,53 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Slime" type="CharacterBody2D"]
-z_index = 1
+[node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
+light_mask = 2
 scale = Vector2(0.4, 0.4)
 platform_floor_layers = 4294967040
 script = ExtResource("1_pg2k5")
-
-[node name="Shadow" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(4.19806, 45.6023)
-scale = Vector2(0.706, 0.665)
-texture = ExtResource("2_dhwrf")
+speed_increment = 65
+MANA_AMOUNT = 3
+health_increment = 2
+enemy_damage = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.56018
 shape = SubResource("CapsuleShape2D_8r5an")
 
-[node name="Slime" type="Sprite2D" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Node2D"]
+position = Vector2(-3.8147e-06, -1.25)
+scale = Vector2(8, 5.625)
+
+[node name="Shadow" type="Sprite2D" parent="Node2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(4.19806, 45.6023)
+scale = Vector2(0.706, 0.665)
+texture = ExtResource("2_dhwrf")
+
+[node name="Slime" type="Sprite2D" parent="Node2D"]
+light_mask = 2
 material = SubResource("ShaderMaterial_pg4ob")
 position = Vector2(-0.702384, 0.500003)
 scale = Vector2(0.34, 0.34)
 texture = ExtResource("5_q6xfj")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
 unique_name_in_owner = true
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_w3qrp")
 }
 
-[node name="HitAudio" type="AudioStreamPlayer2D" parent="."]
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="Node2D"]
 unique_name_in_owner = true
-stream = ExtResource("7_nj8hl")
+stream = ExtResource("7_8k67m")
 volume_db = 1.0
+bus = &"SFX"
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="Node2D"]
 unique_name_in_owner = true
 offset_left = -72.5
 offset_top = -85.0
@@ -170,3 +183,7 @@ max_value = 5.0
 step = 0.5
 value = 5.0
 show_percentage = false
+
+[node name="Hat" type="Sprite2D" parent="Node2D"]
+unique_name_in_owner = true
+position = Vector2(0, -62.5)
