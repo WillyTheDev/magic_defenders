@@ -38,6 +38,12 @@ func shoot():
 		new_fire_bolt.global_rotation = %ShootingPoint.global_rotation
 		new_fire_bolt.direction = (global_position - target.global_position).normalized() * -1
 		get_parent().add_child(new_fire_bolt)
+	else:
+		for body in %ShootZone.get_overlapping_bodies():
+			print("here is a enemy still on the shoot zone : %s " % body)
+			if body is Enemy:
+				target = body
+				break;
 
 
 func take_damage(damage):

@@ -38,13 +38,6 @@ func game_over(value):
 	%ScoreLabel.text = "The lotus has been destroyed\n You survived : %s waves" % wave
 
 
-func _on_infinity_button_pressed():
-	Global.save_game()
-	Global.selected_difficulty = 4
-	Global.starting_wave = self.wave
-	visible = false
-
-
 func _on_transition_layer_transition_is_finished(anim_name):
 	print("Game over is visible ? %s" % visible)
 	if anim_name == "close_transition" && visible == true:

@@ -38,7 +38,7 @@ static func generate_random_loot() -> Loot:
 	var rand_secondary_stat_value = 0
 	if Shop.is_open :
 		rand_type = Shop.selected_type
-		rand_primary_stat_value = randi_range(0,5) * Global.urgent_quests_completed
+		rand_primary_stat_value = randi_range(1,5) * Global.urgent_quests_completed
 		rand_secondary_stat_value = randi_range(0,4) * Global.urgent_quests_completed
 	else:
 		rand_primary_stat_value = randi_range(0,5) * clamp(Global.selected_difficulty, 1, 3 + floor(Game.current_wave / 10)) 

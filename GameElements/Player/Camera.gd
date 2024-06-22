@@ -28,7 +28,7 @@ func random_offset() -> Vector2:
 	
 func _process(delta):
 	if move_camera_toward_core:
-		global_position = global_position.lerp(target, delta * 4)
+		global_position = global_position.lerp(target, delta * 2)
 	else:
 		var mouse_offset = get_viewport().get_mouse_position() - Vector2(get_viewport().size / 2)
 		position = lerp(Vector2(), mouse_offset.normalized() * 300, mouse_offset.length() / 1000)

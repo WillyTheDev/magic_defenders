@@ -4,6 +4,9 @@
 
 [node name="EnemyIndicator" type="Node2D"]
 visible = false
+light_mask = 2
+z_index = 5
+z_as_relative = false
 script = ExtResource("1_8oqrs")
 
 [node name="ColorRect" type="ColorRect" parent="."]

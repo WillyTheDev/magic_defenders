@@ -40,7 +40,7 @@ func _ready():
 	speed = base_speed + speed_increment
 	health = total_health
 	enemy_damage = base_damage + enemy_damage
-	slime_has_been_killed.connect($/root/Game.on_enemy_has_been_killed)
+	slime_has_been_killed.connect($/root/Game/Spawner.on_enemy_has_been_killed)
 	%HealthBar.max_value = total_health
 	%HealthBar.value = total_health
 	LootManager.add_loot_to_enemy(self)

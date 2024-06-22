@@ -1,9 +1,7 @@
-[gd_scene load_steps=57 format=3 uid="uid://c24n7qcisy1dc"]
+[gd_scene load_steps=39 format=3 uid="uid://c24n7qcisy1dc"]
 
 [ext_resource type="Script" path="res://GameElements/Game/game.gd" id="1_m44sk"]
 [ext_resource type="Script" path="res://GameElements/Maps/day&night.gd" id="2_gxe6o"]
-[ext_resource type="Texture2D" uid="uid://ispx11saoeqv" path="res://Assets/UI/map_selection_button/star_locked.png" id="3_kmwdb"]
-[ext_resource type="Texture2D" uid="uid://bm7v4e5n4j7xv" path="res://Assets/UI/map_selection_button/star_unlocked.png" id="4_1ono3"]
 [ext_resource type="Texture2D" uid="uid://cpdlu2y0t1ie7" path="res://Assets/Ennemies/Slime_v2.png" id="4_j2nm2"]
 [ext_resource type="Texture2D" uid="uid://b5vyv208jniqd" path="res://Assets/Ennemies/Slime_v2_medium.png" id="5_ugksp"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="5_vhx2p"]
@@ -16,26 +14,16 @@
 [ext_resource type="PackedScene" uid="uid://dk18yh7kobthq" path="res://GameElements/Skills/skill_container.tscn" id="10_wf8js"]
 [ext_resource type="Texture2D" uid="uid://cskmx4hq83i1q" path="res://Assets/Ennemies/fishmen.png" id="11_7wub0"]
 [ext_resource type="Texture2D" uid="uid://mbb4wx3vmk6q" path="res://Assets/UI/Skills_button/new_skill.png" id="12_uc5h4"]
-[ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="13_buvah"]
 [ext_resource type="PackedScene" uid="uid://ccbpp75ye3ttb" path="res://GameElements/transition_layer.tscn" id="13_ester"]
-[ext_resource type="Script" path="res://GameElements/Game/GameOverScreen.gd" id="13_f2lkj"]
 [ext_resource type="Texture2D" uid="uid://cnlo0i8q24vki" path="res://Assets/UI/player_profile_background/new_point.png" id="14_j7wpw"]
-[ext_resource type="Texture2D" uid="uid://dmdsrjbg2gy0w" path="res://Assets/UI/game_over/try_again.png" id="14_ngokb"]
-[ext_resource type="Texture2D" uid="uid://bricycydtjvon" path="res://Assets/UI/game_over/try_again_click.png" id="15_frf37"]
 [ext_resource type="Texture2D" uid="uid://bnqvulr6cj34d" path="res://Assets/UI/player_profile_background/hat_placeholder.png" id="15_x47dn"]
 [ext_resource type="PackedScene" uid="uid://c2o1lsmd80cnp" path="res://GameElements/Player/PlayerManager/PlayerManager.tscn" id="15_ykkkp"]
 [ext_resource type="PackedScene" uid="uid://b2p14mfp2sdol" path="res://GameElements/misc/confetti.tscn" id="16_8e8up"]
-[ext_resource type="Texture2D" uid="uid://ny4aky6krl1f" path="res://Assets/UI/game_over/try_again_hover.png" id="16_ndx5k"]
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="16_yatl6"]
-[ext_resource type="Texture2D" uid="uid://cwun1vfp81jij" path="res://Assets/UI/game_over/infinity.png" id="17_ba1vo"]
 [ext_resource type="PackedScene" uid="uid://rnuo7fqinifx" path="res://GameElements/tutorial/tutorial_container.tscn" id="17_n1sfa"]
-[ext_resource type="Texture2D" uid="uid://b4qi7x6vt50c1" path="res://Assets/UI/game_over/infinity_click.png" id="18_607go"]
+[ext_resource type="PackedScene" uid="uid://brl4o8bcv2k2j" path="res://GameElements/Screens/game_over_screen.tscn" id="18_7sfqt"]
 [ext_resource type="PackedScene" uid="uid://dfk2ty751jcp5" path="res://GameElements/Screens/options_menu.tscn" id="19_c68rg"]
-[ext_resource type="Texture2D" uid="uid://y87oitxabwmv" path="res://Assets/UI/game_over/infinity_hover.png" id="19_escsq"]
-[ext_resource type="Texture2D" uid="uid://dmtdypyvlaiel" path="res://Assets/UI/game_over/quit.png" id="20_r5cha"]
-[ext_resource type="Texture2D" uid="uid://bod5ko41214d2" path="res://Assets/UI/game_over/quit_click.png" id="21_s8c7m"]
-[ext_resource type="Texture2D" uid="uid://drtxgp28wagps" path="res://Assets/UI/game_over/quit_hover.png" id="22_e26ww"]
-[ext_resource type="AudioStream" uid="uid://b7jnbe3gxscrj" path="res://Assets/audio/Game_Over_1.wav" id="26_ob0a8"]
+[ext_resource type="Script" path="res://GameElements/Game/Spawner.gd" id="25_axlnv"]
 [ext_resource type="Script" path="res://GameElements/Game/LootManager.gd" id="32_tfl22"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cce1o"]
@@ -239,189 +227,6 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="Animation" id="Animation_mxxav"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/Star_1:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_kmwdb")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HBoxContainer/Star_2:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_kmwdb")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HBoxContainer/Star_3:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_kmwdb")]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("..:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1e-05)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../..:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_k5dgm"]
-resource_name = "show_first_star"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/Star_1:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("3_kmwdb"), ExtResource("4_1ono3")]
-}
-
-[sub_resource type="Animation" id="Animation_641w6"]
-resource_name = "show_game_over"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7, 1),
-"transitions": PackedFloat32Array(0.34151, 0.25, 0.25),
-"update": 0,
-"values": [Vector2(1, 1e-05), Vector2(1, 1.05), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../..:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_777lq"]
-resource_name = "show_second_star"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/Star_1:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("3_kmwdb"), ExtResource("4_1ono3")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HBoxContainer/Star_2:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("3_kmwdb"), ExtResource("4_1ono3")]
-}
-
-[sub_resource type="Animation" id="Animation_wfmp0"]
-resource_name = "show_third_star"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer/Star_1:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("3_kmwdb"), ExtResource("4_1ono3")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HBoxContainer/Star_2:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("3_kmwdb"), ExtResource("4_1ono3")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HBoxContainer/Star_3:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("3_kmwdb"), ExtResource("4_1ono3")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6v0rh"]
-_data = {
-"RESET": SubResource("Animation_mxxav"),
-"show_first_star": SubResource("Animation_k5dgm"),
-"show_game_over": SubResource("Animation_641w6"),
-"show_second_star": SubResource("Animation_777lq"),
-"show_third_star": SubResource("Animation_wfmp0")
-}
-
 [sub_resource type="Environment" id="Environment_qdm87"]
 background_mode = 3
 glow_enabled = true
@@ -436,14 +241,6 @@ script = ExtResource("1_m44sk")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.853266, 0.828174, 0.827767, 1)
 script = ExtResource("2_gxe6o")
-
-[node name="SpawnEnemyTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 2.0
-
-[node name="SpawnFlyingEnemyTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 2.0
 
 [node name="DefenseTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -787,132 +584,8 @@ uppercase = true
 
 [node name="TutorialContainer" parent="UI" instance=ExtResource("17_n1sfa")]
 
-[node name="GameOverScreen" type="CanvasLayer" parent="."]
+[node name="GameOverScreen" parent="." instance=ExtResource("18_7sfqt")]
 unique_name_in_owner = true
-process_mode = 3
-layer = 6
-visible = false
-script = ExtResource("13_f2lkj")
-
-[node name="TextureRect" type="TextureRect" parent="GameOverScreen"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -377.5
-offset_top = -371.0
-offset_right = 377.5
-offset_bottom = 371.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1, 1e-05)
-pivot_offset = Vector2(377, 370)
-texture = ExtResource("13_buvah")
-
-[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen/TextureRect"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -157.0
-offset_top = -169.0
-offset_right = 157.0
-offset_bottom = 161.0
-grow_horizontal = 2
-theme_override_constants/margin_top = 250
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GameOverScreen/TextureRect/MarginContainer"]
-layout_mode = 2
-
-[node name="Star_1" type="TextureRect" parent="GameOverScreen/TextureRect/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-texture = ExtResource("3_kmwdb")
-
-[node name="Star_2" type="TextureRect" parent="GameOverScreen/TextureRect/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-texture = ExtResource("3_kmwdb")
-
-[node name="Star_3" type="TextureRect" parent="GameOverScreen/TextureRect/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-texture = ExtResource("3_kmwdb")
-
-[node name="GameOverAnimation" type="AnimationPlayer" parent="GameOverScreen/TextureRect/MarginContainer"]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_6v0rh")
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen/TextureRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -208.0
-offset_top = -191.0
-offset_right = 208.0
-offset_bottom = 191.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GameOverTitle" type="Label" parent="GameOverScreen/TextureRect/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("5_vhx2p")
-theme_override_font_sizes/font_size = 68
-text = "Game Over"
-
-[node name="ScoreLabel" type="Label" parent="GameOverScreen/TextureRect/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 26
-text = "You survived :
-"
-horizontal_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen/TextureRect/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 40
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen/TextureRect/VBoxContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="RestartButton" type="TextureButton" parent="GameOverScreen/TextureRect/VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_stretch_ratio = 0.0
-texture_normal = ExtResource("14_ngokb")
-texture_pressed = ExtResource("15_frf37")
-texture_hover = ExtResource("16_ndx5k")
-
-[node name="InfinityButton" type="TextureButton" parent="GameOverScreen/TextureRect/VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_stretch_ratio = 0.0
-texture_normal = ExtResource("17_ba1vo")
-texture_pressed = ExtResource("18_607go")
-texture_hover = ExtResource("19_escsq")
-
-[node name="QuitToMenu" type="TextureButton" parent="GameOverScreen/TextureRect/VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_stretch_ratio = 0.0
-texture_normal = ExtResource("20_r5cha")
-texture_pressed = ExtResource("21_s8c7m")
-texture_hover = ExtResource("22_e26ww")
-
-[node name="GameOverPlayer" type="AudioStreamPlayer" parent="GameOverScreen"]
-unique_name_in_owner = true
-stream = ExtResource("26_ob0a8")
 
 [node name="OptionsMenu" parent="." instance=ExtResource("19_c68rg")]
 process_mode = 3
@@ -942,12 +615,21 @@ environment = SubResource("Environment_qdm87")
 unique_name_in_owner = true
 script = ExtResource("32_tfl22")
 
-[connection signal="timeout" from="SpawnEnemyTimer" to="." method="_on_spawn_enemy_timer_timeout"]
-[connection signal="timeout" from="SpawnFlyingEnemyTimer" to="." method="_on_spawn_flying_enemy_timer_timeout"]
-[connection signal="pressed" from="GameOverScreen/TextureRect/VBoxContainer/MarginContainer/VBoxContainer/RestartButton" to="GameOverScreen" method="_on_restart_button_pressed"]
-[connection signal="pressed" from="GameOverScreen/TextureRect/VBoxContainer/MarginContainer/VBoxContainer/InfinityButton" to="GameOverScreen" method="_on_infinity_button_pressed"]
-[connection signal="pressed" from="GameOverScreen/TextureRect/VBoxContainer/MarginContainer/VBoxContainer/QuitToMenu" to="GameOverScreen" method="_on_quit_to_menu_pressed"]
+[node name="Spawner" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("25_axlnv")
+
+[node name="SpawnEnemyTimer" type="Timer" parent="Spawner"]
+unique_name_in_owner = true
+wait_time = 2.0
+
+[node name="SpawnFlyingEnemyTimer" type="Timer" parent="Spawner"]
+unique_name_in_owner = true
+wait_time = 2.0
+
 [connection signal="apply_change" from="PlayerManager" to="UI/SkillsContainer/VBoxContainer/SkillContainer" method="_on_player_manager_apply_change"]
 [connection signal="player_has_available_point" from="PlayerManager" to="UI" method="_on_player_manager_player_has_available_point"]
 [connection signal="transition_is_finished" from="TransitionLayer" to="GameOverScreen" method="_on_transition_layer_transition_is_finished"]
 [connection signal="finished" from="BackgroundAudioPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="timeout" from="Spawner/SpawnEnemyTimer" to="Spawner" method="_on_spawn_enemy_timer_timeout"]
+[connection signal="timeout" from="Spawner/SpawnFlyingEnemyTimer" to="Spawner" method="_on_spawn_flying_enemy_timer_timeout"]

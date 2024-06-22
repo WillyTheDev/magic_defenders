@@ -25,26 +25,31 @@ var tutorials = [
 		if Input.get_vector("move_left", "move_right", "move_up", "move_down") != Vector2(0,0):
 			Global.tutorial_steps += 1
 			load_tutorial_step(Global.tutorial_steps)
-			return true
-		),
-	Tutorial.new("[u][b]Objective :[/b][/u] \nshoot with your wand [right][b]0/1[/b][/right]
-	", func ():
-		if Input.is_action_just_pressed("left_click"):
-			Global.tutorial_steps += 1
-			load_tutorial_step(Global.tutorial_steps)
-			return true
-		),
-	Tutorial.new("[u][b]Objective :[/b][/u] \nreload your wand [right][b]0/1[/b][/right]
-	", func ():
-		if Input.is_action_just_pressed("reload"):
-			Global.tutorial_steps += 1
-			load_tutorial_step(Global.tutorial_steps)
+			print("Is urgent quest ?! %s" % Global.is_urgent_quest)
 			return true
 		),
 	Tutorial.new("[u][b]Objective :[/b][/u] \nGet a new Quest from Harold 
 	[img width=42 height=42]res://Assets/loots/Harold.png[/img] [right][b]0/1[/b][/right]
 	", func ():
 		if Global.is_urgent_quest == true:
+			Global.tutorial_steps += 1
+			load_tutorial_step(Global.tutorial_steps)
+			return true
+		),
+	Tutorial.new("[u][b]Objective :[/b][/u] \nshoot with your wand
+	[img width=30 height=30]res://Assets/UI/input/tile_0111.png[/img]
+	 [right][b]0/1[/b][/right]
+	", func ():
+		if Input.is_action_just_pressed("left_click"):
+			Global.tutorial_steps += 1
+			load_tutorial_step(Global.tutorial_steps)
+			return true
+		),
+	Tutorial.new("[u][b]Objective :[/b][/u] \nreload your wand
+	[img width=30 height=30]res://Assets/UI/input/tile_0088.png[/img]
+	 [right][b]0/1[/b][/right]
+	", func ():
+		if Input.is_action_just_pressed("reload"):
 			Global.tutorial_steps += 1
 			load_tutorial_step(Global.tutorial_steps)
 			return true

@@ -1,10 +1,7 @@
 class_name Game
 extends Node2D
 
-var total_enemies = 0
 var increments_nb_enemies_per_wave = 8
-var enemies_spawn = 0
-var enemies_left = 0
 var spawn_rates = 2
 var spawn_flying_enemy_rates = 20
 
@@ -16,13 +13,14 @@ var options_menu_open = false
 var max_wave : float = 30.0
 #Those variables are used to know which ennemy to spawn
 static var current_wave : float = 0.0
-var sequence_index : int = -1
-var spawn_index : int = 0
-var number_of_time : int = 0
-var type_of_enemy : int = 0
+
+
 var is_spawning = true
 static var game_is_over = true
+
 signal wave_is_over
+signal on_game_is_over
+
 var sequence_enemies = {
 	"slime_normale" : 0,
 	"slime_medium" : 0,
@@ -38,6 +36,8 @@ func _ready():
 	is_idle = true
 	map_of_game = load("res://GameElements/Maps/map_%s.tscn" % Global.selected_map).instantiate()
 	add_child(map_of_game)
+	get_node("Map/Core").core_destroyed.connect(_on_core_destroyed)
+	%Spawner.map_of_game = map_of_game
 	var player = preload("res://GameElements/Player/player.tscn").instantiate()
 	player.player_update_mana_amount.connect(_on_player_player_update_mana_amount)
 	player.player_got_new_hat.connect(_show_new_hat_animation)
@@ -57,7 +57,6 @@ func _ready():
 	Enemy.base_speed = 5
 	Enemy.base_damage = 1
 	
-	
 
 func start_new_wave():
 	for i in range(1, 8):
@@ -67,13 +66,13 @@ func start_new_wave():
 	spawn_rates -= 0.2
 	spawn_flying_enemy_rates -= 0.1
 	current_wave += 1
-	sequence_index += 1
-	total_enemies = 0
+	Spawner.sequence_index += 1
+	Spawner.total_enemies = 0
 	var index = 0
 	if Global.selected_difficulty < 4:
-		while index != map_of_game.sequences[sequence_index].size():
-			var value = map_of_game.sequences[sequence_index][index]
-			var type = map_of_game.sequences[sequence_index][index + 1]
+		while index != map_of_game.sequences[Spawner.sequence_index].size():
+			var value = map_of_game.sequences[Spawner.sequence_index][index]
+			var type = map_of_game.sequences[Spawner.sequence_index][index + 1]
 			match type:
 				1:
 					%Enemy_1.visible = true
@@ -89,19 +88,20 @@ func start_new_wave():
 					%Enemy_6.visible = true
 				7:
 					%Enemy_7.visible = true
-			total_enemies += value
+			Spawner.total_enemies += value
 			index += 2
-		spawn_index = 0
-		number_of_time = map_of_game.sequences[sequence_index][spawn_index]
-		type_of_enemy = map_of_game.sequences[sequence_index][spawn_index + 1]
+		Spawner.number_of_time = map_of_game.sequences[Spawner.sequence_index][0]
+		Spawner.type_of_enemy = map_of_game.sequences[Spawner.sequence_index][1]
+
 	else :
-		total_enemies = current_wave * 8
-	enemies_spawn = 0
-	enemies_left = total_enemies
+		Spawner.total_enemies = current_wave * 8
+	Spawner.enemies_spawn = 0
+	Spawner.spawn_index = 0
+	Spawner.enemies_left = Spawner.total_enemies
 	#Update the UI accordingly
-	%EnemiesProgressBar.max_value = total_enemies
-	%EnemiesProgressBar.value = total_enemies
-	%EnemiesLabel.text = "Wave %s : %s / %s" % [current_wave, enemies_left, total_enemies]
+	%EnemiesProgressBar.max_value = Spawner.total_enemies
+	%EnemiesProgressBar.value = Spawner.total_enemies
+	%EnemiesLabel.text = "Wave %s : %s / %s" % [current_wave, Spawner.enemies_left, Spawner.total_enemies]
 	%WaveActionLabel.visible = false
 	
 	#Start the Spawning timers
@@ -133,108 +133,10 @@ func end_of_wave():
 	%WaveActionLabel.visible = true
 	# Give stars base on the current_wave
 	if current_wave == map_of_game.sequences.size():
+		on_game_is_over.emit()
 		%GameOverScreen.game_completed(current_wave, 3, map_of_game)
 	is_idle = true
 	wave_is_over.emit()
-
-func spawn_flying_mob():
-	if enemies_spawn >= total_enemies:
-			is_spawning = false
-			return
-	else:
-		if current_wave > 2:
-			enemies_spawn += 1
-			var flying_enemy = preload("res://GameElements/Enemies/Slime/bat.tscn").instantiate()
-			map_of_game.flyingSpawnPoint.progress_ratio = randf()
-			flying_enemy.global_position = map_of_game.flyingSpawnPoint.global_position
-			#Track when the flying enemy has been killed
-			flying_enemy.slime_has_been_killed.connect(on_enemy_has_been_killed)
-			add_child(flying_enemy)
-			spawn_visual_indicator(flying_enemy)
-			number_of_time -= 1
-
-func spawn_mob():
-	#Load a new Enemy ( Path2DFollower ) and attach the relevent monster ( e.g slime, slimeMedium, archer...)
-	var enemy = null
-	# if infinity mode, ennemies spawner don't foller any sequence
-	if Global.selected_difficulty == 99:
-		if enemies_spawn >= total_enemies:
-			is_spawning = false
-			return
-		else:
-			var enemy_spawn_chance : float = randf()
-			var medium_enemy_spawn_chance: float = (current_wave)/(30)
-			var fishmen_enemy_spawn_chance: float = (current_wave)/80
-			var hard_enemy_spawn_chance :float =  current_wave/(150)
-			var ghost_enemy_spawn_chance: float = (current_wave)/200
-			var mana_enemy_spawn_chance : float = 0.005
-			if (enemy_spawn_chance < ghost_enemy_spawn_chance) && current_wave > 9:
-				enemy = preload("res://GameElements/Enemies/Slime/slime_ghost.tscn").instantiate()
-			elif (enemy_spawn_chance < hard_enemy_spawn_chance) && current_wave > 8:
-				enemy = preload("res://GameElements/Enemies/Slime/slime_hard.tscn").instantiate()
-			elif (enemy_spawn_chance < fishmen_enemy_spawn_chance) && current_wave > 7:
-				enemy = preload("res://GameElements/Enemies/Slime/fishmen.tscn").instantiate()
-			elif (enemy_spawn_chance < medium_enemy_spawn_chance) && current_wave > 3:
-				enemy = preload("res://GameElements/Enemies/Slime/slime_medium.tscn").instantiate()
-			elif enemy_spawn_chance > 1 - mana_enemy_spawn_chance:
-				enemy = preload("res://GameElements/Enemies/Slime/slime_mana.tscn").instantiate()
-			else:
-				enemy = preload("res://GameElements/Enemies/Slime/slime.tscn").instantiate()
-	else:
-		# follow a sequence
-		if number_of_time == 0:
-			if spawn_index + 2 == map_of_game.sequences[sequence_index].size():
-				is_spawning = false
-				return
-			else:
-				spawn_index += 2
-				number_of_time = map_of_game.sequences[sequence_index][spawn_index]
-				type_of_enemy = map_of_game.sequences[sequence_index][spawn_index + 1]
-		match type_of_enemy:
-			1: 
-				enemy = preload("res://GameElements/Enemies/Slime/slime.tscn").instantiate()
-			2:
-				enemy = preload("res://GameElements/Enemies/Slime/slime_medium.tscn").instantiate()
-			3:
-				enemy = preload("res://GameElements/Enemies/Slime/slime_hard.tscn").instantiate()
-			4: 
-				spawn_flying_mob()
-				return
-			5: 
-				enemy = preload("res://GameElements/Enemies/Slime/slime_mana.tscn").instantiate()
-			6:
-				enemy = preload("res://GameElements/Enemies/Slime/slime_ghost.tscn").instantiate()
-			7:
-				enemy = preload("res://GameElements/Enemies/Slime/fishmen.tscn").instantiate()
-		number_of_time -= 1
-	var follower = preload("res://GameElements/Enemies/Follower.tscn").instantiate()
-	var indexSpawnPoints = randi_range(0,map_of_game.paths.size() - 1)
-	map_of_game.paths[indexSpawnPoints].add_child(follower)
-	follower.progress = 100
-	follower.add_child(enemy)
-	spawn_visual_indicator(follower)
-	enemies_spawn += 1
-	
-	
-	
-func spawn_visual_indicator(target):
-	# Add a visual indicator for each Enemy spawned
-	var indicator = preload("res://GameElements/misc/enemy_indicator.tscn").instantiate()
-	get_node("Player").add_child(indicator)
-	indicator.target = target
-	indicator.global_position = get_node("Player").global_position
-	
-
-func on_enemy_has_been_killed():
-	enemies_left -= 1
-	%EnemiesProgressBar.value = enemies_left
-	%EnemiesLabel.text = "Wave %s : %s / %s" % [current_wave,enemies_left, total_enemies]
-	# This is the part to debug !
-	# When there is no more enemy to spawn & the player just kille the last enemy then :
-	# @enemies_left is decremented each time the player is killing an ennemy
-	if enemies_left <= 0 && is_spawning == false:
-		print("Scene still have enemies %s" % get_tree().get_nodes_in_group("Enemy").size())
-		end_of_wave()
 
 func _input(event):
 	if event.is_action_pressed("action_button"):
@@ -249,27 +151,15 @@ func _on_player_player_update_mana_amount(mana):
 	%AccumulatedMana.value = Player.accumulated_mana
 
 
-func _on_spawn_enemy_timer_timeout():
-		spawn_mob()
-
-func _on_spawn_flying_enemy_timer_timeout():
-	if Global.selected_difficulty == 99 && current_wave > 6:
-		spawn_flying_mob()
-
-func _on_core_core_destroyed():
+func _on_core_destroyed(value):
+	print("Game emit() on game is over !")
+	on_game_is_over.emit()
 	%GameOverScreen.game_over(current_wave)
-
 
 func _on_audio_stream_player_finished():
 	%BackgroundAudioPlayer.play()
 
-
-func _on_options_menu_audio_value_changed():
-	%BackgroundAudioPlayer.volume_db = Global.audio_volume * 100.0
-	
-
 func _show_new_hat_animation(hat_index : int):
 	%NewHatTexture.texture = load("res://Assets/hats/hat_%s.png" % hat_index)
 	%UI/UIAnimationPlayer.queue("show_new_hat")
-
-
+	

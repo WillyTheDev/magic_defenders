@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-
-	
 func show_next_wave_label():
 	%UIAnimationPlayer.queue("showWaveLabel")
 	

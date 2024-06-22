@@ -9,6 +9,13 @@ extends Node2D
 var hat_index = 0
 var player = null
 
+func _ready():
+	$/root/Game.on_game_is_over.connect(move_toward_player)
+	
+
+func move_toward_player():
+	print("Mana moving toward player !")
+	player = $/root/Game/Player
 
 func _physics_process(delta):
 	if player != null:
