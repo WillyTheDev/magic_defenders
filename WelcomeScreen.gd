@@ -2,11 +2,17 @@ extends Node2D
 
 func _ready():
 	Global.load_game()
-	if Global.has_save :
-		%ContinueButton.visible = true
-	else :
-		%NewGameButton.visible = true
 	%TransitionLayer.open_transition()
+	
+func _input(event):
+	if event is InputEventMouseButton:
+		print("Player moving mouse !")
+		Global.player_using_controller = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	elif event is InputEventJoypadButton:
+		print("Player using controller !")
+		Global.player_using_controller = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _on_new_game_button_pressed():
 	%ClickPlayer.play()

@@ -31,14 +31,14 @@ func _reset_hat_effect():
 	if has_node("/root/Game/Player/Thunder"):
 		$/root/Game/Player/Thunder.queue_free()
 
-func apply_hat():
-	if Global.player_equipped_hat != 99:
-		var playerAnimation = get_node("/root/Game/Player/PlayerAnimation")
-		playerAnimation.setHat(Global.player_equipped_hat)
-		%PlayerPreview.setHat(Global.player_equipped_hat)
-		_reset_hat_effect()
-		hats[Global.player_equipped_hat].apply_effect()
-		%SelectedHatTexture.texture = load("res://Assets/hats/hat_%s.png" % Global.player_equipped_hat)
+func apply_hat(index):
+	Global.player_equipped_hat = index
+	var playerAnimation = get_node("/root/Game/Player/PlayerAnimation")
+	playerAnimation.setHat(Global.player_equipped_hat)
+	%PlayerPreview.setHat(Global.player_equipped_hat)
+	_reset_hat_effect()
+	hats[Global.player_equipped_hat].apply_effect()
+	%SelectedHatTexture.texture = load("res://Assets/hats/hat_%s.png" % Global.player_equipped_hat)
 
 
 
@@ -90,7 +90,7 @@ var hats : Array[Hat] = [
 	Hat.new(
 	func():
 			var thunder = preload("res://GameElements/Spells/thunder.tscn").instantiate()
-			$/root/Game/Player.add_child(thunder)
+			$/root/Game/Player.add_child(thunder,true)
 			Player.magic_bolt = preload("res://GameElements/Spells/magic_bolt.tscn"),
 			"Lightnings will strike ennemies around you",
 			preload("res://Assets/hats/hat_6.png")
@@ -101,20 +101,23 @@ func _on_hat_button_pressed():
 	if Game.is_idle:
 		load_hat_list()
 		%PlayerManagerAnimationPlayer.play("show_hat_list")
-
-func _on_hat_list_item_selected(index):
-	Global.player_equipped_hat = index
-	apply_hat()
-	%PlayerManagerAnimationPlayer.play("hide_hat_list")
 	
 func load_hat_list():
-	%HatList.clear()
-	for hat in hats:
-		var index = %HatList.add_item(hat.information,hat.texture, true)
-		%HatList.set_item_selectable(index, Global.unlocked_hats["hat_%s" % index])
-		%HatList.set_item_disabled(index, !Global.unlocked_hats["hat_%s" % index])
+	for child in %GridHat.get_children():
+		child.queue_free()
+	var index = 0
+	for key in Global.unlocked_hats:
+		if Global.unlocked_hats[key]:
+			print("Unlocked hat : %s  \n and description : %s " % [index,hats[index].information])
+			var loot_to_show = preload("res://loot_item.tscn").instantiate()
+			loot_to_show.is_hat = true
+			loot_to_show.hat_description = hats[index].information
+			loot_to_show.loot_texture = hats[index].texture
+			loot_to_show.loot_index = index
+			loot_to_show.loot_item_equip_pressed.connect(apply_hat)
+			%GridHat.add_child(loot_to_show)
+		index += 1
 		
-
 func apply_loot(previous_loot: Loot, loot:Loot):
 	#Removing effect of previous equiped loot
 	if previous_loot != loot:
@@ -138,20 +141,28 @@ func _on_necklace_button_pressed():
 	%PlayerManagerAnimationPlayer.play("show_necklace_list")
 	
 func load_necklace_list():
-	%NecklaceList.clear()
+	var index = 0
+	for child in %GridNecklace.get_children():
+		child.queue_free()
 	for loot in Global.inventory.loots["necklaces"]:
-		print(loot)
-		var index = %NecklaceList.add_item("%s : %s\n%s: %s" % [get_stat_string(loot.primary_stat), loot.primary_stat_value ,get_stat_string(loot.secondary_stat), loot.secondary_stat_value],loot.texture, true)
-		%NecklaceList.set_item_icon_modulate(index, loot.modulate)
-		if Global.inventory.equiped_necklaces == loot:
-			%NecklaceList.set_item_disabled(index, true)
+		var loot_to_show = preload("res://loot_item.tscn").instantiate()
+		loot_to_show.loot_texture = loot.texture
+		loot_to_show.loot_primary_stat = get_stat_string(loot.primary_stat)
+		loot_to_show.loot_primary_stat_value = loot.primary_stat_value
+		loot_to_show.loot_secondary_stat = get_stat_string(loot.secondary_stat)
+		loot_to_show.loot_secondary_stat_value = loot.secondary_stat_value
+		loot_to_show.loot_rarity = loot.rarity
+		loot_to_show.loot_index = index
+		loot_to_show.loot_item_equip_pressed.connect(_on_equips_necklaces_pressed)
+		loot_to_show.loot_item_sell_pressed.connect(_on_delete_necklaces_pressed)
+		%GridNecklace.add_child(loot_to_show)
+		index += 1
 	Global.inventory.new_loots["necklaces"] = false
 	%NecklacesNotification.visible = false
 		
-func _on_necklace_list_item_selected(index):
-	selected_necklaces_index = index
-	%SellNecklaces.text = "Sell: %s" % (1+Global.inventory.loots["necklaces"][selected_necklaces_index].rarity)
-	
+
+
+
 func _on_equips_necklaces_pressed():
 	if Global.inventory.loots["necklaces"].size() > 0:
 		var previous_loot = Global.inventory.equiped_necklaces
@@ -167,6 +178,7 @@ func _on_delete_necklaces_pressed():
 	if Global.inventory.loots["necklaces"].size() > 0:
 		selected_necklaces_index = 0
 	%GoldLabel.text = "%s" % Global.accumulated_gold
+	%SellingAudio.play()
 	load_necklace_list()
 
 #========================================
@@ -178,19 +190,26 @@ func _on_ring_button_pressed():
 	%PlayerManagerAnimationPlayer.play("show_ring_list")
 
 func load_ring_list():
-	%RingList.clear()
+	var index = 0
+	for child in %GridRings.get_children():
+		child.queue_free()
 	for loot in Global.inventory.loots["rings"]:
-		var index = %RingList.add_item("%s : %s\n%s: %s" % [get_stat_string(loot.primary_stat), loot.primary_stat_value ,get_stat_string(loot.secondary_stat), loot.secondary_stat_value],loot.texture, true)
-		%RingList.set_item_icon_modulate(index, loot.modulate)
-		if Global.inventory.equiped_rings == loot:
-			%RingList.set_item_disabled(index, true)
+		var loot_to_show = preload("res://loot_item.tscn").instantiate()
+		loot_to_show.loot_texture = loot.texture
+		loot_to_show.loot_primary_stat = get_stat_string(loot.primary_stat)
+		loot_to_show.loot_primary_stat_value = loot.primary_stat_value
+		loot_to_show.loot_secondary_stat = get_stat_string(loot.secondary_stat)
+		loot_to_show.loot_secondary_stat_value = loot.secondary_stat_value
+		loot_to_show.loot_rarity = loot.rarity
+		loot_to_show.loot_index = index
+		loot_to_show.loot_item_equip_pressed.connect(_on_equips_rings_pressed)
+		loot_to_show.loot_item_sell_pressed.connect(_on_delete_rings_pressed)
+		%GridRings.add_child(loot_to_show)
+		index += 1
 	Global.inventory.new_loots["rings"] = false
 	%RingsNotification.visible = false
 			
-func _on_ring_list_item_selected(index):
-	selected_rings_index = index
-	%SellRings.text = "Sell: %s" % (1 + Global.inventory.loots["rings"][selected_rings_index].rarity)
-	
+
 func _on_equips_rings_pressed():
 	if Global.inventory.loots["rings"].size() > 0:
 		var previous_loot = Global.inventory.equiped_rings
@@ -206,6 +225,7 @@ func _on_delete_rings_pressed():
 	if Global.inventory.loots["rings"].size() > 0:
 		selected_rings_index = 0
 	load_ring_list()
+	%SellingAudio.play()
 	%GoldLabel.text = "%s" % Global.accumulated_gold
 	
 #========================================
@@ -216,35 +236,43 @@ func _on_pants_button_pressed():
 	%PlayerManagerAnimationPlayer.play("show_pants_list")
 
 func load_pants_list():
-	%PantsList.clear()
+	var index = 0
+	for child in %GridPants.get_children():
+		child.queue_free()
 	for loot in Global.inventory.loots["pants"]:
-		var index = %PantsList.add_item("%s : %s\n%s: %s" % [get_stat_string(loot.primary_stat), loot.primary_stat_value ,get_stat_string(loot.secondary_stat), loot.secondary_stat_value],loot.texture,true)
-		%PantsList.set_item_icon_modulate(index, loot.modulate)
-		if Global.inventory.equiped_pants == loot:
-			%PantsList.set_item_disabled(index, true)
+		var loot_to_show = preload("res://loot_item.tscn").instantiate()
+		loot_to_show.loot_texture = loot.texture
+		loot_to_show.loot_primary_stat = get_stat_string(loot.primary_stat)
+		loot_to_show.loot_primary_stat_value = loot.primary_stat_value
+		loot_to_show.loot_secondary_stat = get_stat_string(loot.secondary_stat)
+		loot_to_show.loot_secondary_stat_value = loot.secondary_stat_value
+		loot_to_show.loot_rarity = loot.rarity
+		loot_to_show.loot_index = index
+		loot_to_show.loot_item_equip_pressed.connect(_on_equips_pants_pressed)
+		loot_to_show.loot_item_sell_pressed.connect(_on_delete_pants_pressed)
+		%GridPants.add_child(loot_to_show)
+		index += 1
 	Global.inventory.new_loots["pants"] = false
 	%PantsNotification.visible = false
 	
-func _on_pants_list_item_selected(index):
-	selected_pants_index = index
-	%SellPants.text = "Sell: %s" % (1+Global.inventory.loots["pants"][selected_pants_index].rarity)
-	
 
-func _on_equips_pants_pressed():
+func _on_equips_pants_pressed(index):
+	print("equip pants on index : %s" % index)
 	if Global.inventory.loots["pants"].size() > 0:
 		var previous_loot = Global.inventory.equiped_pants
-		apply_loot(previous_loot, Global.inventory.loots["pants"][selected_pants_index])
-		Global.inventory.equiped_pants = Global.inventory.loots["pants"][selected_pants_index]
+		apply_loot(previous_loot, Global.inventory.loots["pants"][index])
+		Global.inventory.equiped_pants = Global.inventory.loots["pants"][index]
 		%PlayerManagerAnimationPlayer.play("hide_pants_list")
-		%SelectedPantsTexture.texture = Global.inventory.loots["pants"][selected_pants_index].texture
-		%SelectedPantsTexture.modulate = Global.inventory.loots["pants"][selected_pants_index].modulate
+		%SelectedPantsTexture.texture = Global.inventory.loots["pants"][index].texture
+		%SelectedPantsTexture.modulate = Global.inventory.loots["pants"][index].modulate
 
-func _on_delete_pants_pressed():
-	Global.accumulated_gold += (1+Global.inventory.loots["pants"][selected_pants_index].rarity)
-	Global.inventory.loots["pants"].remove_at(selected_pants_index)
+func _on_delete_pants_pressed(index):
+	Global.accumulated_gold += (1+Global.inventory.loots["pants"][index].rarity)
+	Global.inventory.loots["pants"].remove_at(index)
 	if Global.inventory.loots["pants"].size() > 0:
 		selected_pants_index = 0
 	load_pants_list()
+	%SellingAudio.play()
 	%GoldLabel.text = "%s" % Global.accumulated_gold
 	
 #========================================
@@ -256,22 +284,26 @@ func _on_boots_button_pressed():
 	%PlayerManagerAnimationPlayer.play("show_boots_list")
 	
 func load_boots_list():
-	%BootsList.clear()
+	var index = 0
+	for child in %GridBoots.get_children():
+		child.queue_free()
 	for loot in Global.inventory.loots["boots"]:
-		var index = %BootsList.add_item("%s : %s\n%s: %s" % [get_stat_string(loot.primary_stat), loot.primary_stat_value ,get_stat_string(loot.secondary_stat), loot.secondary_stat_value],loot.texture, true)
-		%BootsList.set_item_icon_modulate(index, loot.modulate)
-		if Global.inventory.equiped_boots == loot:
-			%BootsList.set_item_disabled(index, true)
+		var loot_to_show = preload("res://loot_item.tscn").instantiate()
+		loot_to_show.loot_texture = loot.texture
+		loot_to_show.loot_primary_stat = get_stat_string(loot.primary_stat)
+		loot_to_show.loot_primary_stat_value = loot.primary_stat_value
+		loot_to_show.loot_secondary_stat = get_stat_string(loot.secondary_stat)
+		loot_to_show.loot_secondary_stat_value = loot.secondary_stat_value
+		loot_to_show.loot_rarity = loot.rarity
+		loot_to_show.loot_index = index
+		loot_to_show.loot_item_equip_pressed.connect(_on_equips_boots_pressed)
+		loot_to_show.loot_item_sell_pressed.connect(_on_delete_boots_pressed)
+		%GridBoots.add_child(loot_to_show)
+		index += 1
 	Global.inventory.new_loots["boots"] = false
 	%BootsNotification.visible = false
-	
-	
-func _on_boots_list_item_selected(index):
-	selected_boots_index = index
-	%SellBoots.text = "Sell it : %s" % (1+Global.inventory.loots["boots"][selected_boots_index].rarity)
-	
-func _on_equips_boots_pressed():
-	Global.accumulated_gold += (1+Global.inventory.loots["boots"][selected_boots_index].rarity)
+
+func _on_equips_boots_pressed(index):
 	if Global.inventory.loots["boots"].size() > 0:
 		var previous_loot = Global.inventory.equiped_boots
 		apply_loot(previous_loot, Global.inventory.loots["boots"][selected_boots_index])
@@ -280,11 +312,13 @@ func _on_equips_boots_pressed():
 		%SelectedBootsTexture.texture = Global.inventory.loots["boots"][selected_boots_index].texture
 		%SelectedBootsTexture.modulate = Global.inventory.loots["boots"][selected_boots_index].modulate
 
-func _on_delete_boots_pressed():
-	Global.inventory.loots["boots"].remove_at(selected_boots_index)
+func _on_delete_boots_pressed(index):
+	Global.accumulated_gold += (1+Global.inventory.loots["boots"][index].rarity)
+	Global.inventory.loots["boots"].remove_at(index)
 	if Global.inventory.loots["boots"].size() > 0:
 		selected_boots_index = 0
 	load_boots_list()
+	%SellingAudio.play()
 	%GoldLabel.text = "%s" % Global.accumulated_gold
 
 func get_stat_string(value: int):
@@ -309,23 +343,6 @@ func show_notifications():
 		%PantsNotification.visible = true
 	if Global.inventory.new_loots["boots"]:
 		%BootsNotification.visible = true
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

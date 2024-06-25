@@ -15,6 +15,7 @@ func _ready():
 		progress.value = Global.getStatFromIndex(index)
 		progress_loot.value = Global.getTotalStatFromIndex(index)
 	
+	
 func show_player_profile():
 	%LevelLabel.text = "Level : %s" % Global.player_level
 	%AvailPtsLabel.text = "Available points : %s" % Global.player_avail_pts
@@ -27,6 +28,11 @@ func show_player_profile():
 	is_open = true
 	%InventoryManager.show_notifications()
 	%GoldLabel.text = "%s" % Global.accumulated_gold
+	if Global.player_using_controller:
+		print("Show player profile and Focus hat button !")
+		await %PlayerManagerAnimationPlayer.animation_finished
+		print("player profile animation is over Focus hat button !")
+		%HatButton.grab_focus()
 	
 func hide_player_profile():
 	%SkillContainer.hide_skill_list()
@@ -119,5 +125,12 @@ func _on_player_manager_animation_player_animation_finished(anim_name):
 	if anim_name == "hide_player_profile":
 		visible = false
 		is_open = false
-
+	elif "hide" in anim_name && is_open && Global.player_using_controller:
+		%HatButton.grab_focus()
+	elif "show" in anim_name && "list" in anim_name && is_open && Global.player_using_controller:
+		var list = anim_name.rsplit("_")[1]
+		list = "%sList" % list.to_pascal_case()
+		print("list = %s" % list)
+		get_node("%HatList").grab_focus()
+		get_node("%%%s" % list).grab_focus()
 

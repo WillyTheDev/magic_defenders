@@ -20,18 +20,23 @@ func show_quests():
 	get_tree().paused = true
 	print("Proposed quests : %s" % proposed_quest.size())
 	if %QuestContainer.get_child_count() < 1:
-		if Global.urgent_quests_completed < 3:
+		if Global.urgent_quests_completed < 2:
 			var urgent_quest = _create_urgent_quests(urgent_quests[Global.urgent_quests_completed])
 			urgent_quest.quest_button_pressed.connect(show_skill_selection)
 			%QuestContainer.add_child(urgent_quest)
 			proposed_quest.append(urgent_quest)
 		if Global.urgent_quests_completed > 0:
-			for index in range(1,5):
+			for index in range(1,7):
 				var quest = _generate_quests()
 				quest.quest_button_pressed.connect(show_skill_selection)
 				%QuestContainer.add_child(quest)
 				proposed_quest.append(quest)
 	%AnimationPlayer.play("show_quests_lists")
+	if Global.player_using_controller:
+		await %AnimationPlayer.animation_finished
+		%QuestContainer.get_child(0).grab_focus()
+
+
 
 func show_skill_selection():
 	%SkillSelection.show_skill_selection()
@@ -43,15 +48,17 @@ func _on_back_button_pressed():
 
 func _create_urgent_quests(questData: UrgentQuest):
 	var quest = preload("res://GameElements/Screens/map_button.tscn").instantiate()
-	var normal_map_texture = load("res://Assets/UI/map_selection_button/urgent_quest.png")
-	var hover_map_texture = load("res://Assets/UI/map_selection_button/urgent_quest_hover.png")
-	var pressed_map_texture = load("res://Assets/UI/map_selection_button/urgent_quest_clicked.png")
+	var normal_map_texture = preload("res://Assets/UI/map_selection_button/urgent_quest.png")
+	var hover_map_texture = preload("res://Assets/UI/map_selection_button/urgent_quest_hover.png")
+	var pressed_map_texture = preload("res://Assets/UI/map_selection_button/urgent_quest_clicked.png")
+	var focused_map_texture = preload("res://Assets/UI/map_selection_button/urgent_quest_focused.png")
 	quest.difficulty = questData.difficulty
 	quest.waves_to_completed = questData.waves_to_completed
 	quest.texture_reward = questData.reward_texture
 	quest.map_texture_normal = normal_map_texture
 	quest.map_texture_hover = hover_map_texture
 	quest.map_texture_clicked = pressed_map_texture
+	quest.map_texture_focused = focused_map_texture
 	quest.map_of_quest_index = questData.map_of_quest_index
 	quest.is_day = questData.is_day
 	quest.reward = Quest_Button.reward_type.GOLD
@@ -91,12 +98,14 @@ func _generate_quests():
 	var normal_map_texture = load("res://Assets/UI/map_selection_button/map_%s_%s.png" % [actual_chapter, map_select])
 	var hover_map_texture = load("res://Assets/UI/map_selection_button/map_%s_%s_hover.png" % [actual_chapter, map_select] )
 	var pressed_map_texture = load("res://Assets/UI/map_selection_button/map_%s_%s_clicked.png" % [actual_chapter, map_select] )
+	var focused_map_texture = load("res://Assets/UI/map_selection_button/map_%s_%s_focused.png" % [actual_chapter, map_select])
 	quest.difficulty = difficulty
 	quest.waves_to_completed = max_waves
 	quest.texture_reward = gold_texture
 	quest.map_texture_normal = normal_map_texture
 	quest.map_texture_hover = hover_map_texture
 	quest.map_texture_clicked = pressed_map_texture
+	quest.map_texture_focused = focused_map_texture
 	quest.map_of_quest_index = map_select
 	quest.is_day = false
 	quest.reward = Quest_Button.reward_type.GOLD
@@ -151,3 +160,8 @@ static var urgent_quests = [
 func _on_skill_selection_game_launched():
 	clear_proposed_quest()
 	QuestManager.isOpen = false
+
+
+func _on_skill_selection_player_animation_finished(anim_name):
+	if anim_name == "hide_skill_selection" && Global.player_using_controller:
+		%BackButton.grab_focus()

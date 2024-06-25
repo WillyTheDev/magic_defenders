@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://n1k4yurwg55o"]
+[gd_scene load_steps=28 format=3 uid="uid://n1k4yurwg55o"]
 
 [ext_resource type="Script" path="res://GameElements/Screens/shop.gd" id="1_i8fb1"]
 [ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="2_23wed"]
@@ -11,11 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://drsk0vr8ddiev" path="res://Assets/UI/NPC/shop_item_hover.png" id="9_ebys3"]
 [ext_resource type="Texture2D" uid="uid://chncb2xt2biv3" path="res://Assets/UI/NPC/necklaces.png" id="10_kgwm3"]
 [ext_resource type="Texture2D" uid="uid://bnaju2gceer5l" path="res://Assets/UI/NPC/bourse_reduced.png" id="11_2njre"]
+[ext_resource type="Texture2D" uid="uid://c4qypb85bskol" path="res://Assets/UI/NPC/shop_item_focused.png" id="11_4x2wn"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="12_qbnvi"]
 [ext_resource type="Texture2D" uid="uid://dcnj4vb0yrxex" path="res://Assets/UI/NPC/rings.png" id="13_kla0q"]
 [ext_resource type="Texture2D" uid="uid://d2t7ivienixv0" path="res://Assets/UI/NPC/pants.png" id="14_0wpdw"]
 [ext_resource type="Texture2D" uid="uid://cl4eq00nq25ts" path="res://Assets/UI/NPC/boots.png" id="15_5kswg"]
 [ext_resource type="Texture2D" uid="uid://cesp6j7dg40c0" path="res://Assets/loots/bourse.png" id="19_4e61o"]
+[ext_resource type="Texture2D" uid="uid://d1nlyabhfhjor" path="res://Assets/UI/challenge_selection/back_focus.png" id="19_24vhu"]
+[ext_resource type="AudioStream" uid="uid://cybl54ghahyv1" path="res://Assets/audio/selling.mp3" id="20_g8xrg"]
 [ext_resource type="Texture2D" uid="uid://cahuuxwk45jot" path="res://Assets/UI/challenge_selection/back.png" id="24_p52uh"]
 [ext_resource type="Texture2D" uid="uid://lrqcr411i8sd" path="res://Assets/UI/challenge_selection/back_click.png" id="25_iv4im"]
 [ext_resource type="Texture2D" uid="uid://bkqv2ykx8m0a0" path="res://Assets/UI/challenge_selection/back_hover.png" id="26_0nd4m"]
@@ -204,6 +207,7 @@ theme_override_constants/margin_right = 200
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TextureRect/MarginContainer2"]
 layout_mode = 2
+follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer2/ScrollContainer"]
 layout_mode = 2
@@ -223,11 +227,13 @@ size_flags_vertical = 3
 theme_override_constants/separation = 30
 
 [node name="item_1_1" type="TextureButton" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 texture_normal = ExtResource("7_ilrix")
 texture_pressed = ExtResource("8_x71vx")
 texture_hover = ExtResource("9_ebys3")
+texture_focused = ExtResource("11_4x2wn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_1"]
 layout_mode = 1
@@ -278,6 +284,7 @@ layout_mode = 2
 texture_normal = ExtResource("7_ilrix")
 texture_pressed = ExtResource("8_x71vx")
 texture_hover = ExtResource("9_ebys3")
+texture_focused = ExtResource("11_4x2wn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_2"]
 layout_mode = 1
@@ -328,6 +335,7 @@ layout_mode = 2
 texture_normal = ExtResource("7_ilrix")
 texture_pressed = ExtResource("8_x71vx")
 texture_hover = ExtResource("9_ebys3")
+texture_focused = ExtResource("11_4x2wn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_3"]
 layout_mode = 1
@@ -378,6 +386,7 @@ layout_mode = 2
 texture_normal = ExtResource("7_ilrix")
 texture_pressed = ExtResource("8_x71vx")
 texture_hover = ExtResource("9_ebys3")
+texture_focused = ExtResource("11_4x2wn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_4"]
 layout_mode = 1
@@ -453,6 +462,7 @@ layout_mode = 2
 texture_normal = ExtResource("24_p52uh")
 texture_pressed = ExtResource("25_iv4im")
 texture_hover = ExtResource("26_0nd4m")
+texture_focused = ExtResource("19_24vhu")
 
 [node name="MarginContainer3" type="MarginContainer" parent="TextureRect"]
 layout_mode = 1
@@ -493,6 +503,11 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_gnqic")
 }
+
+[node name="SellingAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("20_g8xrg")
+bus = &"SFX"
 
 [connection signal="gui_input" from="Control" to="Control" method="_on_gui_input"]
 [connection signal="pressed" from="TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_1" to="." method="_on_item_1_1_pressed"]

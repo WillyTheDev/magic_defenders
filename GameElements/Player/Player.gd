@@ -34,7 +34,7 @@ func _ready():
 	screen_size = get_node("/root/Game/Map/MapLimit").global_position
 	_update_sound_volume()
 	update_mana_amount(starting_mana_amount, false)
-	inventoryManager.apply_hat()
+	inventoryManager.apply_hat(Global.player_equipped_hat)
 
 func _update_sound_volume():
 	%WalkAudio.volume_db = Global.sound_volume
@@ -73,7 +73,7 @@ func _physics_process(_delta):
 		%DustParticle.emitting = false
 
 func _input(event):
-	if event.is_action_pressed("left_click"):
+	if event.is_action_pressed("left_click") && event.get_action_strength("left_click") >= 1:
 		if is_building:
 			_place_defense()
 		else:

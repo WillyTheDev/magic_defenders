@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dxicxia2vogwh"]
+[gd_scene load_steps=47 format=3 uid="uid://dxicxia2vogwh"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_dvt7e"]
 [ext_resource type="Material" uid="uid://cpw1r3dhb6b27" path="res://Shaders/water.tres" id="2_05s70"]
@@ -34,6 +34,7 @@
 [ext_resource type="AudioStream" uid="uid://cdvnwib7h27jv" path="res://Assets/audio/voice/gulrot_short_3.wav" id="21_2aorq"]
 [ext_resource type="PackedScene" uid="uid://clhu7ht04c7da" path="res://GameElements/Maps/env/torch.tscn" id="22_r834d"]
 [ext_resource type="PackedScene" uid="uid://c565udxf2c2r4" path="res://GameElements/Screens/Challenge.tscn" id="24_n8nrg"]
+[ext_resource type="Texture2D" uid="uid://cpidwu7pnpo7u" path="res://Assets/Ellipse_small.png" id="35_iphcb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfba4"]
 shader = ExtResource("3_1i6ag")
@@ -93,6 +94,27 @@ stream_2/weight = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u3f6o"]
 shader = ExtResource("9_ep887")
+
+[sub_resource type="Gradient" id="Gradient_vgjqs"]
+offsets = PackedFloat32Array(0, 0.282407, 0.703704, 1)
+colors = PackedColorArray(0.698039, 1.50196, 0, 0, 0.698039, 1.50196, 0, 1, 0.698039, 1.50196, 0, 1, 0.698039, 1.50196, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ye61j"]
+gradient = SubResource("Gradient_vgjqs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p5yl8"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2700, 1500, 1)
+angle_min = -148.2
+angle_max = 211.8
+radial_velocity_min = -20.0
+radial_velocity_max = 20.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.2
+scale_max = 0.4
+color = Color(1.50196, 1.50196, 1.50196, 1)
+color_ramp = SubResource("GradientTexture1D_ye61j")
 
 [node name="Map" type="Node2D"]
 z_as_relative = false
@@ -1117,7 +1139,7 @@ offset = Vector2(0, 30)
 [node name="weed19" type="Sprite2D" parent="env"]
 z_index = 1
 material = SubResource("ShaderMaterial_u3f6o")
-position = Vector2(1415.84, 800.454)
+position = Vector2(1316, 1075)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("10_wko30")
 centered = false
@@ -1126,7 +1148,7 @@ offset = Vector2(0, 30)
 [node name="weed21" type="Sprite2D" parent="env"]
 z_index = 1
 material = SubResource("ShaderMaterial_u3f6o")
-position = Vector2(1054, 816)
+position = Vector2(1058, 1016)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("10_wko30")
 centered = false
@@ -1346,6 +1368,7 @@ unique_name_in_owner = true
 
 [node name="Shop" parent="NPCManager" instance=ExtResource("21_0pxgc")]
 unique_name_in_owner = true
+skill_price = 40
 
 [node name="Challenge" parent="NPCManager" instance=ExtResource("24_n8nrg")]
 unique_name_in_owner = true
@@ -1368,7 +1391,15 @@ position = Vector2(1846, 467)
 position = Vector2(1477, 313)
 
 [node name="Torch8" parent="." instance=ExtResource("22_r834d")]
-position = Vector2(1244, 607)
+position = Vector2(1123, 540)
 
 [node name="Torch9" parent="." instance=ExtResource("22_r834d")]
-position = Vector2(1506, 710)
+position = Vector2(1726, 743)
+
+[node name="Firefly" type="GPUParticles2D" parent="."]
+position = Vector2(161, 123)
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_p5yl8")
+texture = ExtResource("35_iphcb")
+lifetime = 4.0
+visibility_rect = Rect2(-100, -100, 2700, 1500)

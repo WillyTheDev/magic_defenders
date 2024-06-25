@@ -1,56 +1,90 @@
-[gd_scene load_steps=5 format=3 uid="uid://c082ftweuwu2l"]
+[gd_scene load_steps=8 format=3 uid="uid://c082ftweuwu2l"]
 
-[ext_resource type="Texture2D" uid="uid://bw61ae2r5brvy" path="res://Assets/UI/item/background.png" id="1_kfyap"]
 [ext_resource type="Script" path="res://loot_item.gd" id="1_mw5rj"]
+[ext_resource type="Texture2D" uid="uid://hugbe3prh8dy" path="res://Assets/UI/item/normal.png" id="1_x5fst"]
+[ext_resource type="Texture2D" uid="uid://deryp2nphd43r" path="res://Assets/UI/item/focus.png" id="2_1nvbd"]
 [ext_resource type="Texture2D" uid="uid://j014cmoau1ir" path="res://Assets/loots/boots.png" id="2_thysp"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="3_ufc1j"]
 
-[node name="LootItem" type="Control"]
-layout_mode = 3
-anchor_right = 0.226
-anchor_bottom = 0.191
-offset_right = 4.08002
-offset_bottom = -37.28
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1naav"]
+bg_color = Color(0.533333, 0.776471, 0.913725, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymjmb"]
+bg_color = Color(0.794059, 0.77275, 0.783949, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[node name="LootItem" type="TextureButton"]
+anchors_preset = -1
+anchor_right = 0.283
+anchor_bottom = 0.162
+offset_right = -2.35999
+offset_bottom = -3.96001
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("HBoxContainer/ActionContainer/VBoxContainer/EquipButton")
+texture_normal = ExtResource("1_x5fst")
+texture_focused = ExtResource("2_1nvbd")
 script = ExtResource("1_mw5rj")
 
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_right = 433.0
-offset_bottom = 170.0
-texture_normal = ExtResource("1_kfyap")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureButton"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -15.0
+offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
-[node name="ItemContainer" type="MarginContainer" parent="TextureButton/HBoxContainer"]
+[node name="ItemContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 50
 
-[node name="ItemTexture" type="TextureRect" parent="TextureButton/HBoxContainer/ItemContainer"]
+[node name="ItemTexture" type="TextureRect" parent="HBoxContainer/ItemContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("2_thysp")
 
-[node name="DescriptionContainer" type="MarginContainer" parent="TextureButton/HBoxContainer"]
+[node name="DescriptionContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
+theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureButton/HBoxContainer/DescriptionContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/DescriptionContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_ufc1j")
@@ -60,3 +94,40 @@ Primary-stat : value
 Secondary-stat : value
 
 price : [color=yellow] price [/color]"
+
+[node name="ActionContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ActionContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="EquipButton" type="Button" parent="HBoxContainer/ActionContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_bottom = NodePath("../SellButton")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ufc1j")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1naav")
+text = "Equip"
+
+[node name="SellButton" type="Button" parent="HBoxContainer/ActionContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ufc1j")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ymjmb")
+text = "Sell : 10$"
+
+[connection signal="pressed" from="HBoxContainer/ActionContainer/VBoxContainer/EquipButton" to="." method="_on_equip_pressed"]
+[connection signal="pressed" from="HBoxContainer/ActionContainer/VBoxContainer/SellButton" to="." method="_on_sell_pressed"]

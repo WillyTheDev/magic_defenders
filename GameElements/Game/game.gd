@@ -92,7 +92,6 @@ func start_new_wave():
 			index += 2
 		Spawner.number_of_time = map_of_game.sequences[Spawner.sequence_index][0]
 		Spawner.type_of_enemy = map_of_game.sequences[Spawner.sequence_index][1]
-
 	else :
 		Spawner.total_enemies = current_wave * 8
 	Spawner.enemies_spawn = 0
@@ -103,18 +102,16 @@ func start_new_wave():
 	%EnemiesProgressBar.value = Spawner.total_enemies
 	%EnemiesLabel.text = "Wave %s : %s / %s" % [current_wave, Spawner.enemies_left, Spawner.total_enemies]
 	%WaveActionLabel.visible = false
-	
 	#Start the Spawning timers
 	%SpawnEnemyTimer.wait_time = clamp(spawn_rates, 0.5, 2.5)
 	%SpawnEnemyTimer.start()
 	%SpawnFlyingEnemyTimer.wait_time = clamp(spawn_flying_enemy_rates, 0.5, 2.5)
 	%SpawnFlyingEnemyTimer.start()
-
 	if (current_wave > 5 && Global.selected_difficulty > 1) || Global.selected_difficulty == 99:
-		Enemy.base_health += clamp(Global.selected_difficulty - 1, 0, 5)
-		Enemy.base_speed += clamp(Global.selected_difficulty, 0, 5)
+		Enemy.base_health += 1
+		Enemy.base_speed += 1
 		if Global.selected_difficulty > 2:
-			Enemy.base_damage += clamp(Global.selected_difficulty / 2, 0, 3)
+			Enemy.base_damage += 1
 
 func end_of_wave():
 	%Enemy_1.visible = false
@@ -140,7 +137,7 @@ func end_of_wave():
 
 func _input(event):
 	if event.is_action_pressed("action_button"):
-		if is_idle && map_of_game.is_hub == false:
+		if is_idle && map_of_game.is_hub == false && %GameOverScreen.game_is_over == false:
 			start_new_wave()
 
 func _on_player_player_update_mana_amount(mana):

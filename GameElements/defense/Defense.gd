@@ -76,7 +76,7 @@ func _process(_float):
 	
 func _input(event):
 	abstract_input(event)
-	if event.is_action_pressed("left_click"):
+	if event.is_action_pressed("left_click") && event.get_action_strength("left_click") >= 1:
 		if has_been_build == false && can_be_placed == true:
 			build_defense()
 

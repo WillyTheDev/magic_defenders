@@ -9,6 +9,7 @@ var texture_reward : Texture = null
 var map_texture_normal : Texture = null
 var map_texture_hover : Texture = null
 var map_texture_clicked : Texture = null
+var map_texture_focused : Texture = null
 var map_of_quest_index : int = 0
 var is_day : bool = true
 var reward : reward_type = reward_type.GOLD
@@ -33,6 +34,7 @@ func _ready():
 	texture_normal = map_texture_normal
 	texture_hover = map_texture_hover
 	texture_pressed = map_texture_clicked
+	texture_focused = map_texture_focused
 	
 func _on_transition_layer_transition_is_finished(_anim_name):
 	if has_been_pressed && is_inside_tree():

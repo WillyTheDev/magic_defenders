@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://c2o1lsmd80cnp"]
+[gd_scene load_steps=58 format=3 uid="uid://c2o1lsmd80cnp"]
 
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/PlayerManager.gd" id="1_ctqjo"]
 [ext_resource type="Texture2D" uid="uid://7ldxtyg31ar8" path="res://Assets/UI/player_profile_background/background.png" id="2_3il38"]
@@ -8,23 +8,29 @@
 [ext_resource type="Texture2D" uid="uid://c6welklvyyunf" path="res://Assets/UI/player_profile_background/select_up_pressed.png" id="4_e3aay"]
 [ext_resource type="Texture2D" uid="uid://dc88kr5yipjix" path="res://Assets/UI/player_profile_background/hat_button.png" id="5_upd7b"]
 [ext_resource type="Texture2D" uid="uid://cqbelpmljed1s" path="res://Assets/UI/player_profile_background/select_down_normal.png" id="5_yh11t"]
+[ext_resource type="Texture2D" uid="uid://btj6x5k3xhs7j" path="res://Assets/UI/player_profile_background/select_up_focus.png" id="6_7emhe"]
 [ext_resource type="Texture2D" uid="uid://whbmuxb1eahl" path="res://Assets/UI/player_profile_background/select_down_pressed.png" id="6_f3uvs"]
 [ext_resource type="Texture2D" uid="uid://ccvj64tx7otbf" path="res://Assets/UI/player_profile_background/hat_button_hover.png" id="6_x1x4c"]
 [ext_resource type="PackedScene" uid="uid://dk18yh7kobthq" path="res://GameElements/Skills/skill_container.tscn" id="8_pjo68"]
+[ext_resource type="Texture2D" uid="uid://b4cdwhjls82s" path="res://Assets/UI/player_profile_background/select_down_focus.png" id="9_1an55"]
 [ext_resource type="Texture2D" uid="uid://djy8a7ycwr56x" path="res://Assets/UI/player_profile_background/apply.png" id="9_dnnii"]
 [ext_resource type="Texture2D" uid="uid://bykke8w4lv8ba" path="res://Assets/UI/player_profile_background/apply_clicked.png" id="10_4uncc"]
 [ext_resource type="Texture2D" uid="uid://im3s6ag6e4n" path="res://Assets/UI/player_profile_background/apply_hover.png" id="11_4ikb7"]
 [ext_resource type="PackedScene" uid="uid://kbm12vsaf3ev" path="res://GameElements/Player/player_animation.tscn" id="13_71dtm"]
-[ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="13_lme1u"]
 [ext_resource type="Texture2D" uid="uid://bnqvulr6cj34d" path="res://Assets/UI/player_profile_background/hat_placeholder.png" id="13_mxkna"]
+[ext_resource type="Texture2D" uid="uid://c7mjw4uk7oiod" path="res://Assets/UI/player_profile_background/apply_focus.png" id="14_mq0yg"]
 [ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="16_1uron"]
 [ext_resource type="Texture2D" uid="uid://4y33cmdxh8ao" path="res://Assets/UI/player_profile_background/necklace_placeholder.png" id="16_oqu4o"]
+[ext_resource type="Script" path="res://GameElements/Player/PlayerManager/HatButton.gd" id="16_owynn"]
+[ext_resource type="Texture2D" uid="uid://d0aij73v7y4vv" path="res://Assets/UI/player_profile_background/hat_button_focus.png" id="16_woluy"]
 [ext_resource type="Texture2D" uid="uid://bbww30wt2hq3g" path="res://Assets/UI/player_profile_background/ring_placeholder.png" id="17_85sj4"]
 [ext_resource type="Texture2D" uid="uid://5xdbr5y0ldo4" path="res://Assets/UI/player_profile_background/pants_placeholder.png" id="18_wcvkc"]
 [ext_resource type="Texture2D" uid="uid://dtbokljp08n5w" path="res://Assets/UI/notification_bullet.png" id="18_x5gsd"]
 [ext_resource type="Texture2D" uid="uid://bp3rdxmpwjiyi" path="res://Assets/UI/player_profile_background/boots_placeholder.png" id="19_bng3d"]
 [ext_resource type="Texture2D" uid="uid://cesp6j7dg40c0" path="res://Assets/loots/bourse.png" id="22_0qjg8"]
 [ext_resource type="Script" path="res://GameElements/Skills/outside_click_control.gd" id="24_bvpje"]
+[ext_resource type="AudioStream" uid="uid://cybl54ghahyv1" path="res://Assets/audio/selling.mp3" id="27_pmokr"]
+[ext_resource type="PackedScene" uid="uid://c082ftweuwu2l" path="res://loot_item.tscn" id="32_737ny"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdv3k"]
 bg_color = Color(0.140447, 0.140447, 0.140447, 1)
@@ -153,123 +159,6 @@ corner_radius_bottom_left = 16
 shader = ExtResource("16_1uron")
 shader_parameter/lod = 1.5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qepbm"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l6u5"]
-bg_color = Color(0.756863, 0.756863, 0.756863, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11ars"]
-bg_color = Color(3.85046e-07, 0.497298, 0.487444, 0.498039)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(4.81307e-07, 0.698073, 0.691016, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nqsa"]
-bg_color = Color(0, 0, 0, 0.588235)
-border_color = Color(0.187176, 0.187176, 0.187176, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkxai"]
-bg_color = Color(0, 0.568627, 0.184314, 0.717647)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.372118, 0.84857, 0.397979, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olm0r"]
-bg_color = Color(0.533333, 0.776471, 0.913725, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 16.0
-expand_margin_top = 8.0
-expand_margin_right = 16.0
-expand_margin_bottom = 8.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4s8w"]
-bg_color = Color(0.415686, 0.603922, 0.709804, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 16.0
-expand_margin_top = 8.0
-expand_margin_right = 16.0
-expand_margin_bottom = 8.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yow2v"]
-bg_color = Color(0.580392, 0.819608, 1, 1)
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 16.0
-expand_margin_top = 8.0
-expand_margin_right = 16.0
-expand_margin_bottom = 8.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prgbg"]
-bg_color = Color(0.533333, 0.776471, 0.913725, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-expand_margin_left = 16.0
-expand_margin_top = 8.0
-expand_margin_right = 16.0
-expand_margin_bottom = 8.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kiv38"]
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.0962047, 0.0962048, 0.0962046, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-expand_margin_left = 16.0
-expand_margin_top = 8.0
-expand_margin_right = 16.0
-expand_margin_bottom = 8.0
-
 [sub_resource type="Animation" id="Animation_qticw"]
 length = 0.001
 tracks/0/type = "value"
@@ -299,55 +188,55 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerManager/InventoryManager/HatsContainer/Texture:scale")
+tracks/2/path = NodePath("PlayerManager/StatsContainer:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1e-05)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerManager/InventoryManager/HatsContainer:visible")
+tracks/3/path = NodePath("PlayerManager/TextureRect:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerManager/StatsContainer:modulate")
+tracks/4/path = NodePath("PlayerManager:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerManager/TextureRect:modulate")
+tracks/5/path = NodePath("PlayerManager/InventoryManager/BootsInventory:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"update": 1,
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer:visible")
+tracks/6/path = NodePath("PlayerManager/InventoryManager/NecklaceInventory:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -359,19 +248,19 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer/Texture:scale")
+tracks/7/path = NodePath("PlayerManager/InventoryManager/PantsInventory:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1e-05)]
+"update": 1,
+"values": [false]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("PlayerManager/InventoryManager/RingContainer:visible")
+tracks/8/path = NodePath("PlayerManager/InventoryManager/RingsInventory:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -383,70 +272,10 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("PlayerManager/InventoryManager/RingContainer/Texture:scale")
+tracks/9/path = NodePath("PlayerManager/InventoryManager/HatInventory:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1e-05)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("PlayerManager/InventoryManager/PantsContainer:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("PlayerManager/InventoryManager/PantsContainer/Texture:scale")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1e-05)]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("PlayerManager/InventoryManager/BootsContainer:visible")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("PlayerManager/InventoryManager/BootsContainer/Texture:scale")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1e-05)]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("PlayerManager:visible")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -459,23 +288,11 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/BootsContainer/Texture:scale")
+tracks/0/path = NodePath("PlayerManager/InventoryManager/BootsInventory:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.8),
-"transitions": PackedFloat32Array(0.554785, 0.554785, 0.554785),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/BootsContainer:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -487,23 +304,11 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/HatsContainer/Texture:scale")
+tracks/0/path = NodePath("PlayerManager/InventoryManager/HatInventory:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.8),
-"transitions": PackedFloat32Array(0.594604, 0.594604, 0.594604),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/HatsContainer:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -515,23 +320,11 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer/Texture:scale")
+tracks/0/path = NodePath("PlayerManager/InventoryManager/NecklaceInventory:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.8),
-"transitions": PackedFloat32Array(0.574349, 0.574349, 0.574349),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -543,23 +336,11 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/PantsContainer/Texture:scale")
+tracks/0/path = NodePath("PlayerManager/InventoryManager/PantsInventory:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.8),
-"transitions": PackedFloat32Array(0.574349, 0.574349, 0.574349),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/PantsContainer:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -635,23 +416,11 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/RingContainer/Texture:scale")
+tracks/0/path = NodePath("PlayerManager/InventoryManager/RingsInventory:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.8),
-"transitions": PackedFloat32Array(0.594604, 0.594604, 0.594604),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1e-05)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/RingContainer:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -663,7 +432,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/BootsContainer:visible")
+tracks/0/path = NodePath("PlayerManager/InventoryManager/BootsInventory:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -671,18 +440,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/BootsContainer/Texture:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 0.8),
-"transitions": PackedFloat32Array(0.594604, 0.594604, 0.594604),
-"update": 0,
-"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_b6pd7"]
@@ -691,7 +448,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/HatsContainer:visible")
+tracks/0/path = NodePath("PlayerManager/InventoryManager/HatInventory:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -699,18 +456,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/HatsContainer/Texture:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 0.8),
-"transitions": PackedFloat32Array(0.517632, 0.517632, 0.517632),
-"update": 0,
-"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_3ngui"]
@@ -719,7 +464,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer:visible")
+tracks/0/path = NodePath("PlayerManager/InventoryManager/NecklaceInventory:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -727,18 +472,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/NecklaceContainer/Texture:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 0.8),
-"transitions": PackedFloat32Array(0.594604, 0.594604, 0.594604),
-"update": 0,
-"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_53cj3"]
@@ -747,7 +480,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/PantsContainer:visible")
+tracks/0/path = NodePath("PlayerManager/InventoryManager/PantsInventory:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -755,18 +488,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/PantsContainer/Texture:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 0.8),
-"transitions": PackedFloat32Array(0.594603, 0.594603, 0.594603),
-"update": 0,
-"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_qngu4"]
@@ -839,7 +560,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerManager/InventoryManager/RingContainer:visible")
+tracks/0/path = NodePath("PlayerManager/InventoryManager/RingsInventory:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -847,18 +568,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerManager/InventoryManager/RingContainer/Texture:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 0.8),
-"transitions": PackedFloat32Array(0.574349, 0.574349, 0.574349),
-"update": 0,
-"values": [Vector2(1, 1e-05), Vector2(1, 1.1), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xrpxs"]
@@ -987,8 +696,10 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../../../../../InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton")
 texture_normal = ExtResource("3_nsun1")
 texture_pressed = ExtResource("4_e3aay")
+texture_focused = ExtResource("6_7emhe")
 
 [node name="label_stat_1" type="Label" parent="StatsContainer/VBoxContainer/stat_1/VBoxContainer"]
 layout_mode = 2
@@ -1003,8 +714,10 @@ text = "0
 [node name="remove_stat_1" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_1/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_left = NodePath("../../../../../InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton")
 texture_normal = ExtResource("5_yh11t")
 texture_pressed = ExtResource("6_f3uvs")
+texture_focused = ExtResource("9_1an55")
 
 [node name="stat_2" type="HBoxContainer" parent="StatsContainer/VBoxContainer"]
 layout_mode = 2
@@ -1064,8 +777,10 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../../../../../InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton")
 texture_normal = ExtResource("3_nsun1")
 texture_pressed = ExtResource("4_e3aay")
+texture_focused = ExtResource("6_7emhe")
 
 [node name="label_stat_2" type="Label" parent="StatsContainer/VBoxContainer/stat_2/VBoxContainer"]
 layout_mode = 2
@@ -1079,8 +794,10 @@ text = "0
 
 [node name="remove_stat_2" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_2/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../../../InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton")
 texture_normal = ExtResource("5_yh11t")
 texture_pressed = ExtResource("6_f3uvs")
+texture_focused = ExtResource("9_1an55")
 
 [node name="stat_3" type="HBoxContainer" parent="StatsContainer/VBoxContainer"]
 layout_mode = 2
@@ -1140,8 +857,10 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../../../../../InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton")
 texture_normal = ExtResource("3_nsun1")
 texture_pressed = ExtResource("4_e3aay")
+texture_focused = ExtResource("6_7emhe")
 
 [node name="label_stat_3" type="Label" parent="StatsContainer/VBoxContainer/stat_3/VBoxContainer"]
 layout_mode = 2
@@ -1155,8 +874,10 @@ text = "0
 
 [node name="remove_stat_3" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_3/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../../../InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton")
 texture_normal = ExtResource("5_yh11t")
 texture_pressed = ExtResource("6_f3uvs")
+texture_focused = ExtResource("9_1an55")
 
 [node name="stat_4" type="HBoxContainer" parent="StatsContainer/VBoxContainer"]
 layout_mode = 2
@@ -1216,8 +937,10 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../../../../../InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton")
 texture_normal = ExtResource("3_nsun1")
 texture_pressed = ExtResource("4_e3aay")
+texture_focused = ExtResource("6_7emhe")
 
 [node name="label_stat_4" type="Label" parent="StatsContainer/VBoxContainer/stat_4/VBoxContainer"]
 layout_mode = 2
@@ -1231,8 +954,10 @@ text = "0
 
 [node name="remove_stat_4" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_4/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../../../InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton")
 texture_normal = ExtResource("5_yh11t")
 texture_pressed = ExtResource("6_f3uvs")
+texture_focused = ExtResource("9_1an55")
 
 [node name="stat_5" type="HBoxContainer" parent="StatsContainer/VBoxContainer"]
 layout_mode = 2
@@ -1292,8 +1017,10 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath("../../../../../InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton")
 texture_normal = ExtResource("3_nsun1")
 texture_pressed = ExtResource("4_e3aay")
+texture_focused = ExtResource("6_7emhe")
 
 [node name="label_stat_5" type="Label" parent="StatsContainer/VBoxContainer/stat_5/VBoxContainer"]
 layout_mode = 2
@@ -1307,8 +1034,10 @@ text = "0
 
 [node name="remove_stat_5" type="TextureButton" parent="StatsContainer/VBoxContainer/stat_5/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../../../InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton")
 texture_normal = ExtResource("5_yh11t")
 texture_pressed = ExtResource("6_f3uvs")
+texture_focused = ExtResource("9_1an55")
 
 [node name="SkillContainer Label" type="Label" parent="StatsContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -1352,6 +1081,7 @@ size_flags_horizontal = 10
 texture_normal = ExtResource("9_dnnii")
 texture_pressed = ExtResource("10_4uncc")
 texture_hover = ExtResource("11_4ikb7")
+texture_focused = ExtResource("14_mq0yg")
 
 [node name="InventoryManager" type="Control" parent="."]
 unique_name_in_owner = true
@@ -1396,8 +1126,11 @@ theme_override_constants/separation = 20
 [node name="HatButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_right = NodePath("../../../../../StatsContainer/VBoxContainer/stat_1/VBoxContainer/add_stat_1")
 texture_normal = ExtResource("5_upd7b")
 texture_hover = ExtResource("6_x1x4c")
+texture_focused = ExtResource("16_woluy")
+script = ExtResource("16_owynn")
 metadata/_edit_use_anchors_ = true
 
 [node name="SelectedHatTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton"]
@@ -1425,6 +1158,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 texture_normal = ExtResource("5_upd7b")
 texture_hover = ExtResource("6_x1x4c")
+texture_focused = ExtResource("16_woluy")
 metadata/_edit_use_anchors_ = true
 
 [node name="SelectedNecklaceTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer2/NecklaceButton"]
@@ -1458,8 +1192,10 @@ theme_override_constants/separation = 20
 
 [node name="RingsButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../../../../StatsContainer/VBoxContainer/stat_1/VBoxContainer/add_stat_1")
 texture_normal = ExtResource("5_upd7b")
 texture_hover = ExtResource("6_x1x4c")
+texture_focused = ExtResource("16_woluy")
 metadata/_edit_use_anchors_ = true
 
 [node name="SelectedRingTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3/RingsButton"]
@@ -1493,8 +1229,10 @@ theme_override_constants/separation = 20
 
 [node name="PantsButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../../../../StatsContainer/VBoxContainer/stat_1/VBoxContainer/add_stat_1")
 texture_normal = ExtResource("5_upd7b")
 texture_hover = ExtResource("6_x1x4c")
+texture_focused = ExtResource("16_woluy")
 metadata/_edit_use_anchors_ = true
 
 [node name="SelectedPantsTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer4/PantsButton"]
@@ -1528,8 +1266,10 @@ theme_override_constants/separation = 20
 
 [node name="BootsButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../../../../StatsContainer/VBoxContainer/stat_1/VBoxContainer/add_stat_1")
 texture_normal = ExtResource("5_upd7b")
 texture_hover = ExtResource("6_x1x4c")
+texture_focused = ExtResource("16_woluy")
 metadata/_edit_use_anchors_ = true
 
 [node name="SelectedBootsTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer5/BootsButton"]
@@ -1588,7 +1328,7 @@ theme_override_font_sizes/font_size = 28
 text = "999
 "
 
-[node name="HatsContainer" type="Control" parent="InventoryManager"]
+[node name="HatInventory" type="Control" parent="InventoryManager"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -1597,8 +1337,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Control" type="ColorRect" parent="InventoryManager/HatsContainer" node_paths=PackedStringArray("player")]
+[node name="Control" type="ColorRect" parent="InventoryManager/HatInventory" node_paths=PackedStringArray("player")]
 material = SubResource("ShaderMaterial_8kbk6")
 layout_mode = 1
 anchors_preset = 15
@@ -1607,66 +1348,52 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+color = Color(0.98152, 0.976018, 0.981515, 1)
 script = ExtResource("24_bvpje")
 player = NodePath("../../../PlayerManagerAnimationPlayer")
 animation_name = "hide_hat_list"
+is_inner_selection = true
 
-[node name="Texture" type="TextureRect" parent="InventoryManager/HatsContainer"]
+[node name="ColorRect" type="ColorRect" parent="InventoryManager/HatInventory"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -377.5
-offset_top = -371.0
-offset_right = 377.5
-offset_bottom = 371.0
+offset_left = -710.0
+offset_top = -440.0
+offset_right = 710.0
+offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 1e-05)
-texture = ExtResource("13_lme1u")
+color = Color(0.226707, 0.226707, 0.226707, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/HatsContainer/Texture"]
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/HatInventory/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 160
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 160
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/HatsContainer/Texture/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/HatInventory/ColorRect/MarginContainer"]
 layout_mode = 2
+follow_focus = true
 
-[node name="HatList" type="ItemList" parent="InventoryManager/HatsContainer/Texture/MarginContainer/ScrollContainer"]
+[node name="GridHat" type="GridContainer" parent="InventoryManager/HatInventory/ColorRect/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hovered_color = Color(0.988235, 0.862745, 0.705882, 1)
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 5
-theme_override_constants/icon_margin = 5
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
-theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
-theme_override_styles/selected = SubResource("StyleBoxFlat_11ars")
-theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
-allow_rmb_select = true
-allow_search = false
-max_text_lines = 2
-auto_height = true
-same_column_width = true
-fixed_column_width = 400
-icon_mode = 0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
 
-[node name="NecklaceContainer" type="Control" parent="InventoryManager"]
+[node name="NecklaceInventory" type="Control" parent="InventoryManager"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -1675,8 +1402,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Control" type="ColorRect" parent="InventoryManager/NecklaceContainer" node_paths=PackedStringArray("player")]
+[node name="Control" type="ColorRect" parent="InventoryManager/NecklaceInventory" node_paths=PackedStringArray("player")]
 material = SubResource("ShaderMaterial_8kbk6")
 layout_mode = 1
 anchors_preset = 15
@@ -1685,101 +1413,52 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+color = Color(0.98152, 0.976018, 0.981515, 1)
 script = ExtResource("24_bvpje")
 player = NodePath("../../../PlayerManagerAnimationPlayer")
 animation_name = "hide_necklace_list"
+is_inner_selection = true
 
-[node name="Texture" type="TextureRect" parent="InventoryManager/NecklaceContainer"]
+[node name="ColorRect" type="ColorRect" parent="InventoryManager/NecklaceInventory"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -377.5
-offset_top = -371.0
-offset_right = 377.5
-offset_bottom = 371.0
+offset_left = -710.0
+offset_top = -440.0
+offset_right = 710.0
+offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 1e-05)
-texture = ExtResource("13_lme1u")
+color = Color(0.226707, 0.226707, 0.226707, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/NecklaceContainer/Texture"]
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/NecklaceInventory/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 160
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 160
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/NecklaceInventory/ColorRect/MarginContainer"]
 layout_mode = 2
+follow_focus = true
 
-[node name="NecklaceList" type="ItemList" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/ScrollContainer"]
+[node name="GridNecklace" type="GridContainer" parent="InventoryManager/NecklaceInventory/ColorRect/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hovered_color = Color(1, 1, 1, 1)
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 5
-theme_override_constants/icon_margin = 5
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
-theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
-theme_override_styles/selected = SubResource("StyleBoxFlat_wkxai")
-theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
-allow_rmb_select = true
-allow_search = false
-max_text_lines = 2
-auto_height = true
-item_count = 1
-same_column_width = true
-fixed_column_width = 400
-icon_mode = 0
-item_0/text = ""
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_constants/margin_bottom = 16
-
-[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_constants/separation = 40
-
-[node name="EquipsNecklaces" type="Button" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
-theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
-text = "Equip"
-
-[node name="SellNecklaces" type="Button" parent="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_prgbg")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kiv38")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prgbg")
-text = "Sell"
-
-[node name="RingContainer" type="Control" parent="InventoryManager"]
+[node name="RingsInventory" type="Control" parent="InventoryManager"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -1788,8 +1467,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Control" type="ColorRect" parent="InventoryManager/RingContainer" node_paths=PackedStringArray("player")]
+[node name="Control" type="ColorRect" parent="InventoryManager/RingsInventory" node_paths=PackedStringArray("player")]
 material = SubResource("ShaderMaterial_8kbk6")
 layout_mode = 1
 anchors_preset = 15
@@ -1798,103 +1478,52 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+color = Color(0.98152, 0.976018, 0.981515, 1)
 script = ExtResource("24_bvpje")
 player = NodePath("../../../PlayerManagerAnimationPlayer")
 animation_name = "hide_ring_list"
+is_inner_selection = true
 
-[node name="Texture" type="TextureRect" parent="InventoryManager/RingContainer"]
+[node name="ColorRect" type="ColorRect" parent="InventoryManager/RingsInventory"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -377.5
-offset_top = -371.0
-offset_right = 377.5
-offset_bottom = 371.0
+offset_left = -710.0
+offset_top = -440.0
+offset_right = 710.0
+offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 1e-05)
-texture = ExtResource("13_lme1u")
+color = Color(0.226707, 0.226707, 0.226707, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/RingContainer/Texture"]
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/RingsInventory/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 160
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 160
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="MarginContainer2" type="MarginContainer" parent="InventoryManager/RingContainer/Texture/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/RingsInventory/ColorRect/MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 80
+follow_focus = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer2"]
-layout_mode = 2
-
-[node name="RingList" type="ItemList" parent="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer2/ScrollContainer"]
+[node name="GridRings" type="GridContainer" parent="InventoryManager/RingsInventory/ColorRect/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hovered_color = Color(0.988235, 0.862745, 0.705882, 1)
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 5
-theme_override_constants/icon_margin = 5
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
-theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
-theme_override_styles/selected = SubResource("StyleBoxFlat_wkxai")
-theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
-allow_rmb_select = true
-allow_search = false
-max_text_lines = 2
-auto_height = true
-same_column_width = true
-fixed_column_width = 400
-icon_mode = 0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/RingContainer/Texture/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_constants/margin_bottom = 16
-
-[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_constants/separation = 40
-
-[node name="EquipsRings" type="Button" parent="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
-theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
-text = "Equip"
-
-[node name="SellRings" type="Button" parent="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_prgbg")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kiv38")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prgbg")
-text = "Sell"
-
-[node name="PantsContainer" type="Control" parent="InventoryManager"]
+[node name="PantsInventory" type="Control" parent="InventoryManager"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -1903,8 +1532,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Control" type="ColorRect" parent="InventoryManager/PantsContainer" node_paths=PackedStringArray("player")]
+[node name="Control" type="ColorRect" parent="InventoryManager/PantsInventory" node_paths=PackedStringArray("player")]
 material = SubResource("ShaderMaterial_8kbk6")
 layout_mode = 1
 anchors_preset = 15
@@ -1913,103 +1543,61 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+color = Color(0.98152, 0.976018, 0.981515, 1)
 script = ExtResource("24_bvpje")
 player = NodePath("../../../PlayerManagerAnimationPlayer")
 animation_name = "hide_pants_list"
+is_inner_selection = true
 
-[node name="Texture" type="TextureRect" parent="InventoryManager/PantsContainer"]
+[node name="ColorRect" type="ColorRect" parent="InventoryManager/PantsInventory"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -377.5
-offset_top = -371.0
-offset_right = 377.5
-offset_bottom = 371.0
+offset_left = -710.0
+offset_top = -440.0
+offset_right = 710.0
+offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 1e-05)
-texture = ExtResource("13_lme1u")
+color = Color(0.226707, 0.226707, 0.226707, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/PantsContainer/Texture"]
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/PantsInventory/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 160
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 160
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="MarginContainer2" type="MarginContainer" parent="InventoryManager/PantsContainer/Texture/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/PantsInventory/ColorRect/MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 80
+follow_focus = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer2"]
-layout_mode = 2
-
-[node name="PantsList" type="ItemList" parent="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer2/ScrollContainer"]
+[node name="GridPants" type="GridContainer" parent="InventoryManager/PantsInventory/ColorRect/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hovered_color = Color(0.988235, 0.862745, 0.705882, 1)
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 5
-theme_override_constants/icon_margin = 5
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
-theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
-theme_override_styles/selected = SubResource("StyleBoxFlat_wkxai")
-theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
-allow_rmb_select = true
-allow_search = false
-max_text_lines = 2
-auto_height = true
-same_column_width = true
-fixed_column_width = 400
-icon_mode = 0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/PantsContainer/Texture/MarginContainer"]
+[node name="LootItem" parent="InventoryManager/PantsInventory/ColorRect/MarginContainer/ScrollContainer/GridPants" instance=ExtResource("32_737ny")]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer"]
+[node name="LootItem2" parent="InventoryManager/PantsInventory/ColorRect/MarginContainer/ScrollContainer/GridPants" instance=ExtResource("32_737ny")]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_constants/separation = 40
 
-[node name="EquipsPants" type="Button" parent="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
+[node name="LootItem3" parent="InventoryManager/PantsInventory/ColorRect/MarginContainer/ScrollContainer/GridPants" instance=ExtResource("32_737ny")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
-theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
-text = "Equip"
 
-[node name="SellPants" type="Button" parent="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_prgbg")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kiv38")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prgbg")
-text = "Sell"
-
-[node name="BootsContainer" type="Control" parent="InventoryManager"]
+[node name="BootsInventory" type="Control" parent="InventoryManager"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -2018,8 +1606,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="Control" type="ColorRect" parent="InventoryManager/BootsContainer" node_paths=PackedStringArray("player")]
+[node name="Control" type="ColorRect" parent="InventoryManager/BootsInventory" node_paths=PackedStringArray("player")]
 material = SubResource("ShaderMaterial_8kbk6")
 layout_mode = 1
 anchors_preset = 15
@@ -2028,101 +1617,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+color = Color(0.98152, 0.976018, 0.981515, 1)
 script = ExtResource("24_bvpje")
 player = NodePath("../../../PlayerManagerAnimationPlayer")
 animation_name = "hide_boots_list"
+is_inner_selection = true
 
-[node name="Texture" type="TextureRect" parent="InventoryManager/BootsContainer"]
+[node name="ColorRect" type="ColorRect" parent="InventoryManager/BootsInventory"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -377.5
-offset_top = -371.0
-offset_right = 377.5
-offset_bottom = 371.0
+offset_left = -710.0
+offset_top = -440.0
+offset_right = 710.0
+offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 1e-05)
-texture = ExtResource("13_lme1u")
+color = Color(0.226707, 0.226707, 0.226707, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/BootsContainer/Texture"]
+[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/BootsInventory/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 160
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 160
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="MarginContainer2" type="MarginContainer" parent="InventoryManager/BootsContainer/Texture/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/BootsInventory/ColorRect/MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 80
+follow_focus = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer2"]
-layout_mode = 2
-
-[node name="BootsList" type="ItemList" parent="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer2/ScrollContainer"]
+[node name="GridBoots" type="GridContainer" parent="InventoryManager/BootsInventory/ColorRect/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 6
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hovered_color = Color(0.988235, 0.862745, 0.705882, 1)
-theme_override_constants/h_separation = 5
-theme_override_constants/v_separation = 5
-theme_override_constants/icon_margin = 5
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/panel = SubResource("StyleBoxFlat_qepbm")
-theme_override_styles/focus = SubResource("StyleBoxFlat_5l6u5")
-theme_override_styles/selected = SubResource("StyleBoxFlat_wkxai")
-theme_override_styles/selected_focus = SubResource("StyleBoxFlat_7nqsa")
-allow_rmb_select = true
-allow_search = false
-max_text_lines = 2
-auto_height = true
-same_column_width = true
-fixed_column_width = 400
-icon_mode = 0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="InventoryManager/BootsContainer/Texture/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_constants/margin_bottom = 16
-
-[node name="HBoxContainer" type="HBoxContainer" parent="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_constants/separation = 40
-
-[node name="EquipsBoots" type="Button" parent="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_olm0r")
-theme_override_styles/hover = SubResource("StyleBoxFlat_m4s8w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yow2v")
-text = "Equip"
-
-[node name="SellBoots" type="Button" parent="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer"]
+[node name="SellingAudio" type="AudioStreamPlayer" parent="InventoryManager"]
 unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_gyvey")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_prgbg")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kiv38")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prgbg")
-text = "Sell it"
+stream = ExtResource("27_pmokr")
+bus = &"SFX"
 
 [node name="PlayerProfileTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -2154,23 +1697,10 @@ libraries = {
 [connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3/RingsButton" to="InventoryManager" method="_on_ring_button_pressed"]
 [connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer4/PantsButton" to="InventoryManager" method="_on_pants_button_pressed"]
 [connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer5/BootsButton" to="InventoryManager" method="_on_boots_button_pressed"]
-[connection signal="gui_input" from="InventoryManager/HatsContainer/Control" to="InventoryManager/HatsContainer/Control" method="_on_gui_input"]
-[connection signal="item_selected" from="InventoryManager/HatsContainer/Texture/MarginContainer/ScrollContainer/HatList" to="InventoryManager" method="_on_hat_list_item_selected"]
-[connection signal="gui_input" from="InventoryManager/NecklaceContainer/Control" to="InventoryManager/NecklaceContainer/Control" method="_on_gui_input"]
-[connection signal="item_selected" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/ScrollContainer/NecklaceList" to="InventoryManager" method="_on_necklace_list_item_selected"]
-[connection signal="pressed" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/EquipsNecklaces" to="InventoryManager" method="_on_equips_necklaces_pressed"]
-[connection signal="pressed" from="InventoryManager/NecklaceContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/SellNecklaces" to="InventoryManager" method="_on_delete_necklaces_pressed"]
-[connection signal="gui_input" from="InventoryManager/RingContainer/Control" to="InventoryManager/RingContainer/Control" method="_on_gui_input"]
-[connection signal="item_selected" from="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer2/ScrollContainer/RingList" to="InventoryManager" method="_on_ring_list_item_selected"]
-[connection signal="pressed" from="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/EquipsRings" to="InventoryManager" method="_on_equips_rings_pressed"]
-[connection signal="pressed" from="InventoryManager/RingContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/SellRings" to="InventoryManager" method="_on_delete_rings_pressed"]
-[connection signal="gui_input" from="InventoryManager/PantsContainer/Control" to="InventoryManager/PantsContainer/Control" method="_on_gui_input"]
-[connection signal="item_selected" from="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer2/ScrollContainer/PantsList" to="InventoryManager" method="_on_pants_list_item_selected"]
-[connection signal="pressed" from="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/EquipsPants" to="InventoryManager" method="_on_equips_pants_pressed"]
-[connection signal="pressed" from="InventoryManager/PantsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/SellPants" to="InventoryManager" method="_on_delete_pants_pressed"]
-[connection signal="gui_input" from="InventoryManager/BootsContainer/Control" to="InventoryManager/BootsContainer/Control" method="_on_gui_input"]
-[connection signal="item_selected" from="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer2/ScrollContainer/BootsList" to="InventoryManager" method="_on_boots_list_item_selected"]
-[connection signal="pressed" from="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/EquipsBoots" to="InventoryManager" method="_on_equips_boots_pressed"]
-[connection signal="pressed" from="InventoryManager/BootsContainer/Texture/MarginContainer/MarginContainer/HBoxContainer/SellBoots" to="InventoryManager" method="_on_delete_boots_pressed"]
+[connection signal="gui_input" from="InventoryManager/HatInventory/Control" to="InventoryManager/HatInventory/Control" method="_on_gui_input"]
+[connection signal="gui_input" from="InventoryManager/NecklaceInventory/Control" to="InventoryManager/NecklaceInventory/Control" method="_on_gui_input"]
+[connection signal="gui_input" from="InventoryManager/RingsInventory/Control" to="InventoryManager/RingsInventory/Control" method="_on_gui_input"]
+[connection signal="gui_input" from="InventoryManager/PantsInventory/Control" to="InventoryManager/PantsInventory/Control" method="_on_gui_input"]
+[connection signal="gui_input" from="InventoryManager/BootsInventory/Control" to="InventoryManager/BootsInventory/Control" method="_on_gui_input"]
 [connection signal="timeout" from="PlayerProfileTimer" to="." method="_on_card_timer_timeout"]
 [connection signal="animation_finished" from="PlayerManagerAnimationPlayer" to="." method="_on_player_manager_animation_player_animation_finished"]

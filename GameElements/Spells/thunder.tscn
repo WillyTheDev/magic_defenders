@@ -62,10 +62,10 @@ texture = ExtResource("2_tuupf")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Area2D"]
 position = Vector2(-1, -450.25)
-amount = 200
+amount = 120
 sub_emitter = NodePath("../GPUParticles2D2")
 process_material = SubResource("ParticleProcessMaterial_b6s31")
-lifetime = 4.0
+lifetime = 2.0
 explosiveness = 0.08
 randomness = 0.45
 collision_base_size = 0.0

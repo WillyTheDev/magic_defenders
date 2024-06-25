@@ -30,12 +30,16 @@ func openOptionsMenu(_from: String):
 		game_was_paused = true
 	get_tree().paused = true
 	visible = true
+	if Global.player_using_controller:
+		%ResumeButton.grab_focus()
 
 func closeOptionsMenu():
 	options_menu_open = false
 	if game_was_paused == false:
 		get_tree().paused = false
 	visible = false
+	if is_on_welcome_screen && Global.player_using_controller:
+		$/root/WelcomeScreen/CanvasLayer/MarginContainer/VBoxContainer/ContinueButton.grab_focus()
 
 func _on_quit_to_menu_pressed():
 	%ClickPlayer.play()

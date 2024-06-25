@@ -21,6 +21,7 @@ func _ready():
 			%SkillsContainer.add_child(skill_item)
 			
 func _update_skills():
+	%SellingAudio.play()
 	get_node("/root/Game/UI/SkillsContainer/VBoxContainer/SkillContainer").update_skill_list()
 	get_node("/root/Game/UI").show_available_skill()
 	%PlayerGold.text = "%s" % Global.accumulated_gold
@@ -39,6 +40,9 @@ func show_shop():
 	is_open = true
 	get_tree().paused = true
 	%AnimationPlayer.play("show_shop")
+	if Global.player_using_controller:
+		await %AnimationPlayer.animation_finished
+		%item_1_1.grab_focus()
 	
 func close_shop():
 	is_open = false
@@ -78,6 +82,7 @@ func _drop_loot():
 	loot_to_spawn.global_position = get_node("/root/Game/Map/Merchant").global_position + Vector2(randi() % 30, randi() % 30)
 	loot_to_spawn.get_node("LootSprite").modulate = loot.modulate
 	$/root/Game.call_deferred("add_child", loot_to_spawn)
+	%SellingAudio.play()
 
 
 func _on_back_button_pressed():

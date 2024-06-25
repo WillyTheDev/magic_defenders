@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://brl4o8bcv2k2j"]
+[gd_scene load_steps=20 format=3 uid="uid://brl4o8bcv2k2j"]
 
 [ext_resource type="Script" path="res://GameElements/Game/GameOverScreen.gd" id="1_tcqug"]
 [ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="2_6n8n7"]
@@ -196,6 +196,14 @@ _data = {
 "show_third_star": SubResource("Animation_wfmp0")
 }
 
+[sub_resource type="GDScript" id="GDScript_lb0se"]
+script/source = "extends TextureButton
+
+func _ready():
+	grab_focus()
+	
+"
+
 [node name="GameOverScreen" type="CanvasLayer"]
 process_mode = 3
 layer = 6
@@ -298,6 +306,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
+focus_neighbor_bottom = NodePath("../QuitToMenu")
 texture_normal = ExtResource("6_l0yne")
 texture_pressed = ExtResource("7_xwbi6")
 texture_hover = ExtResource("8_744j6")
@@ -306,9 +315,11 @@ texture_hover = ExtResource("8_744j6")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
+focus_neighbor_top = NodePath("../RestartButton")
 texture_normal = ExtResource("12_m0fv3")
 texture_pressed = ExtResource("13_5k82w")
 texture_hover = ExtResource("14_g1mxd")
+script = SubResource("GDScript_lb0se")
 
 [node name="GameOverPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

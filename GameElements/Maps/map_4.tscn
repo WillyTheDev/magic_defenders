@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://3frlqpkjon2p"]
+[gd_scene load_steps=24 format=3 uid="uid://3frlqpkjon2p"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_ysl11"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_4hn8b"]
@@ -7,9 +7,7 @@
 [ext_resource type="Shader" path="res://Shaders/cloud.gdshader" id="5_4yitc"]
 [ext_resource type="PackedScene" uid="uid://b3kskbiuwqikh" path="res://path_indicator.tscn" id="5_vqgmo"]
 [ext_resource type="Shader" path="res://Shaders/weedShader.gdshader" id="6_0r138"]
-[ext_resource type="PackedScene" uid="uid://bkg3sywh2nxxl" path="res://GameElements/Enemies/Follower.tscn" id="6_w50sh"]
 [ext_resource type="Texture2D" uid="uid://d1v07087ptaua" path="res://Assets/envirronment/buisson.png" id="7_1f8oy"]
-[ext_resource type="PackedScene" uid="uid://bnoobqanpnt5j" path="res://GameElements/Enemies/Slime/slime.tscn" id="7_ek3gh"]
 [ext_resource type="Texture2D" uid="uid://488w7fp8lf10" path="res://Assets/envirronment/bande1.png" id="7_s2goi"]
 [ext_resource type="Texture2D" uid="uid://bqnvxqkjk66ec" path="res://Assets/envirronment/arbre.png" id="8_cklcg"]
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="9_a0lps"]
@@ -120,37 +118,35 @@ curve = SubResource("Curve2D_pv8nt")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D" instance=ExtResource("5_vqgmo")]
 position = Vector2(2808, 697)
-
-[node name="Follower" parent="Arrière-plan/Paths/Path2D" instance=ExtResource("6_w50sh")]
-position = Vector2(2239.19, 642.397)
-progress = 592.807
-
-[node name="Slime" parent="Arrière-plan/Paths/Path2D/Follower" instance=ExtResource("7_ek3gh")]
-position = Vector2(-1.99878, 0.999672)
+rotation = 1.74299
 
 [node name="Path2D2" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_b0vg3")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D2" instance=ExtResource("5_vqgmo")]
 position = Vector2(304, -177.999)
+rotation = 1.35507
 
 [node name="Path2D3" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_ijh2b")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D3" instance=ExtResource("5_vqgmo")]
 position = Vector2(264, 1520)
+rotation = -1.43386
 
 [node name="Path2D4" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_sxegj")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D4" instance=ExtResource("5_vqgmo")]
 position = Vector2(2119, 1568)
+rotation = -2.29852
 
 [node name="Path2D5" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_dcqyp")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D5" instance=ExtResource("5_vqgmo")]
 position = Vector2(2216, -192.999)
+rotation = 2.14062
 
 [node name="Cloud" type="ColorRect" parent="Arrière-plan"]
 z_index = 5

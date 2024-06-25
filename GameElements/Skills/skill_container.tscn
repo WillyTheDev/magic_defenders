@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://GameElements/Skills/SkillManager.gd" id="1_qmdoi"]
 [ext_resource type="Texture2D" uid="uid://33a4fljdofkd" path="res://Assets/UI/Skills_button/defense_normal.png" id="2_kcxfs"]
+[ext_resource type="Texture2D" uid="uid://cjm65w5usfc8s" path="res://Assets/UI/Skills_button/defense_focused.png" id="3_3h452"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="3_lby4j"]
 [ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="4_r3bw3"]
 [ext_resource type="Texture2D" uid="uid://dhguypk40lbjg" path="res://Assets/UI/Skills_button/empty_normal.png" id="4_uv5xn"]
@@ -31,18 +32,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0ivw"]
 bg_color = Color(0.211765, 0.211765, 0.211765, 0.74902)
-
-[sub_resource type="GDScript" id="GDScript_6xebp"]
-script/source = "extends ItemList
-
-
-func _gui_input(event):
-	if event is InputEventMouseButton:
-			if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-				var index = get_item_at_position(get_local_mouse_position())
-			elif event.button_index > 2:
-				print(event)
-"
 
 [sub_resource type="Animation" id="Animation_qe0q6"]
 length = 0.001
@@ -154,6 +143,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 texture_normal = ExtResource("2_kcxfs")
+texture_focused = ExtResource("3_3h452")
 stretch_mode = 0
 
 [node name="ProgressBarBackground" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_1"]
@@ -171,7 +161,7 @@ step = 1.0
 fill_mode = 2
 show_percentage = false
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_1"]
+[node name="Label" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_1"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -179,23 +169,20 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -19.5
-offset_top = -31.5
+offset_top = -34.0
 offset_right = 20.5
-offset_bottom = -8.5
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.119928, 0.137119, 0.17318, 1)
-theme_override_fonts/font = ExtResource("3_lby4j")
-theme_override_font_sizes/font_size = 24
-text = "[1]"
-horizontal_alignment = 1
-vertical_alignment = 1
+bbcode_enabled = true
+text = "[center][img=24x24]res://Assets/UI/input/1.png[/img][/center]"
 
 [node name="SkillButton_2" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 texture_normal = ExtResource("2_kcxfs")
+texture_focused = ExtResource("3_3h452")
 stretch_mode = 0
 
 [node name="ProgressBarBackground" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_2"]
@@ -213,7 +200,7 @@ step = 1.0
 fill_mode = 2
 show_percentage = false
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_2"]
+[node name="Label" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_2"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -221,17 +208,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -19.5
-offset_top = -31.5
+offset_top = -35.0
 offset_right = 20.5
-offset_bottom = -8.5
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.119928, 0.137119, 0.17318, 1)
-theme_override_fonts/font = ExtResource("3_lby4j")
-theme_override_font_sizes/font_size = 24
-text = "[2]"
-horizontal_alignment = 1
-vertical_alignment = 1
+bbcode_enabled = true
+text = "[center][img=24x24]res://Assets/UI/input/2.png[/img][/center]"
 
 [node name="SkillButton_3" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -239,6 +222,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 texture_normal = ExtResource("4_uv5xn")
 texture_hover = ExtResource("5_newcm")
+texture_focused = ExtResource("3_3h452")
 stretch_mode = 0
 
 [node name="ProgressBarBackground" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_3"]
@@ -256,7 +240,7 @@ step = 1.0
 fill_mode = 2
 show_percentage = false
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_3"]
+[node name="Label" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_3"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -264,17 +248,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -19.5
-offset_top = -31.5
+offset_top = -36.0
 offset_right = 20.5
-offset_bottom = -8.5
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.119928, 0.137119, 0.17318, 1)
-theme_override_fonts/font = ExtResource("3_lby4j")
-theme_override_font_sizes/font_size = 24
-text = "[3]"
-horizontal_alignment = 1
-vertical_alignment = 1
+bbcode_enabled = true
+text = "[center][img=24x24]res://Assets/UI/input/3.png[/img][/center]"
 
 [node name="SkillButton_4" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -282,6 +262,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 texture_normal = ExtResource("4_uv5xn")
 texture_hover = ExtResource("5_newcm")
+texture_focused = ExtResource("3_3h452")
 stretch_mode = 0
 
 [node name="ProgressBarBackground" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_4"]
@@ -299,7 +280,7 @@ step = 1.0
 fill_mode = 2
 show_percentage = false
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_4"]
+[node name="Label" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_4"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -307,17 +288,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -19.5
-offset_top = -31.5
+offset_top = -36.0
 offset_right = 20.5
-offset_bottom = -8.5
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.119928, 0.137119, 0.17318, 1)
-theme_override_fonts/font = ExtResource("3_lby4j")
-theme_override_font_sizes/font_size = 24
-text = "[4]"
-horizontal_alignment = 1
-vertical_alignment = 1
+bbcode_enabled = true
+text = "[center][img=24x24]res://Assets/UI/input/4.png[/img][/center]"
 
 [node name="LockSkillTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -343,6 +320,7 @@ mouse_filter = 1
 script = ExtResource("6_o7o7e")
 player = NodePath("../SkillAnimationPlayer")
 animation_name = "hide_list"
+is_inner_selection = true
 
 [node name="TextureRect" type="TextureRect" parent="SkillSelection"]
 anchors_preset = 8
@@ -391,14 +369,12 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/panel = SubResource("StyleBoxFlat_5bvno")
 theme_override_styles/focus = SubResource("StyleBoxFlat_8f1lp")
 theme_override_styles/hovered = SubResource("StyleBoxFlat_n0ivw")
-allow_rmb_select = true
 allow_search = false
-max_text_lines = 2
+max_text_lines = 3
 auto_height = true
 same_column_width = true
 fixed_column_width = 400
 icon_mode = 0
-script = SubResource("GDScript_6xebp")
 
 [node name="SkillAnimationPlayer" type="AnimationPlayer" parent="SkillSelection"]
 unique_name_in_owner = true
@@ -412,5 +388,6 @@ libraries = {
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_3" to="." method="_on_skill_button_3_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_4" to="." method="_on_skill_button_4_pressed"]
 [connection signal="gui_input" from="SkillSelection/Control" to="SkillSelection/Control" method="_on_gui_input"]
-[connection signal="item_selected" from="SkillSelection/TextureRect/MarginContainer/ScrollContainer/SkillList" to="." method="_on_skill_list_item_selected"]
+[connection signal="item_activated" from="SkillSelection/TextureRect/MarginContainer/ScrollContainer/SkillList" to="." method="_on_skill_list_item_activated"]
+[connection signal="item_clicked" from="SkillSelection/TextureRect/MarginContainer/ScrollContainer/SkillList" to="." method="_on_skill_list_item_clicked"]
 [connection signal="animation_finished" from="SkillSelection/SkillAnimationPlayer" to="." method="_on_skill_animation_player_animation_finished"]

@@ -6,6 +6,7 @@ extends Node
 
 static var audio_volume = 0
 static var sound_volume = 0
+static var player_using_controller = false
 
 #======================
 # Player Map selected

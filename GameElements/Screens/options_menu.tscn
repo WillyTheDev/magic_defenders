@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfk2ty751jcp5"]
+[gd_scene load_steps=10 format=3 uid="uid://dfk2ty751jcp5"]
 
 [ext_resource type="Script" path="res://GameElements/Screens/OptionsMenu.gd" id="1_spmca"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="2_j8go6"]
+[ext_resource type="Texture2D" uid="uid://i61au82nfey2" path="res://Assets/UI/option_screen.png" id="2_vodts"]
 [ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="3_h5for"]
+[ext_resource type="Texture2D" uid="uid://ld06ngyaohvj" path="res://Assets/UI/options_screen/narrow_btn.png" id="4_764yr"]
+[ext_resource type="Texture2D" uid="uid://cx2bqjo487ura" path="res://Assets/UI/options_screen/narrow_btn_click.png" id="5_dtg2r"]
+[ext_resource type="Texture2D" uid="uid://bwjafvkotvymb" path="res://Assets/UI/options_screen/narrow_btn_hover.png" id="6_llo56"]
+[ext_resource type="Texture2D" uid="uid://ddcxt5qi5dp2b" path="res://Assets/UI/options_screen/narrow_btn_focused.png" id="7_hbefn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6o747"]
 bg_color = Color(0.903698, 0.308567, 0.33967, 1)
@@ -16,13 +21,13 @@ process_mode = 1
 visible = false
 script = ExtResource("1_spmca")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+texture = ExtResource("2_vodts")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 8
@@ -57,6 +62,7 @@ text = "Music Volume :"
 [node name="AudioSlider" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../VBoxContainer3/SoundSlider")
 max_value = 1.0
 step = 0.05
 value = 1.0
@@ -74,33 +80,94 @@ text = "Sound Volume :"
 [node name="SoundSlider" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../../VBoxContainer2/AudioSlider")
+focus_neighbor_bottom = NodePath("../../EraseSaveButton")
 max_value = 1.0
 step = 0.05
 value = 1.0
 
 [node name="EraseSaveButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../VBoxContainer3/SoundSlider")
+focus_neighbor_bottom = NodePath("../RestartButton")
 theme_override_constants/h_separation = 0
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_6o747")
 text = "Erase Save Data "
 
-[node name="RestartButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="RestartButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Restart game"
+texture_normal = ExtResource("4_764yr")
+texture_pressed = ExtResource("5_dtg2r")
+texture_hover = ExtResource("6_llo56")
+texture_focused = ExtResource("7_hbefn")
 
-[node name="QuitToMenu" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/RestartButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/RestartButton/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_j8go6")
+theme_override_font_sizes/font_size = 36
+text = "Restart Game"
+
+[node name="QuitToMenu" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+focus_neighbor_top = NodePath("../RestartButton")
+focus_neighbor_bottom = NodePath("../ResumeButton")
+texture_normal = ExtResource("4_764yr")
+texture_pressed = ExtResource("5_dtg2r")
+texture_hover = ExtResource("6_llo56")
+texture_focused = ExtResource("7_hbefn")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/QuitToMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/QuitToMenu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_j8go6")
+theme_override_font_sizes/font_size = 36
 text = "Quit to menu"
 
-[node name="ResumeButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="ResumeButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+focus_neighbor_top = NodePath("../QuitToMenu")
+texture_normal = ExtResource("4_764yr")
+texture_pressed = ExtResource("5_dtg2r")
+texture_hover = ExtResource("6_llo56")
+texture_focused = ExtResource("7_hbefn")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ResumeButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ResumeButton/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_j8go6")
+theme_override_font_sizes/font_size = 36
 text = "Resume"
 
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="."]

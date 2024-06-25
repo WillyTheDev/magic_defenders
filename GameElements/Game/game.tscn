@@ -238,7 +238,7 @@ glow_hdr_threshold = 1.1
 y_sort_enabled = true
 script = ExtResource("1_m44sk")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="Day&Night" type="CanvasModulate" parent="."]
 color = Color(0.853266, 0.828174, 0.827767, 1)
 script = ExtResource("2_gxe6o")
 
@@ -293,7 +293,7 @@ grow_vertical = 2
 text = "
 "
 
-[node name="WaveActionLabel" type="Label" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar"]
+[node name="WaveActionLabel" type="RichTextLabel" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -301,18 +301,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -356.5
-offset_top = -19.5
-offset_right = 356.5
-offset_bottom = 19.5
+offset_left = -823.0
+offset_top = -11.0
+offset_right = 824.0
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
-theme_override_fonts/font = ExtResource("5_vhx2p")
-theme_override_font_sizes/font_size = 26
-text = "Press \"space\" to start the next wave !"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_fonts/normal_font = ExtResource("5_vhx2p")
+bbcode_enabled = true
+text = "[center]Press [img=]res://Assets/UI/input/spacebar.png[/img] to start the next wave ![/center]"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Progress Bar/VBoxContainer/EnemiesProgressBar"]
 layout_mode = 1

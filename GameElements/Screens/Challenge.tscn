@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c565udxf2c2r4"]
+[gd_scene load_steps=30 format=3 uid="uid://c565udxf2c2r4"]
 
 [ext_resource type="Script" path="res://GameElements/Screens/ChallengeScreen.gd" id="1_kyc1v"]
 [ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="2_wgffh"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="5_plhmq"]
 [ext_resource type="Texture2D" uid="uid://bnv3iqjdhefug" path="res://Assets/UI/challenge_selection/background.png" id="5_xwwrn"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="7_rwlbt"]
+[ext_resource type="Texture2D" uid="uid://d1nlyabhfhjor" path="res://Assets/UI/challenge_selection/back_focus.png" id="11_8svdc"]
 [ext_resource type="Script" path="res://GameElements/Screens/SkillSelection.gd" id="11_j0v5f"]
 [ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="12_awcmy"]
 [ext_resource type="PackedScene" uid="uid://dk18yh7kobthq" path="res://GameElements/Skills/skill_container.tscn" id="13_fcsk6"]
@@ -16,10 +17,19 @@
 [ext_resource type="Texture2D" uid="uid://dx0c42bnp4ped" path="res://Assets/UI/map_selection_button/start_hover.png" id="16_uux7m"]
 [ext_resource type="Texture2D" uid="uid://lrqcr411i8sd" path="res://Assets/UI/challenge_selection/back_click.png" id="17_g66vo"]
 [ext_resource type="Texture2D" uid="uid://bkqv2ykx8m0a0" path="res://Assets/UI/challenge_selection/back_hover.png" id="18_syo1e"]
+[ext_resource type="Texture2D" uid="uid://bbx7awyqec2pd" path="res://Assets/UI/map_selection_button/start_focused.png" id="19_ttihp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cwhr8"]
 shader = ExtResource("2_wgffh")
 shader_parameter/lod = 1.5
+
+[sub_resource type="GDScript" id="GDScript_lb0se"]
+script/source = "extends TextureButton
+
+func _ready():
+	grab_focus()
+	
+"
 
 [sub_resource type="Animation" id="Animation_7i47a"]
 length = 0.001
@@ -310,6 +320,7 @@ text = "Challenge Mode"
 [node name="ScrollContainer" type="ScrollContainer" parent="TextureRect/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+follow_focus = true
 vertical_scroll_mode = 0
 
 [node name="MapList" type="HBoxContainer" parent="TextureRect/MarginContainer2/VBoxContainer/ScrollContainer"]
@@ -333,6 +344,8 @@ layout_mode = 2
 texture_normal = ExtResource("16_o0wxj")
 texture_pressed = ExtResource("17_g66vo")
 texture_hover = ExtResource("18_syo1e")
+texture_focused = ExtResource("11_8svdc")
+script = SubResource("GDScript_lb0se")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -358,6 +371,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("3_je6ft")
 animation_name = "hide_skill_selection"
+is_inner_selection = true
 
 [node name="TextureRect" type="TextureRect" parent="SkillSelection"]
 anchors_preset = 8
@@ -404,12 +418,14 @@ for this quest :"
 [node name="SkillContainer" parent="SkillSelection/TextureRect/HBoxContainer" instance=ExtResource("13_fcsk6")]
 layout_mode = 2
 
-[node name="TextureButton" type="TextureButton" parent="SkillSelection/TextureRect/HBoxContainer"]
+[node name="StartButton" type="TextureButton" parent="SkillSelection/TextureRect/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("14_58t3u")
 texture_pressed = ExtResource("15_i52di")
 texture_hover = ExtResource("16_uux7m")
+texture_focused = ExtResource("19_ttihp")
 
 [node name="SkillSelectionPlayer" type="AnimationPlayer" parent="SkillSelection"]
 unique_name_in_owner = true
@@ -420,4 +436,4 @@ libraries = {
 [connection signal="gui_input" from="Control" to="Control" method="_on_gui_input"]
 [connection signal="pressed" from="TextureRect/MarginContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="gui_input" from="SkillSelection/Control" to="SkillSelection/Control" method="_on_gui_input"]
-[connection signal="pressed" from="SkillSelection/TextureRect/HBoxContainer/TextureButton" to="SkillSelection" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="SkillSelection/TextureRect/HBoxContainer/StartButton" to="SkillSelection" method="_on_texture_button_pressed"]

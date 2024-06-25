@@ -1,5 +1,9 @@
 extends CanvasLayer
 
+func _ready():
+	if Global.player_using_controller:
+		%WaveActionLabel.text = "[center]Press [img=32x32]res://Assets/UI/input/x.png[/img] to start the next wave ![/center]"
+
 func show_next_wave_label():
 	%UIAnimationPlayer.queue("showWaveLabel")
 	

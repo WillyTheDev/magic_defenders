@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://dmb5cs8occw40"]
+[gd_scene load_steps=29 format=3 uid="uid://dmb5cs8occw40"]
 
 [ext_resource type="Script" path="res://GameElements/Screens/QuestManager.gd" id="1_cbipq"]
 [ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="2_vhosp"]
 [ext_resource type="Script" path="res://GameElements/Skills/outside_click_control.gd" id="3_08fxp"]
+[ext_resource type="Texture2D" uid="uid://d1nlyabhfhjor" path="res://Assets/UI/challenge_selection/back_focus.png" id="10_d223q"]
 [ext_resource type="Script" path="res://GameElements/Screens/SkillSelection.gd" id="10_de7lh"]
 [ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="11_mpb0v"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="11_ysofo"]
@@ -11,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dmx1hkywmtllv" path="res://Assets/audio/click_001.ogg" id="14_l6oou"]
 [ext_resource type="Texture2D" uid="uid://cpa60h2mi2ymv" path="res://Assets/UI/map_selection_button/start_clicked.png" id="15_yf52b"]
 [ext_resource type="Texture2D" uid="uid://dx0c42bnp4ped" path="res://Assets/UI/map_selection_button/start_hover.png" id="16_1lyqp"]
+[ext_resource type="Texture2D" uid="uid://bbx7awyqec2pd" path="res://Assets/UI/map_selection_button/start_focused.png" id="19_74je8"]
 [ext_resource type="Texture2D" uid="uid://cfqfijc5h8pqy" path="res://Assets/UI/map_selection_button/quest_background.png" id="26_ik3b4"]
 [ext_resource type="Texture2D" uid="uid://bxy75davaj2n4" path="res://Assets/NPC/Harold.png" id="28_xqvrq"]
 [ext_resource type="Texture2D" uid="uid://cahuuxwk45jot" path="res://Assets/UI/challenge_selection/back.png" id="29_0jbdu"]
@@ -20,6 +22,14 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cwhr8"]
 shader = ExtResource("2_vhosp")
 shader_parameter/lod = 1.5
+
+[sub_resource type="GDScript" id="GDScript_lb0se"]
+script/source = "extends TextureButton
+
+func _ready():
+	grab_focus()
+	
+"
 
 [sub_resource type="Animation" id="Animation_7i47a"]
 length = 0.001
@@ -320,10 +330,13 @@ theme_override_constants/margin_left = 82
 theme_override_constants/margin_bottom = 64
 
 [node name="BackButton" type="TextureButton" parent="TextureRect/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("29_0jbdu")
 texture_pressed = ExtResource("30_lxh2v")
 texture_hover = ExtResource("31_c2vk1")
+texture_focused = ExtResource("10_d223q")
+script = SubResource("GDScript_lb0se")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -350,6 +363,7 @@ mouse_filter = 1
 script = ExtResource("3_08fxp")
 player = NodePath("../SkillSelectionPlayer")
 animation_name = "hide_skill_selection"
+is_inner_selection = true
 
 [node name="TextureRect" type="TextureRect" parent="SkillSelection"]
 anchors_preset = 8
@@ -396,12 +410,14 @@ for this quest :"
 [node name="SkillContainer" parent="SkillSelection/TextureRect/HBoxContainer" instance=ExtResource("12_64xiy")]
 layout_mode = 2
 
-[node name="TextureButton" type="TextureButton" parent="SkillSelection/TextureRect/HBoxContainer"]
+[node name="StartButton" type="TextureButton" parent="SkillSelection/TextureRect/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("14_adqp3")
 texture_pressed = ExtResource("15_yf52b")
 texture_hover = ExtResource("16_1lyqp")
+texture_focused = ExtResource("19_74je8")
 
 [node name="SkillSelectionPlayer" type="AnimationPlayer" parent="SkillSelection"]
 unique_name_in_owner = true
@@ -413,4 +429,5 @@ libraries = {
 [connection signal="pressed" from="TextureRect/MarginContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="game_launched" from="SkillSelection" to="." method="_on_skill_selection_game_launched"]
 [connection signal="gui_input" from="SkillSelection/Control" to="SkillSelection/Control" method="_on_gui_input"]
-[connection signal="pressed" from="SkillSelection/TextureRect/HBoxContainer/TextureButton" to="SkillSelection" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="SkillSelection/TextureRect/HBoxContainer/StartButton" to="SkillSelection" method="_on_texture_button_pressed"]
+[connection signal="animation_finished" from="SkillSelection/SkillSelectionPlayer" to="." method="_on_skill_selection_player_animation_finished"]

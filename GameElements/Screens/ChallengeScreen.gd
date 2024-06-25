@@ -8,6 +8,7 @@ func _ready():
 		var button = preload("res://GameElements/Screens/challenge/challenge_map_button.tscn").instantiate()
 		button.texture_normal = load("res://Assets/UI/challenge_selection/map_1_%s.png" % index)
 		button.texture_hover = load("res://Assets/UI/challenge_selection/map_1_%s_hover.png" % index)
+		button.texture_focused = load("res://Assets/UI/challenge_selection/map_1_%s_focus.png" % index)
 		button.text = "Max Score : \n %s" % Global.map_challenge_score[map]
 		button.challenge_button_pressed.connect(show_skill_selection)
 		button.index = index
@@ -20,6 +21,9 @@ func show_skill_selection():
 func show_challenge():
 	get_tree().paused = true
 	%AnimationPlayer.play("show_challenge")
+	if Global.player_using_controller:
+		await %AnimationPlayer.animation_finished
+		%MapList.get_child(0).grab_focus()
 	
 func hide_challenge():
 	get_tree().paused = false
