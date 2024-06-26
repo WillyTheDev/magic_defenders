@@ -7,6 +7,7 @@ func _ready():
 	scale = Vector2(3 * Global.getDefenseRange(),3 * Global.getDefenseRange())
 
 func _shoot(body):
+	%AudioStreamPlayer.play()
 	var strike = preload("res://GameElements/Skills/thunderStrike.tscn").instantiate()
 	strike.global_position = (body.global_position + Vector2(0,-488))
 	$/root/Game.add_child(strike)

@@ -10,7 +10,7 @@ func _ready():
 	for loot in range(1,5):
 		var label = get_node("TextureRect/MarginContainer2/ScrollContainer/VBoxContainer/LootsContainer/item_1_%s/VBoxContainer/MarginContainer2/TextureRect/MarginContainer/Amount" % loot)
 		label.text = "%s" % loot_prices
-	%PlayerGold.text = "%s" % Global.accumulated_gold
+	
 	
 	for skill in SkillManager.skills:
 		if skill.unlocked == false:
@@ -39,6 +39,7 @@ func _update_skills():
 func show_shop():
 	is_open = true
 	get_tree().paused = true
+	%PlayerGold.text = "%s" % Global.accumulated_gold
 	%AnimationPlayer.play("show_shop")
 	if Global.player_using_controller:
 		await %AnimationPlayer.animation_finished
@@ -70,10 +71,11 @@ func _on_item_1_4_pressed():
 		_drop_loot()
 	
 	
-	
 func _drop_loot():
 	Global.accumulated_gold -= loot_prices
 	%PlayerGold.text = "%s" % Global.accumulated_gold
+	%SellingAudio.play()
+	await %AnimationPlayer.animation_finished
 	var loot = LootManager.generate_random_loot()
 	var loot_to_spawn = preload("res://GameElements/misc/loot.tscn").instantiate()
 	loot_to_spawn.is_loot = true
@@ -82,8 +84,7 @@ func _drop_loot():
 	loot_to_spawn.global_position = get_node("/root/Game/Map/Merchant").global_position + Vector2(randi() % 30, randi() % 30)
 	loot_to_spawn.get_node("LootSprite").modulate = loot.modulate
 	$/root/Game.call_deferred("add_child", loot_to_spawn)
-	%SellingAudio.play()
-
+	
 
 func _on_back_button_pressed():
 	close_shop()

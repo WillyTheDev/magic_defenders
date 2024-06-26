@@ -12,12 +12,12 @@ shader_parameter/speed = 6.0
 shader_parameter/frames = 6
 shader_parameter/flowMap = ExtResource("2_2r58m")
 
-[sub_resource type="Gradient" id="Gradient_47oci"]
+[sub_resource type="Gradient" id="Gradient_2fdkc"]
 offsets = PackedFloat32Array(0, 0.407258, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.391129, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kscab"]
-gradient = SubResource("Gradient_47oci")
+gradient = SubResource("Gradient_2fdkc")
 fill = 1
 fill_from = Vector2(0.542735, 0.5)
 fill_to = Vector2(0.816239, 0.226496)

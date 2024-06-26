@@ -359,7 +359,7 @@ layer = 3
 visible = false
 script = ExtResource("11_j0v5f")
 
-[node name="Control" type="ColorRect" parent="SkillSelection"]
+[node name="Control" type="ColorRect" parent="SkillSelection" node_paths=PackedStringArray("player")]
 material = SubResource("ShaderMaterial_moenr")
 anchors_preset = 15
 anchor_right = 1.0
@@ -370,6 +370,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("3_je6ft")
+player = NodePath("../SkillSelectionPlayer")
 animation_name = "hide_skill_selection"
 is_inner_selection = true
 

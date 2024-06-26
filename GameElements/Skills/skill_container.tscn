@@ -169,13 +169,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -19.5
-offset_top = -34.0
-offset_right = 20.5
+offset_top = -39.0
+offset_right = 30.5
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 bbcode_enabled = true
-text = "[center][img=24x24]res://Assets/UI/input/1.png[/img][/center]"
+text = "[center][img=30x30]res://Assets/UI/input/1.png[/img][/center]"
 
 [node name="SkillButton_2" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -208,13 +208,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -19.5
-offset_top = -35.0
-offset_right = 20.5
+offset_top = -39.0
+offset_right = 28.5
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 bbcode_enabled = true
-text = "[center][img=24x24]res://Assets/UI/input/2.png[/img][/center]"
+text = "[center][img=30x30]res://Assets/UI/input/2.png[/img][/center]"
 
 [node name="SkillButton_3" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -248,13 +248,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -19.5
-offset_top = -36.0
-offset_right = 20.5
+offset_top = -38.0
+offset_right = 30.5
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 bbcode_enabled = true
-text = "[center][img=24x24]res://Assets/UI/input/3.png[/img][/center]"
+text = "[center][img=30x30]res://Assets/UI/input/3.png[/img][/center]"
 
 [node name="SkillButton_4" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -288,13 +288,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -19.5
-offset_top = -36.0
-offset_right = 20.5
+offset_top = -39.0
+offset_right = 28.5
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 bbcode_enabled = true
-text = "[center][img=24x24]res://Assets/UI/input/4.png[/img][/center]"
+text = "[center][img=30x30]res://Assets/UI/input/4.png[/img][/center]"
 
 [node name="LockSkillTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://c2o1lsmd80cnp"]
+[gd_scene load_steps=59 format=3 uid="uid://c2o1lsmd80cnp"]
 
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/PlayerManager.gd" id="1_ctqjo"]
 [ext_resource type="Texture2D" uid="uid://7ldxtyg31ar8" path="res://Assets/UI/player_profile_background/background.png" id="2_3il38"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cesp6j7dg40c0" path="res://Assets/loots/bourse.png" id="22_0qjg8"]
 [ext_resource type="Script" path="res://GameElements/Skills/outside_click_control.gd" id="24_bvpje"]
 [ext_resource type="AudioStream" uid="uid://cybl54ghahyv1" path="res://Assets/audio/selling.mp3" id="27_pmokr"]
+[ext_resource type="Texture2D" uid="uid://bw61ae2r5brvy" path="res://Assets/UI/item/background.png" id="30_kuj41"]
 [ext_resource type="PackedScene" uid="uid://c082ftweuwu2l" path="res://loot_item.tscn" id="32_737ny"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdv3k"]
@@ -1354,20 +1355,20 @@ player = NodePath("../../../PlayerManagerAnimationPlayer")
 animation_name = "hide_hat_list"
 is_inner_selection = true
 
-[node name="ColorRect" type="ColorRect" parent="InventoryManager/HatInventory"]
+[node name="ColorRect" type="TextureRect" parent="InventoryManager/HatInventory"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -710.0
+offset_left = -575.0
 offset_top = -440.0
-offset_right = 710.0
+offset_right = 575.0
 offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.226707, 0.226707, 0.226707, 1)
+texture = ExtResource("30_kuj41")
 
 [node name="MarginContainer" type="MarginContainer" parent="InventoryManager/HatInventory/ColorRect"]
 layout_mode = 1
@@ -1388,10 +1389,10 @@ follow_focus = true
 [node name="GridHat" type="GridContainer" parent="InventoryManager/HatInventory/ColorRect/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
-columns = 3
+columns = 2
 
 [node name="NecklaceInventory" type="Control" parent="InventoryManager"]
 unique_name_in_owner = true
@@ -1419,20 +1420,20 @@ player = NodePath("../../../PlayerManagerAnimationPlayer")
 animation_name = "hide_necklace_list"
 is_inner_selection = true
 
-[node name="ColorRect" type="ColorRect" parent="InventoryManager/NecklaceInventory"]
+[node name="ColorRect" type="TextureRect" parent="InventoryManager/NecklaceInventory"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -710.0
+offset_left = -575.0
 offset_top = -440.0
-offset_right = 710.0
+offset_right = 575.0
 offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.226707, 0.226707, 0.226707, 1)
+texture = ExtResource("30_kuj41")
 
 [node name="MarginContainer" type="MarginContainer" parent="InventoryManager/NecklaceInventory/ColorRect"]
 layout_mode = 1
@@ -1453,10 +1454,16 @@ follow_focus = true
 [node name="GridNecklace" type="GridContainer" parent="InventoryManager/NecklaceInventory/ColorRect/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
-columns = 3
+columns = 2
+
+[node name="LootItem" parent="InventoryManager/NecklaceInventory/ColorRect/MarginContainer/ScrollContainer/GridNecklace" instance=ExtResource("32_737ny")]
+layout_mode = 2
+
+[node name="LootItem2" parent="InventoryManager/NecklaceInventory/ColorRect/MarginContainer/ScrollContainer/GridNecklace" instance=ExtResource("32_737ny")]
+layout_mode = 2
 
 [node name="RingsInventory" type="Control" parent="InventoryManager"]
 unique_name_in_owner = true
@@ -1484,20 +1491,20 @@ player = NodePath("../../../PlayerManagerAnimationPlayer")
 animation_name = "hide_ring_list"
 is_inner_selection = true
 
-[node name="ColorRect" type="ColorRect" parent="InventoryManager/RingsInventory"]
+[node name="ColorRect" type="TextureRect" parent="InventoryManager/RingsInventory"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -710.0
+offset_left = -575.0
 offset_top = -440.0
-offset_right = 710.0
+offset_right = 575.0
 offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.226707, 0.226707, 0.226707, 1)
+texture = ExtResource("30_kuj41")
 
 [node name="MarginContainer" type="MarginContainer" parent="InventoryManager/RingsInventory/ColorRect"]
 layout_mode = 1
@@ -1518,10 +1525,13 @@ follow_focus = true
 [node name="GridRings" type="GridContainer" parent="InventoryManager/RingsInventory/ColorRect/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
-columns = 3
+columns = 2
+
+[node name="LootItem" parent="InventoryManager/RingsInventory/ColorRect/MarginContainer/ScrollContainer/GridRings" instance=ExtResource("32_737ny")]
+layout_mode = 2
 
 [node name="PantsInventory" type="Control" parent="InventoryManager"]
 unique_name_in_owner = true
@@ -1549,20 +1559,20 @@ player = NodePath("../../../PlayerManagerAnimationPlayer")
 animation_name = "hide_pants_list"
 is_inner_selection = true
 
-[node name="ColorRect" type="ColorRect" parent="InventoryManager/PantsInventory"]
+[node name="ColorRect" type="TextureRect" parent="InventoryManager/PantsInventory"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -710.0
+offset_left = -575.0
 offset_top = -440.0
-offset_right = 710.0
+offset_right = 575.0
 offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.226707, 0.226707, 0.226707, 1)
+texture = ExtResource("30_kuj41")
 
 [node name="MarginContainer" type="MarginContainer" parent="InventoryManager/PantsInventory/ColorRect"]
 layout_mode = 1
@@ -1583,18 +1593,16 @@ follow_focus = true
 [node name="GridPants" type="GridContainer" parent="InventoryManager/PantsInventory/ColorRect/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+size_flags_vertical = 0
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
-columns = 3
+columns = 2
 
 [node name="LootItem" parent="InventoryManager/PantsInventory/ColorRect/MarginContainer/ScrollContainer/GridPants" instance=ExtResource("32_737ny")]
 layout_mode = 2
 
 [node name="LootItem2" parent="InventoryManager/PantsInventory/ColorRect/MarginContainer/ScrollContainer/GridPants" instance=ExtResource("32_737ny")]
-layout_mode = 2
-
-[node name="LootItem3" parent="InventoryManager/PantsInventory/ColorRect/MarginContainer/ScrollContainer/GridPants" instance=ExtResource("32_737ny")]
 layout_mode = 2
 
 [node name="BootsInventory" type="Control" parent="InventoryManager"]
@@ -1623,20 +1631,20 @@ player = NodePath("../../../PlayerManagerAnimationPlayer")
 animation_name = "hide_boots_list"
 is_inner_selection = true
 
-[node name="ColorRect" type="ColorRect" parent="InventoryManager/BootsInventory"]
+[node name="ColorRect" type="TextureRect" parent="InventoryManager/BootsInventory"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -710.0
+offset_left = -575.0
 offset_top = -440.0
-offset_right = 710.0
+offset_right = 575.0
 offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.226707, 0.226707, 0.226707, 1)
+texture = ExtResource("30_kuj41")
 
 [node name="MarginContainer" type="MarginContainer" parent="InventoryManager/BootsInventory/ColorRect"]
 layout_mode = 1
@@ -1657,10 +1665,17 @@ follow_focus = true
 [node name="GridBoots" type="GridContainer" parent="InventoryManager/BootsInventory/ColorRect/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+size_flags_vertical = 4
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
-columns = 3
+columns = 2
+
+[node name="LootItem" parent="InventoryManager/BootsInventory/ColorRect/MarginContainer/ScrollContainer/GridBoots" instance=ExtResource("32_737ny")]
+layout_mode = 2
+
+[node name="LootItem2" parent="InventoryManager/BootsInventory/ColorRect/MarginContainer/ScrollContainer/GridBoots" instance=ExtResource("32_737ny")]
+layout_mode = 2
 
 [node name="SellingAudio" type="AudioStreamPlayer" parent="InventoryManager"]
 unique_name_in_owner = true

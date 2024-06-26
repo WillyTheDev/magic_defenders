@@ -111,7 +111,7 @@ func start_new_wave():
 		Enemy.base_health += 1
 		Enemy.base_speed += 1
 		if Global.selected_difficulty > 2:
-			Enemy.base_damage += 1
+			Enemy.base_damage += 0.5
 
 func end_of_wave():
 	%Enemy_1.visible = false
@@ -141,11 +141,12 @@ func _input(event):
 			start_new_wave()
 
 func _on_player_player_update_mana_amount(mana):
+
 	%ManaLabel.text = "Mana : %s" % mana
 	%SkillContainer.update_progress_bar()
 	%AccumulatedManaLabel.text = "%s / %s until the next level" % [Global.accumulated_mana, (Player.offset_accumulated_mana_value + Global.player_level * 10)]
 	%AccumulatedMana.max_value = Player.offset_accumulated_mana_value + Global.player_level * 10
-	%AccumulatedMana.value = Player.accumulated_mana
+	%AccumulatedMana.value = Global.accumulated_mana
 
 
 func _on_core_destroyed(value):

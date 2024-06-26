@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dk4h3e4krmdw7"]
+[gd_scene load_steps=28 format=3 uid="uid://dk4h3e4krmdw7"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_1n138"]
 [ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="2_j37t5"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="9_p0xhr"]
 [ext_resource type="PackedScene" uid="uid://cak6x4mhllisu" path="res://GameElements/Core/core.tscn" id="10_78v08"]
 [ext_resource type="PackedScene" uid="uid://clhu7ht04c7da" path="res://GameElements/Maps/env/torch.tscn" id="12_sll14"]
+[ext_resource type="Texture2D" uid="uid://cpidwu7pnpo7u" path="res://Assets/Ellipse_small.png" id="14_jg8ps"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfba4"]
 shader = ExtResource("2_j37t5")
@@ -80,6 +81,27 @@ shader_parameter/speed = 6.0
 shader_parameter/frames = 6
 shader_parameter/flowMap = ExtResource("3_7tsfv")
 
+[sub_resource type="Gradient" id="Gradient_7luhf"]
+offsets = PackedFloat32Array(0, 0.282407, 0.703704, 1)
+colors = PackedColorArray(0.698039, 1.50196, 0, 0, 0.698039, 1.50196, 0, 1, 0.698039, 1.50196, 0, 1, 0.698039, 1.50196, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_56yvx"]
+gradient = SubResource("Gradient_7luhf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pk2rl"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2700, 1500, 1)
+angle_min = -148.2
+angle_max = 211.8
+radial_velocity_min = -20.0
+radial_velocity_max = 20.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.2
+scale_max = 0.4
+color = Color(1.50196, 1.50196, 1.50196, 1)
+color_ramp = SubResource("GradientTexture1D_56yvx")
+
 [node name="Map" type="Node2D" node_paths=PackedStringArray("paths", "flyingSpawnPoint")]
 z_as_relative = false
 y_sort_enabled = true
@@ -134,30 +156,35 @@ curve = SubResource("Curve2D_8w055")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D" instance=ExtResource("5_7tx54")]
 position = Vector2(337, -187.999)
+rotation = 1.8748
 
 [node name="Path2D2" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_t6n6t")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D2" instance=ExtResource("5_7tx54")]
 position = Vector2(1066, -194.999)
+rotation = 1.8138
 
 [node name="Path2D3" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_1wu7b")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D3" instance=ExtResource("5_7tx54")]
 position = Vector2(2382, -177.999)
+rotation = 2.01064
 
 [node name="Path2D4" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_ofbcn")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D4" instance=ExtResource("5_7tx54")]
 position = Vector2(2862, 722)
+rotation = -1.84496
 
 [node name="Path2D5" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_dngv7")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D5" instance=ExtResource("5_7tx54")]
 position = Vector2(2850, 1022)
+rotation = 2.7341
 
 [node name="Cloud" type="ColorRect" parent="Arrière-plan"]
 z_index = 5
@@ -1734,3 +1761,12 @@ position = Vector2(1306, 772)
 
 [node name="Torch7" parent="." instance=ExtResource("12_sll14")]
 position = Vector2(640, 1135)
+
+[node name="Firefly" type="GPUParticles2D" parent="."]
+light_mask = 2
+position = Vector2(94, 61)
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_pk2rl")
+texture = ExtResource("14_jg8ps")
+lifetime = 4.0
+visibility_rect = Rect2(-100, -100, 2700, 1500)

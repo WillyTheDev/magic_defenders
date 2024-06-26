@@ -2,6 +2,7 @@ class_name LootItem
 extends Control
 
 var loot_texture: Texture = null
+var stat_texture: Texture = null
 var loot_primary_stat : String = "primary undefined"
 var loot_primary_stat_value : int = 0
 var loot_secondary_stat : String = "secondary undefined"
@@ -10,35 +11,41 @@ var loot_rarity : int = 0
 var loot_index : int = 0
 var is_hat : bool = false
 var hat_description: String = ""
+var is_equiped : bool = false
 
 signal loot_item_equip_pressed(index)
 signal loot_item_sell_pressed(index)
 
 func _ready():
+	if is_equiped:
+		self_modulate = "78f8b5"
+		%EquipButton.visible = false
+		%SellButton.visible = false
 	%ItemTexture.texture = loot_texture
 	if is_hat:
 		#For some reasons, without the print statement, the property is not loaded correctly.
-		print("%s" % hat_description)
 		%RichTextLabel.text = "- [color=%s] %s [/color] -
-[center]%s[/center]" % ["Orange", hat_description]
+		
+%s" % ["Orange", "hat", hat_description]
 		%SellButton.visible = false
+		%StatTexture.visible = false
 	else:
 		%RichTextLabel.text = "- [color=%s] %s [/color] -
-%s : %s
-%s : %s
-
-price : [color=yellow] %s [/color]" % [get_rarity_color_name(loot_rarity), get_rarity_name(loot_rarity), loot_primary_stat, loot_primary_stat_value, loot_secondary_stat, loot_secondary_stat_value, loot_rarity + 1]
+%s : [color=%s] %s [/color]
+%s : [color=%s] %s [/color]" % [get_rarity_color_name(loot_rarity), get_rarity_name(loot_rarity), loot_primary_stat, get_stat_color_name(loot_primary_stat), loot_primary_stat_value, loot_secondary_stat, get_stat_color_name(loot_secondary_stat), loot_secondary_stat_value]
 		%SellButton.text = "Sell : %s" % (loot_rarity + 1)
-		%ItemTexture.modulate = get_rarity_color(loot_rarity)
+		%ItemTexture.self_modulate = get_rarity_color(loot_rarity)
+		%StatTexture.texture = stat_texture
+		%StatTexture.modulate = get_stat_color(loot_primary_stat)
 	
 	
 func get_rarity_color_name(rarity:int) -> String:
 	var color = ""
 	match rarity:
 		0:
-			color = "Ivory"
+			color = "DarkGray"
 		1:
-			color = "Greenyellow"
+			color = "SeaGreen"
 		2:
 			color = "Royalblue"
 		3:
@@ -53,9 +60,9 @@ func get_rarity_color(rarity:int) -> Color:
 	var color = Color.WHITE
 	match rarity:
 		0:
-			color = Color.IVORY
+			color = Color.DARK_GRAY
 		1:
-			color = Color.GREEN_YELLOW
+			color = Color.SEA_GREEN
 		2:
 			color = Color.ROYAL_BLUE
 		3:
@@ -64,6 +71,36 @@ func get_rarity_color(rarity:int) -> Color:
 			color = Color.GOLD
 		5:
 			color = Color.CRIMSON
+	return color 
+
+func get_stat_color(name) -> Color:
+	var color = Color.WHITE
+	match name:
+		"player damage":
+			color = Color.INDIAN_RED
+		"defense range":
+			color = Color.ROYAL_BLUE
+		"defense damage":
+			color = Color.INDIAN_RED
+		"defense health":
+			color = Color.SEA_GREEN
+		"defense Attack speed":
+			color = Color.ORANGE
+	return color
+
+func get_stat_color_name(name) -> String:
+	var color = "Black"
+	match name:
+		"player damage":
+			color = "IndianRed"
+		"defense range":
+			color = "RoyalBlue"
+		"defense damage":
+			color = "IndianRed"
+		"defense health":
+			color = "SeaGreen"
+		"defense Attack speed":
+			color = "Orange"
 	return color 
 
 func get_rarity_name(rarity:int) -> String:

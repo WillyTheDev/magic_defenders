@@ -98,7 +98,7 @@ func spawn_mob():
 	var indexSpawnPoints = randi_range(0,map_of_game.paths.size() - 1)
 	map_of_game.paths[indexSpawnPoints].add_child(follower)
 	follower.progress = 100
-	follower.add_child(enemy)
+	follower.call_deferred("add_child", enemy)
 	spawn_visual_indicator(follower)
 	enemies_spawn += 1
 	

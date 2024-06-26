@@ -38,7 +38,7 @@ func update_skills_button_ui():
 			skillButton.texture_focused = selected_skills[index].texture_focused
 			get_node("MarginContainer/VBoxContainer/HBoxContainer/SkillButton_%s/ProgressBarBackground" % (index + 1)).max_value = selected_skills[index].mana_cost
 			if Global.player_using_controller:
-				get_node("MarginContainer/VBoxContainer/HBoxContainer/SkillButton_%s/Label" % (index + 1)).text = "[center][img=24x24]res://Assets/UI/input/cross_%s.png[/img][/center]" % (index + 1)
+				get_node("MarginContainer/VBoxContainer/HBoxContainer/SkillButton_%s/Label" % (index + 1)).text = "[center][img=30x30]res://Assets/UI/input/cross_%s.png[/img][/center]" % (index + 1)
 			
 		index += 1
 	
@@ -52,7 +52,7 @@ func update_progress_bar():
 
 func show_skill_list():
 	print("QuestManager is open = %s" % QuestManager.isOpen)
-	if (Game.is_idle && PlayerManager.is_open) || QuestManager.isOpen:
+	if (Game.is_idle && PlayerManager.is_open) || QuestManager.isOpen || ChallengeManager.is_open:
 		update_skill_list()
 		%SkillAnimationPlayer.play("show_skill_list")
 		if Global.player_using_controller:
@@ -75,7 +75,7 @@ func update_skill_list():
 		index += 1
 
 func _on_skill_button_1_pressed():
-	if PlayerManager.is_open || QuestManager.isOpen:
+	if PlayerManager.is_open || QuestManager.isOpen || ChallengeManager.is_open:
 		skill_to_update = 0
 		show_skill_list()
 	else:
@@ -83,7 +83,7 @@ func _on_skill_button_1_pressed():
 
 
 func _on_skill_button_2_pressed():
-	if PlayerManager.is_open || QuestManager.isOpen:
+	if PlayerManager.is_open || QuestManager.isOpen || ChallengeManager.is_open:
 		skill_to_update = 1
 		show_skill_list()
 	else:
@@ -91,7 +91,7 @@ func _on_skill_button_2_pressed():
 
 
 func _on_skill_button_3_pressed():
-	if PlayerManager.is_open || QuestManager.isOpen:
+	if PlayerManager.is_open || QuestManager.isOpen || ChallengeManager.is_open:
 		skill_to_update = 2
 		show_skill_list()
 	else:
@@ -99,15 +99,15 @@ func _on_skill_button_3_pressed():
 
 
 func _on_skill_button_4_pressed():
-	if PlayerManager.is_open || QuestManager.isOpen:
+	if PlayerManager.is_open || QuestManager.isOpen || ChallengeManager.is_open:
 		skill_to_update = 3
 		show_skill_list()
 	else:
 		$/root/Game/Player.on_skill_pressed(3)
 
-
 func _on_player_manager_apply_change():
 	update_progress_bar()
+	
 # This will support controller action
 func _on_skill_list_item_activated(index):
 	print("Item activated !")

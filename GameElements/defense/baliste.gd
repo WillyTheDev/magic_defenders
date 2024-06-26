@@ -17,3 +17,9 @@ func shoot():
 		new_bolt.direction = direction
 		get_parent().add_child(new_bolt)
 		target = null
+	else:
+		for body in %ShootZone.get_overlapping_bodies():
+			print("here is a enemy still on the shoot zone : %s " % body)
+			if body is Enemy:
+				target = body
+				break;

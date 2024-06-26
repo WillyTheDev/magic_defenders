@@ -1,6 +1,8 @@
+class_name ChallengeManager
 extends CanvasLayer
 
 @export var number_of_map = 5
+static var is_open = false
 
 func _ready():
 	var index = 1
@@ -21,11 +23,13 @@ func show_skill_selection():
 func show_challenge():
 	get_tree().paused = true
 	%AnimationPlayer.play("show_challenge")
+	is_open = true
 	if Global.player_using_controller:
 		await %AnimationPlayer.animation_finished
 		%MapList.get_child(0).grab_focus()
 	
 func hide_challenge():
+	is_open = false
 	get_tree().paused = false
 	%AnimationPlayer.play("hide_challenge")
 

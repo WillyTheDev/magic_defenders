@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://buxfj316qobc3"]
+[gd_scene load_steps=23 format=3 uid="uid://buxfj316qobc3"]
 
 [ext_resource type="Script" path="res://GameElements/Maps/Map.gd" id="1_jrvlj"]
 [ext_resource type="Texture2D" uid="uid://5ua06b2sb6jr" path="res://Assets/Map/map_1.png" id="2_hod1y"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d1v07087ptaua" path="res://Assets/envirronment/buisson.png" id="11_75abc"]
 [ext_resource type="PackedScene" uid="uid://buq541w6c0c63" path="res://GameElements/Maps/env/arbre.tscn" id="12_psipp"]
 [ext_resource type="PackedScene" uid="uid://clhu7ht04c7da" path="res://GameElements/Maps/env/torch.tscn" id="12_upevy"]
+[ext_resource type="Texture2D" uid="uid://cpidwu7pnpo7u" path="res://Assets/Ellipse_small.png" id="14_urogn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lfba4"]
 shader = ExtResource("5_lbfrp")
@@ -48,6 +49,27 @@ point_count = 7
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4adnp"]
 shader = ExtResource("3_bc2ce")
+
+[sub_resource type="Gradient" id="Gradient_o7hgc"]
+offsets = PackedFloat32Array(0, 0.282407, 0.703704, 1)
+colors = PackedColorArray(0.698039, 1.50196, 0, 0, 0.698039, 1.50196, 0, 1, 0.698039, 1.50196, 0, 1, 0.698039, 1.50196, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ivghf"]
+gradient = SubResource("Gradient_o7hgc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_av3ot"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2700, 1500, 1)
+angle_min = -148.2
+angle_max = 211.8
+radial_velocity_min = -20.0
+radial_velocity_max = 20.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.2
+scale_max = 0.4
+color = Color(1.50196, 1.50196, 1.50196, 1)
+color_ramp = SubResource("GradientTexture1D_ivghf")
 
 [node name="Map" type="Node2D" node_paths=PackedStringArray("paths", "flyingSpawnPoint")]
 z_as_relative = false
@@ -1421,3 +1443,12 @@ position = Vector2(704, 877)
 
 [node name="Arbre17" parent="." instance=ExtResource("12_psipp")]
 position = Vector2(945, 628)
+
+[node name="Firefly" type="GPUParticles2D" parent="."]
+light_mask = 2
+position = Vector2(94, 61)
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_av3ot")
+texture = ExtResource("14_urogn")
+lifetime = 4.0
+visibility_rect = Rect2(-100, -100, 2700, 1500)

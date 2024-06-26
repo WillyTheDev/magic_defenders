@@ -3,6 +3,7 @@ extends Node2D
 func _ready():
 	Global.load_game()
 	%TransitionLayer.open_transition()
+	%ContinueButton.grab_focus()
 	
 func _input(event):
 	if event is InputEventMouseButton:

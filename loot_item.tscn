@@ -1,25 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://c082ftweuwu2l"]
+[gd_scene load_steps=9 format=3 uid="uid://c082ftweuwu2l"]
 
 [ext_resource type="Script" path="res://loot_item.gd" id="1_mw5rj"]
 [ext_resource type="Texture2D" uid="uid://hugbe3prh8dy" path="res://Assets/UI/item/normal.png" id="1_x5fst"]
 [ext_resource type="Texture2D" uid="uid://deryp2nphd43r" path="res://Assets/UI/item/focus.png" id="2_1nvbd"]
 [ext_resource type="Texture2D" uid="uid://j014cmoau1ir" path="res://Assets/loots/boots.png" id="2_thysp"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="3_ufc1j"]
+[ext_resource type="Texture2D" uid="uid://dupsfisp8uln6" path="res://Assets/loots/boots_Stat.png" id="5_68keh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1naav"]
-bg_color = Color(0.533333, 0.776471, 0.913725, 1)
+bg_color = Color(0.496157, 0.759348, 0.87117, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_left = 10.0
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
 expand_margin_top = 10.0
-expand_margin_right = 10.0
+expand_margin_right = 5.0
 expand_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymjmb"]
@@ -29,24 +30,24 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_left = 10.0
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
 expand_margin_top = 10.0
-expand_margin_right = 10.0
+expand_margin_right = 5.0
 expand_margin_bottom = 10.0
 
 [node name="LootItem" type="TextureButton"]
 anchors_preset = -1
-anchor_right = 0.283
+anchor_right = 0.276
 anchor_bottom = 0.162
-offset_right = -2.35999
+offset_right = 0.0799561
 offset_bottom = -3.96001
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 focus_neighbor_right = NodePath("HBoxContainer/ActionContainer/VBoxContainer/EquipButton")
 texture_normal = ExtResource("1_x5fst")
 texture_focused = ExtResource("2_1nvbd")
@@ -76,9 +77,20 @@ unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("2_thysp")
 
+[node name="StatTexture" type="TextureRect" parent="HBoxContainer/ItemContainer/ItemTexture"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_68keh")
+
 [node name="DescriptionContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 20
@@ -87,6 +99,8 @@ theme_override_constants/margin_bottom = 20
 [node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/DescriptionContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.195794, 0.164465, 0.0342762, 1)
 theme_override_fonts/normal_font = ExtResource("3_ufc1j")
 bbcode_enabled = true
 text = "- [color=green] Rarity [/color] -
@@ -100,7 +114,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 40
+theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ActionContainer"]

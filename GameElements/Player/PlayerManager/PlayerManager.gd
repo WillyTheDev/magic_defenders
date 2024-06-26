@@ -129,8 +129,7 @@ func _on_player_manager_animation_player_animation_finished(anim_name):
 		%HatButton.grab_focus()
 	elif "show" in anim_name && "list" in anim_name && is_open && Global.player_using_controller:
 		var list = anim_name.rsplit("_")[1]
-		list = "%sList" % list.to_pascal_case()
+		list = "Grid%s" % list.to_pascal_case()
 		print("list = %s" % list)
-		get_node("%HatList").grab_focus()
 		get_node("%%%s" % list).grab_focus()
 
