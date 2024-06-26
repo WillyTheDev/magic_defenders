@@ -141,7 +141,6 @@ func _input(event):
 			start_new_wave()
 
 func _on_player_player_update_mana_amount(mana):
-
 	%ManaLabel.text = "Mana : %s" % mana
 	%SkillContainer.update_progress_bar()
 	%AccumulatedManaLabel.text = "%s / %s until the next level" % [Global.accumulated_mana, (Player.offset_accumulated_mana_value + Global.player_level * 10)]

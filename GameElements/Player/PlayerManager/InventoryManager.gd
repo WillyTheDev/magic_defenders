@@ -332,11 +332,11 @@ func load_boots_list():
 func _on_equips_boots_pressed(index):
 	if Global.inventory.loots["boots"].size() > 0:
 		var previous_loot = Global.inventory.equiped_boots
-		apply_loot(previous_loot, Global.inventory.loots["boots"][selected_boots_index])
-		Global.inventory.equiped_boots = Global.inventory.loots["boots"][selected_boots_index]
+		apply_loot(previous_loot, Global.inventory.loots["boots"][index])
+		Global.inventory.equiped_boots = Global.inventory.loots["boots"][index]
 		%PlayerManagerAnimationPlayer.play("hide_boots_list")
-		%SelectedBootsTexture.texture = Global.inventory.loots["boots"][selected_boots_index].texture
-		%SelectedBootsTexture.modulate = Global.inventory.loots["boots"][selected_boots_index].modulate
+		%SelectedBootsTexture.texture = Global.inventory.loots["boots"][index].texture
+		%SelectedBootsTexture.modulate = Global.inventory.loots["boots"][index].modulate
 
 func _on_delete_boots_pressed(index):
 	Global.accumulated_gold += (1+Global.inventory.loots["boots"][index].rarity)

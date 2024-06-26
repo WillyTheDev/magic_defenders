@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3db7nbfriran"]
+
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="1_may60"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="2_7h708"]
+[ext_resource type="Texture2D" uid="uid://bf6kdnxfhnaui" path="res://Assets/envirronment/mushrooms.png" id="3_qar6m"]
+[ext_resource type="Script" path="res://GameElements/Maps/env/arbre.gd" id="4_xrbqo"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="5_8d7m1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abvb5"]
+shader = ExtResource("1_may60")
+shader_parameter/strength = 0.015
+shader_parameter/speed = 6.0
+shader_parameter/frames = 6
+shader_parameter/flowMap = ExtResource("2_7h708")
+
+[node name="mushroom_2" type="Sprite2D"]
+light_mask = 2
+z_index = 1
+material = SubResource("ShaderMaterial_abvb5")
+position = Vector2(-5.96046e-08, -2)
+scale = Vector2(0.366959, 0.366959)
+texture = ExtResource("3_qar6m")
+offset = Vector2(0, -38)
+script = ExtResource("4_xrbqo")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(2.7251, 2.72509)
+scale = Vector2(0.287298, 0.287298)
+texture = ExtResource("5_8d7m1")

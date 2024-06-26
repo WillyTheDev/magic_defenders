@@ -41,7 +41,7 @@ func spawn_flying_mob():
 			number_of_time -= 1
 
 func spawn_mob():
-	print("Spawner : \nnumber of time = %s\nenemies spawn: %s\nenemies_left: %s\ntotal enemies for this wave : %s\nspawn index :  %s" % [number_of_time,enemies_spawn, enemies_left, total_enemies, spawn_index])
+	
 	#Load a new Enemy ( Path2DFollower ) and attach the relevent monster ( e.g slime, slimeMedium, archer...)
 	var enemy = null
 	# if infinity mode, ennemies spawner don't follow any sequence
@@ -77,6 +77,7 @@ func spawn_mob():
 				spawn_index += 2
 				number_of_time = map_of_game.sequences[sequence_index][spawn_index]
 				type_of_enemy = map_of_game.sequences[sequence_index][spawn_index + 1]
+		print("Spawner : \nnumber of time = %s\nenemies spawn: %s\nenemies_left: %s\ntotal enemies for this wave : %s\nspawn index :  %s" % [number_of_time,enemies_spawn, enemies_left, total_enemies, spawn_index])
 		match type_of_enemy:
 			1: 
 				enemy = preload("res://GameElements/Enemies/Slime/slime.tscn").instantiate()

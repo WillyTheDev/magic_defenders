@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://4i8fycjwql5g"]
+
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="1_fybih"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="2_ydh85"]
+[ext_resource type="Texture2D" uid="uid://mxsp6jhqtl2s" path="res://Assets/envirronment/Rocks.png" id="3_r4lje"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="4_snsqu"]
+[ext_resource type="Shader" path="res://Shaders/item_highlight.gdshader" id="5_gw41x"]
+[ext_resource type="Texture2D" uid="uid://bdwo1upc708b4" path="res://Assets/envirronment/Cristal_2.png" id="6_1knhy"]
+[ext_resource type="Texture2D" uid="uid://yxeyt3hoagb1" path="res://Assets/envirronment/Cristal.png" id="7_vvua4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4i2x"]
+shader = ExtResource("1_fybih")
+shader_parameter/strength = 0.02
+shader_parameter/speed = 5.0
+shader_parameter/frames = 5
+shader_parameter/flowMap = ExtResource("2_ydh85")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hp52s"]
+radius = 25.02
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blewn"]
+shader = ExtResource("5_gw41x")
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/frequency = 0.35
+shader_parameter/highlight_speed = 6.0
+shader_parameter/highlight_width = 15.0
+
+[node name="Rock" type="Sprite2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_d4i2x")
+position = Vector2(1, -22)
+texture = ExtResource("3_r4lje")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_as_relative = false
+position = Vector2(1, 24)
+scale = Vector2(0.415402, 0.671386)
+texture = ExtResource("4_snsqu")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 20)
+shape = SubResource("CircleShape2D_hp52s")
+
+[node name="Cristal2" type="Sprite2D" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_blewn")
+use_parent_material = true
+position = Vector2(33, -35)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_1knhy")
+
+[node name="Cristal" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_blewn")
+use_parent_material = true
+position = Vector2(-27, -6)
+scale = Vector2(0.15102, 0.214583)
+texture = ExtResource("7_vvua4")

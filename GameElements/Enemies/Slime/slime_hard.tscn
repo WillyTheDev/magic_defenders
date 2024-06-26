@@ -95,7 +95,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Slime" type="CharacterBody2D"]
+[node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
 light_mask = 2
 material = SubResource("ShaderMaterial_jyd47")
 scale = Vector2(0.7, 0.7)

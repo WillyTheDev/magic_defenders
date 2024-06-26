@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn1pofbn1nb1u"]
+
+[ext_resource type="Texture2D" uid="uid://chcwn2txwv7ao" path="res://Assets/envirronment/bamboo_1.png" id="1_3e8mq"]
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="1_t54v2"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="2_nambx"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_owgq2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7uiio"]
+shader = ExtResource("1_t54v2")
+shader_parameter/strength = 0.015
+shader_parameter/speed = 5.0
+shader_parameter/frames = 5
+shader_parameter/flowMap = ExtResource("2_nambx")
+
+[node name="Bomboo_2" type="Node2D"]
+z_index = 1
+z_as_relative = false
+scale = Vector2(0.310219, 0.310219)
+
+[node name="Sakura" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_7uiio")
+position = Vector2(6.44706, -219.2)
+texture = ExtResource("1_3e8mq")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(16.1176, 6.44706)
+scale = Vector2(0.506378, 0.836787)
+texture = ExtResource("2_owgq2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(11.2824, -214.2)
+scale = Vector2(11.4435, 22.42)

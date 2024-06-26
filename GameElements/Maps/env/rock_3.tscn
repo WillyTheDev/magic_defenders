@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://c83fphdjhije1"]
+
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="1_j3sdg"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="2_q6y6h"]
+[ext_resource type="Texture2D" uid="uid://ddtfwiyjdovyi" path="res://Assets/envirronment/Rocks_2@3x.png" id="3_xnyoe"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="4_yc03i"]
+[ext_resource type="Shader" path="res://Shaders/item_highlight.gdshader" id="5_cd6gk"]
+[ext_resource type="Texture2D" uid="uid://yxeyt3hoagb1" path="res://Assets/envirronment/Cristal.png" id="6_d5k1n"]
+[ext_resource type="Texture2D" uid="uid://bdwo1upc708b4" path="res://Assets/envirronment/Cristal_2.png" id="7_2qjjy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4i2x"]
+shader = ExtResource("1_j3sdg")
+shader_parameter/strength = 0.02
+shader_parameter/speed = 5.0
+shader_parameter/frames = 5
+shader_parameter/flowMap = ExtResource("2_q6y6h")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehavx"]
+size = Vector2(135, 38)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m547w"]
+shader = ExtResource("5_cd6gk")
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/frequency = 0.35
+shader_parameter/highlight_speed = 6.0
+shader_parameter/highlight_width = 15.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6h6ej"]
+shader = ExtResource("5_cd6gk")
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/frequency = 0.35
+shader_parameter/highlight_speed = 6.0
+shader_parameter/highlight_width = 15.0
+
+[node name="Rock" type="Sprite2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_d4i2x")
+position = Vector2(1, 0)
+texture = ExtResource("3_xnyoe")
+offset = Vector2(0, -120)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_as_relative = false
+position = Vector2(0, 21)
+scale = Vector2(0.850977, 0.873007)
+texture = ExtResource("4_yc03i")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2, -1)
+shape = SubResource("RectangleShape2D_ehavx")
+
+[node name="Cristal" type="Sprite2D" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_m547w")
+use_parent_material = true
+position = Vector2(-44, -209)
+scale = Vector2(0.473958, 0.473958)
+texture = ExtResource("6_d5k1n")
+
+[node name="Cristal2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6h6ej")
+use_parent_material = true
+position = Vector2(25, -256)
+scale = Vector2(0.28125, 0.28125)
+texture = ExtResource("7_2qjjy")

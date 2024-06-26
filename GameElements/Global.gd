@@ -68,13 +68,12 @@ static var turret_base_health = 1.0
 static var defense_stat_health = 0.0
 static var defense_divider_health = 1.1
 
-
 func getDefenseFireRate():
 	return (defense_base_fire_rate - (defense_base_fire_rate / defense_divider_fire_rate) * (defense_stat_fire_rate + inventory.equiped_defense_fire_rate))
 
 static var defense_base_fire_rate = 2.0
 static var defense_stat_fire_rate = 0.0
-static var defense_divider_fire_rate = 130.0
+static var defense_divider_fire_rate = 100.0
 
 static var player_avail_pts = 0
 
@@ -174,6 +173,10 @@ static var map_challenge_score = {
 	"map_3" : 0,
 	"map_4" : 0,
 	"map_5" : 0,
+	"map_6" : 0,
+	"map_7" : 0,
+	"map_8" : 0,
+	"map_9" : 0,
 }
 
 			
@@ -221,59 +224,16 @@ func _save():
 	return save_dict
 	
 func new_save():
-	var save = FileAccess.open("user://savegame.save", FileAccess.WRITE)
-	var data = {
-		"filename" : get_scene_file_path(),
-		"player_level" : 1,
-		"accumulated_mana" : 0,
-		"player_stat_damage" : 0,
-		"defense_stat_damage" : 0,
-		"defense_stat_health" : 0,
-		"defense_stat_range" : 0,
-		"defense_stat_fire_rate" : 0,
-		"player_avail_pts": 0,
-		"player_equipped_hat" : 99,
-		"accumulated_gold" : 0,
-		"urgent_quests_completed" : 0,
-		"audio_volume": 1,
-		"sound_volume": 1,
-		"unlocked_hats": {
-							"hat_0" : false,
-							"hat_1" : false,
-							"hat_2" : false,
-							"hat_3" : false,
-							"hat_4" : false,
-							"hat_5" : false,
-							"hat_6" : false
-						},
-		"unlocked_skills": {
-							"skill_1": true,
-							"skill_2": true,
-							"skill_3": false,
-							"skill_4": false,
-							"skill_5": false,
-							"skill_6": false,
-							"skill_7": false,
-							"skill_8": false,
-							"skill_9": false,
-						},
-		"selected_skills" : {
-		"skill_0": 0,
-		"skill_1": 1,
-		"skill_2": 0,
-		"skill_3": 1,
-		},
-		"tutorial_steps": 0
-		#TODO ADD map challenge score
-}
-	print("CLEAR INVENTORY")
+	var file_to_remove = "user://savegame.save"
+	if OS.move_to_trash(ProjectSettings.globalize_path(file_to_remove)) != OK:
+		print("Couldn't remove save")
+	
+	print("CLEAR INVENTORY...")
 	var inv = Inventory.new()
 	inventory = inv
 	print(inv.loots)
 	var status = ResourceSaver.save(inv, "user://inventory.tres")
 	print("Saving inventory status : %s" % status)
-	var json_string = JSON.stringify(data)
-	save.store_line(json_string)
 	
 func save_game():
 	print("Saving data...")
@@ -284,6 +244,7 @@ func save_game():
 	save_inventory()
 	# Store the save dictionary as a new line in the save file.
 	save.store_line(json_string)
+	save.close()
 	
 func load_game():
 	print("Loading game...")
@@ -315,4 +276,5 @@ func load_game():
 			print("Setting %s with value %s..." % [i, data[i]])
 			set(i, data[i])
 		print(unlocked_hats)
-		load_inventory()
+	load_inventory()
+	save.close()

@@ -18,8 +18,10 @@ func _on_pressed():
 	Global.gold_reward = 0
 	Global.starting_wave = 0
 	has_been_pressed = true
+	ChallengeManager.is_open = false
 	challenge_button_pressed.emit()
 
 func _on_transition_layer_transition_is_finished(_anim_name):
 	if has_been_pressed && is_inside_tree():
+		
 		get_tree().reload_current_scene()

@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://csjoge1ge2cw1"]
+
+[ext_resource type="Shader" path="res://Shaders/sokpop.gdshader" id="1_1c2ru"]
+[ext_resource type="Texture2D" uid="uid://dubvh5jsaaofj" path="res://Shaders/normal.jpg" id="2_6yipx"]
+[ext_resource type="Texture2D" uid="uid://mxsp6jhqtl2s" path="res://Assets/envirronment/Rocks.png" id="3_b0u8j"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="4_p3s58"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4i2x"]
+shader = ExtResource("1_1c2ru")
+shader_parameter/strength = 0.02
+shader_parameter/speed = 5.0
+shader_parameter/frames = 5
+shader_parameter/flowMap = ExtResource("2_6yipx")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hp52s"]
+radius = 25.02
+
+[node name="Rock" type="Sprite2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_d4i2x")
+position = Vector2(1, -22)
+texture = ExtResource("3_b0u8j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_as_relative = false
+position = Vector2(1, 24)
+scale = Vector2(0.415402, 0.671386)
+texture = ExtResource("4_p3s58")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 20)
+shape = SubResource("CircleShape2D_hp52s")

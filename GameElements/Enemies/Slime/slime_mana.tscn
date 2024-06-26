@@ -145,7 +145,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Slime" type="CharacterBody2D"]
+[node name="Slime" type="CharacterBody2D" groups=["Enemy"]]
 light_mask = 2
 scale = Vector2(0.4, 0.4)
 platform_floor_layers = 4294967040

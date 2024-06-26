@@ -8,9 +8,14 @@ func _ready():
 	var index = 1
 	for map in Global.map_challenge_score:
 		var button = preload("res://GameElements/Screens/challenge/challenge_map_button.tscn").instantiate()
-		button.texture_normal = load("res://Assets/UI/challenge_selection/map_1_%s.png" % index)
-		button.texture_hover = load("res://Assets/UI/challenge_selection/map_1_%s_hover.png" % index)
-		button.texture_focused = load("res://Assets/UI/challenge_selection/map_1_%s_focus.png" % index)
+		if index <= 5:
+			button.texture_normal = load("res://Assets/UI/challenge_selection/map_1_%s.png" % index)
+			button.texture_hover = load("res://Assets/UI/challenge_selection/map_1_%s_hover.png" % index)
+			button.texture_focused = load("res://Assets/UI/challenge_selection/map_1_%s_focus.png" % index)
+		else:
+			button.texture_normal = load("res://Assets/UI/map_selection_button/map_0.png")
+			button.texture_hover = load("res://Assets/UI/map_selection_button/map_0_clicked.png")
+			button.texture_focused = load("res://Assets/UI/map_selection_button/map_0_hover.png")
 		button.text = "Max Score : \n %s" % Global.map_challenge_score[map]
 		button.challenge_button_pressed.connect(show_skill_selection)
 		button.index = index

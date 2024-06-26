@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://kxedvgcqwckt"]
+
+[ext_resource type="Texture2D" uid="uid://d3nhskag2hcqm" path="res://Assets/envirronment/Champignons.png" id="1_m26tc"]
+[ext_resource type="Texture2D" uid="uid://bgc3f84exvidv" path="res://Assets/Shadow.png" id="2_02kvq"]
+
+[node name="Sakura" type="Node2D"]
+z_index = 1
+z_as_relative = false
+scale = Vector2(0.310219, 0.310219)
+
+[node name="Sakura" type="Sprite2D" parent="."]
+position = Vector2(6.44706, -219.2)
+texture = ExtResource("1_m26tc")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(0, 3.22353)
+texture = ExtResource("2_02kvq")
