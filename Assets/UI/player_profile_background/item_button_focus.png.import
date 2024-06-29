@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cso5kcb0811xk"
-path="res://.godot/imported/boots_placeholder.png-f1dfee0306b237821f7944ef5bc6fd7c.ctex"
+uid="uid://b83pr0ysv50vn"
+path="res://.godot/imported/item_button_focus.png-56750d32dd11dcab4d6d0309bc419938.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/player_profile_background/boots_placeholder.png"
-dest_files=["res://.godot/imported/boots_placeholder.png-f1dfee0306b237821f7944ef5bc6fd7c.ctex"]
+source_file="res://Assets/UI/player_profile_background/item_button_focus.png"
+dest_files=["res://.godot/imported/item_button_focus.png-56750d32dd11dcab4d6d0309bc419938.ctex"]
 
 [params]
 

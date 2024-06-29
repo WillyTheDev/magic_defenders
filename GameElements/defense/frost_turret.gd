@@ -1,8 +1,5 @@
 class_name FrostTurret
 extends Turret
-
-func _abstract_turret_ready():
-	%TimerShoot.wait_time = Global.getDefenseFireRate() * 1.5
 	
 func shoot():
 	if target != null:
@@ -16,3 +13,9 @@ func shoot():
 		new_bolt.direction = (global_position - target.global_position).normalized() * -1
 		get_parent().add_child(new_bolt)
 		target = null
+	else:
+		for body in %ShootZone.get_overlapping_bodies():
+			print("here is a enemy still on the shoot zone : %s " % body)
+			if body is Enemy:
+				target = body
+				break;

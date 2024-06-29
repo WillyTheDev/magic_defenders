@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cso5kcb0811xk"
-path="res://.godot/imported/boots_placeholder.png-f1dfee0306b237821f7944ef5bc6fd7c.ctex"
+uid="uid://ckiklfbeutiyo"
+path="res://.godot/imported/turret_fire_icon.png-4129bbd974f30af3945f4b18268e562b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/player_profile_background/boots_placeholder.png"
-dest_files=["res://.godot/imported/boots_placeholder.png-f1dfee0306b237821f7944ef5bc6fd7c.ctex"]
+source_file="res://Assets/UI/Skills_button/turret_fire_icon.png"
+dest_files=["res://.godot/imported/turret_fire_icon.png-4129bbd974f30af3945f4b18268e562b.ctex"]
 
 [params]
 

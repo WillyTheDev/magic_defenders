@@ -14,6 +14,9 @@ func _ready():
 	add_to_group("has_static_properties")
 	print("Turret fire rate : %s " % Global.getDefenseFireRate())
 	%TimerShoot.wait_time = Global.getDefenseFireRate()
+	print(Global.getDefenseRange())
+	print(Global.defense_stat_range)
+	print(Global.defense_stat_fire_rate)
 	%ShootZone.scale.x = Global.getDefenseRange()
 	%ShootZone.scale.y = Global.getDefenseRange()
 	_abstract_turret_ready()
@@ -40,7 +43,6 @@ func shoot():
 		get_parent().add_child(new_fire_bolt)
 	else:
 		for body in %ShootZone.get_overlapping_bodies():
-			print("here is a enemy still on the shoot zone : %s " % body)
 			if body is Enemy:
 				target = body
 				break;
@@ -78,9 +80,7 @@ func _on_timer_shoot_timeout():
 func _on_shoot_zone_body_exited(_body):
 	target = null
 	if %ShootZone != null:
-		print("An enemy has exited the shoot zone !")
 		for body in %ShootZone.get_overlapping_bodies():
-			print("here is a enemy still on the shoot zone : %s " % body)
 			if body is Enemy:
 				target = body
 				break;

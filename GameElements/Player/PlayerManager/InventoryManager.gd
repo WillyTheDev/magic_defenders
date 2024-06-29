@@ -9,16 +9,24 @@ var selected_boots_index = 0
 func _ready():
 	if Global.inventory.equiped_necklaces != null:
 		%SelectedNecklaceTexture.texture = Global.inventory.equiped_necklaces.texture
-		%SelectedNecklaceTexture.modulate = Global.inventory.equiped_necklaces.modulate
+		%SelectedStatNecklaceTexture.visible = true
+		%SelectedStatNecklaceTexture.modulate = LootItem.get_stat_color(LootItem.get_stat_name(Global.inventory.equiped_necklaces.primary_stat))
+		%NecklaceButton.self_modulate = Global.inventory.equiped_necklaces.modulate
 	if Global.inventory.equiped_rings != null:
 		%SelectedRingTexture.texture = Global.inventory.equiped_rings.texture
-		%SelectedRingTexture.modulate = Global.inventory.equiped_rings.modulate
+		%SelectedStatRingTexture.visible = true
+		%SelectedStatRingTexture.modulate = LootItem.get_stat_color(LootItem.get_stat_name(Global.inventory.equiped_rings.primary_stat))
+		%RingsButton.self_modulate = Global.inventory.equiped_rings.modulate
 	if Global.inventory.equiped_pants != null:
 		%SelectedPantsTexture.texture = Global.inventory.equiped_pants.texture
-		%SelectedPantsTexture.modulate = Global.inventory.equiped_pants.modulate
+		%SelectedStatPantsTexture.visible = true
+		%SelectedStatPantsTexture.modulate = LootItem.get_stat_color(LootItem.get_stat_name(Global.inventory.equiped_pants.primary_stat))
+		%PantsButton.self_modulate = Global.inventory.equiped_pants.modulate
 	if Global.inventory.equiped_boots != null:
 		%SelectedBootsTexture.texture = Global.inventory.equiped_boots.texture
-		%SelectedBootsTexture.modulate = Global.inventory.equiped_boots.modulate
+		%SelectedStatBootsTexture.visible = true
+		%SelectedStatBootsTexture.modulate = LootItem.get_stat_color(LootItem.get_stat_name(Global.inventory.equiped_boots.primary_stat))
+		%BootsButton.self_modulate = Global.inventory.equiped_boots.modulate
 	%GoldLabel.text = "%s" % Global.accumulated_gold
 	
 
@@ -171,8 +179,6 @@ func load_necklace_list():
 		%GridNecklace.get_child(0).grab_focus()
 		
 
-
-
 func _on_equips_necklaces_pressed(index):
 	if Global.inventory.loots["necklaces"].size() > 0:
 		var previous_loot = Global.inventory.equiped_necklaces
@@ -180,7 +186,8 @@ func _on_equips_necklaces_pressed(index):
 		Global.inventory.equiped_necklaces = Global.inventory.loots["necklaces"][index]
 		%PlayerManagerAnimationPlayer.play("hide_necklace_list")
 		%SelectedNecklaceTexture.texture = Global.inventory.equiped_necklaces.texture
-		%SelectedNecklaceTexture.modulate = Global.inventory.equiped_necklaces.modulate
+		%SelectedStatNecklaceTexture.modulate = LootItem.get_stat_color(LootItem.get_stat_name(Global.inventory.equiped_necklaces.primary_stat))
+		%NecklaceButton.self_modulate = Global.inventory.equiped_necklaces.modulate
 
 func _on_delete_necklaces_pressed(index):
 	Global.accumulated_gold += (1+Global.inventory.loots["necklaces"][index].rarity)
@@ -232,7 +239,8 @@ func _on_equips_rings_pressed(index):
 		Global.inventory.equiped_rings = Global.inventory.loots["rings"][index]
 		%PlayerManagerAnimationPlayer.play("hide_ring_list")
 		%SelectedRingTexture.texture = Global.inventory.loots["rings"][index].texture
-		%SelectedRingTexture.modulate = Global.inventory.loots["rings"][index].modulate
+		%SelectedStatRingTexture.modulate = LootItem.get_stat_color(LootItem.get_stat_name(Global.inventory.equiped_rings.primary_stat))
+		%RingsButton.self_modulate = Global.inventory.loots["rings"][index].modulate
 
 func _on_delete_rings_pressed(index):
 	Global.accumulated_gold += (1+Global.inventory.loots["rings"][index].rarity)
@@ -284,7 +292,8 @@ func _on_equips_pants_pressed(index):
 		Global.inventory.equiped_pants = Global.inventory.loots["pants"][index]
 		%PlayerManagerAnimationPlayer.play("hide_pants_list")
 		%SelectedPantsTexture.texture = Global.inventory.loots["pants"][index].texture
-		%SelectedPantsTexture.modulate = Global.inventory.loots["pants"][index].modulate
+		%SelectedStatPantsTexture.modulate = LootItem.get_stat_color(LootItem.get_stat_name(Global.inventory.equiped_pants.primary_stat))
+		%PantsButton.self_modulate = Global.inventory.loots["pants"][index].modulate
 
 func _on_delete_pants_pressed(index):
 	Global.accumulated_gold += (1+Global.inventory.loots["pants"][index].rarity)
@@ -336,7 +345,8 @@ func _on_equips_boots_pressed(index):
 		Global.inventory.equiped_boots = Global.inventory.loots["boots"][index]
 		%PlayerManagerAnimationPlayer.play("hide_boots_list")
 		%SelectedBootsTexture.texture = Global.inventory.loots["boots"][index].texture
-		%SelectedBootsTexture.modulate = Global.inventory.loots["boots"][index].modulate
+		%SelectedStatBootsTexture.modulate = LootItem.get_stat_color(LootItem.get_stat_name(Global.inventory.equiped_boots.primary_stat))
+		%BootsButton.self_modulate = Global.inventory.loots["boots"][index].modulate
 
 func _on_delete_boots_pressed(index):
 	Global.accumulated_gold += (1+Global.inventory.loots["boots"][index].rarity)

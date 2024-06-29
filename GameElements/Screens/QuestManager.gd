@@ -5,7 +5,7 @@ var actual_chapter = 1
 var gold_texture = preload("res://Assets/loots/bourse.png")
 var nb_map_implemented = 5
 static var proposed_quest = []
-static var isOpen = false
+static var is_open = false
 
 func clear_proposed_quest():
 	print("Quests has been cleared !")
@@ -16,7 +16,7 @@ func _input(event):
 		visible = false
 		
 func show_quests():
-	isOpen = true
+	is_open = true
 	get_tree().paused = true
 	print("Proposed quests : %s" % proposed_quest.size())
 	if %QuestContainer.get_child_count() < 1:
@@ -42,7 +42,7 @@ func show_skill_selection():
 	%SkillSelection.show_skill_selection()
 
 func _on_back_button_pressed():
-	isOpen = false
+	is_open = false
 	get_tree().paused = false
 	%AnimationPlayer.play("hide_quests_lists")
 
@@ -159,7 +159,7 @@ static var urgent_quests = [
 
 func _on_skill_selection_game_launched():
 	clear_proposed_quest()
-	QuestManager.isOpen = false
+	QuestManager.is_open = false
 
 
 func _on_skill_selection_player_animation_finished(anim_name):

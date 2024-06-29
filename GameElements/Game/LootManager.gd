@@ -20,18 +20,21 @@ static func add_loot_to_enemy(enemy: Node2D):
 		return
 	if value <= loot_chance:
 		print("Adding loot to Enemy")
-		enemy.add_loot(generate_random_loot())
+		enemy.add_loot(generate_random_loot(5))
 	
-		
 static func get_index_of_random_available_hat() -> int:
 	var rand_index = randi_range(0, Global.unlocked_hats.size() -1)
 	if Global.unlocked_hats.values()[rand_index]:
 		return get_index_of_random_available_hat()
 	else:
 		return rand_index
-		
-static func generate_random_loot() -> Loot:
-	var rand_type = randi_range(0,loot_types.size() - 1)
+
+#@param type can be equal to 0,1,2,3,4 or 5
+# 5 define random type.
+static func generate_random_loot(type) -> Loot:
+	var rand_type = type
+	if type == 5:
+		rand_type = randi_range(0,loot_types.size() - 1)
 	var rand_primary_stat = randi_range(1,5)
 	var rand_secondary_stat = randi_range(1,5)
 	var rand_primary_stat_value = 0
@@ -64,21 +67,15 @@ static func get_modulate_color(rarity: int) -> Color:
 	var color = Color.ALICE_BLUE
 	match rarity:
 		0:
-			color = Color.BISQUE
-			color += Color(1,1,1,0)
+			color = Color.DARK_GRAY
 		1:
-			color = Color.PALE_GREEN
-			color += Color(0,1,0,0)
+			color = Color.SEA_GREEN
 		2:
-			color = Color.CORNFLOWER_BLUE
-			color += Color(0,0,1,0)
+			color = Color.ROYAL_BLUE
 		3:
-			color = Color.DARK_VIOLET
-			color += Color(1,0,1,0)
+			color = Color.BLUE_VIOLET
 		4:
 			color = Color.GOLD
-			color += Color(0,1,1,0)
 		5:
-			color = Color.FIREBRICK
-			color += Color(1,0,0,0)
+			color = Color.CRIMSON
 	return color 

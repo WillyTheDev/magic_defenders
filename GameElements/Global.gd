@@ -4,8 +4,8 @@ extends Node
 # Player options selected
 #======================
 
-static var audio_volume = 0
-static var sound_volume = 0
+static var audio_volume = 1
+static var sound_volume = 1
 static var player_using_controller = false
 
 #======================
@@ -42,7 +42,7 @@ static var player_stat_damage = 0.0
 static var player_divider_damage = 4.0
 
 func getDefenseRange():
-	return (defense_base_range + (defense_base_range / defense_divider_range) * defense_stat_range)
+	return (defense_base_range + (defense_base_range / defense_divider_range) * (defense_stat_range + inventory.equiped_defense_range))
 
 static var defense_base_range = 1.0
 static var defense_stat_range = 0.0
@@ -193,6 +193,7 @@ func load_inventory():
 		print(inventory.loots)
 		print(inventory.equiped_rings)
 	else:
+		print("There is no inventory existing !")
 		inventory = Inventory.new()
 
 func save_inventory():
@@ -250,6 +251,8 @@ func load_game():
 	print("Loading game...")
 	if not FileAccess.file_exists("user://savegame.save"):
 		has_save = false
+		print("There is no existing save !")
+		load_inventory()
 		return
 	
 	has_save = true	

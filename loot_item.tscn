@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c082ftweuwu2l"]
+[gd_scene load_steps=10 format=3 uid="uid://c082ftweuwu2l"]
 
 [ext_resource type="Script" path="res://loot_item.gd" id="1_mw5rj"]
 [ext_resource type="Texture2D" uid="uid://hugbe3prh8dy" path="res://Assets/UI/item/normal.png" id="1_x5fst"]
 [ext_resource type="Texture2D" uid="uid://deryp2nphd43r" path="res://Assets/UI/item/focus.png" id="2_1nvbd"]
 [ext_resource type="Texture2D" uid="uid://j014cmoau1ir" path="res://Assets/loots/boots.png" id="2_thysp"]
 [ext_resource type="FontFile" uid="uid://da8dsj4hcjptk" path="res://Assets/SuperMilk-nRq9Y.ttf" id="3_ufc1j"]
+[ext_resource type="Texture2D" uid="uid://bxxa82mig5hyb" path="res://Assets/UI/player_profile_background/item_button.png" id="4_mbe0d"]
 [ext_resource type="Texture2D" uid="uid://dupsfisp8uln6" path="res://Assets/loots/boots_Stat.png" id="5_68keh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1naav"]
@@ -72,6 +73,11 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 50
 
+[node name="ItemBackground" type="TextureRect" parent="HBoxContainer/ItemContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_mbe0d")
+
 [node name="ItemTexture" type="TextureRect" parent="HBoxContainer/ItemContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -100,7 +106,7 @@ theme_override_constants/margin_bottom = 20
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-theme_override_colors/default_color = Color(0.195794, 0.164465, 0.0342762, 1)
+theme_override_colors/default_color = Color(0.13811, 0.113978, 0.0182659, 1)
 theme_override_fonts/normal_font = ExtResource("3_ufc1j")
 bbcode_enabled = true
 text = "- [color=green] Rarity [/color] -

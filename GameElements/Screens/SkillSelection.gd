@@ -15,4 +15,5 @@ func _launch_game():
 	get_tree().paused = false
 	
 func _on_texture_button_pressed():
+	QuestManager.is_open = false
 	_launch_game()

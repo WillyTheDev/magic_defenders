@@ -76,7 +76,7 @@ func _drop_loot():
 	%PlayerGold.text = "%s" % Global.accumulated_gold
 	%SellingAudio.play()
 	await %AnimationPlayer.animation_finished
-	var loot = LootManager.generate_random_loot()
+	var loot = LootManager.generate_random_loot(selected_type)
 	var loot_to_spawn = preload("res://GameElements/misc/loot.tscn").instantiate()
 	loot_to_spawn.is_loot = true
 	loot_to_spawn.loot = loot

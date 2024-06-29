@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c2o1lsmd80cnp"]
+[gd_scene load_steps=63 format=3 uid="uid://c2o1lsmd80cnp"]
 
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/PlayerManager.gd" id="1_ctqjo"]
 [ext_resource type="Texture2D" uid="uid://7ldxtyg31ar8" path="res://Assets/UI/player_profile_background/background.png" id="2_3il38"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bbydamgjqu45d" path="res://Assets/UI/player_profile_background/select_up_normal.png" id="3_nsun1"]
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/InventoryManager.gd" id="3_u5ue7"]
 [ext_resource type="Texture2D" uid="uid://c6welklvyyunf" path="res://Assets/UI/player_profile_background/select_up_pressed.png" id="4_e3aay"]
-[ext_resource type="Texture2D" uid="uid://dc88kr5yipjix" path="res://Assets/UI/player_profile_background/hat_button.png" id="5_upd7b"]
 [ext_resource type="Texture2D" uid="uid://cqbelpmljed1s" path="res://Assets/UI/player_profile_background/select_down_normal.png" id="5_yh11t"]
 [ext_resource type="Texture2D" uid="uid://btj6x5k3xhs7j" path="res://Assets/UI/player_profile_background/select_up_focus.png" id="6_7emhe"]
 [ext_resource type="Texture2D" uid="uid://whbmuxb1eahl" path="res://Assets/UI/player_profile_background/select_down_pressed.png" id="6_f3uvs"]
@@ -22,15 +21,20 @@
 [ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="16_1uron"]
 [ext_resource type="Texture2D" uid="uid://4y33cmdxh8ao" path="res://Assets/UI/player_profile_background/necklace_placeholder.png" id="16_oqu4o"]
 [ext_resource type="Script" path="res://GameElements/Player/PlayerManager/HatButton.gd" id="16_owynn"]
-[ext_resource type="Texture2D" uid="uid://d0aij73v7y4vv" path="res://Assets/UI/player_profile_background/hat_button_focus.png" id="16_woluy"]
 [ext_resource type="Texture2D" uid="uid://bbww30wt2hq3g" path="res://Assets/UI/player_profile_background/ring_placeholder.png" id="17_85sj4"]
+[ext_resource type="Texture2D" uid="uid://bxxa82mig5hyb" path="res://Assets/UI/player_profile_background/item_button.png" id="17_pugxu"]
 [ext_resource type="Texture2D" uid="uid://5xdbr5y0ldo4" path="res://Assets/UI/player_profile_background/pants_placeholder.png" id="18_wcvkc"]
 [ext_resource type="Texture2D" uid="uid://dtbokljp08n5w" path="res://Assets/UI/notification_bullet.png" id="18_x5gsd"]
-[ext_resource type="Texture2D" uid="uid://bp3rdxmpwjiyi" path="res://Assets/UI/player_profile_background/boots_placeholder.png" id="19_bng3d"]
+[ext_resource type="Texture2D" uid="uid://b83pr0ysv50vn" path="res://Assets/UI/player_profile_background/item_button_focus.png" id="19_402f6"]
 [ext_resource type="Texture2D" uid="uid://cesp6j7dg40c0" path="res://Assets/loots/bourse.png" id="22_0qjg8"]
+[ext_resource type="Texture2D" uid="uid://dvvl0emvw7pwg" path="res://Assets/loots/necklaces_stat.png" id="23_ji6rg"]
 [ext_resource type="Script" path="res://GameElements/Skills/outside_click_control.gd" id="24_bvpje"]
+[ext_resource type="Texture2D" uid="uid://c75e2lsednc3g" path="res://Assets/loots/rings_stat.png" id="26_7ecur"]
 [ext_resource type="AudioStream" uid="uid://cybl54ghahyv1" path="res://Assets/audio/selling.mp3" id="27_pmokr"]
+[ext_resource type="Texture2D" uid="uid://bssjkunaleek8" path="res://Assets/loots/pants_stats.png" id="28_ji0me"]
+[ext_resource type="Texture2D" uid="uid://cso5kcb0811xk" path="res://Assets/UI/player_profile_background/boots_placeholder.png" id="29_rkv4r"]
 [ext_resource type="Texture2D" uid="uid://bw61ae2r5brvy" path="res://Assets/UI/item/background.png" id="30_kuj41"]
+[ext_resource type="Texture2D" uid="uid://dupsfisp8uln6" path="res://Assets/loots/boots_Stat.png" id="30_mbewn"]
 [ext_resource type="PackedScene" uid="uid://c082ftweuwu2l" path="res://loot_item.tscn" id="32_737ny"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdv3k"]
@@ -591,7 +595,6 @@ _data = {
 [node name="PlayerManager" type="CanvasLayer"]
 process_mode = 2
 layer = 10
-visible = false
 script = ExtResource("1_ctqjo")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -600,10 +603,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.196078, 0.196078, 0.196078, 0)
+color = Color(0.196078, 0.196078, 0.196078, 0.784314)
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0)
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("2_3il38")
@@ -1086,7 +1088,6 @@ texture_focused = ExtResource("14_mq0yg")
 
 [node name="InventoryManager" type="Control" parent="."]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1128,9 +1129,9 @@ theme_override_constants/separation = 20
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_right = NodePath("../../../../../StatsContainer/VBoxContainer/stat_1/VBoxContainer/add_stat_1")
-texture_normal = ExtResource("5_upd7b")
+texture_normal = ExtResource("17_pugxu")
 texture_hover = ExtResource("6_x1x4c")
-texture_focused = ExtResource("16_woluy")
+texture_focused = ExtResource("19_402f6")
 script = ExtResource("16_owynn")
 metadata/_edit_use_anchors_ = true
 
@@ -1156,10 +1157,11 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="NecklaceButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("5_upd7b")
+texture_normal = ExtResource("17_pugxu")
 texture_hover = ExtResource("6_x1x4c")
-texture_focused = ExtResource("16_woluy")
+texture_focused = ExtResource("19_402f6")
 metadata/_edit_use_anchors_ = true
 
 [node name="SelectedNecklaceTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer2/NecklaceButton"]
@@ -1178,6 +1180,17 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("16_oqu4o")
 
+[node name="SelectedStatNecklaceTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer2/NecklaceButton/SelectedNecklaceTexture"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("23_ji6rg")
+
 [node name="NecklacesNotification" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer2/NecklaceButton"]
 unique_name_in_owner = true
 visible = false
@@ -1192,11 +1205,12 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="RingsButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_right = NodePath("../../../../../StatsContainer/VBoxContainer/stat_1/VBoxContainer/add_stat_1")
-texture_normal = ExtResource("5_upd7b")
+texture_normal = ExtResource("17_pugxu")
 texture_hover = ExtResource("6_x1x4c")
-texture_focused = ExtResource("16_woluy")
+texture_focused = ExtResource("19_402f6")
 metadata/_edit_use_anchors_ = true
 
 [node name="SelectedRingTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3/RingsButton"]
@@ -1215,6 +1229,17 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("17_85sj4")
 
+[node name="SelectedStatRingTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3/RingsButton/SelectedRingTexture"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("26_7ecur")
+
 [node name="RingsNotification" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer3/RingsButton"]
 unique_name_in_owner = true
 visible = false
@@ -1229,11 +1254,12 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="PantsButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_right = NodePath("../../../../../StatsContainer/VBoxContainer/stat_1/VBoxContainer/add_stat_1")
-texture_normal = ExtResource("5_upd7b")
+texture_normal = ExtResource("17_pugxu")
 texture_hover = ExtResource("6_x1x4c")
-texture_focused = ExtResource("16_woluy")
+texture_focused = ExtResource("19_402f6")
 metadata/_edit_use_anchors_ = true
 
 [node name="SelectedPantsTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer4/PantsButton"]
@@ -1252,6 +1278,17 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("18_wcvkc")
 
+[node name="SelectedStatPantsTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer4/PantsButton/SelectedPantsTexture"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("28_ji0me")
+
 [node name="PantsNotification" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer4/PantsButton"]
 unique_name_in_owner = true
 visible = false
@@ -1266,11 +1303,12 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="BootsButton" type="TextureButton" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_right = NodePath("../../../../../StatsContainer/VBoxContainer/stat_1/VBoxContainer/add_stat_1")
-texture_normal = ExtResource("5_upd7b")
+texture_normal = ExtResource("17_pugxu")
 texture_hover = ExtResource("6_x1x4c")
-texture_focused = ExtResource("16_woluy")
+texture_focused = ExtResource("19_402f6")
 metadata/_edit_use_anchors_ = true
 
 [node name="SelectedBootsTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer5/BootsButton"]
@@ -1287,7 +1325,18 @@ offset_right = 35.0
 offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("19_bng3d")
+texture = ExtResource("29_rkv4r")
+
+[node name="SelectedStatBootsTexture" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer5/BootsButton/SelectedBootsTexture"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("30_mbewn")
 
 [node name="BootsNotification" type="TextureRect" parent="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer5/BootsButton"]
 unique_name_in_owner = true
@@ -1704,8 +1753,8 @@ libraries = {
 [connection signal="pressed" from="StatsContainer/VBoxContainer/stat_4/VBoxContainer/remove_stat_4" to="." method="_on_remove_stat_4_pressed"]
 [connection signal="pressed" from="StatsContainer/VBoxContainer/stat_5/VBoxContainer/add_stat_5" to="." method="_on_add_stat_5_pressed"]
 [connection signal="pressed" from="StatsContainer/VBoxContainer/stat_5/VBoxContainer/remove_stat_5" to="." method="_on_remove_stat_5_pressed"]
-[connection signal="pressed" from="StatsContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="StatsContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_apply_pressed"]
+[connection signal="pressed" from="StatsContainer/VBoxContainer/MarginContainer/HBoxContainer/apply" to="." method="_on_button_pressed"]
 [connection signal="resized" from="InventoryManager" to="." method="_on_background_resized"]
 [connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer/HatButton" to="InventoryManager" method="_on_hat_button_pressed"]
 [connection signal="pressed" from="InventoryManager/EquipmentContainer/VBoxContainer/HBoxContainer2/NecklaceButton" to="InventoryManager" method="_on_necklace_button_pressed"]

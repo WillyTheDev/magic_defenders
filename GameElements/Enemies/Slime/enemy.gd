@@ -117,10 +117,8 @@ func add_loot(loot_to_add:Loot):
 
 
 func _on_area_2d_body_entered(body):
-	print("body in range !")
-	print(body)
-	if body is StaticBody2D:
-		print("body is defense !")
+	if body.is_in_group("Defense"):
+		print("body is defense !")		
 		body.get_parent().cumulated_damage += base_damage
 		%WaterRay.rotation = %WaterRay.get_angle_to(body.global_position)
 		%WaterRay.visible = true
@@ -128,7 +126,7 @@ func _on_area_2d_body_entered(body):
 
 
 func _on_area_2d_body_exited(body):
-	if body is StaticBody2D:
+	if body.is_in_group("Defense"):
 		%WaterRay.visible = false
 		%WaterRay.rotation = 0
 		speed = base_speed + speed_increment

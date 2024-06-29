@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dk18yh7kobthq"]
+[gd_scene load_steps=31 format=3 uid="uid://dk18yh7kobthq"]
 
 [ext_resource type="Script" path="res://GameElements/Skills/SkillManager.gd" id="1_qmdoi"]
 [ext_resource type="Texture2D" uid="uid://33a4fljdofkd" path="res://Assets/UI/Skills_button/defense_normal.png" id="2_kcxfs"]
@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bj1sf6iw1kpa3" path="res://Assets/UI/end_screen.png" id="4_r3bw3"]
 [ext_resource type="Texture2D" uid="uid://dhguypk40lbjg" path="res://Assets/UI/Skills_button/empty_normal.png" id="4_uv5xn"]
 [ext_resource type="Texture2D" uid="uid://blgbcbhvlvfax" path="res://Assets/UI/Skills_button/empty_hover.png" id="5_newcm"]
+[ext_resource type="Texture2D" uid="uid://hugbe3prh8dy" path="res://Assets/UI/item/normal.png" id="5_w4gv4"]
 [ext_resource type="Texture2D" uid="uid://dpv6xqmm5jm1q" path="res://Assets/UI/Skills_button/locked_skill.png" id="6_7vv01"]
+[ext_resource type="Texture2D" uid="uid://4rqv4xeof3p5" path="res://Assets/UI/Skills_button/aoe_turret_icon.png" id="6_e4rk2"]
 [ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="6_nuyxt"]
 [ext_resource type="Script" path="res://GameElements/Skills/outside_click_control.gd" id="6_o7o7e"]
 
@@ -115,10 +117,146 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_ifug7"]
+resource_name = "showInfoSkill1"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%SkillSelection/../CanvasLayer/InfoContainerSkill_1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hjuy6"]
+resource_name = "hideInfoSkill1"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer/InfoContainerSkill_1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.594604, 0.594604),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ie244"]
+resource_name = "showInfoSkill2"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer/InfoContainerSkill_2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_05k6r"]
+resource_name = "hideInfoSkill2"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer/InfoContainerSkill_2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l0c7f"]
+resource_name = "showInfoSkill3"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer/InfoContainerSkill_3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3ggch"]
+resource_name = "hideInfoSkill3"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer/InfoContainerSkill_3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3d0bf"]
+resource_name = "showInfoSkill4"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer/InfoContainerSkill_4:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lwa7g"]
+resource_name = "hideInfoSkill4"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer/InfoContainerSkill_4:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l7apm"]
 _data = {
 "RESET": SubResource("Animation_qe0q6"),
+"hideInfoSkill1": SubResource("Animation_hjuy6"),
+"hideInfoSkill2": SubResource("Animation_05k6r"),
+"hideInfoSkill3": SubResource("Animation_3ggch"),
+"hideInfoSkill4": SubResource("Animation_lwa7g"),
 "hide_list": SubResource("Animation_b3oj1"),
+"showInfoSkill1": SubResource("Animation_ifug7"),
+"showInfoSkill2": SubResource("Animation_ie244"),
+"showInfoSkill3": SubResource("Animation_l0c7f"),
+"showInfoSkill4": SubResource("Animation_3d0bf"),
 "show_skill_list": SubResource("Animation_a13vp")
 }
 
@@ -168,12 +306,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -19.5
-offset_top = -39.0
-offset_right = 30.5
-offset_bottom = -8.0
+offset_left = -15.5
+offset_top = -41.0
+offset_right = 14.5
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 bbcode_enabled = true
 text = "[center][img=30x30]res://Assets/UI/input/1.png[/img][/center]"
 
@@ -207,12 +346,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -19.5
-offset_top = -39.0
-offset_right = 28.5
-offset_bottom = -8.0
+offset_left = -15.5
+offset_top = -41.0
+offset_right = 14.5
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 bbcode_enabled = true
 text = "[center][img=30x30]res://Assets/UI/input/2.png[/img][/center]"
 
@@ -247,12 +387,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -19.5
-offset_top = -38.0
-offset_right = 30.5
-offset_bottom = -8.0
+offset_left = -15.5
+offset_top = -41.0
+offset_right = 14.5
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 bbcode_enabled = true
 text = "[center][img=30x30]res://Assets/UI/input/3.png[/img][/center]"
 
@@ -287,12 +428,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -19.5
-offset_top = -39.0
-offset_right = 28.5
-offset_bottom = -8.0
+offset_left = -15.5
+offset_top = -41.0
+offset_right = 14.5
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 bbcode_enabled = true
 text = "[center][img=30x30]res://Assets/UI/input/4.png[/img][/center]"
 
@@ -382,10 +524,228 @@ libraries = {
 "": SubResource("AnimationLibrary_l7apm")
 }
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InfoContainerSkill_1" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+offset_left = 765.0
+offset_top = 775.0
+offset_right = 1153.0
+offset_bottom = 915.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InfoContainerSkill_1"]
+layout_mode = 2
+texture = ExtResource("5_w4gv4")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/InfoContainerSkill_1/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/InfoContainerSkill_1/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 10
+
+[node name="InfoIconTexture" type="TextureRect" parent="CanvasLayer/InfoContainerSkill_1/TextureRect/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_e4rk2")
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/InfoContainerSkill_1/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="InfoRichLabel" type="RichTextLabel" parent="CanvasLayer/InfoContainerSkill_1/TextureRect/HBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_lby4j")
+bbcode_enabled = true
+text = "- [color=purple] Name [/color] -
+Description
+
+Mana cost : [color=RoyalBlue] price [/color]"
+
+[node name="InfoContainerSkill_2" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+offset_left = 765.0
+offset_top = 775.0
+offset_right = 1153.0
+offset_bottom = 915.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InfoContainerSkill_2"]
+layout_mode = 2
+texture = ExtResource("5_w4gv4")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/InfoContainerSkill_2/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/InfoContainerSkill_2/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 10
+
+[node name="InfoIconTexture" type="TextureRect" parent="CanvasLayer/InfoContainerSkill_2/TextureRect/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_e4rk2")
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/InfoContainerSkill_2/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="InfoRichLabel" type="RichTextLabel" parent="CanvasLayer/InfoContainerSkill_2/TextureRect/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_lby4j")
+bbcode_enabled = true
+text = "- [color=purple] Name [/color] -
+Description
+
+Mana cost : [color=RoyalBlue] price [/color]"
+
+[node name="InfoContainerSkill_3" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+offset_left = 765.0
+offset_top = 775.0
+offset_right = 1153.0
+offset_bottom = 915.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InfoContainerSkill_3"]
+layout_mode = 2
+texture = ExtResource("5_w4gv4")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/InfoContainerSkill_3/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/InfoContainerSkill_3/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 10
+
+[node name="InfoIconTexture" type="TextureRect" parent="CanvasLayer/InfoContainerSkill_3/TextureRect/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_e4rk2")
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/InfoContainerSkill_3/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="InfoRichLabel" type="RichTextLabel" parent="CanvasLayer/InfoContainerSkill_3/TextureRect/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_lby4j")
+bbcode_enabled = true
+text = "- [color=purple] Name [/color] -
+Description
+
+
+Mana cost : [color=RoyalBlue] price [/color]"
+
+[node name="InfoContainerSkill_4" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+offset_left = 765.0
+offset_top = 775.0
+offset_right = 1153.0
+offset_bottom = 915.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InfoContainerSkill_4"]
+layout_mode = 2
+texture = ExtResource("5_w4gv4")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/InfoContainerSkill_4/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/InfoContainerSkill_4/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 10
+
+[node name="InfoIconTexture" type="TextureRect" parent="CanvasLayer/InfoContainerSkill_4/TextureRect/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_e4rk2")
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/InfoContainerSkill_4/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="InfoRichLabel" type="RichTextLabel" parent="CanvasLayer/InfoContainerSkill_4/TextureRect/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_lby4j")
+bbcode_enabled = true
+text = "- [color=purple] Name [/color] -
+Description
+
+
+Mana cost : [color=RoyalBlue] price [/color]"
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_1" to="." method="_on_skill_button_1_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_1" to="." method="_on_skill_button_1_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_1" to="." method="_on_skill_button_1_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_2" to="." method="_on_skill_button_2_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_2" to="." method="_on_skill_button_2_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_2" to="." method="_on_skill_button_2_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_3" to="." method="_on_skill_button_3_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_3" to="." method="_on_skill_button_3_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_3" to="." method="_on_skill_button_3_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_4" to="." method="_on_skill_button_4_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_4" to="." method="_on_skill_button_4_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SkillButton_4" to="." method="_on_skill_button_4_pressed"]
 [connection signal="gui_input" from="SkillSelection/Control" to="SkillSelection/Control" method="_on_gui_input"]
 [connection signal="item_activated" from="SkillSelection/TextureRect/MarginContainer/ScrollContainer/SkillList" to="." method="_on_skill_list_item_activated"]

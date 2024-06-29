@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cso5kcb0811xk"
-path="res://.godot/imported/boots_placeholder.png-f1dfee0306b237821f7944ef5bc6fd7c.ctex"
+uid="uid://e84kf85iqq6q"
+path="res://.godot/imported/baliste_icon.png-dffea6ae3a2de409c8cfc700e0fd4a96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/player_profile_background/boots_placeholder.png"
-dest_files=["res://.godot/imported/boots_placeholder.png-f1dfee0306b237821f7944ef5bc6fd7c.ctex"]
+source_file="res://Assets/UI/Skills_button/baliste_icon.png"
+dest_files=["res://.godot/imported/baliste_icon.png-dffea6ae3a2de409c8cfc700e0fd4a96.ctex"]
 
 [params]
 

@@ -111,7 +111,7 @@ func on_enemy_has_been_killed():
 	# This is the part to debug !
 	# When there is no more enemy to spawn & the player just kille the last enemy then :
 	# @enemies_left is decremented each time the player is killing an ennemy
-	if enemies_left <= 0 && is_spawning == false:
+	if enemies_left <= 0 && is_spawning == false && get_tree().get_nodes_in_group("Enemy").size() <= 1:
 		print("Scene still have enemies %s" % get_tree().get_nodes_in_group("Enemy").size())
 		$/root/Game.end_of_wave()
 	

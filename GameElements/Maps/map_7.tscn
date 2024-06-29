@@ -34,12 +34,6 @@ _data = {
 }
 point_count = 13
 
-[sub_resource type="Curve2D" id="Curve2D_ltour"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -990.86, -18.2186, 0, 0, 0, 0, -857.318, 0.650665, 0, 0, 0, 0, -775.428, -21.4719, 0, 0, 0, 0, -711.177, -1.30133, 0, 0, 0, 0, -568.815, -1.30133, 0, 0, 0, 0, -422.675, -28.6292, 0, 0, 0, 0, -397.478, 143.797, 0, 0, 0, 0, -251.337, 173.727, 0, 0, 0, 0, -153.7, 153.557, 0, 0, 0, 0, 113.385, 178.933, 0, 0, 0, 0, 175.747, 3.90399, 0, 0, 0, 0, 143.621, -16.9173, 0, 0, 0, 0, -15.1181, -11.0613)
-}
-point_count = 13
-
 [sub_resource type="Curve2D" id="Curve2D_12hu7"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 2830, 640, 0, 0, 0, 0, 2492, 650, 0, 0, 0, 0, 2112, 660, 0, 0, 0, 0, 2152, 520, 0, 0, 0, 0, 2120, 450, 0, 0, 0, 0, 1678, 406, 0, 0, 0, 0, 1394, 350, 0, 0, 0, 0, 1142, 348, 0, 0, 0, 0, 956, 366, 0, 0, 0, 0, 930, 504, 0, 0, 0, 0, 976, 574, 0, 0, 0, 0, 1100, 610, 0, 0, 0, 0, 1260, 638)
@@ -51,6 +45,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 2830, 644, 0, 0, 0, 0, 2412, 638, 0, 0, 0, 0, 2120, 658, 0, 0, 0, 0, 1984, 640, 0, 0, 0, 0, 1810, 654, 0, 0, 0, 0, 1686, 656, 0, 0, 0, 0, 1692, 408, 0, 0, 0, 0, 1492, 368, 0, 0, 0, 0, 1364, 348, 0, 0, 0, 0, 1178, 346, 0, 0, 0, 0, 960, 366, 0, 0, 0, 0, 922, 510, 0, 0, 0, 0, 974, 576, 0, 0, 0, 0, 1254, 636)
 }
 point_count = 14
+
+[sub_resource type="Curve2D" id="Curve2D_xxee2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -327, 660, 0, 0, 0, 0, -64.0002, 671, 0, 0, 0, 0, 46.9999, 643, 0, 0, 0, 0, 156, 676, 0, 0, 0, 0, 597, 636, 0, 0, 0, 0, 595, 783, 0, 0, 0, 0, 645, 906, 0, 0, 0, 0, 754, 919, 0, 0, 0, 0, 890, 935, 0, 0, 0, 0, 1024, 915, 0, 0, 0, 0, 1446, 946, 0, 0, 0, 0, 1546, 691, 0, 0, 0, 0, 1506, 652, 0, 0, 0, 0, 1340, 660, 0, 0, 0, 0, 1265, 654)
+}
+point_count = 15
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n20h4"]
 shader = ExtResource("6_qmi61")
@@ -131,16 +131,7 @@ curve = SubResource("Curve2D_yb2nl")
 
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D" instance=ExtResource("5_5j5xm")]
 position = Vector2(-313, 653)
-rotation = 0.0782709
-
-[node name="Path2D2" type="Path2D" parent="Arrière-plan/Paths"]
-position = Vector2(1269, 675)
-scale = Vector2(1.58751, 1.53689)
-curve = SubResource("Curve2D_ltour")
-
-[node name="PathIndicator" parent="Arrière-plan/Paths/Path2D2" instance=ExtResource("5_5j5xm")]
-position = Vector2(-990.86, -18.2186)
-rotation = 0.140369
+rotation = 0.0782712
 
 [node name="Path2D3" type="Path2D" parent="Arrière-plan/Paths"]
 curve = SubResource("Curve2D_12hu7")
@@ -155,6 +146,9 @@ curve = SubResource("Curve2D_0r5jn")
 [node name="PathIndicator" parent="Arrière-plan/Paths/Path2D4" instance=ExtResource("5_5j5xm")]
 position = Vector2(2830, 644)
 rotation = -3.12724
+
+[node name="Path2D2" type="Path2D" parent="Arrière-plan/Paths"]
+curve = SubResource("Curve2D_xxee2")
 
 [node name="Cloud" type="ColorRect" parent="Arrière-plan"]
 z_index = 5

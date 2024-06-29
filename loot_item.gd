@@ -34,7 +34,7 @@ func _ready():
 %s : [color=%s] %s [/color]
 %s : [color=%s] %s [/color]" % [get_rarity_color_name(loot_rarity), get_rarity_name(loot_rarity), loot_primary_stat, get_stat_color_name(loot_primary_stat), loot_primary_stat_value, loot_secondary_stat, get_stat_color_name(loot_secondary_stat), loot_secondary_stat_value]
 		%SellButton.text = "Sell : %s" % (loot_rarity + 1)
-		%ItemTexture.self_modulate = get_rarity_color(loot_rarity)
+		%ItemBackground.self_modulate = get_rarity_color(loot_rarity)
 		%StatTexture.texture = stat_texture
 		%StatTexture.modulate = get_stat_color(loot_primary_stat)
 	
@@ -56,7 +56,7 @@ func get_rarity_color_name(rarity:int) -> String:
 			color = "Crimson"
 	return color
 	
-func get_rarity_color(rarity:int) -> Color:
+static func get_rarity_color(rarity:int) -> Color:
 	var color = Color.WHITE
 	match rarity:
 		0:
@@ -73,7 +73,7 @@ func get_rarity_color(rarity:int) -> Color:
 			color = Color.CRIMSON
 	return color 
 
-func get_stat_color(name) -> Color:
+static func get_stat_color(name) -> Color:
 	var color = Color.WHITE
 	match name:
 		"player damage":
@@ -87,8 +87,23 @@ func get_stat_color(name) -> Color:
 		"defense Attack speed":
 			color = Color.ORANGE
 	return color
+	
+static func get_stat_name(value) -> String:
+	var name = "player damage"
+	match value:
+		1:
+			name = "player damage"
+		2:
+			name = "defense range"
+		3:
+			name = "defense damage"
+		4:
+			name = "defense health"
+		5:
+			name = "defense Attack speed"
+	return name 
 
-func get_stat_color_name(name) -> String:
+static func get_stat_color_name(name) -> String:
 	var color = "Black"
 	match name:
 		"player damage":
