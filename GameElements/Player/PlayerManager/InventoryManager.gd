@@ -186,6 +186,7 @@ func _on_equips_necklaces_pressed(index):
 		Global.inventory.equiped_necklaces = Global.inventory.loots["necklaces"][index]
 		%PlayerManagerAnimationPlayer.play("hide_necklace_list")
 		%SelectedNecklaceTexture.texture = Global.inventory.equiped_necklaces.texture
+		%SelectedStatNecklaceTexture.visible = true
 		%SelectedStatNecklaceTexture.modulate = LootItem.get_stat_color(LootItem.get_stat_name(Global.inventory.equiped_necklaces.primary_stat))
 		%NecklaceButton.self_modulate = Global.inventory.equiped_necklaces.modulate
 
@@ -239,6 +240,7 @@ func _on_equips_rings_pressed(index):
 		Global.inventory.equiped_rings = Global.inventory.loots["rings"][index]
 		%PlayerManagerAnimationPlayer.play("hide_ring_list")
 		%SelectedRingTexture.texture = Global.inventory.loots["rings"][index].texture
+		%SelectedStatRingTexture.visible = true
 		%SelectedStatRingTexture.modulate = LootItem.get_stat_color(LootItem.get_stat_name(Global.inventory.equiped_rings.primary_stat))
 		%RingsButton.self_modulate = Global.inventory.loots["rings"][index].modulate
 
@@ -292,6 +294,7 @@ func _on_equips_pants_pressed(index):
 		Global.inventory.equiped_pants = Global.inventory.loots["pants"][index]
 		%PlayerManagerAnimationPlayer.play("hide_pants_list")
 		%SelectedPantsTexture.texture = Global.inventory.loots["pants"][index].texture
+		%SelectedStatPantsTexture.visible = true
 		%SelectedStatPantsTexture.modulate = LootItem.get_stat_color(LootItem.get_stat_name(Global.inventory.equiped_pants.primary_stat))
 		%PantsButton.self_modulate = Global.inventory.loots["pants"][index].modulate
 
@@ -345,6 +348,7 @@ func _on_equips_boots_pressed(index):
 		Global.inventory.equiped_boots = Global.inventory.loots["boots"][index]
 		%PlayerManagerAnimationPlayer.play("hide_boots_list")
 		%SelectedBootsTexture.texture = Global.inventory.loots["boots"][index].texture
+		%SelectedStatBootsTexture.visible = true
 		%SelectedStatBootsTexture.modulate = LootItem.get_stat_color(LootItem.get_stat_name(Global.inventory.equiped_boots.primary_stat))
 		%BootsButton.self_modulate = Global.inventory.loots["boots"][index].modulate
 

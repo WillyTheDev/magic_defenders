@@ -40,9 +40,14 @@ func spawn_flying_mob():
 			spawn_visual_indicator(flying_enemy)
 			number_of_time -= 1
 
+
 func spawn_mob():
-	
 	#Load a new Enemy ( Path2DFollower ) and attach the relevent monster ( e.g slime, slimeMedium, archer...)
+	var follower = preload("res://GameElements/Enemies/Follower.tscn").instantiate()
+	follower.progress = 100
+	var indexSpawnPoints = randi_range(0,map_of_game.paths.size() - 1)
+	map_of_game.paths[indexSpawnPoints].add_child(follower)
+	print("Follower is now on the tree !")
 	var enemy = null
 	# if infinity mode, ennemies spawner don't follow any sequence
 	if Global.selected_difficulty == 99:
@@ -95,25 +100,25 @@ func spawn_mob():
 			7:
 				enemy = preload("res://GameElements/Enemies/Slime/fishmen.tscn").instantiate()
 		number_of_time -= 1
-	var follower = preload("res://GameElements/Enemies/Follower.tscn").instantiate()
-	var indexSpawnPoints = randi_range(0,map_of_game.paths.size() - 1)
-	map_of_game.paths[indexSpawnPoints].add_child(follower)
-	follower.progress = 100
-	follower.call_deferred("add_child", enemy)
+	follower.add_child(enemy)
 	spawn_visual_indicator(follower)
 	enemies_spawn += 1
-	
 
 func on_enemy_has_been_killed():
 	enemies_left -= 1
 	%EnemiesProgressBar.value = enemies_left
 	%EnemiesLabel.text = "Wave %s : %s / %s" % [Game.current_wave,enemies_left, total_enemies]
 	# This is the part to debug !
-	# When there is no more enemy to spawn & the player just kille the last enemy then :
+	# When there is no more enemy to spawn & the player just kill the last enemy then :
 	# @enemies_left is decremented each time the player is killing an ennemy
-	if enemies_left <= 0 && is_spawning == false && get_tree().get_nodes_in_group("Enemy").size() <= 1:
-		print("Scene still have enemies %s" % get_tree().get_nodes_in_group("Enemy").size())
-		$/root/Game.end_of_wave()
+	if enemies_left <= 0 && is_spawning == false && %GameOverScreen.game_is_over == false:
+		call_deferred("check_all_enemies_have_been_killed")
+		
+
+func check_all_enemies_have_been_killed():
+	if is_visible_in_tree():
+		if get_tree().get_nodes_in_group("Enemy").size() <= 0:
+			$/root/Game.end_of_wave()
 	
 func spawn_visual_indicator(target):
 	# Add a visual indicator for each Enemy spawned

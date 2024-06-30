@@ -5,6 +5,7 @@ func _ready():
 	%TransitionLayer.open_transition()
 	%ContinueButton.grab_focus()
 	
+	
 func _input(event):
 	if event is InputEventMouseButton:
 		print("Player moving mouse !")

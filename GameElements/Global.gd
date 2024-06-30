@@ -46,7 +46,7 @@ func getDefenseRange():
 
 static var defense_base_range = 1.0
 static var defense_stat_range = 0.0
-static var defense_divider_range = 15.0
+static var defense_divider_range = 25.0
 
 func getDefenseDamage():
 	return (defense_base_damage + (defense_base_damage / defense_divider_damage) * (defense_stat_damage + inventory.equiped_defense_damage))

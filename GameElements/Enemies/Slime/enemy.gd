@@ -41,10 +41,14 @@ func _ready():
 	health = total_health
 	enemy_damage = base_damage + enemy_damage
 	slime_has_been_killed.connect($/root/Game/Spawner.on_enemy_has_been_killed)
+	tree_exited.connect(_on_enemy_exited_tree)
 	%HealthBar.max_value = total_health
 	%HealthBar.value = total_health
 	LootManager.add_loot_to_enemy(self)
 	play_animation_idle()
+	
+func _on_enemy_exited_tree():
+	slime_has_been_killed.emit()
 	
 func _on_enemy_modification(args: Callable):
 	args.call(self)
@@ -100,7 +104,6 @@ func take_damage(damage=1):
 				loot_to_spawn.global_position = global_position + Vector2(randi() % 30, randi() % 30)
 				loot_to_spawn.get_node("LootSprite").modulate = loot.modulate
 				$/root/Game.call_deferred("add_child", loot_to_spawn)
-			slime_has_been_killed.emit()
 			get_parent().queue_free()
 	
 func no_longer_attacking_defense():
